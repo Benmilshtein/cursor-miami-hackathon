@@ -21,6 +21,7 @@ This is a clean, brandable template. Every name, date, venue, and sponsor in the
 - [Scripts](#scripts)
 - [Docker & deployment](#docker--deployment)
 - [Project layout](#project-layout)
+- [Contributors](#contributors)
 
 ---
 
@@ -185,6 +186,13 @@ See `docs/DOKPLOY.md` for a Dokploy walkthrough using `docker-compose.dokploy.ym
 ├── docker-compose.yml
 └── scripts/             # e.g. start-with-migrate.mjs
 ```
+
+---
+
+## Contributors
+
+- [Ben Milshtein](https://github.com/Benmilshtein) — author & maintainer
+- [Jerry](https://github.com/Mr-Higgs) — contributor
 
 ---
 
