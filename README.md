@@ -192,8 +192,8 @@ See `docs/DOKPLOY.md` for a Dokploy walkthrough using `docker-compose.dokploy.ym
 
 ## Contributors
 
-- [Ben Milshtein](https://github.com/Benmilshtein), author & maintainer
-- [Jerry](https://github.com/Mr-Higgs), contributor
+- [Ben Milshtein](https://github.com/Benmilshtein)
+- [Jerry Pierre](https://github.com/Mr-Higgs)
 
 ---
 
