@@ -104,7 +104,7 @@ export function ParticipantHero() {
       <div className="absolute inset-0 overflow-hidden pointer-events-none hidden md:block">
         <MouseParallax factor={-30} className="absolute top-[15%] left-[10%]">
           <div className="p-4 bg-[var(--bg-secondary)]/30 backdrop-blur-md border border-[var(--border-color)]/50 rounded-2xl rotate-[-6deg]">
-            <span className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-400">
+            <span className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#ff2d92] via-[#ff6b5c] to-[#10d6c2]">
               4H
             </span>
           </div>
@@ -112,7 +112,7 @@ export function ParticipantHero() {
 
         <MouseParallax factor={40} className="absolute bottom-[20%] left-[5%]">
           <div className="flex items-center gap-2 px-4 py-2 bg-[var(--bg-secondary)]/30 backdrop-blur-md border border-[var(--border-color)]/50 rounded-full">
-            <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+            <div className="w-2 h-2 bg-[var(--accent-cyan)] rounded-full animate-pulse" />
             <span className="text-sm font-mono text-[var(--text-muted)]">
               SYSTEM_READY
             </span>
@@ -188,7 +188,7 @@ export function ParticipantHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.8 }}
-          className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-8 bg-gradient-to-br from-white via-white/80 to-white/40 bg-clip-text text-transparent"
+          className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-8 bg-gradient-to-r from-[#ff2d92] via-[#ff6b5c] to-[#10d6c2] bg-clip-text text-transparent"
         >
           {t("participantHero", "subtitle")}
         </motion.h2>

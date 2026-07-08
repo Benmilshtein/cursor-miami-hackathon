@@ -1,38 +1,38 @@
 @import "tailwindcss";
 
 :root {
-  /* Background Colors - Layered depth system */
-  --bg-primary: #0a0a0a;
-  --bg-secondary: #141414;
-  --bg-tertiary: #1a1a1a;
+  /* Background Colors - Layered depth system (near-black neon base) */
+  --bg-primary: #07070c;
+  --bg-secondary: #0c0c14;
+  --bg-tertiary: #12121c;
   --background: var(--bg-primary);
-  --foreground: #ffffff;
+  --foreground: #f4f5fa;
   
   /* Text Colors */
-  --text-primary: #ffffff;
-  --text-secondary: #a1a1a1;
-  --text-muted: #666666;
+  --text-primary: #f4f5fa;
+  --text-secondary: #b9bdcc;
+  --text-muted: #8a90a3;
   
-  /* Accent Colors - Muted palette */
-  --accent-blue: #3b82f6;
-  --accent-green: #22c55e;
-  --accent-purple: #a855f7;
-  --accent-cyan: #0891b2;
-  --accent-amber: #b45309;
+  /* Accent Colors - Neon palette (magenta / coral / cyan) */
+  --accent-blue: #ff2d92;
+  --accent-green: #10d6c2;
+  --accent-purple: #ff6b5c;
+  --accent-cyan: #10d6c2;
+  --accent-amber: #ff9f45;
   
   /* Border Colors */
-  --border-color: #262626;
-  --border-hover: #404040;
+  --border-color: #1e1e2a;
+  --border-hover: #3a3a4c;
   
   /* Card Colors */
-  --card-bg: rgba(20, 20, 20, 0.8);
-  --card-border: #262626;
-  --card-hover-bg: rgba(26, 26, 26, 0.9);
-  --card-hover-border: #404040;
+  --card-bg: rgba(12, 12, 20, 0.8);
+  --card-border: #1e1e2a;
+  --card-hover-bg: rgba(18, 18, 28, 0.9);
+  --card-hover-border: #3a3a4c;
   
   /* Glow Colors - More subtle */
-  --glow-blue: #2563eb;
-  --glow-purple: #7c3aed;
+  --glow-blue: #ff2d92;
+  --glow-purple: #10d6c2;
   
   /* Code Syntax Colors */
   --syntax-keyword: #c678dd;
@@ -137,7 +137,8 @@ body {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-size: 14px;
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+  font-size: 13px;
   font-weight: 600;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -217,13 +218,13 @@ body {
   border-radius: 50%;
   background-color: var(--background);
   border: 2px solid var(--accent-blue);
-  box-shadow: 0 0 8px rgba(59, 130, 246, 0.3);
+  box-shadow: 0 0 8px rgba(255, 45, 146, 0.35);
   z-index: 2;
 }
 
 .timeline-dot-purple {
   border-color: var(--accent-purple);
-  box-shadow: 0 0 8px rgba(168, 85, 247, 0.3);
+  box-shadow: 0 0 8px rgba(255, 107, 92, 0.35);
 }
 
 /* Decorative accent bars on cards */
@@ -253,27 +254,27 @@ body {
 }
 
 .icon-box-blue {
-  background: rgba(59, 130, 246, 0.08);
+  background: rgba(255, 45, 146, 0.1);
   color: var(--accent-blue);
 }
 
 .icon-box-purple {
-  background: rgba(168, 85, 247, 0.08);
+  background: rgba(255, 107, 92, 0.1);
   color: var(--accent-purple);
 }
 
 .icon-box-green {
-  background: rgba(34, 197, 94, 0.08);
+  background: rgba(16, 214, 194, 0.1);
   color: var(--accent-green);
 }
 
 .icon-box-cyan {
-  background: rgba(8, 145, 178, 0.08);
+  background: rgba(16, 214, 194, 0.1);
   color: var(--accent-cyan);
 }
 
 .icon-box-amber {
-  background: rgba(180, 83, 9, 0.08);
+  background: rgba(255, 159, 69, 0.1);
   color: var(--accent-amber);
 }
 
@@ -290,7 +291,7 @@ body {
   justify-content: center;
   color: white;
   flex-shrink: 0;
-  box-shadow: 0 4px 10px rgba(168, 85, 247, 0.2);
+  box-shadow: 0 4px 10px rgba(255, 107, 92, 0.25);
 }
 
 /* List item dot */
@@ -321,7 +322,7 @@ body {
 
 /* Selection */
 ::selection {
-  background: rgba(59, 130, 246, 0.25);
+  background: rgba(255, 45, 146, 0.3);
   color: white;
 }
 
