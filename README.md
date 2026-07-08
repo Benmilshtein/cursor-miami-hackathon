@@ -2,6 +2,10 @@
 
 Open-source platform for running **hackathons**: landing site, registration, teams, screening, scoring, admin tools, and partner credits — built with **Next.js**, **Supabase**, and **PostgreSQL**.
 
+**Live site: [cursormiami.com](https://cursormiami.com)**
+
+[![cursormiami.com](docs/screenshot.png)](https://cursormiami.com)
+
 This is a clean, brandable template. Every name, date, venue, and sponsor in the UI is placeholder copy: clone it, edit a handful of config values, and your event can be live tomorrow.
 
 ---
