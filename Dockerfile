@@ -13,7 +13,7 @@ COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 # Public, build-time-inlined config (passed via compose build.args).
 # NEXT_PUBLIC_* vars are baked into the client bundle by `next build`, so they
-# MUST be present here — runtime injection cannot patch the browser bundle.
+# MUST be present here - runtime injection cannot patch the browser bundle.
 ARG NEXT_PUBLIC_SUPABASE_URL
 ARG NEXT_PUBLIC_SUPABASE_ANON_KEY
 ARG NEXT_PUBLIC_APP_URL

@@ -224,7 +224,7 @@ export default function OnboardingPage() {
             <h1 className="text-xl font-bold text-white">You&apos;re in the pool!</h1>
             <p className="mt-4 text-sm leading-relaxed text-[var(--text-secondary)]">
               We&apos;ll match you into a balanced team with at least one experienced
-              builder. Check your dashboard after the organizers run team matching —
+              builder. Check your dashboard after the organizers run team matching - 
               your teammates will show up there.
             </p>
             <Link

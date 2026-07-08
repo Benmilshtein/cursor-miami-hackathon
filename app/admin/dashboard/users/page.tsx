@@ -229,7 +229,7 @@ export default function AdminUsersPage() {
                         className="border-b border-[var(--border-color)]/50 transition-colors hover:bg-[var(--bg-secondary)]/30"
                       >
                         <td className="px-4 py-3 font-medium text-white">
-                          {u.name || "—"}
+                          {u.name || " - "}
                         </td>
                         <td className="px-4 py-3 text-[var(--text-secondary)]">{u.email}</td>
                         <td className="px-4 py-3">
@@ -247,7 +247,7 @@ export default function AdminUsersPage() {
                           </select>
                         </td>
                         <td className="px-4 py-3 text-[var(--text-muted)]">
-                          {u.teamId ?? "—"}
+                          {u.teamId ?? " - "}
                         </td>
                         <td className="px-4 py-3">
                           {DELETABLE_ROLES.has(u.role) ? (
@@ -261,7 +261,7 @@ export default function AdminUsersPage() {
                               <Trash2 className="h-4 w-4" aria-hidden />
                             </button>
                           ) : (
-                            <span className="text-[var(--text-muted)]">—</span>
+                            <span className="text-[var(--text-muted)]"> - </span>
                           )}
                         </td>
                       </tr>

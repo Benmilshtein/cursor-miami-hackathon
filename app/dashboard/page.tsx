@@ -121,7 +121,7 @@ const DASHBOARD_COPY = {
     resultRejected: "Unfortunately, your team did not pass the screening.",
     resultPending: "Screening results have not been announced yet.",
     resultNoTeam: "Create a team to participate in the screening.",
-    createTeamNamePlaceholder: "Cursor Core",
+    createTeamNamePlaceholder: "Team Rocket",
     createTeamDescriptionPlaceholder: "Focus: AI product, workflow, or infra",
     joinCodePlaceholder: "7AB4K9XZ",
   },
@@ -208,7 +208,7 @@ const DASHBOARD_COPY = {
     resultRejected: "Unfortunately, your team did not pass the screening.",
     resultPending: "Screening results have not been announced yet.",
     resultNoTeam: "Create a team to participate in the screening.",
-    createTeamNamePlaceholder: "Cursor Core",
+    createTeamNamePlaceholder: "Team Rocket",
     createTeamDescriptionPlaceholder: "Focus: AI product, workflow, or infra",
     joinCodePlaceholder: "7AB4K9XZ",
   },
@@ -294,7 +294,7 @@ const DASHBOARD_COPY = {
     resultRejected: "Unfortunately, your team did not pass the screening.",
     resultPending: "Screening results have not been announced yet.",
     resultNoTeam: "Create a team to participate in the screening.",
-    createTeamNamePlaceholder: "Cursor Core",
+    createTeamNamePlaceholder: "Team Rocket",
     createTeamDescriptionPlaceholder: "Focus: AI product, workflow, or infra",
     joinCodePlaceholder: "7AB4K9XZ",
   },
@@ -784,7 +784,7 @@ export default function DashboardPage() {
           <div className="h-full">
             <DashboardSidebar
               userName={user.name ?? "User"}
-              userEmail={user.email ?? "—"}
+              userEmail={user.email ?? " - "}
               initials={initials || "U"}
               roleLabel={roleLabel}
               teamLabel={copy.teamLabel}
@@ -960,7 +960,7 @@ export default function DashboardPage() {
               </div>
             </div>
             <p className="mt-3 text-2xl font-semibold tabular-nums text-white">
-              {team ? `${team.memberCount}/${team.maxMembers}` : "—"}
+              {team ? `${team.memberCount}/${team.maxMembers}` : " - "}
             </p>
             {team ? (
               <div className="mt-3 h-1.5 overflow-hidden rounded-full bg-white/10">
@@ -991,7 +991,7 @@ export default function DashboardPage() {
                 </span>
               </div>
             ) : (
-              <p className="mt-3 text-2xl font-semibold text-[var(--text-muted)]">—</p>
+              <p className="mt-3 text-2xl font-semibold text-[var(--text-muted)]"> - </p>
             )}
           </div>
 
@@ -1083,7 +1083,7 @@ export default function DashboardPage() {
                     {copy.teamCodeLabel}
                   </p>
                   <p className="mt-2 flex items-center gap-2 break-all font-mono text-lg font-semibold tracking-widest text-white">
-                    {team.invite?.code ?? "—"}
+                    {team.invite?.code ?? " - "}
                     <Button
                       type="button"
                       variant="ghost"
@@ -1267,7 +1267,7 @@ export default function DashboardPage() {
           )}
         </section>
 
-        {/* Mentor request section — only for approved teams */}
+        {/* Mentor request section - only for approved teams */}
         {team?.screeningStatus === "approved" && (
           <section className="mt-10">
             <div className="mb-4">
@@ -1374,8 +1374,8 @@ export default function DashboardPage() {
           <h2 className="mb-4 text-lg font-semibold text-white">{copy.accountTitle}</h2>
           <div className="grid gap-3 sm:grid-cols-2">
             {[
-              { label: copy.accountName, value: user.name ?? "—", icon: UserRound },
-              { label: copy.accountEmail, value: user.email ?? "—", icon: Mail },
+              { label: copy.accountName, value: user.name ?? " - ", icon: UserRound },
+              { label: copy.accountEmail, value: user.email ?? " - ", icon: Mail },
               { label: copy.accountRole, value: roleLabel, icon: Crown },
               {
                 label: copy.accountVerified,

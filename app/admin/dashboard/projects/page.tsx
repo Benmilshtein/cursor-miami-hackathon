@@ -334,7 +334,7 @@ export default function AdminProjectsPage() {
                           {p.teamName}
                         </td>
                         <td className="px-4 py-3 text-[var(--text-muted)] text-xs">
-                          {p.techStack || "—"}
+                          {p.techStack || " - "}
                         </td>
                         <td className="px-4 py-3">
                           <div className="flex flex-wrap gap-1.5">

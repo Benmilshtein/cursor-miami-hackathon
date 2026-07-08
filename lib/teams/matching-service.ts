@@ -91,7 +91,7 @@ function formTeams(pool: PoolUser[]): PoolUser[][] {
     if (members.length === MATCH_TEAM_SIZE) {
       teams.push(members);
     } else {
-      // Not enough to complete a team — return them to the pool and stop.
+      // Not enough to complete a team - return them to the pool and stop.
       available.push(...members);
       break;
     }

@@ -341,7 +341,7 @@ export default function AdminScreeningTeamPage() {
                         <div key={q.id} className="text-sm">
                           <span className="text-[var(--text-muted)]">{q.title}: </span>
                           <span className={ans?.isCorrect ? "text-green-400" : "text-red-400"}>
-                            {opt ?? "—"} {ans !== undefined && (ans.isCorrect ? "✓" : "✗")}
+                            {opt ?? " - "} {ans !== undefined && (ans.isCorrect ? "✓" : "✗")}
                           </span>
                         </div>
                       );

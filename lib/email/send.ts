@@ -9,7 +9,7 @@
 
 const RESEND_API = "https://api.resend.com/emails";
 
-/** Resend's test sender — works without domain verification (for local dev). */
+/** Resend's test sender - works without domain verification (for local dev). */
 const RESEND_DEV_FROM = "48H <onboarding@resend.dev>";
 
 type SendEmailParams = {

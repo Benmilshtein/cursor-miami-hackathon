@@ -88,7 +88,7 @@ export function TechStack() {
         </motion.div>
 
         <div className="grid lg:grid-cols-2 gap-8 mb-12">
-          {/* Required Tool - Cursor */}
+          {/* Required Tool */}
           <motion.div
             variants={fadeUp}
             initial="hidden"
@@ -113,7 +113,7 @@ export function TechStack() {
                 <Logo size={56} className="hidden sm:block" />
               </motion.div>
               <div>
-                <h4 className="text-xl sm:text-2xl font-bold text-white mb-1">Cursor</h4>
+                <h4 className="text-xl sm:text-2xl font-bold text-white mb-1">AI Editor</h4>
                 <p className="text-[var(--text-secondary)]">{t('techStack', 'cursorDesc')}</p>
               </div>
             </motion.div>

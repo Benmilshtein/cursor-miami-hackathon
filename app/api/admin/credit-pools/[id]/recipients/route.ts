@@ -6,7 +6,7 @@ import { jsonSuccess, toErrorResponse } from "@/lib/api/http";
 import { requireSuperAdminUser } from "@/lib/auth/session";
 
 /**
- * GET: data for the disburse pickers — active teams (with member counts) and
+ * GET: data for the disburse pickers - active teams (with member counts) and
  * all participants (id, name, email, team). Used to choose who receives links.
  */
 export async function GET(request: NextRequest) {

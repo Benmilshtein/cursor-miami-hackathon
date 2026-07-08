@@ -38,7 +38,7 @@ type TeamProject = {
 const CRITERIA = [
   { key: "innovation" as const, label: "Innovation", subtitle: "Originality of idea, creative approach", max: 25, weight: "25%", icon: Sparkles, color: "var(--accent-purple)" },
   { key: "technicalExecution" as const, label: "Technical execution", subtitle: "Code quality, architecture, technologies", max: 25, weight: "25%", icon: Cpu, color: "var(--accent-blue)" },
-  { key: "aiUsage" as const, label: "AI usage", subtitle: "AI/ML integration, Cursor effectiveness", max: 20, weight: "20%", icon: BarChart3, color: "var(--accent-cyan)" },
+  { key: "aiUsage" as const, label: "AI usage", subtitle: "AI/ML integration, AI tooling effectiveness", max: 20, weight: "20%", icon: BarChart3, color: "var(--accent-cyan)" },
   { key: "uxUi" as const, label: "UX/UI", subtitle: "Ease of use, interface quality", max: 15, weight: "15%", icon: Palette, color: "var(--accent-green)" },
   { key: "businessPotential" as const, label: "Business potential", subtitle: "Market potential, scalability", max: 15, weight: "15%", icon: Briefcase, color: "var(--accent-amber)" },
 ] as const;

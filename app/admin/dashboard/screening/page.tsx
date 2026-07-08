@@ -265,7 +265,7 @@ export default function AdminScreeningPage() {
                   <td className="px-6 py-4 text-sm text-[var(--text-muted)]">
                     {team.screeningSubmittedAt
                       ? new Date(team.screeningSubmittedAt).toLocaleString()
-                      : "—"}
+                      : " - "}
                   </td>
                   <td className="px-6 py-4">
                     <Link

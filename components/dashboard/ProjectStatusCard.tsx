@@ -77,7 +77,7 @@ export function ProjectStatusCard({ teamApproved }: Props) {
           setDeadline(json.data.deadline ?? null);
         }
       } catch {
-        /* silent — fail open, dashboard still loads */
+        /* silent - fail open, dashboard still loads */
       } finally {
         if (!ignore) setLoading(false);
       }
@@ -92,7 +92,7 @@ export function ProjectStatusCard({ teamApproved }: Props) {
   if (!teamApproved) return null;
 
   const deadlinePassed = deadline ? new Date(deadline).getTime() < Date.now() : false;
-  // A row created solely to hold an app URL has a blank github_url — that's not
+  // A row created solely to hold an app URL has a blank github_url - that's not
   // a full project submission, so don't show the "submitted" state for it.
   const hasSubmission = Boolean(project && project.githubUrl?.trim());
 

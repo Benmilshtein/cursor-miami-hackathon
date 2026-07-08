@@ -865,7 +865,7 @@ export default function AdminCreditPoolDetailPage() {
                     <div className="min-w-0 flex-1 space-y-1">
                       <p className="font-mono text-[var(--text-secondary)] break-all">{l.fullUrl ?? l.url}</p>
                       <p className="text-xs text-[var(--text-muted)]">
-                        {l.participantEmail ?? l.participantUserId ?? "—"} · claimed:{" "}
+                        {l.participantEmail ?? l.participantUserId ?? " - "} · claimed:{" "}
                         {l.claimedAt ? "yes" : "no"}
                       </p>
                     </div>

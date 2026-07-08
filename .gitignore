@@ -38,7 +38,7 @@ yarn-error.log*
 pnpm-debug.log*
 .pnpm-debug.log*
 
-# Environment — keep templates (e.g. .env.example) committable
+# Environment - keep templates (e.g. .env.example) committable
 .env
 .env.*
 .env.local

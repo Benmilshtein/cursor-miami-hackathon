@@ -51,7 +51,7 @@ export function SponsorsSection() {
           </motion.h2>
         </motion.div>
 
-        {/* Leading Partner — hero tier */}
+        {/* Leading Partner - hero tier */}
         <motion.div
           initial="hidden"
           animate={isInView ? "visible" : "hidden"}

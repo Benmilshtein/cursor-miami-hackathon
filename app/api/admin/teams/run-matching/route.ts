@@ -3,7 +3,7 @@ import { jsonSuccess, toErrorResponse } from "@/lib/api/http";
 import { requireSuperAdminUser } from "@/lib/auth/session";
 import { getMatchingPoolSize, runTeamMatching } from "@/lib/teams/matching-service";
 
-/** Pool size preview — how many opted-in, un-teamed participants are waiting. */
+/** Pool size preview - how many opted-in, un-teamed participants are waiting. */
 export async function GET(request: NextRequest) {
   try {
     await requireSuperAdminUser(request);

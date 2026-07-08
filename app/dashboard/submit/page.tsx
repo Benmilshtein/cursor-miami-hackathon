@@ -237,7 +237,7 @@ export default function SubmitPage() {
           <div className="h-full">
             <DashboardSidebar
               userName={user.name ?? "User"}
-              userEmail={user.email ?? "—"}
+              userEmail={user.email ?? " - "}
               initials={initials || "U"}
               roleLabel={roleLabel}
               teamLabel={copy.teamLabel}

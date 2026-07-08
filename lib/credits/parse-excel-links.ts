@@ -35,7 +35,7 @@ function isHttpUrl(v: string): boolean {
  *  - a `url`/`link` column (and an optional `user_id` column), or
  *  - a bare/headerless list of URLs (any cell starting with http:// or https://).
  *
- * `userId` is optional — links-only files are supported. Dedupes by URL
+ * `userId` is optional - links-only files are supported. Dedupes by URL
  * (case-insensitive, first occurrence wins).
  */
 export function parseCreditLinkRows(buffer: Buffer): {

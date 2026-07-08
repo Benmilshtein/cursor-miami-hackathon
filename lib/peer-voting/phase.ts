@@ -5,11 +5,11 @@ import { siteSettings } from "@/db/schema/settings";
 /**
  * Peer-voting expo lifecycle.
  *
- * - `closed`    — groups not yet formed / voting not started. No votes accepted.
- * - `round_1`   — Group A presents; Group B votes on Group A teams.
- * - `round_2`   — Group B presents; Group A votes on Group B teams.
+ * - `closed`    - groups not yet formed / voting not started. No votes accepted.
+ * - `round_1`   - Group A presents; Group B votes on Group A teams.
+ * - `round_2`   - Group B presents; Group A votes on Group B teams.
  *                 Round-1 votes (Group B's) are now locked.
- * - `finished`  — everything locked.
+ * - `finished`  - everything locked.
  */
 export type PeerVotingPhase = "closed" | "round_1" | "round_2" | "finished";
 export type VotingGroup = "A" | "B";

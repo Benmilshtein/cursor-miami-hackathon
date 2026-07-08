@@ -1,4 +1,4 @@
-# Local Docker Compose stack — app only.
+# Local Docker Compose stack - app only.
 # Database is hosted on Supabase cloud; set all values in .env (see .env.example).
 services:
   app:

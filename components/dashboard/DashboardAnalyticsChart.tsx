@@ -59,7 +59,7 @@ export function DashboardAnalyticsChart() {
             color: "var(--text-primary, white)",
           }}
           labelStyle={{ color: "var(--text-muted)" }}
-          formatter={(value) => [value != null ? `${value}%` : "—", "Readiness"]}
+          formatter={(value) => [value != null ? `${value}%` : " - ", "Readiness"]}
           labelFormatter={(label) => label}
         />
         <Area

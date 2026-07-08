@@ -107,7 +107,7 @@ export default function AdminPartnersPage() {
               type="text"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              placeholder="e.g. Cursor, Replit"
+              placeholder="e.g. Acme AI, Replit"
               required
               className="w-full rounded-lg border border-[var(--border-color)] bg-[var(--bg-secondary)] px-4 py-2 text-white placeholder:text-[var(--text-muted)] focus:border-[var(--accent-blue)] focus:outline-none"
             />

@@ -53,7 +53,7 @@ export default function AdminTeamsPage() {
       const json = await res.json();
       if (json.success) setPoolSize(json.data.poolSize as number);
     } catch {
-      // Non-critical — leave poolSize as-is.
+      // Non-critical - leave poolSize as-is.
     }
   }, []);
 
@@ -274,7 +274,7 @@ export default function AdminTeamsPage() {
                               {team.votingGroup}
                             </span>
                           ) : (
-                            <span className="text-[var(--text-muted)]">—</span>
+                            <span className="text-[var(--text-muted)]"> - </span>
                           )}
                         </td>
                         <td className="px-4 py-3 text-[var(--text-secondary)]">
@@ -289,7 +289,7 @@ export default function AdminTeamsPage() {
                               {team.lead.name || team.lead.email}
                             </span>
                           ) : (
-                            "—"
+                            " - "
                           )}
                         </td>
                         <td className="px-4 py-3">

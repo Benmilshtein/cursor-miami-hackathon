@@ -1,6 +1,6 @@
 import { getSiteUrl, siteConfig } from "@/lib/site";
 
-/** Hackathon dates — update when the program is finalized. */
+/** Hackathon dates - update when the program is finalized. */
 const EVENT_START = "2030-01-01T10:00:00Z";
 const EVENT_END = "2030-01-03T22:00:00Z";
 
@@ -8,7 +8,7 @@ const EVENT_END = "2030-01-03T22:00:00Z";
 const VENUE_NAME_EN = "Your Venue";
 const STREET_ADDRESS_EN = "123 Main Street";
 
-/** Event JSON-LD — homepage only. */
+/** Event JSON-LD - homepage only. */
 export function StructuredData() {
   const url = getSiteUrl();
 

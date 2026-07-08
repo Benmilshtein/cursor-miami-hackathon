@@ -107,13 +107,13 @@ Participant routes:
 
 Admin routes:
 
-- `GET /api/admin/teams` — list teams (query: `limit`, `offset`, `search`, `status`)
-- `GET /api/admin/teams/:teamId` — team details (members, invite, etc.)
-- `PATCH /api/admin/teams/:teamId` — update team `name`, `description`
-- `POST /api/admin/teams/:teamId/membership` — force membership (assign, remove, transfer lead)
-- `GET /api/admin/users` — list users (query: `limit`, `offset`, `search`, `role`)
-- `GET /api/admin/users/:userId` — user details
-- `PATCH /api/admin/users/:userId` — update user `role`
+- `GET /api/admin/teams`: list teams (query: `limit`, `offset`, `search`, `status`)
+- `GET /api/admin/teams/:teamId`: team details (members, invite, etc.)
+- `PATCH /api/admin/teams/:teamId`: update team `name`, `description`
+- `POST /api/admin/teams/:teamId/membership`: force membership (assign, remove, transfer lead)
+- `GET /api/admin/users`: list users (query: `limit`, `offset`, `search`, `role`)
+- `GET /api/admin/users/:userId`: user details
+- `PATCH /api/admin/users/:userId`: update user `role`
 
 Admin security route:
 
@@ -123,7 +123,7 @@ Admin security route:
 
 Super admin UI:
 
-- **`/admin/dashboard`** — Super admin dashboard. Super admins use only this area (they are not participants). Requires 2FA: if not enabled, user is sent to Enable 2FA and linked to `/admin/2fa-setup`; if enabled but not recently verified, an inline step-up form (TOTP code) is shown on the same dashboard; after verification the dashboard content is shown. Sections: Overview, Teams (list, search, filter; click team to edit name/description and manage membership), Users (list, search, filter by role; inline role change). Sidebar: Overview, Teams, Users, Sign out. The 2FA verification cookie lasts 15 minutes.
+- **`/admin/dashboard`**: Super admin dashboard. Super admins use only this area (they are not participants). Requires 2FA: if not enabled, user is sent to Enable 2FA and linked to `/admin/2fa-setup`; if enabled but not recently verified, an inline step-up form (TOTP code) is shown on the same dashboard; after verification the dashboard content is shown. Sections: Overview, Teams (list, search, filter; click team to edit name/description and manage membership), Users (list, search, filter by role; inline role change). Sidebar: Overview, Teams, Users, Sign out. The 2FA verification cookie lasts 15 minutes.
 
 `POST /api/admin/teams/:teamId/membership` supports:
 
@@ -136,7 +136,7 @@ Super admin UI:
 Better Auth setup includes:
 
 - `emailAndPassword.enabled = true`
-- `emailAndPassword.disableSignUp = false` — sign-up is allowed only for emails listed in `SUPER_ADMIN_EMAILS` (enforced in `user.create.before` hook)
+- `emailAndPassword.disableSignUp = false`: sign-up is allowed only for emails listed in `SUPER_ADMIN_EMAILS` (enforced in `user.create.before` hook)
 - `twoFactor()` plugin
 
 Super admin bootstrap:

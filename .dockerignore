@@ -6,13 +6,13 @@ yarn-error.log*
 pnpm-debug.log*
 .pnpm-debug.log*
 
-# Next.js — never copy stale host build into build context
+# Next.js - never copy stale host build into build context
 .next
 out
 .turbo
 .vercel
 
-# Git & CI — not needed to build or run the app
+# Git & CI - not needed to build or run the app
 .git
 .github
 .gitattributes
@@ -25,7 +25,7 @@ out
 # Documentation & changelogs (smaller context, faster builds)
 *.md
 
-# Tests & coverage — not required for production image build
+# Tests & coverage - not required for production image build
 coverage
 .nyc_output
 **/*.test.ts

@@ -5,10 +5,10 @@ import { motion } from "framer-motion";
 
 const DEFAULT_CODE_SNIPPET = `
 // Initialize hackathon protocol
-import { NeuralInterface } from '@cursor/core';
-import { RealityDistortion } from '@cursor/fx';
+import { NeuralInterface } from '@hackathon/core';
+import { RealityDistortion } from '@hackathon/fx';
 
-class CursorHackathon extends Event {
+class HackathonEvent extends Event {
   constructor() {
     super({
       duration: '4h',
@@ -35,7 +35,7 @@ class CursorHackathon extends Event {
 }
 
 // Start the sequence
-const event = new CursorHackathon();
+const event = new HackathonEvent();
 event.initialize().then(() => {
   // Good luck, participants.
 });

@@ -21,7 +21,7 @@ Required environment variables (see `.env.example` for the full list):
 - `NEXT_PUBLIC_APP_URL` / `NEXT_PUBLIC_SITE_URL`
 - `SUPER_ADMIN_EMAILS`
 
-Example database URL (placeholders — use your real host and credentials):
+Example database URL (placeholders: use your real host and credentials):
 
 ```env
 DATABASE_URL=postgresql://your_user:your_password@your-dokploy-db-hostname:5432/your_database

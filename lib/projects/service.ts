@@ -131,7 +131,7 @@ function normalizeAppUrl(raw: string | null): string | null {
 /**
  * Set (or clear) a team's public app URL (stored in `project.demoUrl`) and
  * GitHub URL (`project.githubUrl`). Open to any team regardless of screening
- * status and not tied to the project deadline — a lighter-weight artifact than
+ * status and not tied to the project deadline - a lighter-weight artifact than
  * the full project submission. Team-lead only. Creates a minimal project row if
  * none exists yet. `githubUrl: undefined` leaves the existing value untouched.
  */

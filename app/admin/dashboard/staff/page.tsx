@@ -381,7 +381,7 @@ export default function AdminStaffPage() {
                       className="border-b border-[var(--border-color)]/50"
                     >
                       <td className="px-4 py-3 font-medium text-white">
-                        {u.name || "—"}
+                        {u.name || " - "}
                       </td>
                       <td className="px-4 py-3 text-[var(--text-secondary)]">
                         {u.email}

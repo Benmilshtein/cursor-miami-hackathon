@@ -355,7 +355,7 @@ export default function AdminFinalScoresPage() {
                           Judge {i + 1}
                         </span>
                         <span className="text-xs text-white font-normal line-clamp-2 max-w-[84px]">
-                          {slot ? slot.displayName : "—"}
+                          {slot ? slot.displayName : " - "}
                         </span>
                       </div>
                     </th>
@@ -422,7 +422,7 @@ export default function AdminFinalScoresPage() {
                             {cell ? (
                               <span className="text-white font-medium">{cell.total.toFixed(1)}</span>
                             ) : judgeSlots[ji] ? (
-                              "—"
+                              " - "
                             ) : (
                               ""
                             )}
@@ -491,7 +491,7 @@ export default function AdminFinalScoresPage() {
                                         {slot ? (
                                           <span className="line-clamp-2">{slot.displayName}</span>
                                         ) : (
-                                          <span className="text-[var(--text-muted)]">—</span>
+                                          <span className="text-[var(--text-muted)]"> - </span>
                                         )}
                                       </th>
                                     ))}
@@ -518,7 +518,7 @@ export default function AdminFinalScoresPage() {
                                               className="w-full min-w-0 rounded border border-[var(--border-color)] bg-[var(--bg-secondary)] px-1 py-1 text-center text-white tabular-nums"
                                             />
                                           ) : (
-                                            <span className="block text-center text-[var(--text-muted)]">—</span>
+                                            <span className="block text-center text-[var(--text-muted)]"> - </span>
                                           )}
                                         </td>
                                       ))}

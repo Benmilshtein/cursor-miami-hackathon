@@ -47,7 +47,7 @@ export const translations = {
       en: "4 hours to ship", de: "4 Stunden bis zum Ship", es: "4 horas para entregar",
     },
     feature1Desc: {
-      en: "High-intensity speedrun building real AI agents with modern AI tools.", de: "Hochintensiver Speedrun zum Entwickeln echter KI-Agenten mit Cursor und Deep Agents.", es: "Speedrun de alta intensidad construyendo agentes de IA reales con Cursor y Deep Agents.",
+      en: "High-intensity speedrun building real AI agents with modern AI tools.", de: "Hochintensiver Speedrun zum Entwickeln echter KI-Agenten mit modernen KI-Tools.", es: "Speedrun de alta intensidad construyendo agentes de IA reales con herramientas de IA modernas.",
     },
     feature2Title: {
       en: "Practical AI solutions", de: "Praktische KI-Lösungen", es: "Soluciones prácticas de IA",
@@ -658,7 +658,7 @@ export const translations = {
     backHome: { en: "Back to home", de: "Back to home", es: "Back to home" },
   },
 
-  /** Registration period ended — disabled CTAs and /register page copy */
+  /** Registration period ended: disabled CTAs and /register page copy */
   registrationClosed: {
     button: {
       en: "Registration has ended", de: "Registration has ended", es: "Registration has ended",
@@ -749,7 +749,7 @@ export const translations = {
       en: "Onboarding, Tutorials & Networking", de: "Onboarding, Tutorials & Networking", es: "Bienvenida, tutoriales y networking",
     },
     block1Desc: {
-      en: "Get set up with Cursor, learn the ropes, meet your people, and lock in your team. Zero experience needed. We've got you.", de: "Richte dich mit Cursor ein, lerne die Grundlagen, lerne deine Leute kennen und finde dein Team. Keine Erfahrung nötig. Wir helfen dir.", es: "Configura Cursor, aprende lo básico, conoce a tu gente y forma tu equipo. No necesitas experiencia. Te acompañamos.",
+      en: "Get set up with your AI tools, learn the ropes, meet your people, and lock in your team. Zero experience needed. We've got you.", de: "Richte dich mit deinen KI-Tools ein, lerne die Grundlagen, lerne deine Leute kennen und finde dein Team. Keine Erfahrung nötig. Wir helfen dir.", es: "Configura tus herramientas de IA, aprende lo básico, conoce a tu gente y forma tu equipo. No necesitas experiencia. Te acompañamos.",
     },
     block2: {
       en: "Hackathon", de: "Hackathon", es: "Hackathon",
@@ -774,7 +774,7 @@ export const translations = {
     },
   },
 
-  // Judging Section — "Build to Ship" Expo flow (see docs/Hackathon-layout.md)
+  // Judging Section: "Build to Ship" Expo flow (see docs/Hackathon-layout.md)
   criteria: {
     tag: {
       en: "JUDGING", de: "BEWERTUNG", es: "EVALUACIÓN",
@@ -788,7 +788,7 @@ export const translations = {
       es: "El público filtra las mejores apps para los jueces, y luego los jueces coronan a los ganadores, todo en vivo en la app del evento.",
     },
 
-    // Round 1 — The Peer Expo (40 min)
+    // Round 1: The Peer Expo (40 min)
     round1Title: { en: "The Peer Expo", de: "Die Peer-Expo", es: "La Peer Expo" },
     round1Duration: { en: "40 min", de: "40 Min", es: "40 min" },
     round1Goal: {
@@ -817,7 +817,7 @@ export const translations = {
       es: "Los votos se bloquean en el cambio. Al cerrar la votación, la tabla en vivo envía a los 5–6 mejores equipos a la final.",
     },
 
-    // Round 2 — The Judge Finals (15 min)
+    // Round 2: The Judge Finals (15 min)
     round2Title: { en: "The Judge Finals", de: "Das Judge-Finale", es: "La Final de Jueces" },
     round2Duration: { en: "15 min", de: "15 Min", es: "15 min" },
     round2Goal: {
@@ -906,17 +906,17 @@ export const translations = {
     },
     req2: { en: "Agent", de: "Agent", es: "Agente" },
     req2Desc: {
-      en: "Built with create_deep_agent + Cursor as your primary editor", de: "Gebaut mit create_deep_agent + Cursor als Haupt-Editor", es: "Construido con create_deep_agent + Cursor como editor principal",
+      en: "Built with an AI agent framework and an AI editor", de: "Gebaut mit einem KI-Agenten-Framework und einem KI-Editor", es: "Construido con un framework de agentes de IA y un editor de IA",
     },
     req3: { en: "Hosted Public URL", de: "Öffentliche URL", es: "URL pública alojada" },
     req3Desc: {
       en: "Anonymous auth only: anyone opens the URL in a browser, no login required", de: "Nur anonyme Auth: jeder öffnet die URL im Browser, kein Login nötig", es: "Solo auth anónima: cualquiera abre la URL en el navegador, sin login",
     },
     req4: {
-      en: ".cursorrules File", de: ".cursorrules-Datei", es: "Archivo .cursorrules",
+      en: "AI Rules File", de: "KI-Regeln-Datei", es: "Archivo de reglas de IA",
     },
     req4Desc: {
-      en: "Shows how you used Cursor during the build", de: "Zeigt, wie Cursor während des Builds eingesetzt wurde", es: "Muestra cómo usaste Cursor durante la construcción",
+      en: "Shows how you used AI tools during the build", de: "Zeigt, wie KI-Tools während des Builds eingesetzt wurden", es: "Muestra cómo usaste herramientas de IA durante la construcción",
     },
     rec1: { en: "Submit Early", de: "Früh einreichen", es: "Entregar pronto" },
     rec1Desc: {
@@ -944,11 +944,11 @@ export const translations = {
       de: "Eine echte, deployte Anwendung, die ein erkennbares Problem löst.",
       es: "Una aplicación real y desplegada que resuelve un problema reconocible.",
     },
-    beginnerReq3: { en: ".cursorrules File", de: ".cursorrules-Datei", es: "Archivo .cursorrules" },
+    beginnerReq3: { en: "AI Rules File", de: "KI-Regeln-Datei", es: "Archivo de reglas de IA" },
     beginnerReq3Desc: {
-      en: "Shows how you used Cursor during the build.",
-      de: "Zeigt, wie Cursor während des Builds eingesetzt wurde.",
-      es: "Muestra cómo usaste Cursor durante la construcción.",
+      en: "Shows how you used AI tools during the build.",
+      de: "Zeigt, wie KI-Tools während des Builds eingesetzt wurden.",
+      es: "Muestra cómo usaste herramientas de IA durante la construcción.",
     },
     beginnerReq4: { en: "Short Writeup", de: "Kurze Beschreibung", es: "Resumen breve" },
     beginnerReq4Desc: {
@@ -976,7 +976,7 @@ export const translations = {
       en: "Optimal Size and Composition", de: "Optimal Size and Composition", es: "Optimal Size and Composition",
     },
     sizeDesc: {
-      en: "Team of up to 5 people. Recommended roles: developer with Cursor experience (required), backend/frontend developers, person with AI/ML integration experience (OpenAI, Anthropic APIs, etc.), someone with UI/UX skills, and a participant who can present the project at the finale.", de: "Team of up to 5 people. Recommended roles: developer with Cursor experience (required), backend/frontend developers, person with AI/ML integration experience (OpenAI, Anthropic APIs, etc.), someone with UI/UX skills, and a participant who can present the project at the finale.", es: "Team of up to 5 people. Recommended roles: developer with Cursor experience (required), backend/frontend developers, person with AI/ML integration experience (OpenAI, Anthropic APIs, etc.), someone with UI/UX skills, and a participant who can present the project at the finale.",
+      en: "Team of up to 5 people. Recommended roles: developer with AI editor experience (required), backend/frontend developers, person with AI/ML integration experience (OpenAI, Anthropic APIs, etc.), someone with UI/UX skills, and a participant who can present the project at the finale.", de: "Team of up to 5 people. Recommended roles: developer with AI editor experience (required), backend/frontend developers, person with AI/ML integration experience (OpenAI, Anthropic APIs, etc.), someone with UI/UX skills, and a participant who can present the project at the finale.", es: "Team of up to 5 people. Recommended roles: developer with AI editor experience (required), backend/frontend developers, person with AI/ML integration experience (OpenAI, Anthropic APIs, etc.), someone with UI/UX skills, and a participant who can present the project at the finale.",
     },
     findTitle: {
       en: "Where to Find Teammates", de: "Where to Find Teammates", es: "Where to Find Teammates",
@@ -988,7 +988,7 @@ export const translations = {
       en: "What to Discuss Before the Hackathon", de: "What to Discuss Before the Hackathon", es: "What to Discuss Before the Hackathon",
     },
     discussDesc: {
-      en: "Make sure everyone can attend offline for all 3 days. Agree on a basic tech stack. Verify that Cursor is installed and configured for everyone. Exchange contacts and create a team chat.", de: "Make sure everyone can attend offline for all 3 days. Agree on a basic tech stack. Verify that Cursor is installed and configured for everyone. Exchange contacts and create a team chat.", es: "Make sure everyone can attend offline for all 3 days. Agree on a basic tech stack. Verify that Cursor is installed and configured for everyone. Exchange contacts and create a team chat.",
+      en: "Make sure everyone can attend offline for all 3 days. Agree on a basic tech stack. Verify that everyone's AI tools are installed and configured. Exchange contacts and create a team chat.", de: "Make sure everyone can attend offline for all 3 days. Agree on a basic tech stack. Verify that everyone's AI tools are installed and configured. Exchange contacts and create a team chat.", es: "Make sure everyone can attend offline for all 3 days. Agree on a basic tech stack. Verify that everyone's AI tools are installed and configured. Exchange contacts and create a team chat.",
     },
     tipTitle: { en: "Tip", de: "Tip", es: "Tip" },
     tipDesc: {
@@ -1020,7 +1020,7 @@ export const translations = {
       en: "Your laptop", de: "Dein Laptop", es: "Tu laptop",
     },
     tool1Desc: {
-      en: "Any laptop that can run Cursor", de: "Jeder Laptop, der Cursor ausführen kann", es: "Cualquier laptop que pueda ejecutar Cursor",
+      en: "Any laptop that can run a modern AI editor", de: "Jeder Laptop, der einen modernen KI-Editor ausführen kann", es: "Cualquier laptop que pueda ejecutar un editor de IA moderno",
     },
     tool2: {
       en: "Your charger", de: "Dein Ladegerät", es: "Tu cargador",
@@ -1111,7 +1111,7 @@ export const translations = {
     },
   },
 
-  // Tracks Section — one track: Build & Ship
+  // Tracks Section: one track: Build & Ship
   tracks: {
     tag: { en: "THE TRACK", de: "DER TRACK", es: "LA PISTA" },
     title: {

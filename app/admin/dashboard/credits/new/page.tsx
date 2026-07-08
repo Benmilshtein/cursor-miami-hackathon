@@ -171,7 +171,7 @@ export default function AdminCreditsNewPage() {
               <option value="general_link">General (one URL for all participants)</option>
             </select>
             <p className="mt-2 text-xs text-[var(--text-muted)]">
-              Cursor-style unique credits use Excel. Other sponsors often use a single general link.
+              Per-user unique credit links use Excel. Other sponsors often use a single general link.
             </p>
           </div>
           {distributionType === "general_link" && (

@@ -73,7 +73,7 @@ export function HackathonSchedule() {
           </motion.p>
         </motion.div>
 
-        {/* Day Tabs — hidden for a single-day schedule */}
+        {/* Day Tabs - hidden for a single-day schedule */}
         {scheduleData.length > 1 && (
         <motion.div
           className="flex justify-center gap-2 sm:gap-4 mb-10"

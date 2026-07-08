@@ -112,7 +112,7 @@ export default function AdminDashboardLayout({
               Super Admin
             </span>
             <span className="block truncate text-xs text-[var(--text-secondary)]">
-              {userEmail || "—"}
+              {userEmail || " - "}
             </span>
           </div>
         </div>

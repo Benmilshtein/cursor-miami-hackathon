@@ -11,7 +11,7 @@ let browserClient: SupabaseClient | undefined;
  * During the production build, client components are server-rendered to
  * prerender static pages (e.g. /_not-found). If NEXT_PUBLIC_SUPABASE_* are not
  * present in that build environment, createBrowserClient would throw and fail
- * the export — even though the client is only actually used in the browser.
+ * the export - even though the client is only actually used in the browser.
  * To keep the build resilient we fall back to harmless placeholders when the
  * env is missing and there is no `window`. In the browser the real (build-time
  * inlined) values are required; a missing value there is a genuine

@@ -22,7 +22,7 @@ function run(command, args) {
 async function main() {
   console.log("[startup] Running database migrations");
   await run("npm", ["run", "db:migrate"]);
-  console.log("[startup] Migrations complete — starting Next.js server");
+  console.log("[startup] Migrations complete - starting Next.js server");
   await run("node", ["server.js"]);
 }
 

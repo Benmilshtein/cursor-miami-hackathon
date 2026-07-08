@@ -14,7 +14,7 @@ export function getSiteUrl(): string {
 }
 
 /**
- * Event branding — edit these values to make the platform yours.
+ * Event branding - edit these values to make the platform yours.
  * Everything here is placeholder template copy.
  */
 export const siteConfig = {

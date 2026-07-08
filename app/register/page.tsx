@@ -102,7 +102,7 @@ export default function RegisterPage() {
           return;
         }
         if (!data.session) {
-          // Email confirmation is enabled — no session yet.
+          // Email confirmation is enabled - no session yet.
           setNotice("Check your email to confirm your account, then sign in.");
           setMode("signin");
           setIsSubmitting(false);

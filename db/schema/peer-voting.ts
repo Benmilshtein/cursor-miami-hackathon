@@ -15,7 +15,7 @@ import { team, user } from "./auth";
  * Crowd "Launch Credit" allocations for the peer-voting expo.
  *
  * Each participant has a budget of 3 credits total (enforced in the service
- * layer — it spans rows so it can't be a DB check). A row records how many
+ * layer - it spans rows so it can't be a DB check). A row records how many
  * credits a voter gave to one team. `round` is the round during which the vote
  * was cast (1 = Group B votes on Group A; 2 = Group A votes on Group B) and is
  * what makes round-1 votes immutable once the phase advances to round 2.

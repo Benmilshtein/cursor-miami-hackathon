@@ -717,7 +717,7 @@ export default function ProfilePage() {
           <div className="mt-6 grid gap-6 lg:grid-cols-[300px_minmax(0,1fr)]">
             <DashboardSidebar
               userName={user.name ?? "User"}
-              userEmail={user.email ?? "—"}
+              userEmail={user.email ?? " - "}
               initials={initials || "U"}
               roleLabel={roleLabel}
               teamLabel={copy.teamLabel}
@@ -855,7 +855,7 @@ export default function ProfilePage() {
                               {copy.teamCodeLabel}
                             </p>
                             <p className="mt-3 break-all text-2xl font-semibold tracking-[0.18em] text-white">
-                              {team.invite?.code ?? "—"}
+                              {team.invite?.code ?? " - "}
                             </p>
                             <p className="mt-3 text-sm text-[var(--text-secondary)]">
                               {copy.inviteNote}
@@ -976,7 +976,7 @@ export default function ProfilePage() {
                               value={createName}
                               onChange={(event) => setCreateName(event.target.value)}
                               className="min-h-[48px] w-full rounded-2xl border border-[var(--border-color)] bg-[var(--bg-secondary)] px-4 py-3 text-white outline-none transition-colors focus:border-[var(--accent-blue)]"
-                              placeholder="Cursor Core"
+                              placeholder="Team Rocket"
                               required
                             />
                           </label>
@@ -1233,9 +1233,9 @@ export default function ProfilePage() {
 
                 <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
                   {[
-                    { label: copy.accountName, value: user.name ?? "—", icon: UserRound },
-                    { label: copy.accountEmail, value: user.email ?? "—", icon: Mail },
-                    { label: copy.accountUserId, value: user.id ?? "—", icon: Shield },
+                    { label: copy.accountName, value: user.name ?? " - ", icon: UserRound },
+                    { label: copy.accountEmail, value: user.email ?? " - ", icon: Mail },
+                    { label: copy.accountUserId, value: user.id ?? " - ", icon: Shield },
                     { label: copy.accountRole, value: roleLabel, icon: Crown },
                     {
                       label: copy.accountTeam,

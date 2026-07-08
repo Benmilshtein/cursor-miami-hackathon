@@ -40,7 +40,7 @@ async function countPeerVotes(): Promise<number> {
 
 /**
  * Group membership may only change before voting opens and before any votes
- * exist — otherwise moving a team between groups would orphan/invalidate votes.
+ * exist - otherwise moving a team between groups would orphan/invalidate votes.
  */
 async function assertGroupsEditable(): Promise<void> {
   const phase = await getPeerVotingPhase();
@@ -190,7 +190,7 @@ export async function upsertPeerVote(
     if (targetTeam.status !== "active" || !targetTeam.votingGroup) {
       throw new AppError(400, "TEAM_NOT_VOTABLE", "That team is not part of this voting round.");
     }
-    // Opposite group only — this also excludes the voter's own team.
+    // Opposite group only - this also excludes the voter's own team.
     if (targetTeam.votingGroup === voterTeam.votingGroup) {
       throw new AppError(403, "SAME_GROUP", "You can only vote for teams in the other group.");
     }
