@@ -1,6 +1,6 @@
 # Cursor Miami Hackathon
 
-Open-source platform for running **hackathons**: landing site, registration, teams, screening, scoring, admin tools, and partner credits — built with **Next.js**, **Supabase**, and **PostgreSQL**.
+Open-source platform for running **hackathons**: landing site, registration, teams, screening, scoring, admin tools, and partner credits. Built with **Next.js**, **Supabase**, and **PostgreSQL**.
 
 **Live site: [cursormiami.com](https://cursormiami.com)**
 
@@ -74,7 +74,7 @@ npm install
 cp .env.example .env
 ```
 
-Fill in the values from your Supabase dashboard — see [Environment variables](#environment-variables).
+Fill in the values from your Supabase dashboard. See [Environment variables](#environment-variables).
 
 ### 3. Database
 
@@ -133,7 +133,7 @@ OAuth providers (Google / GitHub) are configured in the Supabase dashboard (Auth
 ## Database
 
 - **Engine:** PostgreSQL (hosted by Supabase or anywhere else)
-- **ORM:** Drizzle — schemas under `db/schema/`, migrations under `drizzle/`
+- **ORM:** Drizzle: schemas under `db/schema/`, migrations under `drizzle/`
 - **Generate migrations:** `npm run db:generate`
 - **Apply migrations:** `npm run db:migrate` (or `npm run db:studio` for a GUI)
 
@@ -165,11 +165,11 @@ OAuth providers (Google / GitHub) are configured in the Supabase dashboard (Auth
 docker compose up -d
 ```
 
-The app listens on **3001**. Set your `NEXT_PUBLIC_*` values in `.env` first — the compose file reads them from your environment and never contains real credentials.
+The app listens on **3001**. Set your `NEXT_PUBLIC_*` values in `.env` first: the compose file reads them from your environment and never contains real credentials.
 
 ### Dokploy / PaaS
 
-See `docs/DOKPLOY.md` for a Dokploy walkthrough using `docker-compose.dokploy.yml`. You are not locked in: deploy on Vercel, plain Docker, Kubernetes, Railway, Fly.io, or any panel — use the included **Dockerfile** and your own env values.
+See `docs/DOKPLOY.md` for a Dokploy walkthrough using `docker-compose.dokploy.yml`. You are not locked in: deploy on Vercel, plain Docker, Kubernetes, Railway, Fly.io, or any panel using the included **Dockerfile** and your own env values.
 
 ---
 
@@ -192,8 +192,8 @@ See `docs/DOKPLOY.md` for a Dokploy walkthrough using `docker-compose.dokploy.ym
 
 ## Contributors
 
-- [Ben Milshtein](https://github.com/Benmilshtein) — author & maintainer
-- [Jerry](https://github.com/Mr-Higgs) — contributor
+- [Ben Milshtein](https://github.com/Benmilshtein), author & maintainer
+- [Jerry](https://github.com/Mr-Higgs), contributor
 
 ---
 
@@ -205,4 +205,4 @@ Based on [CURSOR 48H](https://github.com/cursorcommunityled/cursor_hackathon) by
 
 ## License
 
-MIT — see [LICENSE](LICENSE). Fork it, rebrand it, run your event.
+MIT. See [LICENSE](LICENSE). Fork it, rebrand it, run your event.
