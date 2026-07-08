@@ -22,7 +22,7 @@ const siteUrl = getSiteUrl();
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${siteConfig.name} — ${siteConfig.tagline}`,
+    default: `${siteConfig.name} · ${siteConfig.tagline}`,
     template: `%s | ${siteConfig.name}`,
   },
   description: siteConfig.descriptionEn,
@@ -47,20 +47,20 @@ export const metadata: Metadata = {
     alternateLocale: ["en_US"],
     url: siteUrl,
     siteName: siteConfig.name,
-    title: `${siteConfig.name} — AI Hackathon`,
+    title: `${siteConfig.name} · AI Hackathon`,
     description: siteConfig.descriptionEn,
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: `${siteConfig.name} — AI Hackathon`,
+        alt: `${siteConfig.name} · AI Hackathon`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} — AI Hackathon`,
+    title: `${siteConfig.name} · AI Hackathon`,
     description: siteConfig.descriptionEn,
     images: ["/opengraph-image"],
   },

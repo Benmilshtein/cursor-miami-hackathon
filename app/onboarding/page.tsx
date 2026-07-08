@@ -33,7 +33,7 @@ const STEPS: Record<OnboardingLanguage, StepContent[]> = {
     {
       icon: Users,
       title: "Find your team",
-      text: "You can have us match you into a balanced team with new people, or form your own — create a team or join one with an invite code from your dashboard.",
+      text: "You can have us match you into a balanced team with new people, or form your own: create a team or join one with an invite code from your dashboard.",
     },
     {
       icon: Clock,
@@ -55,7 +55,7 @@ const STEPS: Record<OnboardingLanguage, StepContent[]> = {
     {
       icon: Users,
       title: "Finde dein Team",
-      text: "Wir können dich in ein ausgewogenes Team mit neuen Leuten einteilen, oder du bildest dein eigenes — erstelle ein Team oder tritt mit einem Einladungscode im Dashboard bei.",
+      text: "Wir können dich in ein ausgewogenes Team mit neuen Leuten einteilen, oder du bildest dein eigenes: erstelle ein Team oder tritt mit einem Einladungscode im Dashboard bei.",
     },
     {
       icon: Clock,
@@ -77,7 +77,7 @@ const STEPS: Record<OnboardingLanguage, StepContent[]> = {
     {
       icon: Users,
       title: "Encuentra tu equipo",
-      text: "Podemos emparejarte en un equipo equilibrado con gente nueva, o forma el tuyo — crea un equipo o únete con un código de invitación desde tu panel.",
+      text: "Podemos emparejarte en un equipo equilibrado con gente nueva, o forma el tuyo: crea un equipo o únete con un código de invitación desde tu panel.",
     },
     {
       icon: Clock,
@@ -102,7 +102,7 @@ const BUTTON_LABELS: Record<
 };
 
 const LEVELS = [
-  { value: 1, label: "Beginner", hint: "New to this — perfect" },
+  { value: 1, label: "Beginner", hint: "New to this? Perfect" },
   { value: 2, label: "Intermediate", hint: "Built a few things" },
   { value: 3, label: "Expert", hint: "I ship code regularly" },
 ];
@@ -368,7 +368,7 @@ export default function OnboardingPage() {
               <fieldset className="mb-6">
                 <legend className="mb-1 text-sm font-semibold text-white">Pick a lucky number</legend>
                 <p className="mb-3 text-xs text-[var(--text-muted)]">
-                  Just for fun — it helps us mix up balanced teams.
+                  Just for fun. It helps us mix up balanced teams.
                 </p>
                 <div className="grid grid-cols-4 gap-2">
                   {[1, 2, 3, 4].map((n) => (

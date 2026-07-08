@@ -1286,7 +1286,7 @@ export default function DashboardPage() {
                   <div>
                     <p className="font-medium text-white">Need help from a mentor?</p>
                     <p className="mt-0.5 text-sm text-[var(--text-secondary)]">
-                      Tap the button — an available mentor will be notified and reach out.
+                      Tap the button and an available mentor will be notified and reach out.
                     </p>
                   </div>
                 </div>

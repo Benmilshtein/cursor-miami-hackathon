@@ -4,12 +4,12 @@ import { StructuredData } from "@/components/seo/StructuredData";
 import { getSiteUrl, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
-  title: `${siteConfig.name} — ${siteConfig.tagline}`,
+  title: `${siteConfig.name} · ${siteConfig.tagline}`,
   description: siteConfig.descriptionEn,
   alternates: { canonical: getSiteUrl() + "/" },
   openGraph: {
     url: getSiteUrl(),
-    title: `${siteConfig.name} — AI Hackathon`,
+    title: `${siteConfig.name} · AI Hackathon`,
     description: siteConfig.descriptionEn,
   },
 };

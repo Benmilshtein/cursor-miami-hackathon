@@ -3,10 +3,10 @@ import { getSiteUrl, siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Register",
-  description: `Sign up for ${siteConfig.name} — join the AI hackathon, form a team, and complete screening.`,
+  description: `Sign up for ${siteConfig.name}: join the AI hackathon, form a team, and complete screening.`,
   alternates: { canonical: `${getSiteUrl()}/register` },
   openGraph: {
-    title: `Register — ${siteConfig.name}`,
+    title: `Register · ${siteConfig.name}`,
     description: "Join the 4-hour AI agent speedrun.",
     url: `${getSiteUrl()}/register`,
   },

@@ -37,7 +37,7 @@ function reasonMessage(state: State): { title: string; body: string } {
       if (state.myGroup && state.myGroup === state.presentingGroup) {
         return {
           title: "You're presenting this round!",
-          body: "Demo your build now — you'll get to vote when the groups swap.",
+          body: "Demo your build now. You'll get to vote when the groups swap.",
         };
       }
       return { title: "Not your turn yet", body: "Voting isn't open for your group right now." };

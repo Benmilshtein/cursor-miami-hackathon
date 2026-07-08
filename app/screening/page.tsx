@@ -51,7 +51,7 @@ const SCREENING_COPY = {
     videoDesc:
       "One video per team, up to 2 minutes. Paste a YouTube or Google Drive link.",
     videoPublicHint: "The video link must be public and accessible without a password.",
-    videoPlaceholder: "YouTube or Google Drive — paste link",
+    videoPlaceholder: "Paste a YouTube or Google Drive link",
     currentVideo: "Current video:",
     videoLinkLabel: "Video link",
     saving: "Saving…",
@@ -90,7 +90,7 @@ const SCREENING_COPY = {
     videoDesc:
       "One video per team, up to 2 minutes. Paste a YouTube or Google Drive link.",
     videoPublicHint: "The video link must be public and accessible without a password.",
-    videoPlaceholder: "YouTube or Google Drive — paste link",
+    videoPlaceholder: "Paste a YouTube or Google Drive link",
     currentVideo: "Current video:",
     videoLinkLabel: "Video link",
     saving: "Saving…",
@@ -129,7 +129,7 @@ const SCREENING_COPY = {
     videoDesc:
       "One video per team, up to 2 minutes. Paste a YouTube or Google Drive link.",
     videoPublicHint: "The video link must be public and accessible without a password.",
-    videoPlaceholder: "YouTube or Google Drive — paste link",
+    videoPlaceholder: "Paste a YouTube or Google Drive link",
     currentVideo: "Current video:",
     videoLinkLabel: "Video link",
     saving: "Saving…",

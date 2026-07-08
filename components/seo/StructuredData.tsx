@@ -15,7 +15,7 @@ export function StructuredData() {
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Event",
-    name: `${siteConfig.name} — ${siteConfig.tagline}`,
+    name: `${siteConfig.name} · ${siteConfig.tagline}`,
     description: siteConfig.descriptionEn,
     startDate: EVENT_START,
     endDate: EVENT_END,

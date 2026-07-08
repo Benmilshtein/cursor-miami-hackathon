@@ -159,7 +159,7 @@ export const translations = {
       en: "Industry Experts", de: "Branchenexperten", es: "Expertos de la industria",
     },
     note: {
-      en: "Finale — open format", de: "Finale – offenes Format", es: "Final – formato abierto",
+      en: "Finale: open format", de: "Finale – offenes Format", es: "Final – formato abierto",
     },
     noteDesc: {
       en: "with live audience, project presentations and active networking after the awards.", de: "mit Live-Publikum, Projektpräsentationen und aktivem Networking nach der Preisverleihung.", es: "con audiencia en vivo, presentaciones de proyectos y networking activo después de la premiación.",
@@ -623,7 +623,7 @@ export const translations = {
     title: { en: "AI HACKATHON", de: "AI HACKATHON", es: "AI HACKATHON" },
     subtitle: { en: "Your City's First Ever", de: "Der Erste deiner Stadt", es: "El primero de tu ciudad" },
     description: {
-      en: "It's time. We're throwing a hackathon — and the only thing missing is you. It's beginner-friendly on purpose: no degree, no team, no idea required. We hand you the tools, pair you up, and by the time the clock hits 10:30 you'll have shipped something real.", de: "Es ist soweit. Wir veranstalten einen Hackathon — und das Einzige, was fehlt, bist du. Bewusst anfängerfreundlich: kein Abschluss, kein Team, keine Idee nötig. Wir geben dir die Tools, bringen dich mit anderen zusammen, und bis 22:30 Uhr hast du etwas Echtes gebaut.", es: "Es la hora. Organizamos un hackathon — y lo único que falta eres tú. Es para principiantes a propósito: sin título, sin equipo, sin idea previa. Te damos las herramientas, te emparejamos, y para las 10:30 habrás lanzado algo real.",
+      en: "It's time. We're throwing a hackathon, and the only thing missing is you. It's beginner-friendly on purpose: no degree, no team, no idea required. We hand you the tools, pair you up, and by the time the clock hits 10:30 you'll have shipped something real.", de: "Es ist soweit. Wir veranstalten einen Hackathon, und das Einzige, was fehlt, bist du. Bewusst anfängerfreundlich: kein Abschluss, kein Team, keine Idee nötig. Wir geben dir die Tools, bringen dich mit anderen zusammen, und bis 22:30 Uhr hast du etwas Echtes gebaut.", es: "Es la hora. Organizamos un hackathon, y lo único que falta eres tú. Es para principiantes a propósito: sin título, sin equipo, sin idea previa. Te damos las herramientas, te emparejamos, y para las 10:30 habrás lanzado algo real.",
     },
     hours: { en: "HOURS", de: "HOURS", es: "HOURS" },
     teams: { en: "PAIR UP OR SOLO", de: "IM TEAM ODER SOLO", es: "EN PAREJA O SOLO" },
@@ -741,7 +741,7 @@ export const translations = {
       en: "The Run of Show", de: "Der Ablauf", es: "El programa",
     },
     subtitle: {
-      en: "Doors at 4pm — build, demo, and celebrate till midnight", de: "Einlass um 16 Uhr — bauen, demoen und feiern bis Mitternacht", es: "Puertas a las 4pm — construye, presenta y celebra hasta medianoche",
+      en: "Doors at 4pm: build, demo, and celebrate till midnight", de: "Einlass um 16 Uhr: bauen, demoen und feiern bis Mitternacht", es: "Puertas a las 4pm: construye, presenta y celebra hasta medianoche",
     },
     day1: { en: "The Night", de: "Der Abend", es: "La noche" },
     day1Label: { en: "4pm – 12am", de: "16–24 Uhr", es: "4pm – 12am" },
@@ -749,7 +749,7 @@ export const translations = {
       en: "Onboarding, Tutorials & Networking", de: "Onboarding, Tutorials & Networking", es: "Bienvenida, tutoriales y networking",
     },
     block1Desc: {
-      en: "Get set up with Cursor, learn the ropes, meet your people, and lock in your team. Zero experience needed — we've got you.", de: "Richte dich mit Cursor ein, lerne die Grundlagen, lerne deine Leute kennen und finde dein Team. Keine Erfahrung nötig — wir helfen dir.", es: "Configura Cursor, aprende lo básico, conoce a tu gente y forma tu equipo. No necesitas experiencia — te acompañamos.",
+      en: "Get set up with Cursor, learn the ropes, meet your people, and lock in your team. Zero experience needed. We've got you.", de: "Richte dich mit Cursor ein, lerne die Grundlagen, lerne deine Leute kennen und finde dein Team. Keine Erfahrung nötig. Wir helfen dir.", es: "Configura Cursor, aprende lo básico, conoce a tu gente y forma tu equipo. No necesitas experiencia. Te acompañamos.",
     },
     block2: {
       en: "Hackathon", de: "Hackathon", es: "Hackathon",
@@ -783,18 +783,18 @@ export const translations = {
       en: "How the Judging Works", de: "So funktioniert die Bewertung", es: "Cómo funciona la evaluación",
     },
     subtitle: {
-      en: "The crowd filters the top apps for the judges, then the judges crown the winners — all run live in the event app.",
-      de: "Die Menge filtert die besten Apps für die Judges vor, dann krönen die Judges die Gewinner — alles live in der Event-App.",
-      es: "El público filtra las mejores apps para los jueces, y luego los jueces coronan a los ganadores — todo en vivo en la app del evento.",
+      en: "The crowd filters the top apps for the judges, then the judges crown the winners, all run live in the event app.",
+      de: "Die Menge filtert die besten Apps für die Judges vor, dann krönen die Judges die Gewinner, alles live in der Event-App.",
+      es: "El público filtra las mejores apps para los jueces, y luego los jueces coronan a los ganadores, todo en vivo en la app del evento.",
     },
 
     // Round 1 — The Peer Expo (40 min)
     round1Title: { en: "The Peer Expo", de: "Die Peer-Expo", es: "La Peer Expo" },
     round1Duration: { en: "40 min", de: "40 Min", es: "40 min" },
     round1Goal: {
-      en: "The crowd votes to surface the top 5–6 apps. Teams split into Group A and Group B — one group demos while the other tests and votes, then they swap.",
-      de: "Die Menge stimmt ab, um die besten 5–6 Apps zu ermitteln. Die Teams werden in Gruppe A und Gruppe B aufgeteilt — eine Gruppe demonstriert, während die andere testet und abstimmt, dann wird gewechselt.",
-      es: "El público vota para destacar las 5–6 mejores apps. Los equipos se dividen en Grupo A y Grupo B — un grupo presenta mientras el otro prueba y vota, y luego intercambian.",
+      en: "The crowd votes to surface the top 5–6 apps. Teams split into Group A and Group B: one group demos while the other tests and votes, then they swap.",
+      de: "Die Menge stimmt ab, um die besten 5–6 Apps zu ermitteln. Die Teams werden in Gruppe A und Gruppe B aufgeteilt: eine Gruppe demonstriert, während die andere testet und abstimmt, dann wird gewechselt.",
+      es: "El público vota para destacar las 5–6 mejores apps. Los equipos se dividen en Grupo A y Grupo B: un grupo presenta mientras el otro prueba y vota, y luego intercambian.",
     },
     round1Bullet1: {
       en: "Round 1 (20 min): Group A demos. Group B walks the floor and votes on Group A.",
@@ -807,9 +807,9 @@ export const translations = {
       es: "Ronda 2 (20 min): el Grupo B presenta. El Grupo A recorre la sala y vota al Grupo B. Una bocina señala el cambio.",
     },
     round1Bullet3: {
-      en: "Every attendee gets 3 Launch Credits and can only vote for teams in the other group — never their own.",
-      de: "Jeder Teilnehmer erhält 3 Launch Credits und kann nur für Teams der anderen Gruppe stimmen — nie für das eigene.",
-      es: "Cada asistente recibe 3 Launch Credits y solo puede votar por equipos del otro grupo — nunca por el suyo.",
+      en: "Every attendee gets 3 Launch Credits and can only vote for teams in the other group, never their own.",
+      de: "Jeder Teilnehmer erhält 3 Launch Credits und kann nur für Teams der anderen Gruppe stimmen, nie für das eigene.",
+      es: "Cada asistente recibe 3 Launch Credits y solo puede votar por equipos del otro grupo, nunca por el suyo.",
     },
     round1Bullet4: {
       en: "Votes lock on the swap. When voting closes, the live leaderboard sends the top 5–6 teams to the finals.",
@@ -831,13 +831,13 @@ export const translations = {
       es: "Cada finalista tiene exactamente 90 segundos para mostrar su app y explicar qué hace.",
     },
     round2Bullet2: {
-      en: "The beginner does the talking — the pro can drive the laptop, but a novice explains the idea.",
-      de: "Der Einsteiger übernimmt das Reden — der Profi darf den Laptop bedienen, aber ein Neuling erklärt die Idee.",
-      es: "El principiante es quien habla — el experto puede manejar la laptop, pero un novato explica la idea.",
+      en: "The beginner does the talking: the pro can drive the laptop, but a novice explains the idea.",
+      de: "Der Einsteiger übernimmt das Reden: der Profi darf den Laptop bedienen, aber ein Neuling erklärt die Idee.",
+      es: "El principiante es quien habla: el experto puede manejar la laptop, pero un novato explica la idea.",
     },
     round2Bullet3: {
       en: "Judges huddle ~3 minutes and pick 1st, 2nd, and 3rd on how far the beginners came in ~4 hours and the utility and creativity of the AI build.",
-      de: "Die Judges beraten sich ~3 Minuten und wählen 1., 2. und 3. — danach, wie weit die Einsteiger in ~4 Stunden gekommen sind und nach Nutzen und Kreativität des KI-Builds.",
+      de: "Die Judges beraten sich ~3 Minuten und wählen 1., 2. und 3. Bewertet wird, wie weit die Einsteiger in ~4 Stunden gekommen sind sowie Nutzen und Kreativität des KI-Builds.",
       es: "Los jueces deliberan ~3 minutos y eligen 1.º, 2.º y 3.º según cuánto avanzaron los principiantes en ~4 horas y la utilidad y creatividad del desarrollo con IA.",
     },
 
@@ -850,19 +850,19 @@ export const translations = {
       es: "Como la app registra todo en el backend, la tabla rompe empates al instante, en este orden:",
     },
     tieBullet1: {
-      en: "Most credits — the raw total of Launch Credits received.",
-      de: "Meiste Credits — die Gesamtzahl der erhaltenen Launch Credits.",
-      es: "Más créditos — el total bruto de Launch Credits recibidos.",
+      en: "Most credits: the raw total of Launch Credits received.",
+      de: "Meiste Credits: die Gesamtzahl der erhaltenen Launch Credits.",
+      es: "Más créditos: el total bruto de Launch Credits recibidos.",
     },
     tieBullet2: {
-      en: "The Reach Metric — votes from the highest number of unique users wins (broad appeal beats one friend dumping all 3 credits).",
-      de: "Die Reichweiten-Metrik — Stimmen von der höchsten Zahl einzigartiger Nutzer gewinnen (breite Resonanz schlägt einen Freund, der alle 3 Credits abgibt).",
-      es: "La métrica de alcance — gana quien tenga votos del mayor número de usuarios únicos (el atractivo amplio supera a un amigo que da los 3 créditos).",
+      en: "The Reach Metric: votes from the highest number of unique users wins (broad appeal beats one friend dumping all 3 credits).",
+      de: "Die Reichweiten-Metrik: Stimmen von der höchsten Zahl einzigartiger Nutzer gewinnen (breite Resonanz schlägt einen Freund, der alle 3 Credits abgibt).",
+      es: "La métrica de alcance: gana quien tenga votos del mayor número de usuarios únicos (el atractivo amplio supera a un amigo que da los 3 créditos).",
     },
     tieBullet3: {
-      en: "Speed to Market — the team that hit \"Submit Project\" first wins.",
-      de: "Speed to Market — das Team, das zuerst auf \"Projekt einreichen\" geklickt hat, gewinnt.",
-      es: "Velocidad de lanzamiento — gana el equipo que pulsó \"Enviar proyecto\" primero.",
+      en: "Speed to Market: the team that hit \"Submit Project\" first wins.",
+      de: "Speed to Market: das Team, das zuerst auf \"Projekt einreichen\" geklickt hat, gewinnt.",
+      es: "Velocidad de lanzamiento: gana el equipo que pulsó \"Enviar proyecto\" primero.",
     },
 
     // Live Leaderboard Reveal
@@ -877,9 +877,9 @@ export const translations = {
       es: "\"Los datos están listos. De todos los equipos que construyeron y lanzaron esta noche, estos son los finalistas que pasan al escenario de pitch…\"",
     },
     leaderboardNote: {
-      en: "No hand-counting — final scores compute the instant the Round 2 buzzer sounds.",
-      de: "Kein Auszählen von Hand — die Endergebnisse werden berechnet, sobald der Summer der Runde 2 ertönt.",
-      es: "Sin conteo manual — las puntuaciones finales se calculan en el instante en que suena la bocina de la Ronda 2.",
+      en: "No hand-counting: final scores compute the instant the Round 2 buzzer sounds.",
+      de: "Kein Auszählen von Hand: die Endergebnisse werden berechnet, sobald der Summer der Runde 2 ertönt.",
+      es: "Sin conteo manual: las puntuaciones finales se calculan en el instante en que suena la bocina de la Ronda 2.",
     },
   },
 
@@ -892,7 +892,7 @@ export const translations = {
       en: "What to Submit", de: "Was einzureichen ist", es: "Qué entregar",
     },
     subtitle: {
-      en: "4 required deliverables — submit your public URL before 9:00pm", de: "4 Pflicht-Deliverables — öffentliche URL vor 21:00 Uhr einreichen", es: "4 entregables obligatorios — envía tu URL pública antes de las 9:00pm",
+      en: "4 required deliverables: submit your public URL before 9:00pm", de: "4 Pflicht-Deliverables: öffentliche URL vor 21:00 Uhr einreichen", es: "4 entregables obligatorios: envía tu URL pública antes de las 9:00pm",
     },
     required: { en: "Required", de: "Pflicht", es: "Obligatorio" },
     recommended: {
@@ -902,7 +902,7 @@ export const translations = {
       en: "Filled PRD", de: "Ausgefülltes PRD", es: "PRD completado",
     },
     req1Desc: {
-      en: "system-design-prd-template.md — fill this out before writing code", de: "system-design-prd-template.md — vor dem Coden ausfüllen", es: "system-design-prd-template.md — rellénalo antes de escribir código",
+      en: "system-design-prd-template.md: fill this out before writing code", de: "system-design-prd-template.md: vor dem Coden ausfüllen", es: "system-design-prd-template.md: rellénalo antes de escribir código",
     },
     req2: { en: "Agent", de: "Agent", es: "Agente" },
     req2Desc: {
@@ -910,7 +910,7 @@ export const translations = {
     },
     req3: { en: "Hosted Public URL", de: "Öffentliche URL", es: "URL pública alojada" },
     req3Desc: {
-      en: "Anonymous auth only — anyone opens the URL in a browser, no login required", de: "Nur anonyme Auth — jeder öffnet die URL im Browser, kein Login nötig", es: "Solo auth anónima — cualquiera abre la URL en el navegador, sin login",
+      en: "Anonymous auth only: anyone opens the URL in a browser, no login required", de: "Nur anonyme Auth: jeder öffnet die URL im Browser, kein Login nötig", es: "Solo auth anónima: cualquiera abre la URL en el navegador, sin login",
     },
     req4: {
       en: ".cursorrules File", de: ".cursorrules-Datei", es: "Archivo .cursorrules",
@@ -920,7 +920,7 @@ export const translations = {
     },
     rec1: { en: "Submit Early", de: "Früh einreichen", es: "Entregar pronto" },
     rec1Desc: {
-      en: "Earliest submission wins ties — don't wait until 8:59pm", de: "Früheste Einreichung gewinnt bei Gleichstand — nicht bis 20:59 Uhr warten", es: "La entrega más temprana gana en empate — no esperes hasta las 8:59pm",
+      en: "Earliest submission wins ties, so don't wait until 8:59pm", de: "Früheste Einreichung gewinnt bei Gleichstand, also nicht bis 20:59 Uhr warten", es: "La entrega más temprana gana en empate, así que no esperes hasta las 8:59pm",
     },
     rec2: { en: "Custom Frontend", de: "Eigenes Frontend", es: "Frontend personalizado" },
     rec2Desc: {
@@ -934,9 +934,9 @@ export const translations = {
     // Build & Ship track deliverables
     beginnerReq1: { en: "Hosted Public URL", de: "Öffentliche URL", es: "URL pública alojada" },
     beginnerReq1Desc: {
-      en: "Anyone can open the URL in a browser — no login required.",
-      de: "Jeder kann die URL im Browser öffnen — kein Login nötig.",
-      es: "Cualquiera puede abrir la URL en el navegador — sin login.",
+      en: "Anyone can open the URL in a browser, no login required.",
+      de: "Jeder kann die URL im Browser öffnen, kein Login nötig.",
+      es: "Cualquiera puede abrir la URL en el navegador, sin login.",
     },
     beginnerReq2: { en: "Working App", de: "Funktionierende App", es: "App funcional" },
     beginnerReq2Desc: {
@@ -952,9 +952,9 @@ export const translations = {
     },
     beginnerReq4: { en: "Short Writeup", de: "Kurze Beschreibung", es: "Resumen breve" },
     beginnerReq4Desc: {
-      en: "Brief README — what you built, how you built it, what's next.",
-      de: "Kurze README — was du gebaut hast, wie und was als Nächstes kommt.",
-      es: "README breve — qué construiste, cómo lo hiciste y qué sigue.",
+      en: "Brief README: what you built, how you built it, what's next.",
+      de: "Kurze README: was du gebaut hast, wie und was als Nächstes kommt.",
+      es: "README breve: qué construiste, cómo lo hiciste y qué sigue.",
     },
     beginnerNoteText: {
       en: "Deploy early. A working URL at 7:30pm beats a broken one at 8:59pm.",
@@ -1011,7 +1011,7 @@ export const translations = {
       en: "The Essentials", de: "Das Wesentliche", es: "Lo esencial",
     },
     cursorDesc: {
-      en: "Bring a laptop that can run it — we'll help you get set up at the door", de: "Bring einen Laptop mit, auf dem es läuft — wir helfen dir beim Einrichten an der Tür", es: "Trae una laptop que pueda ejecutarlo — te ayudamos a configurarlo en la puerta",
+      en: "Bring a laptop that can run it. We'll help you get set up at the door", de: "Bring einen Laptop mit, auf dem es läuft. Wir helfen dir beim Einrichten an der Tür", es: "Trae una laptop que pueda ejecutarlo. Te ayudamos a configurarlo en la puerta",
     },
     allowed: {
       en: "Bring with you", de: "Bring mit", es: "Trae contigo",
@@ -1054,7 +1054,7 @@ export const translations = {
     logistics: { en: "We provide", de: "Wir stellen bereit", es: "Nosotros ponemos" },
     logistics1: { en: "Food & drinks", de: "Essen & Getränke", es: "Comida y bebidas" },
     logistics1Desc: {
-      en: "Dinner, snacks, coffee, tea, water — on us all night", de: "Abendessen, Snacks, Kaffee, Tee, Wasser — den ganzen Abend auf uns", es: "Cena, snacks, café, té, agua — por nuestra cuenta toda la noche",
+      en: "Dinner, snacks, coffee, tea, water: on us all night", de: "Abendessen, Snacks, Kaffee, Tee, Wasser: den ganzen Abend auf uns", es: "Cena, snacks, café, té, agua: por nuestra cuenta toda la noche",
     },
     logistics2: {
       en: "Wi-Fi & power", de: "WLAN & Strom", es: "Wi-Fi y enchufes",
@@ -1095,7 +1095,7 @@ export const translations = {
       en: "No credits issued yet", de: "No credits issued yet", es: "No credits issued yet",
     },
     emptyNoTeam: {
-      en: "Create a team or join with a code — partner credits are for members of teams that pass screening.", de: "Create a team or join with a code — partner credits are for members of teams that pass screening.", es: "Create a team or join with a code — partner credits are for members of teams that pass screening.",
+      en: "Create a team or join with a code. Partner credits are for members of teams that pass screening.", de: "Create a team or join with a code. Partner credits are for members of teams that pass screening.", es: "Create a team or join with a code. Partner credits are for members of teams that pass screening.",
     },
     emptyDraft: {
       en: "Complete the screening stage. Once your team is approved, organizers can distribute credits.", de: "Complete the screening stage. Once your team is approved, organizers can distribute credits.", es: "Complete the screening stage. Once your team is approved, organizers can distribute credits.",
@@ -1120,9 +1120,9 @@ export const translations = {
       es: "Tu pista",
     },
     subtitle: {
-      en: "One track, one mission — design a fully working application and ship it off localhost to a public URL anyone can open.",
-      de: "Ein Track, eine Mission — entwirf eine voll funktionierende Anwendung und bring sie weg vom localhost auf eine öffentliche URL, die jeder öffnen kann.",
-      es: "Una pista, una misión — diseña una aplicación completamente funcional y sácala de localhost a una URL pública que cualquiera pueda abrir.",
+      en: "One track, one mission: design a fully working application and ship it off localhost to a public URL anyone can open.",
+      de: "Ein Track, eine Mission: entwirf eine voll funktionierende Anwendung und bring sie weg vom localhost auf eine öffentliche URL, die jeder öffnen kann.",
+      es: "Una pista, una misión: diseña una aplicación completamente funcional y sácala de localhost a una URL pública que cualquiera pueda abrir.",
     },
 
     beginnerLevel: { en: "BEGINNER", de: "EINSTEIGER", es: "PRINCIPIANTE" },
@@ -1137,9 +1137,9 @@ export const translations = {
       es: "Tu primera app desplegada",
     },
     beginnerDesc: {
-      en: "For complete beginners. Design and build a fully functioning application and get it off localhost — onto a public URL anyone can open.",
-      de: "Für komplette Einsteiger. Entwerfe und baue eine voll funktionierende Anwendung und bring sie weg vom localhost — auf eine öffentliche URL, die jeder öffnen kann.",
-      es: "Para principiantes totales. Diseña y construye una aplicación completamente funcional y sácala de localhost — a una URL pública que cualquiera pueda abrir.",
+      en: "For complete beginners. Design and build a fully functioning application and get it off localhost, onto a public URL anyone can open.",
+      de: "Für komplette Einsteiger. Entwerfe und baue eine voll funktionierende Anwendung und bring sie weg vom localhost auf eine öffentliche URL, die jeder öffnen kann.",
+      es: "Para principiantes totales. Diseña y construye una aplicación completamente funcional y sácala de localhost, a una URL pública que cualquiera pueda abrir.",
     },
     beginnerBullet1: {
       en: "Ship a real, working app to a public URL",

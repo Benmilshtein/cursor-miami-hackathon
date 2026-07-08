@@ -22,6 +22,7 @@ This is a clean, brandable template. Every name, date, venue, and sponsor in the
 - [Docker & deployment](#docker--deployment)
 - [Project layout](#project-layout)
 - [Contributors](#contributors)
+- [Acknowledgements](#acknowledgements)
 
 ---
 
@@ -193,6 +194,12 @@ See `docs/DOKPLOY.md` for a Dokploy walkthrough using `docker-compose.dokploy.ym
 
 - [Ben Milshtein](https://github.com/Benmilshtein) — author & maintainer
 - [Jerry](https://github.com/Mr-Higgs) — contributor
+
+---
+
+## Acknowledgements
+
+Based on [CURSOR 48H](https://github.com/cursorcommunityled/cursor_hackathon) by the Cursor Community Led team — an open-source platform for 48-hour AI hackathons (MIT). Thanks to its contributors for the foundation this project builds on.
 
 ---
 

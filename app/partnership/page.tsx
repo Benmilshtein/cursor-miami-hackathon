@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   ],
   alternates: { canonical: `${getSiteUrl()}/partnership` },
   openGraph: {
-    title: `Partnership — ${siteConfig.name}`,
+    title: `Partnership · ${siteConfig.name}`,
     description:
       "Sponsor and partner with our AI hackathon: audience reach, media, and brand presence.",
     url: `${getSiteUrl()}/partnership`,

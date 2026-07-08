@@ -249,7 +249,7 @@ export default function MentorDashboardPage() {
                 <div>
                   <p className="font-semibold text-emerald-200">You are available</p>
                   <p className="mt-0.5 text-sm text-[var(--text-secondary)]">
-                    Wait for requests from teams — you will be notified automatically.
+                    Wait for requests from teams. You will be notified automatically.
                   </p>
                 </div>
               </div>

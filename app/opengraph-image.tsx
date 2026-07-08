@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "48H Hackathon — Build. Ship. Celebrate.";
+export const alt = "48H Hackathon · Build. Ship. Celebrate.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

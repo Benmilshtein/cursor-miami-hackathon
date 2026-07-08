@@ -22,10 +22,10 @@ type LeaderboardRow = {
 };
 
 const PHASE_LABEL: Record<Phase, string> = {
-  closed: "Closed — voting not started",
+  closed: "Closed: voting not started",
   round_1: "Round 1 · Group A presents, Group B votes",
   round_2: "Round 2 · Group B presents, Group A votes",
-  finished: "Finished — all votes locked",
+  finished: "Finished: all votes locked",
 };
 
 const NEXT_ACTION: Record<Phase, { to: Phase; label: string } | null> = {
