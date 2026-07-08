@@ -1,0 +1,28 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Public config inlined into the client bundle at build time.
+        # Set these in your Dokploy environment settings.
+        NEXT_PUBLIC_SUPABASE_URL: "${NEXT_PUBLIC_SUPABASE_URL}"
+        NEXT_PUBLIC_SUPABASE_ANON_KEY: "${NEXT_PUBLIC_SUPABASE_ANON_KEY}"
+        NEXT_PUBLIC_APP_URL: "${NEXT_PUBLIC_APP_URL}"
+        NEXT_PUBLIC_SITE_URL: "${NEXT_PUBLIC_SITE_URL}"
+    ports:
+      - "3001:3001"
+    expose:
+      - "3001"
+    environment:
+      NODE_ENV: production
+      PORT: 3001
+      HOSTNAME: 0.0.0.0
+    networks:
+      - default
+      - dokploy-network
+    restart: unless-stopped
+
+networks:
+  dokploy-network:
+    external: true

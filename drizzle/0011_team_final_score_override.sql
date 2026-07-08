@@ -1,0 +1,2 @@
+ALTER TABLE "team" ADD COLUMN "final_score_override" real;--> statement-breakpoint
+ALTER TABLE "team" ADD CONSTRAINT "team_final_score_override_range_check" CHECK ("team"."final_score_override" is null or ("team"."final_score_override" >= 0 and "team"."final_score_override" <= 100));

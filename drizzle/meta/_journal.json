@@ -1,0 +1,125 @@
+{
+  "version": "7",
+  "dialect": "postgresql",
+  "entries": [
+    {
+      "idx": 0,
+      "version": "7",
+      "when": 1773165664730,
+      "tag": "0000_init",
+      "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1773250507751,
+      "tag": "0001_calm_mariko_yashida",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1773261441963,
+      "tag": "0002_long_silhouette",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1773298181869,
+      "tag": "0003_fancy_bloodstrike",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1773310941960,
+      "tag": "0004_adorable_silk_fever",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1773848404593,
+      "tag": "0005_loud_changeling",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1773865196476,
+      "tag": "0006_flaky_sheva_callister",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1773898274404,
+      "tag": "0007_spooky_gertrude_yorkes",
+      "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1774003512487,
+      "tag": "0008_credit_distribution_v2",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1775719416591,
+      "tag": "0009_mentor_requests",
+      "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1776000881296,
+      "tag": "0010_team_scoring_adjustments",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1776001089913,
+      "tag": "0011_team_final_score_override",
+      "breakpoints": true
+    },
+    {
+      "idx": 12,
+      "version": "7",
+      "when": 1779992519110,
+      "tag": "0012_hesitant_silk_fever",
+      "breakpoints": true
+    },
+    {
+      "idx": 13,
+      "version": "7",
+      "when": 1780521051906,
+      "tag": "0013_drop_betterauth_tables",
+      "breakpoints": true
+    },
+    {
+      "idx": 14,
+      "version": "7",
+      "when": 1780526227133,
+      "tag": "0014_amazing_madame_web",
+      "breakpoints": true
+    },
+    {
+      "idx": 15,
+      "version": "7",
+      "when": 1780593125564,
+      "tag": "0015_groovy_onslaught",
+      "breakpoints": true
+    },
+    {
+      "idx": 16,
+      "version": "7",
+      "when": 1780601390688,
+      "tag": "0016_overconfident_terrax",
+      "breakpoints": true
+    }
+  ]
+}

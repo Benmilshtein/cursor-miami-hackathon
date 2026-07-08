@@ -1,0 +1,25 @@
+# Local Docker Compose stack — app only.
+# Database is hosted on Supabase cloud; set all values in .env (see .env.example).
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        # Public config inlined into the client bundle at build time.
+        # Values are read from your shell environment or a local .env file.
+        NEXT_PUBLIC_SUPABASE_URL: "${NEXT_PUBLIC_SUPABASE_URL}"
+        NEXT_PUBLIC_SUPABASE_ANON_KEY: "${NEXT_PUBLIC_SUPABASE_ANON_KEY}"
+        NEXT_PUBLIC_APP_URL: "${NEXT_PUBLIC_APP_URL:-http://localhost:3001}"
+        NEXT_PUBLIC_SITE_URL: "${NEXT_PUBLIC_SITE_URL:-http://localhost:3001}"
+    env_file:
+      - .env
+    ports:
+      - "3001:3001"
+    expose:
+      - "3001"
+    environment:
+      - NODE_ENV=production
+      - PORT=3001
+      - HOSTNAME=0.0.0.0
+    restart: unless-stopped
