@@ -115,7 +115,7 @@ export function ProjectStatusCard({ teamApproved }: Props) {
           <div className="mt-3 h-4 w-72 animate-pulse rounded bg-white/5" />
         </div>
       ) : hasSubmission && project ? (
-        <SpotlightCard className="p-5 sm:p-6" spotlightColor="rgba(34,197,94,0.12)">
+        <SpotlightCard className="p-5 sm:p-6" spotlightColor="rgba(16, 214, 194,0.12)">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-start gap-3">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-emerald-500/10 text-emerald-400">
@@ -149,7 +149,7 @@ export function ProjectStatusCard({ teamApproved }: Props) {
           </div>
         </SpotlightCard>
       ) : (
-        <SpotlightCard className="p-5 sm:p-6" spotlightColor="rgba(59,130,246,0.14)">
+        <SpotlightCard className="p-5 sm:p-6" spotlightColor="rgba(255, 45, 146,0.14)">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-start gap-3">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[var(--accent-blue)]/10 text-[var(--accent-blue)]">

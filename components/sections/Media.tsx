@@ -20,7 +20,7 @@ export function Media() {
   return (
     <section className="relative py-24 lg:py-32 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-[#0a0a0a]" />
+      <div className="absolute inset-0 bg-[var(--bg-primary)]" />
       <div className="absolute inset-0 opacity-10" style={{
         backgroundImage: `url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='2' cy='2' r='1' fill='%23ffffff'/%3E%3C/svg%3E")`
       }} />
@@ -48,7 +48,7 @@ export function Media() {
             {t('media', 'title')}
           </motion.h2>
           <motion.p 
-            className="text-[#a1a1a1] text-lg max-w-2xl"
+            className="text-[var(--text-secondary)] text-lg max-w-2xl"
             variants={fadeUp}
           >
             {t('media', 'subtitle')}
@@ -74,12 +74,12 @@ export function Media() {
               }}
             >
               <Card 
-                className={highlight ? 'bg-blue-500/10 border-blue-500/30' : ''} 
+                className={highlight ? 'bg-pink-500/10 border-pink-500/30' : ''} 
                 padding="md"
               >
                 {highlight && (
                   <motion.span 
-                    className="absolute top-4 right-4 text-xs font-semibold text-[#3b82f6] bg-blue-500/10 px-2 py-1 rounded"
+                    className="absolute top-4 right-4 text-xs font-semibold text-[var(--accent-blue)] bg-pink-500/10 px-2 py-1 rounded"
                     animate={{ opacity: [1, 0.5, 1] }}
                     transition={{ duration: 2, repeat: Infinity }}
                   >
@@ -103,7 +103,7 @@ export function Media() {
                   {tArray('media', itemsKey).map((item, idx) => (
                     <motion.li 
                       key={idx} 
-                      className={`text-sm text-[#a1a1a1] pl-4 relative before:absolute before:left-0 before:top-2 before:w-1.5 before:h-1.5 before:rounded-full ${highlight ? 'before:bg-[#3b82f6]' : 'before:bg-[#666666]'}`}
+                      className={`text-sm text-[var(--text-secondary)] pl-4 relative before:absolute before:left-0 before:top-2 before:w-1.5 before:h-1.5 before:rounded-full ${highlight ? 'before:bg-[var(--accent-blue)]' : 'before:bg-[var(--text-muted)]'}`}
                       initial={{ opacity: 0, x: -10 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}

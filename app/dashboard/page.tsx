@@ -955,7 +955,7 @@ export default function DashboardPage() {
               <p className="text-xs font-medium uppercase tracking-wider text-[var(--text-muted)]">
                 {copy.teamLabel}
               </p>
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[rgba(168,85,247,0.12)]">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[rgba(255, 107, 92,0.12)]">
                 <Users className="h-4 w-4 text-white" />
               </div>
             </div>
@@ -979,7 +979,7 @@ export default function DashboardPage() {
               <p className="text-xs font-medium uppercase tracking-wider text-[var(--text-muted)]">
                 {copy.screeningLabel}
               </p>
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[rgba(59,130,246,0.12)]">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[rgba(255, 45, 146,0.12)]">
                 <ShieldCheck className="h-4 w-4 text-white" />
               </div>
             </div>
@@ -1000,7 +1000,7 @@ export default function DashboardPage() {
               <p className="text-xs font-medium uppercase tracking-wider text-[var(--text-muted)]">
                 {copy.readinessLabel}
               </p>
-              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[rgba(34,197,94,0.12)]">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-[rgba(16, 214, 194,0.12)]">
                 <Crown className="h-4 w-4 text-white" />
               </div>
             </div>
@@ -1040,7 +1040,7 @@ export default function DashboardPage() {
           ) : team ? (
             <SpotlightCard
               className="overflow-hidden p-5 sm:p-6"
-              spotlightColor="rgba(168,85,247,0.14)"
+              spotlightColor="rgba(255, 107, 92,0.14)"
             >
               <div className="flex flex-col gap-5">
                 <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
@@ -1160,7 +1160,7 @@ export default function DashboardPage() {
             </SpotlightCard>
           ) : (
             <div className="grid gap-6 xl:grid-cols-2">
-              <SpotlightCard className="p-5 sm:p-6" spotlightColor="rgba(59,130,246,0.12)">
+              <SpotlightCard className="p-5 sm:p-6" spotlightColor="rgba(255, 45, 146,0.12)">
                 <div className="space-y-5">
                   <div>
                     <p className="text-xs font-medium uppercase tracking-wider text-[var(--accent-blue)]">
@@ -1216,7 +1216,7 @@ export default function DashboardPage() {
                 </div>
               </SpotlightCard>
 
-              <SpotlightCard className="p-5 sm:p-6" spotlightColor="rgba(168,85,247,0.12)">
+              <SpotlightCard className="p-5 sm:p-6" spotlightColor="rgba(255, 107, 92,0.12)">
                 <div className="space-y-5">
                   <div>
                     <p className="text-xs font-medium uppercase tracking-wider text-[var(--accent-purple)]">

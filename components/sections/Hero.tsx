@@ -155,7 +155,7 @@ export function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.8 }}
-          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-8 bg-gradient-to-r from-blue-400 via-purple-400 to-green-400 bg-clip-text text-transparent"
+          className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-8 bg-gradient-to-r from-[#ff2d92] via-[#ff6b5c] to-[#10d6c2] bg-clip-text text-transparent"
         >
           {t("hero", "subtitle")}
         </motion.h2>

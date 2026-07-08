@@ -13,9 +13,9 @@ type DashboardStatCardProps = {
 };
 
 const accentMap = {
-  blue: "rgba(59,130,246,0.16)",
-  purple: "rgba(168,85,247,0.16)",
-  green: "rgba(34,197,94,0.16)",
+  blue: "rgba(255, 45, 146,0.16)",
+  purple: "rgba(255, 107, 92,0.16)",
+  green: "rgba(16, 214, 194,0.16)",
 };
 
 export function DashboardStatCard({

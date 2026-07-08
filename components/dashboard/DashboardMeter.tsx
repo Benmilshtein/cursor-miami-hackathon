@@ -11,7 +11,7 @@ type DashboardMeterProps = {
 const accentClassMap = {
   blue: "from-[var(--accent-blue)] to-cyan-400",
   purple: "from-[var(--accent-purple)] to-fuchsia-400",
-  green: "from-[var(--accent-green)] to-emerald-300",
+  green: "from-[var(--accent-green)] to-teal-300",
 };
 
 export function DashboardMeter({

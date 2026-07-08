@@ -94,10 +94,10 @@ export function TeamBuilding() {
               whileHover={{ 
                 y: -4, 
                 boxShadow: section.color === 'blue' 
-                  ? '0 15px 35px rgba(59, 130, 246, 0.1)' 
+                  ? '0 15px 35px rgba(255, 45, 146, 0.1)' 
                   : section.color === 'purple'
-                    ? '0 15px 35px rgba(168, 85, 247, 0.1)'
-                    : '0 15px 35px rgba(34, 197, 94, 0.1)'
+                    ? '0 15px 35px rgba(255, 107, 92, 0.1)'
+                    : '0 15px 35px rgba(16, 214, 194, 0.1)'
               }}
             >
               {/* Accent bar */}

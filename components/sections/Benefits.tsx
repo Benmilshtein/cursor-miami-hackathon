@@ -102,7 +102,7 @@ export function Benefits() {
                     +
                   </span>
                   <motion.span
-                    className="bg-clip-text text-transparent bg-gradient-to-r from-[var(--accent-green)] to-emerald-300"
+                    className="bg-clip-text text-transparent bg-gradient-to-r from-[var(--accent-green)] to-teal-300"
                     animate={{ y: [0, -5, 0] }}
                     transition={{ duration: 2, delay: 1, repeat: Infinity }}
                   >

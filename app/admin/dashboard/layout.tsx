@@ -102,7 +102,7 @@ export default function AdminDashboardLayout({
 
   const sidebar = (
     <div className="flex h-full flex-col border-r border-[var(--border-color)] bg-[var(--card-bg)]">
-      <div className="shrink-0 border-b border-[var(--border-color)] bg-[linear-gradient(135deg,rgba(59,130,246,0.1),rgba(168,85,247,0.06))] p-4">
+      <div className="shrink-0 border-b border-[var(--border-color)] bg-[linear-gradient(135deg,rgba(255, 45, 146,0.1),rgba(255, 107, 92,0.06))] p-4">
         <div className="flex items-center gap-3">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-white/5">
             <Logo size={24} />

@@ -15,7 +15,8 @@ export default function OpenGraphImage() {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          background: "linear-gradient(145deg, #0c0c12 0%, #151528 45%, #1e1b4b 100%)",
+          background:
+            "radial-gradient(circle at 15% 10%, rgba(255,45,146,0.22), transparent 45%), radial-gradient(circle at 85% 90%, rgba(16,214,194,0.18), transparent 45%), #07070c",
         }}
       >
         <div

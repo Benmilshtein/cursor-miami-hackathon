@@ -132,7 +132,7 @@ export function Requirements() {
                   viewport={viewportOnce}
                   transition={{ delay: index * 0.06 }}
                   className="glass-card p-4 sm:p-5 flex items-start gap-4 group"
-                  whileHover={{ x: 4, boxShadow: '0 10px 25px rgba(34, 197, 94, 0.08)' }}
+                  whileHover={{ x: 4, boxShadow: '0 10px 25px rgba(16, 214, 194, 0.08)' }}
                 >
                   <motion.div 
                     className="w-12 h-12 rounded-xl bg-[var(--accent-green)]/10 flex items-center justify-center flex-shrink-0"
@@ -184,7 +184,7 @@ export function Requirements() {
                   viewport={viewportOnce}
                   transition={{ delay: index * 0.06 }}
                   className="glass-card p-4 sm:p-5 flex items-start gap-4 group"
-                  whileHover={{ x: 4, boxShadow: '0 10px 25px rgba(59, 130, 246, 0.08)' }}
+                  whileHover={{ x: 4, boxShadow: '0 10px 25px rgba(255, 45, 146, 0.08)' }}
                 >
                   <motion.div 
                     className="w-12 h-12 rounded-xl bg-[var(--accent-blue)]/10 flex items-center justify-center flex-shrink-0"

@@ -308,7 +308,7 @@ export function ProjectSection({ isTeamLead, teamApproved }: Props) {
       )}
 
       {showForm ? (
-        <SpotlightCard className="p-5 sm:p-6" spotlightColor="rgba(59,130,246,0.12)">
+        <SpotlightCard className="p-5 sm:p-6" spotlightColor="rgba(255, 45, 146,0.12)">
           <form onSubmit={handleSubmit} className="space-y-4">
             <label className="block">
               <span className="mb-1.5 block text-xs font-medium text-[var(--text-secondary)]">
@@ -438,7 +438,7 @@ export function ProjectSection({ isTeamLead, teamApproved }: Props) {
           </form>
         </SpotlightCard>
       ) : project ? (
-        <SpotlightCard className="p-5 sm:p-6" spotlightColor="rgba(59,130,246,0.12)">
+        <SpotlightCard className="p-5 sm:p-6" spotlightColor="rgba(255, 45, 146,0.12)">
           <div className="space-y-4">
             <div className="flex items-start gap-3">
               <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-[var(--accent-blue)]/10 text-[var(--accent-blue)]">

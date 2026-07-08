@@ -15,10 +15,10 @@ type MetricCardProps = {
 };
 
 const accentBgMap = {
-  blue: "rgba(59,130,246,0.12)",
-  purple: "rgba(168,85,247,0.12)",
-  green: "rgba(34,197,94,0.12)",
-  cyan: "rgba(8,145,178,0.12)",
+  blue: "rgba(255, 45, 146,0.12)",
+  purple: "rgba(255, 107, 92,0.12)",
+  green: "rgba(16, 214, 194,0.12)",
+  cyan: "rgba(16, 214, 194,0.12)",
   amber: "rgba(180,83,9,0.12)",
 };
 

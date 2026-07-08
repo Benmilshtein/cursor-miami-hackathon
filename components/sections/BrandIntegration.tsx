@@ -20,7 +20,7 @@ export function BrandIntegration() {
   return (
     <section className="relative py-24 lg:py-32 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-[#0a0a0a]" />
+      <div className="absolute inset-0 bg-[var(--bg-primary)]" />
       <div className="absolute inset-0 opacity-10" style={{
         backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='1'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`
       }} />
@@ -29,7 +29,7 @@ export function BrandIntegration() {
 
       {/* Corner Accent */}
       <motion.div 
-        className="absolute top-10 right-10 w-24 h-24 border-t-2 border-r-2 border-[#262626] hidden lg:block"
+        className="absolute top-10 right-10 w-24 h-24 border-t-2 border-r-2 border-[var(--border-color)] hidden lg:block"
         initial={{ opacity: 0, scale: 0.8 }}
         whileInView={{ opacity: 1, scale: 1 }}
         viewport={{ once: true }}
@@ -50,7 +50,7 @@ export function BrandIntegration() {
             variants={fadeUp}
           >
             <motion.div 
-              className="w-6 h-0.5 bg-[#a855f7]"
+              className="w-6 h-0.5 bg-[var(--accent-purple)]"
               initial={{ width: 0 }}
               whileInView={{ width: 24 }}
               viewport={{ once: true }}
@@ -59,7 +59,7 @@ export function BrandIntegration() {
               {t('brand', 'tag')}
             </SectionTag>
             <motion.div 
-              className="w-6 h-0.5 bg-[#a855f7]"
+              className="w-6 h-0.5 bg-[var(--accent-purple)]"
               initial={{ width: 0 }}
               whileInView={{ width: 24 }}
               viewport={{ once: true }}
@@ -72,7 +72,7 @@ export function BrandIntegration() {
             {t('brand', 'title')}
           </motion.h2>
           <motion.p 
-            className="text-[#a1a1a1] text-lg max-w-2xl mx-auto"
+            className="text-[var(--text-secondary)] text-lg max-w-2xl mx-auto"
             variants={fadeUp}
           >
             {t('brand', 'subtitle')}
@@ -115,7 +115,7 @@ export function BrandIntegration() {
                   {tArray('brand', itemsKey).map((item, idx) => (
                     <motion.li 
                       key={idx} 
-                      className="text-sm text-[#a1a1a1] pl-4 relative before:absolute before:left-0 before:top-2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-[#666666] group-hover:before:bg-[#a855f7] before:transition-colors"
+                      className="text-sm text-[var(--text-secondary)] pl-4 relative before:absolute before:left-0 before:top-2 before:w-1.5 before:h-1.5 before:rounded-full before:bg-[var(--text-muted)] group-hover:before:bg-[var(--accent-purple)] before:transition-colors"
                       initial={{ opacity: 0, x: -10 }}
                       whileInView={{ opacity: 1, x: 0 }}
                       viewport={{ once: true }}
@@ -128,7 +128,7 @@ export function BrandIntegration() {
                 {/* Bottom accent on hover */}
                 <motion.div 
                   className="absolute bottom-0 left-0 w-full h-0.5 bg-transparent"
-                  whileHover={{ backgroundColor: '#a855f7' }}
+                  whileHover={{ backgroundColor: 'var(--accent-purple)' }}
                 />
               </Card>
             </motion.div>

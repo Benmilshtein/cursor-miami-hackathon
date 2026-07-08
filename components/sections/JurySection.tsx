@@ -20,7 +20,7 @@ export function JurySection() {
   return (
     <section className="relative py-24 lg:py-32 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-[#0a0a0a]" />
+      <div className="absolute inset-0 bg-[var(--bg-primary)]" />
       <div className="grid-pattern absolute inset-0" />
       <GlowEffect color="blue" position={{ top: '-100px', left: '-100px' }} size="md" className="opacity-20" />
       <GlowEffect color="purple" position={{ bottom: '-150px', right: '-100px' }} size="md" />
@@ -36,7 +36,7 @@ export function JurySection() {
         >
           <motion.div className="max-w-2xl" variants={fadeInLeft}>
             <motion.div 
-              className="inline-flex items-center gap-3 bg-purple-500/5 border-l-4 border-[var(--accent-purple)] px-4 py-2 min-h-[44px] rounded-r mb-6"
+              className="inline-flex items-center gap-3 bg-rose-500/5 border-l-4 border-[var(--accent-purple)] px-4 py-2 min-h-[44px] rounded-r mb-6"
               whileHover={{ x: 3 }}
             >
               <motion.div
@@ -52,7 +52,7 @@ export function JurySection() {
             <h2 className="text-4xl md:text-5xl font-extrabold text-white mb-5">
               {t('jury', 'title')}
             </h2>
-            <p className="text-lg text-[#a1a1a1] leading-relaxed">
+            <p className="text-lg text-[var(--text-secondary)] leading-relaxed">
               {t('jury', 'description')}
             </p>
           </motion.div>
@@ -70,7 +70,7 @@ export function JurySection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             />
-            <div className="flex items-center gap-2 text-sm text-[#666666] mb-3">
+            <div className="flex items-center gap-2 text-sm text-[var(--text-muted)] mb-3">
               <IconCheckCircle size={16} />
               {t('jury', 'targetLabel')}
             </div>
@@ -78,12 +78,12 @@ export function JurySection() {
               {targets.map((key, index) => (
                 <motion.span 
                   key={key}
-                  className="bg-blue-500/10 text-[var(--accent-blue)] text-xs sm:text-sm font-semibold px-3 py-2 min-h-[36px] rounded-md"
+                  className="bg-pink-500/10 text-[var(--accent-blue)] text-xs sm:text-sm font-semibold px-3 py-2 min-h-[36px] rounded-md"
                   initial={{ opacity: 0, scale: 0.8 }}
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
-                  whileHover={{ scale: 1.02, backgroundColor: 'rgba(59, 130, 246, 0.15)' }}
+                  whileHover={{ scale: 1.02, backgroundColor: 'rgba(255, 45, 146, 0.15)' }}
                 >
                   {t('jury', key)}
                 </motion.span>
@@ -133,7 +133,7 @@ export function JurySection() {
                 <h3 className="text-xl font-bold text-white mb-3">
                   {t('jury', `${key}Title`)}
                 </h3>
-                <p className="text-[#a1a1a1] text-sm leading-relaxed">
+                <p className="text-[var(--text-secondary)] text-sm leading-relaxed">
                   {t('jury', `${key}Desc`)}
                 </p>
               </Card>

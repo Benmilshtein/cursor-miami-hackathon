@@ -23,7 +23,7 @@ export function Audience() {
   return (
     <section id="audience" className="relative py-24 lg:py-32 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-[#0a0a0a]" />
+      <div className="absolute inset-0 bg-[var(--bg-primary)]" />
       <div className="grid-pattern absolute inset-0" />
       <GlowEffect color="blue" position={{ top: '20%', left: '-10%' }} size="md" />
       <GlowEffect color="purple" position={{ bottom: '20%', right: '-10%' }} size="md" />
@@ -71,7 +71,7 @@ export function Audience() {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             />
-            <div className="flex items-center gap-4 mb-6 pb-5 border-b border-[#262626]">
+            <div className="flex items-center gap-4 mb-6 pb-5 border-b border-[var(--border-color)]">
               <motion.div 
                 className="icon-box icon-box-blue"
                 whileHover={{ rotate: 360 }}
@@ -93,15 +93,15 @@ export function Audience() {
               {participants.map((key, index) => (
                 <motion.div 
                   key={key} 
-                  className="flex items-center gap-3 bg-[#141414]/60 p-3 rounded-lg border border-[#262626]"
+                  className="flex items-center gap-3 bg-[var(--bg-secondary)]/60 p-3 rounded-lg border border-[var(--border-color)]"
                   variants={listItemVariants}
-                  whileHover={{ x: 10, backgroundColor: 'rgba(59, 130, 246, 0.08)' }}
+                  whileHover={{ x: 10, backgroundColor: 'rgba(255, 45, 146, 0.08)' }}
                 >
                   <motion.div 
                     className="list-dot bg-[var(--accent-blue)]"
                     whileHover={{ scale: 1.5 }}
                   />
-                  <span className="text-[#a1a1a1] font-medium">
+                  <span className="text-[var(--text-secondary)] font-medium">
                     {t('audience', key)}
                   </span>
                 </motion.div>
@@ -122,7 +122,7 @@ export function Audience() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             />
-            <div className="flex items-center gap-4 mb-6 pb-5 border-b border-[#262626]">
+            <div className="flex items-center gap-4 mb-6 pb-5 border-b border-[var(--border-color)]">
               <motion.div 
                 className="icon-box icon-box-purple"
                 whileHover={{ rotate: 360 }}
@@ -144,15 +144,15 @@ export function Audience() {
               {viewers.map((key) => (
                 <motion.div 
                   key={key} 
-                  className="flex items-center gap-3 bg-[#141414]/60 p-3 rounded-lg border border-[#262626]"
+                  className="flex items-center gap-3 bg-[var(--bg-secondary)]/60 p-3 rounded-lg border border-[var(--border-color)]"
                   variants={listItemVariants}
-                  whileHover={{ x: 10, backgroundColor: 'rgba(168, 85, 247, 0.08)' }}
+                  whileHover={{ x: 10, backgroundColor: 'rgba(255, 107, 92, 0.08)' }}
                 >
 <motion.div 
               className="list-dot bg-[var(--accent-purple)]"
                     whileHover={{ scale: 1.5 }}
                   />
-                  <span className="text-[#a1a1a1] font-medium">
+                  <span className="text-[var(--text-secondary)] font-medium">
                     {t('audience', key)}
                   </span>
                 </motion.div>
@@ -163,7 +163,7 @@ export function Audience() {
 
         {/* Bottom Note */}
         <motion.div 
-          className="bg-[#1a1a1a]/80 border-l-4 border-[#a855f7] p-5 rounded-r-xl flex items-center gap-5"
+          className="bg-[var(--bg-tertiary)]/80 border-l-4 border-[var(--accent-purple)] p-5 rounded-r-xl flex items-center gap-5"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
@@ -176,7 +176,7 @@ export function Audience() {
           >
             <IconUsers size={24} className="text-[var(--accent-purple)] flex-shrink-0" />
           </motion.div>
-          <p className="text-[#a1a1a1]">
+          <p className="text-[var(--text-secondary)]">
             <span className="text-white font-semibold">{t('audience', 'note')}</span>
             {' '}{t('audience', 'noteDesc')}
           </p>

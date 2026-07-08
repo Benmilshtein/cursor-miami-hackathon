@@ -13,7 +13,7 @@ export function Package() {
   return (
     <section className="relative py-24 lg:py-32 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-[#0a0a0a]" />
+      <div className="absolute inset-0 bg-[var(--bg-primary)]" />
       <div className="grid-pattern absolute inset-0" />
       <GlowEffect color="purple" position={{ top: '-30%', right: '-10%' }} />
       <GlowEffect color="blue" position={{ bottom: '-30%', left: '-10%' }} />
@@ -48,15 +48,15 @@ export function Package() {
               </h2>
             </motion.div>
             <motion.p 
-              className="text-lg text-[#a1a1a1] leading-relaxed mb-8"
+              className="text-lg text-[var(--text-secondary)] leading-relaxed mb-8"
               variants={fadeInLeft}
             >
               {t('package', 'description')}
             </motion.p>
             <motion.div 
-              className="inline-flex items-center gap-3 bg-purple-500/15 border border-purple-500/30 px-5 py-3 min-h-[44px] rounded-full"
+              className="inline-flex items-center gap-3 bg-rose-500/15 border border-rose-500/30 px-5 py-3 min-h-[44px] rounded-full"
               variants={fadeInLeft}
-              whileHover={{ scale: 1.02, boxShadow: '0 0 20px rgba(168, 85, 247, 0.12)' }}
+              whileHover={{ scale: 1.02, boxShadow: '0 0 20px rgba(255, 107, 92, 0.12)' }}
             >
               <motion.div
                 animate={{ rotate: [0, 10, -10, 0] }}
@@ -79,8 +79,8 @@ export function Package() {
             variants={fadeInRight}
           >
             <motion.div 
-              className="glass-card p-4 sm:p-6 md:p-8 lg:p-10 border-purple-500/20 shadow-xl shadow-purple-500/5 relative overflow-hidden"
-              whileHover={{ boxShadow: '0 20px 40px rgba(168, 85, 247, 0.08)' }}
+              className="glass-card p-4 sm:p-6 md:p-8 lg:p-10 border-rose-500/20 shadow-xl shadow-rose-500/5 relative overflow-hidden"
+              whileHover={{ boxShadow: '0 20px 40px rgba(255, 107, 92, 0.08)' }}
             >
               {/* Animated glow - Subtle */}
               <motion.div 
@@ -102,12 +102,12 @@ export function Package() {
                 {items.map((key, index) => (
                   <motion.div 
                     key={key}
-                    className="flex items-center gap-4 sm:gap-5 p-3 sm:p-4 min-h-[48px] bg-[#141414]/60 rounded-xl border border-[#262626]"
+                    className="flex items-center gap-4 sm:gap-5 p-3 sm:p-4 min-h-[48px] bg-[var(--bg-secondary)]/60 rounded-xl border border-[var(--border-color)]"
                     variants={fadeUp}
                     whileHover={{ 
                       x: 10, 
-                      backgroundColor: 'rgba(168, 85, 247, 0.08)',
-                      borderColor: '#404040',
+                      backgroundColor: 'rgba(255, 107, 92, 0.08)',
+                      borderColor: 'var(--border-hover)',
                       transition: { duration: 0.2 }
                     }}
                   >
@@ -129,7 +129,7 @@ export function Package() {
                       <p className="text-base sm:text-lg font-semibold text-white">
                         {t('package', key)}
                       </p>
-                      <span className="text-xs sm:text-sm text-[#a1a1a1]">
+                      <span className="text-xs sm:text-sm text-[var(--text-secondary)]">
                         {t('package', `${key}Sub`)}
                       </span>
                     </div>

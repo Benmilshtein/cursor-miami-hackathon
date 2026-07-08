@@ -9,13 +9,13 @@ export function Footer() {
 
   return (
     <motion.footer 
-      className="relative py-8 border-t border-[#262626]"
+      className="relative py-8 border-t border-[var(--border-color)]"
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5 }}
     >
-      <div className="absolute inset-0 bg-[#0a0a0a]" />
+      <div className="absolute inset-0 bg-[var(--bg-primary)]" />
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           {/* Logo */}
@@ -29,7 +29,7 @@ export function Footer() {
 
           {/* Copyright */}
           <motion.p 
-            className="text-sm text-[#666666]"
+            className="text-sm text-[var(--text-muted)]"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}

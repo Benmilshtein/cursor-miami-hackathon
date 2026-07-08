@@ -698,7 +698,7 @@ export default function ProfilePage() {
     <>
       <NoiseOverlay />
       <div className="relative min-h-screen overflow-hidden bg-[var(--bg-primary)]">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(59,130,246,0.12),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(168,85,247,0.12),transparent_28%)]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255, 45, 146,0.12),transparent_32%),radial-gradient(circle_at_bottom_right,rgba(255, 107, 92,0.12),transparent_28%)]" />
 
         <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
           <DashboardHeader
@@ -822,7 +822,7 @@ export default function ProfilePage() {
                   <div className="grid gap-4 xl:grid-cols-[1.1fr_0.9fr]">
                     <SpotlightCard
                       className="overflow-hidden p-6"
-                      spotlightColor="rgba(168,85,247,0.18)"
+                      spotlightColor="rgba(255, 107, 92,0.18)"
                     >
                       <div className="flex flex-col gap-5">
                         <div className="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
@@ -953,7 +953,7 @@ export default function ProfilePage() {
                   </div>
                 ) : (
                   <div className="grid gap-4 xl:grid-cols-2">
-                    <SpotlightCard className="p-6" spotlightColor="rgba(59,130,246,0.16)">
+                    <SpotlightCard className="p-6" spotlightColor="rgba(255, 45, 146,0.16)">
                       <div className="space-y-4">
                         <div>
                           <p className="text-xs uppercase tracking-[0.18em] text-[var(--accent-blue)]">
@@ -1009,7 +1009,7 @@ export default function ProfilePage() {
                       </div>
                     </SpotlightCard>
 
-                    <SpotlightCard className="p-6" spotlightColor="rgba(168,85,247,0.16)">
+                    <SpotlightCard className="p-6" spotlightColor="rgba(255, 107, 92,0.16)">
                       <div className="space-y-4">
                         <div>
                           <p className="text-xs uppercase tracking-[0.18em] text-[var(--accent-purple)]">

@@ -16,29 +16,29 @@ export function Support() {
   ];
 
   const cardColors = {
-    blue: '#3b82f6',
-    purple: '#a855f7',
+    blue: 'var(--accent-blue)',
+    purple: 'var(--accent-purple)',
     green: '#22c55e',
   };
 
   return (
     <section id="support" className="relative py-24 lg:py-32 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-[#0a0a0a]" />
+      <div className="absolute inset-0 bg-[var(--bg-primary)]" />
       <div className="grid-pattern absolute inset-0" />
       <GlowEffect color="blue" position={{ top: '50%', left: '50%' }} size="lg" className="-translate-x-1/2 -translate-y-1/2 opacity-10" />
       <GlowEffect color="purple" position={{ top: '-100px', right: '-100px' }} size="sm" />
 
       {/* Tech Lines */}
       <motion.div 
-        className="absolute top-32 right-0 h-px bg-[#262626] hidden lg:block"
+        className="absolute top-32 right-0 h-px bg-[var(--border-color)] hidden lg:block"
         initial={{ width: 0 }}
         whileInView={{ width: 400 }}
         viewport={{ once: true }}
         transition={{ duration: 1, delay: 0.5 }}
       />
       <motion.div 
-        className="absolute bottom-20 left-0 h-px bg-[#262626] hidden lg:block"
+        className="absolute bottom-20 left-0 h-px bg-[var(--border-color)] hidden lg:block"
         initial={{ width: 0 }}
         whileInView={{ width: 300 }}
         viewport={{ once: true }}
@@ -96,7 +96,7 @@ export function Support() {
                     <h3 className="text-xl font-bold text-white mb-2">
                       {t('support', `${key}Title`)}
                     </h3>
-                    <p className="text-[#a1a1a1] leading-relaxed">
+                    <p className="text-[var(--text-secondary)] leading-relaxed">
                       {t('support', `${key}Desc`)}
                     </p>
                   </div>

@@ -18,14 +18,14 @@ export function About() {
   return (
     <section id="about" className="relative py-24 lg:py-32 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-[#0a0a0a]" />
+      <div className="absolute inset-0 bg-[var(--bg-primary)]" />
       <div className="grid-pattern absolute inset-0" />
       <GlowEffect color="blue" position={{ top: '-20%', right: '-10%' }} size="md" />
       <GlowEffect color="purple" position={{ bottom: '-20%', left: '-10%' }} size="md" />
 
       {/* Decoration Circle */}
       <motion.div 
-        className="absolute top-1/2 -left-36 w-72 h-72 border border-[#262626] rounded-full hidden lg:block"
+        className="absolute top-1/2 -left-36 w-72 h-72 border border-[var(--border-color)] rounded-full hidden lg:block"
         animate={{ rotate: 360 }}
         transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
       />
@@ -76,7 +76,7 @@ export function About() {
                     <h4 className="text-xl font-bold text-white mb-1">
                       {t('about', `${key}Title`)}
                     </h4>
-                    <p className="text-[#a1a1a1] leading-relaxed">
+                    <p className="text-[var(--text-secondary)] leading-relaxed">
                       {t('about', `${key}Desc`)}
                     </p>
                   </div>
@@ -109,7 +109,7 @@ export function About() {
                     {t('about', 'stat1Value')}
                     <span className="text-2xl align-super">{t('about', 'stat1Unit')}</span>
                   </motion.div>
-                  <p className="text-base text-[#a1a1a1] text-right leading-tight">
+                  <p className="text-base text-[var(--text-secondary)] text-right leading-tight">
                     {t('about', 'stat1Label')}
                   </p>
                 </Card>
@@ -127,7 +127,7 @@ export function About() {
                   >
                     {t('about', 'stat2Value')}
                   </motion.div>
-                  <p className="text-sm text-[#a1a1a1] leading-tight">
+                  <p className="text-sm text-[var(--text-secondary)] leading-tight">
                     {t('about', 'stat2Label')}
                   </p>
                 </Card>
@@ -144,7 +144,7 @@ export function About() {
                   >
                     {t('about', 'stat3Value')}
                   </motion.div>
-                  <p className="text-sm text-[#a1a1a1] leading-tight">
+                  <p className="text-sm text-[var(--text-secondary)] leading-tight">
                     {t('about', 'stat3Label')}
                   </p>
                 </Card>
@@ -153,14 +153,14 @@ export function About() {
 
             {/* Goal Box */}
             <motion.div 
-              className="bg-[#1a1a1a]/80 border-l-4 border-[#a855f7] p-5 rounded-r-xl"
+              className="bg-[var(--bg-tertiary)]/80 border-l-4 border-[var(--accent-purple)] p-5 rounded-r-xl"
               variants={fadeInRight}
               whileHover={{ x: 5, borderLeftWidth: 6 }}
             >
               <span className="text-[var(--accent-purple)] font-bold text-xs uppercase tracking-wider block mb-2">
                 {t('about', 'goalLabel')}
               </span>
-              <p className="text-[#a1a1a1] leading-relaxed italic">
+              <p className="text-[var(--text-secondary)] leading-relaxed italic">
                 {t('about', 'goalText')}
               </p>
             </motion.div>

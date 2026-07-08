@@ -59,7 +59,7 @@ export function Timeline() {
   return (
     <section id="contacts" className="relative py-24 lg:py-32 overflow-hidden">
       {/* Background */}
-      <div className="absolute inset-0 bg-[#0a0a0a]" />
+      <div className="absolute inset-0 bg-[var(--bg-primary)]" />
       <div className="grid-pattern absolute inset-0" />
       <GlowEffect color="blue" position={{ top: "-30%", right: "-10%" }} />
       <GlowEffect color="purple" position={{ bottom: "-30%", left: "-10%" }} />
@@ -98,7 +98,7 @@ export function Timeline() {
             <div className="relative pl-6 sm:pl-8">
               {/* Animated Timeline Line */}
               <motion.div
-                className="absolute left-0 top-3 w-0.5 bg-[#262626]"
+                className="absolute left-0 top-3 w-0.5 bg-[var(--border-color)]"
                 initial={{ height: 0 }}
                 whileInView={{ height: "100%" }}
                 viewport={{ once: true }}
@@ -118,7 +118,7 @@ export function Timeline() {
                     >
                       {/* Animated Timeline Dot */}
                       <motion.div
-                        className={`absolute -left-[29px] sm:-left-[33px] top-1 w-3 h-3 rounded-full bg-[#0a0a0a] border-2 ${accent ? "border-[#a855f7]" : "border-[#3b82f6]"} z-10`}
+                        className={`absolute -left-[29px] sm:-left-[33px] top-1 w-3 h-3 rounded-full bg-[var(--bg-primary)] border-2 ${accent ? "border-[var(--accent-purple)]" : "border-[var(--accent-blue)]"} z-10`}
                         initial={{ scale: 0 }}
                         whileInView={{ scale: 1 }}
                         viewport={{ once: true }}
@@ -129,7 +129,7 @@ export function Timeline() {
                         }}
                       >
                         <motion.div
-                          className={`absolute inset-0 rounded-full ${accent ? "bg-[#a855f7]" : "bg-[#3b82f6]"}`}
+                          className={`absolute inset-0 rounded-full ${accent ? "bg-[var(--accent-purple)]" : "bg-[var(--accent-blue)]"}`}
                           animate={{
                             scale: [1, 1.5, 1],
                             opacity: [0.5, 0, 0.5],
@@ -150,13 +150,13 @@ export function Timeline() {
                         <Icon size={20} />
                       </motion.div>
                       <div>
-                        <span className="text-sm text-[#666666] uppercase tracking-wider block mb-1">
+                        <span className="text-sm text-[var(--text-muted)] uppercase tracking-wider block mb-1">
                           {t("timeline", dateKey)}
                         </span>
                         <h3 className="text-xl sm:text-2xl font-bold text-white mb-2">
                           {t("timeline", titleKey)}
                         </h3>
-                        <p className="text-[#a1a1a1] leading-relaxed">
+                        <p className="text-[var(--text-secondary)] leading-relaxed">
                           {t("timeline", descKey)}
                         </p>
                       </div>
@@ -178,16 +178,16 @@ export function Timeline() {
             <motion.div
               whileHover={{
                 scale: 1.02,
-                boxShadow: "0 30px 60px rgba(168, 85, 247, 0.15)",
+                boxShadow: "0 30px 60px rgba(255, 107, 92, 0.15)",
               }}
             >
               <Card
-                className="border-purple-500/30 shadow-xl shadow-purple-500/5 relative overflow-hidden"
+                className="border-rose-500/30 shadow-xl shadow-rose-500/5 relative overflow-hidden"
                 padding="lg"
               >
                 {/* Animated Glow */}
                 <motion.div
-                  className="absolute -top-12 -right-12 w-48 h-48 bg-[#a855f7] rounded-full filter blur-[80px] opacity-[0.15] pointer-events-none"
+                  className="absolute -top-12 -right-12 w-48 h-48 bg-[var(--accent-purple)] rounded-full filter blur-[80px] opacity-[0.15] pointer-events-none"
                   animate={{
                     scale: [1, 1.3, 1],
                     opacity: [0.2, 0.35, 0.2],
@@ -197,11 +197,11 @@ export function Timeline() {
 
                 {/* Flexibility Note */}
                 <motion.div
-                  className="bg-blue-500/10 p-4 rounded-r-lg mb-6"
-                  style={{ borderLeftWidth: "3px", borderLeftColor: "#3b82f6" }}
+                  className="bg-pink-500/10 p-4 rounded-r-lg mb-6"
+                  style={{ borderLeftWidth: "3px", borderLeftColor: "var(--accent-blue)" }}
                   whileHover={{ x: 5 }}
                 >
-                  <p className="text-sm text-sky-100">
+                  <p className="text-sm text-[var(--text-secondary)]">
                     <strong className="text-white">
                       {t("timeline", "flexNote")}
                     </strong>{" "}
@@ -230,12 +230,12 @@ export function Timeline() {
                   {contacts.map(({ icon: Icon, label, value }, index) => (
                     <motion.div
                       key={label}
-                      className="flex items-center gap-4 p-4 min-h-[48px] bg-[#141414]/60 rounded-xl border border-[#262626] cursor-pointer"
+                      className="flex items-center gap-4 p-4 min-h-[48px] bg-[var(--bg-secondary)]/60 rounded-xl border border-[var(--border-color)] cursor-pointer"
                       variants={fadeUp}
                       whileHover={{
                         x: 10,
-                        backgroundColor: "rgba(168, 85, 247, 0.08)",
-                        borderColor: "#404040",
+                        backgroundColor: "rgba(255, 107, 92, 0.08)",
+                        borderColor: "var(--border-hover)",
                       }}
                       whileTap={{ scale: 0.98 }}
                     >
@@ -244,10 +244,10 @@ export function Timeline() {
                         transition={{ duration: 0.3 }}
                         className="flex-shrink-0"
                       >
-                        <Icon size={24} className="text-[#a855f7]" />
+                        <Icon size={24} className="text-[var(--accent-purple)]" />
                       </motion.div>
                       <div>
-                        <span className="text-xs text-[#666666] block">
+                        <span className="text-xs text-[var(--text-muted)] block">
                           {t("timeline", label)}
                         </span>
                         <span className="text-white font-medium">{value}</span>
@@ -259,12 +259,12 @@ export function Timeline() {
                 {/* Corner Dots */}
                 <div className="absolute bottom-5 right-5 flex gap-1">
                   <motion.div
-                    className="w-1 h-1 bg-[#3b82f6] rounded-full"
+                    className="w-1 h-1 bg-[var(--accent-blue)] rounded-full"
                     animate={{ opacity: [1, 0.3, 1] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
                   />
-                  <div className="w-1 h-1 bg-[#666666] rounded-full" />
-                  <div className="w-1 h-1 bg-[#666666] rounded-full" />
+                  <div className="w-1 h-1 bg-[var(--text-muted)] rounded-full" />
+                  <div className="w-1 h-1 bg-[var(--text-muted)] rounded-full" />
                 </div>
               </Card>
             </motion.div>

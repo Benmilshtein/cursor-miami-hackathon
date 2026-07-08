@@ -185,9 +185,9 @@ export default function MentorDashboardPage() {
         },
         matched: {
           label: "Session in progress",
-          color: "border-blue-500/30 bg-blue-500/10",
-          dot: "bg-blue-400",
-          text: "text-blue-200",
+          color: "border-pink-500/30 bg-pink-500/10",
+          dot: "bg-pink-400",
+          text: "text-pink-200",
         },
         pending: null,
         completed: null,
@@ -308,7 +308,7 @@ export default function MentorDashboardPage() {
                         type="button"
                         disabled={actionLoading !== null}
                         onClick={() => void handleAction("complete", activeRequest.id)}
-                        className="inline-flex items-center gap-1.5 rounded-lg border border-blue-500/40 bg-blue-500/20 px-4 py-2 text-sm font-medium text-blue-200 hover:bg-blue-500/30 disabled:opacity-50"
+                        className="inline-flex items-center gap-1.5 rounded-lg border border-pink-500/40 bg-pink-500/20 px-4 py-2 text-sm font-medium text-pink-200 hover:bg-pink-500/30 disabled:opacity-50"
                       >
                         <CheckCircle2 className="h-4 w-4" />
                         {actionLoading === "complete" ? "Ending…" : "End session"}
@@ -353,7 +353,7 @@ function TeamCardItem({ team }: { team: TeamCard }) {
 
   const badge = req
     ? req.status === "matched"
-      ? { label: "Mentor assigned", cls: "border-blue-500/30 bg-blue-500/10 text-blue-300" }
+      ? { label: "Mentor assigned", cls: "border-pink-500/30 bg-pink-500/10 text-pink-300" }
       : req.status === "assigned"
         ? { label: "Awaiting response", cls: "border-amber-500/30 bg-amber-500/10 text-amber-300" }
         : { label: "Waiting for mentor", cls: "border-amber-500/30 bg-amber-500/10 text-amber-300" }

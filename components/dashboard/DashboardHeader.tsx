@@ -37,7 +37,7 @@ export function DashboardHeader({
       transition={{ duration: 0.35 }}
       className="glass-card relative overflow-hidden p-5 sm:p-6"
     >
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(59,130,246,0.12),transparent_50%),radial-gradient(circle_at_bottom_left,rgba(168,85,247,0.08),transparent_45%)]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(255, 45, 146,0.12),transparent_50%),radial-gradient(circle_at_bottom_left,rgba(255, 107, 92,0.08),transparent_45%)]" />
 
       <div className="relative z-10 flex flex-col gap-5">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">

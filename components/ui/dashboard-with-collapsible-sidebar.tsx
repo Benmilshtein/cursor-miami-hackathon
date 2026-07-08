@@ -114,7 +114,7 @@ export function DashboardCollapsibleSidebar({
         isRail ? "h-full border-r border-[var(--border-color)]" : "sticky top-6 h-fit rounded-xl border border-[var(--border-color)] shadow-sm backdrop-blur-[10px]"
       } ${open ? "w-64" : "w-16"}`}
     >
-      <div className="shrink-0 border-b border-[var(--border-color)] bg-[linear-gradient(135deg,rgba(59,130,246,0.1),rgba(168,85,247,0.06))] p-4">
+      <div className="shrink-0 border-b border-[var(--border-color)] bg-[linear-gradient(135deg,rgba(255, 45, 146,0.1),rgba(255, 107, 92,0.06))] p-4">
         <div className="flex cursor-default items-center gap-3">
           <div className="flex h-10 w-10 shrink-0 items-center justify-center overflow-hidden rounded-lg border border-white/10 bg-white/5">
             {initials ? (
