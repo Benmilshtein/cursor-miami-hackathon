@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>CURSOR 48H · Open-Source Hackathon Platform by Cursor Miami</title>
+<meta name="description" content="CURSOR 48H is the open-source platform that powered the Cursor Miami Hackathon: registration, teams, screening, judging and admin tools. Clone it and run your own 48-hour AI hackathon." />
+<meta name="theme-color" content="#07070c" />
+<link rel="canonical" href="https://hack.cursormiami.com/" />
+<meta property="og:title" content="CURSOR 48H · Open-Source Hackathon Platform" />
+<meta property="og:description" content="The platform that powered the Cursor Miami Hackathon. Registration, teams, screening, judging and admin tools. MIT licensed: clone it and run your own." />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="https://cursormiami.com/assets/hackathon.jpg" />
+<meta property="og:url" content="https://hack.cursormiami.com/" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%2307070c'/%3E%3Cpolygon points='12,2.2 20.5,7.1 12,12' fill='%234a4a54'/%3E%3Cpolygon points='12,2.2 12,12 3.5,7.1' fill='%233a3a44'/%3E%3Cpolygon points='3.5,7.1 12,12 12,21.8 3.5,16.9' fill='%2334343e'/%3E%3Cpolygon points='20.5,7.1 20.5,16.9 12,21.8' fill='%232c2c36'/%3E%3Cpolygon points='3.5,7.1 20.5,7.1 12,12' fill='%23ffffff'/%3E%3Cpolygon points='20.5,7.1 12,21.8 12,12' fill='%23d6d6dd'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet" />
+<style>
+/* ============================================================
+   CURSOR 48H SHOWCASE · dark neon, single-screen-per-section
+   ============================================================ */
+:root{
+  --bg:#07070c; --bg-2:#0c0c14; --bg-3:#12121c;
+  --ink:#f4f5fa; --ink-2:#b9bdcc; --muted:#8a90a3; --faint:#585d70;
+  --line:rgba(255,255,255,.07); --line-2:rgba(255,255,255,.13); --line-3:rgba(255,255,255,.28);
+  --glass:rgba(255,255,255,.045);
+  --magenta:#ff2d92; --coral:#ff6b5c; --cyan:#10d6c2;
+  --grad:linear-gradient(100deg,var(--magenta),var(--coral) 52%,var(--cyan));
+  --grad-btn:linear-gradient(100deg,#e01a80,#e04836 52%,#0a9c8c);
+  --neon-sh:0 10px 30px -12px rgba(255,45,146,.45);
+  --card-shadow:0 24px 60px -28px rgba(0,0,0,.85);
+  --maxw:1080px; --r:16px; --r-lg:22px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --cube-f1:#4a4a54; --cube-f2:#3a3a44; --cube-f3:#34343e; --cube-f4:#2c2c36;
+  --cube-fold:#ffffff; --cube-sliver:#d6d6dd; --cube-edge:rgba(255,255,255,.16);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+::selection{background:rgba(255,45,146,.35)}
+:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:6px}
+.wrap{width:100%;max-width:var(--maxw);margin:0 auto;padding:0 24px}
+section{padding:72px 0}
+section[id]{scroll-margin-top:80px}
+@media(max-width:720px){section{padding:52px 0}}
+h1,h2,h3{margin:0;font-family:'Space Grotesk','Inter',sans-serif;font-weight:700;line-height:1.1;letter-spacing:-.02em}
+.h-sec{font-size:clamp(26px,3.8vw,38px);margin:10px 0 0}
+.sec-desc{color:var(--muted);font-size:15.5px;max-width:600px;margin-top:12px}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--cyan)}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--grad)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;cursor:pointer;font-weight:700;font-size:15px;min-height:48px;padding:13px 26px;border-radius:14px;border:1px solid transparent;white-space:nowrap;transition:transform .2s var(--ease),box-shadow .25s,border-color .2s}
+.btn svg{width:18px;height:18px;flex:none}
+.btn .arr{transition:transform .25s var(--ease)}
+.btn:hover .arr{transform:translate(2px,-2px)}
+.btn-neon{background:var(--grad-btn);color:#fff;border:none;box-shadow:var(--neon-sh)}
+.btn-neon:hover{transform:translateY(-2px);box-shadow:0 14px 38px -12px rgba(255,45,146,.6)}
+.btn-ghost{background:var(--glass);color:var(--ink);border-color:var(--line-2);backdrop-filter:blur(8px)}
+.btn-ghost:hover{border-color:var(--line-3);transform:translateY(-2px)}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.btn .arr{transition:none}.btn:hover,.btn:hover .arr{transform:none}}
+
+/* nav */
+.nav{position:sticky;top:0;z-index:100;background:rgba(7,7,12,.72);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .25s}
+.nav.scrolled{border-bottom-color:var(--line)}
+.nav-inner{display:flex;align-items:center;gap:20px;height:64px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:16.5px}
+.brand-txt{font-family:'Space Grotesk','Inter',sans-serif;font-weight:700;letter-spacing:-.01em;white-space:nowrap}
+.brand-txt em{font-style:normal;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.logo-cube{width:30px;height:30px;flex:none}
+.nav-links{display:flex;align-items:center;gap:26px;margin:0 auto}
+.nav-links a{color:var(--ink-2);font-size:14px;font-weight:600;transition:color .2s;padding:4px 0}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{min-height:38px;padding:8px 17px;font-size:13.5px}
+.nav-cta svg{width:15px;height:15px}
+@media(max-width:840px){.nav-links{display:none}.nav-cta{margin-left:auto}}
+
+/* hero */
+.hero{position:relative;padding:88px 0 64px;text-align:center;overflow:hidden}
+.hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:56px 56px;-webkit-mask-image:radial-gradient(ellipse 70% 60% at 50% 38%,#000,transparent);mask-image:radial-gradient(ellipse 70% 60% at 50% 38%,#000,transparent);pointer-events:none}
+.orb{position:absolute;border-radius:50%;filter:blur(46px);pointer-events:none;background:radial-gradient(circle closest-side,var(--oc),transparent 72%)}
+.orb-1{--oc:var(--magenta);width:620px;height:620px;top:-300px;left:-220px;opacity:.42}
+.orb-2{--oc:var(--cyan);width:560px;height:560px;bottom:-300px;right:-200px;opacity:.3}
+.hero .wrap{position:relative;z-index:2}
+.hero-cube{width:72px;height:72px;margin:0 auto 20px;filter:drop-shadow(0 0 32px rgba(16,214,194,.35)) drop-shadow(0 0 58px rgba(255,45,146,.22));animation:float 7s ease-in-out infinite}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+@media(prefers-reduced-motion:reduce){.hero-cube{animation:none}}
+.oss-pill{display:inline-flex;align-items:center;gap:8px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);background:var(--glass);border:1px solid var(--line-2);border-radius:100px;padding:7px 16px}
+.oss-pill svg{width:14px;height:14px}
+.hero h1{font-size:clamp(38px,6.2vw,70px);font-weight:900;margin:20px auto 0;max-width:820px}
+.hero .tagline{color:var(--ink-2);font-size:clamp(16px,2vw,18.5px);max-width:620px;margin:20px auto 0}
+.hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:34px}
+
+/* condensed showcase notice */
+.notice{display:inline-flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;margin:40px auto 0;font-size:13.5px;color:var(--muted);background:var(--glass);border:1px solid var(--line);border-radius:100px;padding:9px 20px}
+.notice svg{width:15px;height:15px;flex:none;color:var(--cyan)}
+.notice strong{color:var(--ink-2);font-weight:600}
+.notice a{color:var(--cyan);font-weight:700}
+@media(max-width:600px){.notice{border-radius:var(--r);text-align:left;justify-content:flex-start}}
+
+/* inline stats strip */
+.hero-stats{display:flex;gap:10px 28px;justify-content:center;flex-wrap:wrap;margin-top:34px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13px;color:var(--muted)}
+.hero-stats b{color:var(--ink);font-weight:600}
+.hero-stats span{display:inline-flex;align-items:center;gap:8px}
+.hero-stats span::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--grad)}
+
+/* features */
+.features{background:var(--bg-2);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.fgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:40px}
+.fcard{position:relative;background:var(--bg);border:1px solid var(--line);border-radius:var(--r-lg);padding:24px 22px;overflow:hidden;transition:transform .25s var(--ease),border-color .25s,box-shadow .25s}
+.fcard::before{content:"";position:absolute;top:0;left:22px;right:22px;height:2px;background:linear-gradient(90deg,var(--ac),transparent 85%);opacity:.9}
+.fcard:hover{transform:translateY(-4px);border-color:var(--ac-bd);box-shadow:var(--card-shadow)}
+@media(prefers-reduced-motion:reduce){.fcard:hover{transform:none}}
+.ac-m{--ac:var(--magenta);--ac-bg:rgba(255,45,146,.1);--ac-bd:rgba(255,45,146,.3)}
+.ac-o{--ac:var(--coral);--ac-bg:rgba(255,107,92,.1);--ac-bd:rgba(255,107,92,.3)}
+.ac-t{--ac:var(--cyan);--ac-bg:rgba(16,214,194,.1);--ac-bd:rgba(16,214,194,.3)}
+.fic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;color:var(--ac);background:var(--ac-bg);border:1px solid var(--ac-bd);margin-bottom:14px}
+.fic svg{width:20px;height:20px}
+.fnum{position:absolute;top:22px;right:22px;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:11.5px;font-weight:600;letter-spacing:.08em;color:var(--faint)}
+.fcard h3{font-size:17px;letter-spacing:-.01em}
+.fcard p{color:var(--muted);font-size:13.5px;margin:8px 0 0;line-height:1.6}
+@media(max-width:900px){.fgrid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:580px){.fgrid{grid-template-columns:1fr}}
+
+/* quick start */
+.qs-cols{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:start;margin-top:38px}
+@media(max-width:860px){.qs-cols{grid-template-columns:1fr}}
+.code-card{background:#0a0a12;border:1px solid var(--line-2);border-radius:var(--r-lg);padding:24px 26px;overflow-x:auto;box-shadow:var(--card-shadow)}
+.code-card pre{margin:0;font-family:'JetBrains Mono',ui-monospace,monospace;font-size:13.5px;line-height:1.8;color:#c2c6d4}
+.code-card .c{color:#5b6072}
+.code-card .g{color:#10d6c2}
+.chips{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}
+.chip{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12.5px;font-weight:600;color:var(--ink-2);background:var(--glass);border:1px solid var(--line-2);border-radius:100px;padding:7px 15px;transition:border-color .2s,color .2s}
+.chip:hover{border-color:var(--line-3);color:var(--ink)}
+.qs-side p{color:var(--muted);font-size:14.5px;margin:14px 0 0}
+.qs-side a{color:var(--cyan);font-weight:700}
+.proof-line{display:flex;align-items:flex-start;gap:10px;margin-top:26px;padding:14px 18px;background:var(--glass);border:1px solid var(--line);border-radius:var(--r);font-size:13.5px;color:var(--muted)}
+.proof-line svg{width:16px;height:16px;flex:none;margin-top:3px;color:var(--magenta)}
+.proof-line a{color:var(--cyan);font-weight:700}
+
+/* contributors */
+.contrib-grid{display:grid;grid-template-columns:repeat(2,minmax(0,340px));gap:20px;justify-content:center;margin-top:42px}
+@media(max-width:640px){.contrib-grid{grid-template-columns:minmax(0,340px)}}
+.contrib{position:relative;display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;background:var(--bg-2);border:1px solid var(--line);border-radius:var(--r-lg);padding:34px 28px 28px;overflow:hidden;transition:transform .25s var(--ease),border-color .25s,box-shadow .25s}
+.contrib::before{content:"";position:absolute;top:0;left:28px;right:28px;height:2px;background:var(--grad);opacity:.8}
+.contrib:hover{transform:translateY(-4px);border-color:var(--line-2);box-shadow:var(--card-shadow)}
+@media(prefers-reduced-motion:reduce){.contrib:hover{transform:none}}
+.contrib-photo{width:104px;height:104px;border-radius:50%;padding:3px;background:var(--grad);margin-bottom:12px}
+.contrib-photo img{width:100%;height:100%;border-radius:50%;object-fit:cover;border:3px solid var(--bg-2)}
+.contrib h3{font-size:19px}
+.contrib .role{font-family:'JetBrains Mono',ui-monospace,monospace;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan)}
+.contrib .handle{font-size:13.5px;color:var(--faint)}
+.contrib-links{display:flex;gap:11px;margin-top:14px}
+.contrib-links a{display:grid;place-items:center;width:40px;height:40px;border-radius:50%;border:1px solid var(--line-2);background:var(--glass);color:var(--ink-2);transition:color .2s,border-color .2s,transform .2s var(--ease)}
+.contrib-links a:hover{color:var(--ink);border-color:var(--line-3);transform:translateY(-2px)}
+@media(prefers-reduced-motion:reduce){.contrib-links a:hover{transform:none}}
+.contrib-links svg{width:18px;height:18px}
+
+/* cta band */
+.cta-band{position:relative;text-align:center;padding:64px 24px;border-radius:var(--r-lg);overflow:hidden;background:var(--bg-2);border:1px solid var(--line-2)}
+.cta-band .orb-1{opacity:.35}
+.cta-band .orb-2{opacity:.26}
+.cta-band h2{position:relative;font-size:clamp(26px,4.2vw,42px);z-index:2}
+.cta-band p{position:relative;color:var(--ink-2);max-width:520px;margin:14px auto 0;z-index:2}
+.cta-band .hero-ctas{position:relative;z-index:2;margin-top:28px}
+
+/* footer */
+footer{position:relative;border-top:1px solid var(--line);padding:36px 0 46px;color:var(--muted);font-size:13.5px}
+footer::before{content:"";position:absolute;top:-1px;left:0;right:0;height:2px;background:var(--grad);opacity:.35}
+.foot{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap}
+.foot-links{display:flex;gap:22px;flex-wrap:wrap}
+.foot-links a{color:var(--muted);font-weight:600;transition:color .2s}
+.foot-links a:hover{color:var(--ink)}
+.foot small{display:block;margin-top:6px;color:var(--faint)}
+
+/* reveal */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity .6s var(--ease),transform .6s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="cube" viewBox="0 0 24 24">
+      <polygon points="12,1.5 21.1,6.75 12,12" fill="var(--cube-f1)"/>
+      <polygon points="12,1.5 12,12 2.9,6.75" fill="var(--cube-f2)"/>
+      <polygon points="2.9,6.75 12,12 12,22.5 2.9,17.25" fill="var(--cube-f3)"/>
+      <polygon points="21.1,6.75 21.1,17.25 12,22.5" fill="var(--cube-f4)"/>
+      <polygon points="2.9,6.75 21.1,6.75 12,12" fill="var(--cube-fold)"/>
+      <polygon points="21.1,6.75 12,22.5 12,12" fill="var(--cube-sliver)"/>
+      <polygon points="12,1.5 21.1,6.75 21.1,17.25 12,22.5 2.9,17.25 2.9,6.75" fill="none" stroke="var(--cube-edge)" stroke-width=".7" stroke-linejoin="round"/>
+    </symbol>
+    <symbol id="gh" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M12 .5C5.65.5.5 5.65.5 12c0 5.08 3.29 9.39 7.86 10.91.58.11.79-.25.79-.55 0-.27-.01-1.17-.02-2.12-3.2.7-3.88-1.36-3.88-1.36-.52-1.33-1.28-1.68-1.28-1.68-1.04-.71.08-.7.08-.7 1.15.08 1.76 1.19 1.76 1.19 1.03 1.76 2.69 1.25 3.35.96.1-.75.4-1.25.72-1.54-2.55-.29-5.24-1.28-5.24-5.69 0-1.26.45-2.28 1.19-3.09-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.17 1.18a11 11 0 0 1 5.78 0c2.2-1.49 3.17-1.18 3.17-1.18.63 1.59.23 2.76.11 3.05.74.81 1.19 1.83 1.19 3.09 0 4.42-2.7 5.39-5.27 5.68.41.36.78 1.06.78 2.14 0 1.54-.01 2.79-.01 3.17 0 .31.21.67.8.55A11.51 11.51 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/>
+    </symbol>
+    <symbol id="li" viewBox="0 0 24 24">
+      <path fill="currentColor" d="M20.45 20.45h-3.55v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.12 2.06 2.06 0 0 1 0 4.12zM7.12 20.45H3.56V9h3.56v11.45z"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="wrap nav-inner">
+    <a class="brand" href="#top">
+      <svg class="logo-cube" role="img" aria-label="Cursor 48H logo"><use href="#cube"/></svg>
+      <span class="brand-txt">Cursor <em>48H</em></span>
+    </a>
+    <div class="nav-links">
+      <a href="#features">Features</a>
+      <a href="#deploy">Quick start</a>
+      <a href="#contributors">Contributors</a>
+      <a href="https://cursormiami.com">Cursor Miami</a>
+    </div>
+    <a class="btn btn-neon nav-cta" href="https://github.com/Benmilshtein/cursor-miami-hackathon" target="_blank" rel="noopener">
+      <svg aria-hidden="true"><use href="#gh"/></svg>
+      Get the code
+    </a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="orb orb-1"></div><div class="orb orb-2"></div>
+  <div class="wrap">
+    <svg class="hero-cube" role="img" aria-label="Cursor logo"><use href="#cube"/></svg>
+    <div><span class="oss-pill">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 18l6-6-6-6M8 6l-6 6 6 6"/></svg>
+      Open source · MIT
+    </span></div>
+    <h1>Run your own<br /><span class="grad-text">48-hour AI hackathon.</span></h1>
+    <p class="tagline">The platform that powered the Cursor Miami Hackathon — registration, teams, screening, judging and admin tools in one codebase. Clone it, brand it, ship your event.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-neon" href="https://github.com/Benmilshtein/cursor-miami-hackathon" target="_blank" rel="noopener">
+        <svg aria-hidden="true"><use href="#gh"/></svg>
+        Clone on GitHub
+        <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+      </a>
+      <a class="btn btn-ghost" href="#features">Explore the platform</a>
+    </div>
+    <div class="hero-stats">
+      <span><b>445</b> builders at launch</span>
+      <span><b>48h</b> event format</span>
+      <span><b>100%</b> open source</span>
+    </div>
+    <div class="notice">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M12 8v4.5M12 16h.01"/></svg>
+      <span><strong>Showcase only — not a live event.</strong> For live Cursor Miami events, head to <a href="https://cursormiami.com">cursormiami.com</a>.</span>
+    </div>
+  </div>
+</header>
+
+<!-- FEATURES -->
+<section id="features" class="features">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Everything included</span>
+      <h2 class="h-sec">One codebase, the whole event</h2>
+      <p class="sec-desc">From the first landing-page visit to the final leaderboard — every stage of a hackathon, already built.</p>
+    </div>
+    <div class="fgrid">
+      <div class="fcard ac-m reveal">
+        <span class="fnum">01</span>
+        <div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg></div>
+        <h3>Landing &amp; marketing</h3>
+        <p>Hero, sponsors, schedule, judging criteria and a partnership page — SEO-ready with sitemap, Open Graph and JSON-LD.</p>
+      </div>
+      <div class="fcard ac-t reveal">
+        <span class="fnum">02</span>
+        <div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg></div>
+        <h3>Auth &amp; onboarding</h3>
+        <p>Email, Google and GitHub sign-in, optional 2FA for admins, and a guided registration flow with completion tracking.</p>
+      </div>
+      <div class="fcard ac-o reveal">
+        <span class="fnum">03</span>
+        <div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <h3>Teams &amp; screening</h3>
+        <p>Create and join teams with invite links and short codes, then screen them with MC questions, videos and an approval queue.</p>
+      </div>
+      <div class="fcard ac-t reveal">
+        <span class="fnum">04</span>
+        <div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></div>
+        <h3>Projects &amp; judging</h3>
+        <p>Submissions with demo links, a staff evaluation queue, team scoring, and a public leaderboard with final overrides.</p>
+      </div>
+      <div class="fcard ac-o reveal">
+        <span class="fnum">05</span>
+        <div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
+        <h3>Sponsor credits</h3>
+        <p>Distribute partner credits to teams or individuals — bulk uploads, shared links, short codes and a full audit log.</p>
+      </div>
+      <div class="fcard ac-m reveal">
+        <span class="fnum">06</span>
+        <div class="fic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></div>
+        <h3>Admin console</h3>
+        <p>Manage users, teams, screening, projects, partners, staff invites, deadlines and security from one dashboard.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- QUICK START -->
+<section id="deploy">
+  <div class="wrap">
+    <div class="reveal">
+      <span class="eyebrow">Quick start</span>
+      <h2 class="h-sec">From clone to hackathon in minutes</h2>
+      <p class="sec-desc">Bring a Postgres database and a few environment variables. The Docker image even runs migrations on startup.</p>
+    </div>
+    <div class="qs-cols">
+      <div class="code-card reveal">
+<pre><span class="c"># local dev</span>
+<span class="g">git</span> clone https://github.com/Benmilshtein/cursor-miami-hackathon.git
+<span class="g">cd</span> cursor-miami-hackathon &amp;&amp; <span class="g">npm</span> install
+<span class="g">cp</span> .env.example .env   <span class="c"># add DATABASE_URL + secrets</span>
+<span class="g">npm</span> run db:migrate &amp;&amp; <span class="g">npm</span> run dev
+
+<span class="c"># or the whole stack with Docker</span>
+<span class="g">docker</span> compose up -d</pre>
+      </div>
+      <div class="qs-side reveal">
+        <div class="chips">
+          <span class="chip">Next.js 16</span>
+          <span class="chip">React 19</span>
+          <span class="chip">TypeScript</span>
+          <span class="chip">Tailwind CSS 4</span>
+          <span class="chip">PostgreSQL</span>
+          <span class="chip">Drizzle ORM</span>
+          <span class="chip">Docker-ready</span>
+        </div>
+        <p>No exotic dependencies — if you've shipped a Next.js app, you can run this. Setup docs, env reference and deployment guides live in the <a href="https://github.com/Benmilshtein/cursor-miami-hackathon#readme" target="_blank" rel="noopener">README</a>.</p>
+        <div class="proof-line">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0L12 5.36l-.77-.78a5.4 5.4 0 0 0-7.65 7.65l.77.78L12 20.66l7.65-7.65.77-.78a5.4 5.4 0 0 0 0-7.65z"/></svg>
+          <span>Battle-tested: ran registration, teams, screening and judging for 445 builders at the Cursor Miami Hackathon. <a href="https://cursormiami.com/hackathon.html">See the recap</a>.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTRIBUTORS -->
+<section id="contributors" class="features">
+  <div class="wrap">
+    <div class="reveal" style="text-align:center">
+      <span class="eyebrow" style="justify-content:center">The people behind it</span>
+      <h2 class="h-sec">Built in the open</h2>
+      <p class="sec-desc" style="margin-left:auto;margin-right:auto">Maintained by the Cursor Miami community. Issues and pull requests welcome.</p>
+    </div>
+    <div class="contrib-grid">
+      <div class="contrib reveal">
+        <div class="contrib-photo"><img src="https://github.com/Benmilshtein.png?size=240" alt="Ben Milshtein" loading="lazy" width="104" height="104" /></div>
+        <h3>Ben Milshtein</h3>
+        <span class="role">Author &amp; maintainer</span>
+        <span class="handle">@Benmilshtein</span>
+        <div class="contrib-links">
+          <a href="https://github.com/Benmilshtein" target="_blank" rel="noopener" aria-label="Ben Milshtein on GitHub"><svg aria-hidden="true"><use href="#gh"/></svg></a>
+          <a href="https://www.linkedin.com/in/benmilshtein/" target="_blank" rel="noopener" aria-label="Ben Milshtein on LinkedIn"><svg aria-hidden="true"><use href="#li"/></svg></a>
+        </div>
+      </div>
+      <div class="contrib reveal">
+        <div class="contrib-photo"><img src="https://github.com/Mr-Higgs.png?size=240" alt="Jerry Pierre" loading="lazy" width="104" height="104" /></div>
+        <h3>Jerry Pierre</h3>
+        <span class="role">Contributor</span>
+        <span class="handle">@Mr-Higgs</span>
+        <div class="contrib-links">
+          <a href="https://github.com/Mr-Higgs" target="_blank" rel="noopener" aria-label="Jerry Pierre on GitHub"><svg aria-hidden="true"><use href="#gh"/></svg></a>
+          <a href="https://www.linkedin.com/in/jerry-w-pierre" target="_blank" rel="noopener" aria-label="Jerry Pierre on LinkedIn"><svg aria-hidden="true"><use href="#li"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section style="padding-top:64px">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <div class="orb orb-1"></div><div class="orb orb-2"></div>
+      <h2>Your city's hackathon, <span class="grad-text">your rules</span></h2>
+      <p>MIT licensed. Fork it, rebrand it, and give your community a real event platform.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-neon" href="https://github.com/Benmilshtein/cursor-miami-hackathon" target="_blank" rel="noopener">
+          <svg aria-hidden="true"><use href="#gh"/></svg>
+          Star &amp; fork on GitHub
+          <svg class="arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M7 17 17 7M8 7h9v9"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="https://cursormiami.com">Visit Cursor Miami</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap foot">
+    <div>
+      <div style="display:flex;align-items:center;gap:9px">
+        <svg class="logo-cube" aria-hidden="true"><use href="#cube"/></svg>
+        <strong style="color:var(--ink)">Cursor 48H</strong>
+      </div>
+      <small>Open source under the MIT license. Built by the Cursor Miami community and contributors.</small>
+      <small>Community-run. Not an official Cursor (Anysphere) website.</small>
+    </div>
+    <div class="foot-links">
+      <a href="https://github.com/Benmilshtein/cursor-miami-hackathon" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://cursormiami.com">Cursor Miami</a>
+      <a href="https://cursormiami.com/hackathon.html">Event recap</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+var nav=document.getElementById('nav');
+addEventListener('scroll',function(){nav.classList.toggle('scrolled',scrollY>8)},{passive:true});
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(function(el){io.observe(el)});
+</script>
+</body>
+</html>
