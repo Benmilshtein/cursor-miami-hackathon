@@ -1,15 +1,11 @@
 import type { NextRequest } from "next/server";
-import { AppError, toErrorResponse } from "@/lib/api/http";
-import { requireSessionUser } from "@/lib/auth/session";
+import { toErrorResponse } from "@/lib/api/http";
+import { requireAnalyzerStaff } from "@/lib/repo-analyzer/auth";
 import { buildReposExportCsv } from "@/lib/repo-analyzer/service";
 
 export async function GET(request: NextRequest) {
   try {
-    const actor = await requireSessionUser(request);
-    if (actor.role !== "judge" && actor.role !== "mentor" && actor.role !== "super_admin") {
-      throw new AppError(403, "FORBIDDEN", "Staff only.");
-    }
-
+    await requireAnalyzerStaff(request);
     const csv = await buildReposExportCsv();
     return new Response(csv, {
       status: 200,

@@ -2,42 +2,46 @@
 
 Vendored from [cursor-hackathon-hcmc-2025](https://github.com/Git-on-my-level/cursor-hackathon-hcmc-2025).
 
-Ship Night uses this tool instead of peer expo / swipe voting. Judges review GitHub metrics, then enter official scores in `/staff`.
+This is the **primary judging surface** for Ship Night project submissions
+(same dashboard HCMC used: metrics, flags, AI notes, judge averages).
+Peer expo / swipe voting is disabled.
 
-## Workflow
+## In-app workflow (preferred)
 
 1. Participants submit a public GitHub URL in the event app.
-2. As staff, open **`/staff/analyze`** and click **Export repos.csv**.
-3. Save the file to `tools/hackathon-analyzer/data/repos.csv` (or pass its path to `scan.py`).
-4. Set Ship Night start/end in `config.json` (`t0` / `t1`).
-5. Run the scanner:
+2. Set `t0` / `t1` in `tools/hackathon-analyzer/config.json` to the Ship Night window.
+3. Open **`/staff/analyze`** (full HCMC UI at `/hackathon-analyzer/`).
+4. Click **Run scan** — exports live submissions and runs `scan.py`.
+5. Review Pre-T0 / Bulk / Init / Merge flags + AI assessment in the table/drawer.
+6. Click **Score team →** (or `/staff/evaluate/[teamId]`) to enter official scores.
+7. Judge averages appear live in the analyzer. Publish ranking when ready.
+
+## CLI fallback
 
 ```bash
+# from /staff/analyze → Export CSV, then:
 python3 tools/hackathon-analyzer/scan.py \
   --repos tools/hackathon-analyzer/data/repos.csv \
   --config tools/hackathon-analyzer/config.json \
   --work-dir tools/hackathon-analyzer/work
-```
 
-6. Refresh `/staff/analyze` — metrics and flags merge automatically from
-   `work/summary/metrics_summary.csv`.
-7. Optional AI notes:
-
-```bash
+# optional AI authenticity notes
 python3 tools/hackathon-analyzer/ai/run_ai.py \
   --work-dir tools/hackathon-analyzer/work \
   --repos-csv tools/hackathon-analyzer/data/repos.csv
 ```
 
-8. Score each team at `/staff/evaluate/[teamId]`. Publish ranking when ready.
+## API surface (HCMC-compatible)
 
-## Optional local HCMC UI
-
-```bash
-python3 tools/hackathon-analyzer/ui/server.py \
-  --work-dir tools/hackathon-analyzer/work \
-  --port 8000
-```
+| Endpoint | Purpose |
+|----------|---------|
+| `GET /api/staff/repo-analyzer/summary` | Submissions + metrics rows |
+| `GET /api/staff/repo-analyzer/judges` | Judge responses by repo URL |
+| `GET /api/staff/repo-analyzer/repo/:id/metrics` | Per-repo metrics JSON |
+| `GET /api/staff/repo-analyzer/repo/:id/commits` | Commit CSV rows |
+| `GET /api/staff/repo-analyzer/repo/:id/ai` | AI notes text |
+| `POST /api/staff/repo-analyzer/scan` | Export + run scanner |
+| `GET /api/staff/repo-analyzer/export` | Download repos.csv |
 
 ## Requirements
 

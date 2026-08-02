@@ -1,100 +1,39 @@
-import { createReadStream, existsSync } from "node:fs";
+import { createReadStream, existsSync, readFileSync } from "node:fs";
 import { createInterface } from "node:readline";
-import path from "node:path";
 import { and, asc, eq, isNotNull, ne } from "drizzle-orm";
 import { db } from "@/db";
+import { team, user } from "@/db/schema/auth";
 import { project } from "@/db/schema/projects";
-import { team } from "@/db/schema/auth";
+import { judgeScore } from "@/db/schema/scoring";
+import {
+  ANALYZER_AI,
+  ANALYZER_METRICS,
+  ANALYZER_SUMMARY,
+  normalizeGithubUrl,
+  repoIdFromGithubUrl,
+} from "@/lib/repo-analyzer/paths";
 
-export type RepoMetricsFlags = {
-  hasCommitsBeforeT0: boolean;
-  hasBulkCommits: boolean;
-  hasLargeInitialCommitAfterT0: boolean;
-  hasMergeCommits: boolean;
+export type HcmcSummaryRow = Record<string, string>;
+
+export type HcmcJudgeResponse = {
+  timestamp: string;
+  score: number;
+  thoughts: string | null;
 };
 
-export type RepoMetrics = {
-  totalCommits: number;
-  totalLocAdded: number;
-  totalLocDeleted: number;
-  flags: RepoMetricsFlags;
+export type HcmcJudgeRepoInfo = {
+  project: string;
+  raw_project_names: string[];
+  responses: HcmcJudgeResponse[];
+  average_score: number;
 };
 
-export type AnalyzerSubmission = {
-  teamId: number;
-  teamName: string;
-  projectId: string;
-  projectName: string;
-  githubUrl: string;
-  demoUrl: string | null;
-  description: string | null;
-  metrics: RepoMetrics | null;
-};
-
-const ANALYZER_ROOT = path.join(process.cwd(), "tools", "hackathon-analyzer");
-const METRICS_SUMMARY = path.join(
-  ANALYZER_ROOT,
-  "work",
-  "summary",
-  "metrics_summary.csv",
-);
-
-function normalizeGithubUrl(raw: string): string {
-  return raw
-    .trim()
-    .replace(/\.git$/i, "")
-    .replace(/\/$/, "")
-    .toLowerCase();
-}
-
-function truthyFlag(value: string | undefined): boolean {
-  if (!value) return false;
+function truthyFlag(value: string | undefined): string {
+  if (!value) return "0";
   const v = value.trim().toLowerCase();
-  return v === "1" || v === "true" || v === "yes";
+  return v === "1" || v === "true" || v === "yes" ? "1" : "0";
 }
 
-async function loadMetricsByRepo(): Promise<Map<string, RepoMetrics>> {
-  const map = new Map<string, RepoMetrics>();
-  if (!existsSync(METRICS_SUMMARY)) return map;
-
-  const rl = createInterface({
-    input: createReadStream(METRICS_SUMMARY, { encoding: "utf8" }),
-    crlfDelay: Infinity,
-  });
-
-  let headers: string[] | null = null;
-  for await (const line of rl) {
-    if (!line.trim()) continue;
-    const cols = parseCsvLine(line);
-    if (!headers) {
-      headers = cols.map((h) => h.trim());
-      continue;
-    }
-    const row: Record<string, string> = {};
-    headers.forEach((h, i) => {
-      row[h] = cols[i] ?? "";
-    });
-    const repo = row.repo || row.repo_url || "";
-    if (!repo) continue;
-    map.set(normalizeGithubUrl(repo), {
-      totalCommits: Number(row.total_commits || 0),
-      totalLocAdded: Number(row.total_loc_added || 0),
-      totalLocDeleted: Number(row.total_loc_deleted || 0),
-      flags: {
-        hasCommitsBeforeT0: truthyFlag(row.has_commits_before_t0),
-        hasBulkCommits: truthyFlag(row.has_bulk_commits),
-        hasLargeInitialCommitAfterT0: truthyFlag(
-          row.has_large_initial_commit_after_t0,
-        ),
-        hasMergeCommits: truthyFlag(row.has_merge_commits),
-      },
-    });
-  }
-
-  return map;
-}
-
-/** Minimal CSV line parser (handles quoted fields). */
 function parseCsvLine(line: string): string[] {
   const out: string[] = [];
   let cur = "";
@@ -121,89 +60,280 @@ function parseCsvLine(line: string): string[] {
   return out;
 }
 
-/**
- * All submitted projects with a GitHub URL, optionally enriched with
- * metrics from tools/hackathon-analyzer/work/summary/metrics_summary.csv
- * (produced by the vendored HCMC scanner).
- */
-export async function listAnalyzerSubmissions(): Promise<AnalyzerSubmission[]> {
-  const [rows, metricsMap] = await Promise.all([
-    db
-      .select({
-        teamId: team.id,
-        teamName: team.name,
-        projectId: project.id,
-        projectName: project.name,
-        githubUrl: project.githubUrl,
-        demoUrl: project.demoUrl,
-        description: project.description,
-      })
-      .from(project)
-      .innerJoin(team, eq(project.teamId, team.id))
-      .where(
-        and(
-          eq(team.screeningStatus, "approved"),
-          isNotNull(project.githubUrl),
-          ne(project.githubUrl, ""),
-        ),
-      )
-      .orderBy(asc(team.name)),
-    loadMetricsByRepo(),
-  ]);
+async function loadMetricsSummaryMap(): Promise<Map<string, HcmcSummaryRow>> {
+  const map = new Map<string, HcmcSummaryRow>();
+  if (!existsSync(ANALYZER_SUMMARY)) return map;
 
-  return rows.map((row) => {
-    const githubUrl = row.githubUrl!;
-    const metrics = metricsMap.get(normalizeGithubUrl(githubUrl)) ?? null;
-    return {
-      teamId: row.teamId,
-      teamName: row.teamName,
-      projectId: row.projectId,
-      projectName: row.projectName,
-      githubUrl,
-      demoUrl: row.demoUrl,
-      description: row.description,
-      metrics,
-    };
+  const rl = createInterface({
+    input: createReadStream(ANALYZER_SUMMARY, { encoding: "utf8" }),
+    crlfDelay: Infinity,
   });
+
+  let headers: string[] | null = null;
+  for await (const line of rl) {
+    if (!line.trim()) continue;
+    const cols = parseCsvLine(line);
+    if (!headers) {
+      headers = cols.map((h) => h.trim());
+      continue;
+    }
+    const row: HcmcSummaryRow = {};
+    headers.forEach((h, i) => {
+      row[h] = cols[i] ?? "";
+    });
+    const repo = row.repo || row.repo_url || "";
+    if (!repo) continue;
+    map.set(normalizeGithubUrl(repo), row);
+    if (row.repo_id) map.set(row.repo_id, row);
+  }
+  return map;
 }
 
-/** CSV compatible with tools/hackathon-analyzer `data/repos.csv`. */
+async function listSubmittedProjects() {
+  return db
+    .select({
+      teamId: team.id,
+      teamName: team.name,
+      projectId: project.id,
+      projectName: project.name,
+      githubUrl: project.githubUrl,
+      demoUrl: project.demoUrl,
+      description: project.description,
+    })
+    .from(project)
+    .innerJoin(team, eq(project.teamId, team.id))
+    .where(
+      and(
+        eq(team.screeningStatus, "approved"),
+        isNotNull(project.githubUrl),
+        ne(project.githubUrl, ""),
+      ),
+    )
+    .orderBy(asc(team.name));
+}
+
+function emptySummaryRow(opts: {
+  repoId: string;
+  repo: string;
+  teamName: string;
+  projectName: string;
+}): HcmcSummaryRow {
+  return {
+    repo_id: opts.repoId,
+    repo: opts.repo,
+    team_name: opts.teamName,
+    project_name: opts.projectName,
+    default_branch: "",
+    t0: "",
+    t1: "",
+    total_commits: "0",
+    total_commits_before_t0: "0",
+    total_commits_during_event: "0",
+    total_commits_after_t1: "0",
+    total_loc_added: "0",
+    total_loc_deleted: "0",
+    max_loc_added_single_commit: "0",
+    max_files_changed_single_commit: "0",
+    median_minutes_between_commits: "",
+    median_minutes_between_commits_during_event: "",
+    commits_0_3h: "0",
+    commits_3_6h: "0",
+    commits_6_12h: "0",
+    commits_12_24h: "0",
+    commits_after_24h: "0",
+    has_commits_before_t0: "0",
+    has_bulk_commits: "0",
+    has_large_initial_commit_after_t0: "0",
+    has_merge_commits: "0",
+    scanned: "0",
+  };
+}
+
+/**
+ * HCMC `/api/summary` shape: { rows: [...] }
+ * Built from live Ship Night submissions, enriched with scanner CSV when present.
+ */
+export async function getHcmcSummary(): Promise<{ rows: HcmcSummaryRow[] }> {
+  const [projects, metricsMap] = await Promise.all([
+    listSubmittedProjects(),
+    loadMetricsSummaryMap(),
+  ]);
+
+  const rows = projects.map((p) => {
+    const githubUrl = p.githubUrl!;
+    const repoId = repoIdFromGithubUrl(githubUrl);
+    const key = normalizeGithubUrl(githubUrl);
+    const scanned = metricsMap.get(key) || metricsMap.get(repoId);
+    if (scanned) {
+      return {
+        ...scanned,
+        repo_id: scanned.repo_id || repoId,
+        repo: scanned.repo || githubUrl,
+        team_name: p.teamName,
+        project_name: p.projectName,
+        team_id: String(p.teamId),
+        scanned: "1",
+        has_commits_before_t0: truthyFlag(scanned.has_commits_before_t0),
+        has_bulk_commits: truthyFlag(scanned.has_bulk_commits),
+        has_large_initial_commit_after_t0: truthyFlag(
+          scanned.has_large_initial_commit_after_t0,
+        ),
+        has_merge_commits: truthyFlag(scanned.has_merge_commits),
+      };
+    }
+    return {
+      ...emptySummaryRow({
+        repoId,
+        repo: githubUrl,
+        teamName: p.teamName,
+        projectName: p.projectName,
+      }),
+      team_id: String(p.teamId),
+    };
+  });
+
+  return { rows };
+}
+
+/**
+ * Hcmc `/api/judges` shape from live judge_score rows.
+ * Scores are 0–100 totals (Ship Night criteria sum), shown as Judge Avg in the UI.
+ */
+export async function getHcmcJudges(): Promise<{
+  by_repo: Record<string, HcmcJudgeRepoInfo>;
+  unmapped_responses: HcmcJudgeResponse[];
+}> {
+  const rows = await db
+    .select({
+      teamId: team.id,
+      teamName: team.name,
+      projectName: project.name,
+      githubUrl: project.githubUrl,
+      judgeName: user.name,
+      judgeEmail: user.email,
+      innovation: judgeScore.innovation,
+      technicalExecution: judgeScore.technicalExecution,
+      aiUsage: judgeScore.aiUsage,
+      uxUi: judgeScore.uxUi,
+      businessPotential: judgeScore.businessPotential,
+      comment: judgeScore.comment,
+      createdAt: judgeScore.createdAt,
+    })
+    .from(judgeScore)
+    .innerJoin(team, eq(judgeScore.teamId, team.id))
+    .innerJoin(user, eq(judgeScore.judgeUserId, user.id))
+    .leftJoin(project, eq(project.teamId, team.id));
+
+  const byCanonical = new Map<string, HcmcJudgeRepoInfo>();
+
+  for (const row of rows) {
+    if (!row.githubUrl) continue;
+    const total =
+      row.innovation +
+      row.technicalExecution +
+      row.aiUsage +
+      row.uxUi +
+      row.businessPotential;
+    const canonical = normalizeGithubUrl(row.githubUrl);
+    const response: HcmcJudgeResponse = {
+      timestamp: row.createdAt.toISOString(),
+      score: total,
+      thoughts: row.comment
+        ? `${row.judgeName || row.judgeEmail || "Judge"}: ${row.comment}`
+        : `${row.judgeName || row.judgeEmail || "Judge"} scored ${total}/100`,
+    };
+
+    const existing = byCanonical.get(canonical);
+    if (existing) {
+      existing.responses.push(response);
+      if (!existing.raw_project_names.includes(row.teamName)) {
+        existing.raw_project_names.push(row.teamName);
+      }
+    } else {
+      byCanonical.set(canonical, {
+        project: row.projectName || row.teamName,
+        raw_project_names: [row.teamName, row.projectName || row.teamName].filter(
+          Boolean,
+        ) as string[],
+        responses: [response],
+        average_score: 0,
+      });
+    }
+  }
+
+  const by_repo: Record<string, HcmcJudgeRepoInfo> = {};
+  for (const [canonical, info] of byCanonical) {
+    info.average_score =
+      info.responses.reduce((sum, r) => sum + r.score, 0) / info.responses.length;
+    // Mirror common URL forms so the HCMC UI join succeeds
+    const withGit = canonical.endsWith(".git") ? canonical : `${canonical}.git`;
+    by_repo[canonical] = info;
+    by_repo[withGit] = info;
+  }
+
+  return { by_repo, unmapped_responses: [] };
+}
+
+export function readRepoMetrics(repoId: string): Record<string, unknown> | null {
+  const file = `${ANALYZER_METRICS}/${repoId}.json`;
+  if (!existsSync(file)) return null;
+  return JSON.parse(readFileSync(file, "utf8")) as Record<string, unknown>;
+}
+
+export async function readRepoCommits(repoId: string): Promise<{ rows: HcmcSummaryRow[] }> {
+  const file = `${ANALYZER_METRICS}/${repoId}_commits.csv`;
+  if (!existsSync(file)) return { rows: [] };
+
+  const rl = createInterface({
+    input: createReadStream(file, { encoding: "utf8" }),
+    crlfDelay: Infinity,
+  });
+  let headers: string[] | null = null;
+  const rows: HcmcSummaryRow[] = [];
+  for await (const line of rl) {
+    if (!line.trim()) continue;
+    const cols = parseCsvLine(line);
+    if (!headers) {
+      headers = cols.map((h) => h.trim());
+      continue;
+    }
+    const row: HcmcSummaryRow = {};
+    headers.forEach((h, i) => {
+      row[h] = cols[i] ?? "";
+    });
+    rows.push(row);
+  }
+  return { rows };
+}
+
+export function readRepoAi(repoId: string): string | null {
+  const file = `${ANALYZER_AI}/${repoId}.txt`;
+  if (!existsSync(file)) return null;
+  return readFileSync(file, "utf8");
+}
+
 export async function buildReposExportCsv(): Promise<string> {
-  const submissions = await listAnalyzerSubmissions();
+  const projects = await listSubmittedProjects();
   const lines = ["repo_url,id,team_name,project_name"];
-  for (const s of submissions) {
-    const id = `${s.teamId}-${slugify(s.projectName)}`;
+  for (const s of projects) {
+    const id = repoIdFromGithubUrl(s.githubUrl!);
     lines.push(
-      [
-        csvEscape(s.githubUrl),
-        csvEscape(id),
-        csvEscape(s.teamName),
-        csvEscape(s.projectName),
-      ].join(","),
+      [csvEscape(s.githubUrl!), csvEscape(id), csvEscape(s.teamName), csvEscape(s.projectName)].join(
+        ",",
+      ),
     );
   }
   return `${lines.join("\n")}\n`;
 }
 
-function slugify(value: string): string {
-  return value
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "")
-    .slice(0, 48) || "project";
-}
-
 function csvEscape(value: string): string {
-  if (/[",\n]/.test(value)) {
-    return `"${value.replace(/"/g, '""')}"`;
-  }
+  if (/[",\n]/.test(value)) return `"${value.replace(/"/g, '""')}"`;
   return value;
 }
 
-export function getAnalyzerPaths() {
-  return {
-    root: ANALYZER_ROOT,
-    metricsSummary: METRICS_SUMMARY,
-    hasMetrics: existsSync(METRICS_SUMMARY),
-  };
+export async function getSubmissionByRepoId(repoId: string) {
+  const projects = await listSubmittedProjects();
+  return (
+    projects.find((p) => repoIdFromGithubUrl(p.githubUrl!) === repoId) ?? null
+  );
 }
