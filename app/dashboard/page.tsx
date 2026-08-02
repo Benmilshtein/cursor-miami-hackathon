@@ -23,7 +23,6 @@ import {
   Trophy,
   Users,
   UserRound,
-  Vote,
   XCircle,
 } from "lucide-react";
 import Link from "next/link";
@@ -31,7 +30,6 @@ import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
 import { DashboardSidebar } from "@/components/dashboard/DashboardSidebar";
 import { ProjectStatusCard } from "@/components/dashboard/ProjectStatusCard";
 import { PartnerCreditsPanel } from "@/components/participant/PartnerCreditsPanel";
-import PeerVotingSection from "@/components/participant/PeerVotingSection";
 import AppUrlSection from "@/components/participant/AppUrlSection";
 import { Button, NoiseOverlay, SpotlightCard } from "@/components/ui";
 import { authClient } from "@/lib/auth-client";
@@ -413,9 +411,6 @@ export default function DashboardPage() {
   const [createName, setCreateName] = useState("");
   const [createDescription, setCreateDescription] = useState("");
   const [joinCode, setJoinCode] = useState("");
-  // Show the Vote nav item / card only once the expo is underway.
-  const [peerVotingActive, setPeerVotingActive] = useState(false);
-
   type MentorRequestStatus = "pending" | "assigned" | "matched" | "completed" | "cancelled";
   type MentorRequestState = {
     id: string;
@@ -433,22 +428,6 @@ export default function DashboardPage() {
       router.replace("/register");
     }
   }, [isPending, router, session]);
-
-  useEffect(() => {
-    let ignore = false;
-    fetch("/api/peer-voting/state", { credentials: "include" })
-      .then((r) => r.json())
-      .then((json) => {
-        if (!ignore && json?.success) {
-          // Show once the expo is live OR the team has been split into a group.
-          setPeerVotingActive(json.data.phase !== "closed" || json.data.myGroup != null);
-        }
-      })
-      .catch(() => {});
-    return () => {
-      ignore = true;
-    };
-  }, []);
 
   useEffect(() => {
     if (!teamActionNotice) return;
@@ -792,9 +771,6 @@ export default function DashboardPage() {
               navItems={[
                 { href: "#overview", label: copy.sectionOverview, icon: Compass },
                 { href: "#team", label: copy.sectionTeam, icon: Users },
-                ...(peerVotingActive
-                  ? [{ href: "#vote", label: copy.sectionVote, icon: Vote }]
-                  : []),
                 ...(team ? [{ href: "#app-url", label: copy.sectionAppUrl, icon: Globe }] : []),
                 { href: "#credits", label: copy.sectionCredits, icon: Gift },
                 ...(team?.screeningStatus === "approved"
@@ -1339,11 +1315,7 @@ export default function DashboardPage() {
           </section>
         )}
 
-        {peerVotingActive && (
-          <section id="vote" className="mt-10 scroll-mt-28">
-            <PeerVotingSection />
-          </section>
-        )}
+        {/* Peer expo / swipe voting replaced by GitHub Repo Analyzer judging */}
 
         {team && (
           <section id="app-url" className="mt-10 scroll-mt-28">

@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   alternates: { canonical: `${getSiteUrl()}/ranking` },
   openGraph: {
     title: `Team ranking · ${siteConfig.name}`,
-    description: "Results and scores from the AI hackathon.",
+    description: "Official judge scores after GitHub repo analysis.",
     url: `${getSiteUrl()}/ranking`,
   },
 };

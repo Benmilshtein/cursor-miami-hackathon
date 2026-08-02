@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     "hackathon sponsor",
     "AI event partnership",
     "AI event sponsorship",
-    "48H partners",
+    "Cursor Miami Ship Night partners",
   ],
   alternates: { canonical: `${getSiteUrl()}/partnership` },
   openGraph: {

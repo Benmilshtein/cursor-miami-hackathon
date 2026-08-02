@@ -6,7 +6,7 @@ import { useLanguage } from "@/lib/LanguageContext";
 import type { TranslationKey } from "@/lib/i18n";
 import {
   SectionTag,
-  IconUsers,
+  IconRocket,
   IconGavel,
   IconTarget,
   IconTrophy,
@@ -35,7 +35,7 @@ const phases: Phase[] = [
     id: "round1",
     num: 1,
     accent: "var(--accent-blue)",
-    icon: IconUsers,
+    icon: IconRocket,
     titleKey: "round1Title",
     durationKey: "round1Duration",
     goalKey: "round1Goal",

@@ -1,6 +1,6 @@
-# Cursor Miami Hackathon
+# Cursor Miami Ship Night
 
-Open-source platform for running **hackathons**: landing site, registration, teams, screening, scoring, admin tools, and partner credits. Built with **Next.js**, **Supabase**, and **PostgreSQL**.
+Open-source platform for running **Cursor Miami Ship Night** and similar open, beginner-friendly ship nights: landing site, registration, teams, screening, scoring, admin tools, and partner credits. Built with **Next.js**, **Supabase**, and **PostgreSQL**.
 
 **Live site: [cursormiami.com](https://cursormiami.com)**
 
@@ -37,7 +37,8 @@ This is a clean, brandable template. Every name, date, venue, and sponsor in the
 | **Screening** | MC questions, optional team video. Admins approve or reject teams and manage questions. |
 | **Projects** | Participant project submissions and admin CRUD. |
 | **Credits** | Sponsor credit pools: split by team or participant, Excel upload of per-user links, shared links, short codes, audit log. |
-| **Staff** | Invites, evaluation queue, team scoring. |
+| **Staff** | Invites, GitHub repo analyzer queue, team scoring. |
+| **Judging** | HCMC-style GitHub repo analyzer (commit metrics/flags) plus official judge scores. Peer expo / swipe voting disabled. |
 | **Ranking** | Public ranking from judges; optional late penalty; admin can set final overrides. |
 | **Admin** | Users, teams, screening, projects, partners, credits, staff, settings (deadlines, etc.), security / 2FA. |
 | **i18n** | English, German, and Spanish out of the box. |

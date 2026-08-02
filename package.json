@@ -11,7 +11,9 @@
     "test:watch": "vitest",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
-    "db:studio": "drizzle-kit studio"
+    "db:studio": "drizzle-kit studio",
+    "analyze:scan": "python3 tools/hackathon-analyzer/scan.py --repos tools/hackathon-analyzer/data/repos.csv --config tools/hackathon-analyzer/config.json --work-dir tools/hackathon-analyzer/work",
+    "analyze:ui": "python3 tools/hackathon-analyzer/ui/server.py --work-dir tools/hackathon-analyzer/work --port 8000"
   },
   "dependencies": {
     "@anthropic-ai/sdk": "^0.100.0",

@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
+import { siteConfig } from "@/lib/site";
 
-export const alt = "48H Hackathon · Build. Ship. Celebrate.";
+export const alt = `${siteConfig.name} · ${siteConfig.tagline}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -16,37 +17,49 @@ export default function OpenGraphImage() {
           alignItems: "center",
           justifyContent: "center",
           background:
-            "radial-gradient(circle at 15% 10%, rgba(255,45,146,0.22), transparent 45%), radial-gradient(circle at 85% 90%, rgba(16,214,194,0.18), transparent 45%), #07070c",
+            "radial-gradient(circle at 18% 12%, rgba(255,122,69,0.28), transparent 42%), radial-gradient(circle at 82% 88%, rgba(46,230,197,0.22), transparent 44%), #061018",
         }}
       >
         <div
           style={{
-            fontSize: 80,
-            fontWeight: 800,
-            color: "#f8fafc",
-            letterSpacing: "-0.02em",
+            fontSize: 28,
+            fontWeight: 600,
+            color: "#2ee6c5",
+            letterSpacing: "0.18em",
+            textTransform: "uppercase",
+            marginBottom: 18,
           }}
         >
-          48H Hackathon
+          Cursor Miami
         </div>
         <div
           style={{
-            fontSize: 34,
-            color: "#94a3b8",
+            fontSize: 78,
+            fontWeight: 800,
+            color: "#f4f7fb",
+            letterSpacing: "-0.03em",
+          }}
+        >
+          Ship Night
+        </div>
+        <div
+          style={{
+            fontSize: 32,
+            color: "#a8b3c4",
             marginTop: 20,
             fontWeight: 500,
           }}
         >
-          Build. Ship. Celebrate.
+          {siteConfig.tagline}
         </div>
         <div
           style={{
-            fontSize: 22,
-            color: "#64748b",
+            fontSize: 20,
+            color: "#6f7c90",
             marginTop: 28,
           }}
         >
-          Teams · Screening · Judging · Live Rankings
+          Open to every level · 4pm to midnight · Miami
         </div>
       </div>
     ),

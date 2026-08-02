@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/lib/LanguageContext';
 import { Logo } from '@/components/ui';
+import { siteConfig } from '@/lib/site';
 
 export function Footer() {
   const { t } = useLanguage();
@@ -24,7 +25,7 @@ export function Footer() {
             whileHover={{ scale: 1.02 }}
           >
             <Logo size={32} />
-            <span className="font-bold text-white">48H</span>
+            <span className="font-bold text-white">{siteConfig.shortName}</span>
           </motion.div>
 
           {/* Copyright */}

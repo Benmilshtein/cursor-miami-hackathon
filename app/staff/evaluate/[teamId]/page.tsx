@@ -251,6 +251,13 @@ export default function EvaluateTeamPage({ params }: { params: Promise<{ teamId:
                 </div>
               )}
               <div className="flex flex-wrap gap-2">
+                <Link
+                  href="/staff/analyze"
+                  className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--accent-cyan)]/40 bg-[var(--accent-cyan)]/10 px-2.5 py-1.5 text-xs font-medium text-[var(--accent-cyan)] hover:bg-[var(--accent-cyan)]/20"
+                >
+                  <BarChart3 className="h-3.5 w-3.5" />
+                  Open Repo Analyzer
+                </Link>
                 {teamProject.githubUrl && (
                   <a
                     href={teamProject.githubUrl}

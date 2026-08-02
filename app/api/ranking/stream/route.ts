@@ -1,4 +1,4 @@
-import { getCrowdLeaderboard } from "@/lib/peer-voting/service";
+import { getRanking } from "@/lib/scoring/service";
 import { isRankingFinalized } from "@/lib/scoring/finalization";
 import { rankingEmitter, RANKING_UPDATED } from "@/lib/scoring/events";
 
@@ -25,7 +25,14 @@ export async function GET() {
             send(JSON.stringify({ leaderboard: [], finalized: false }));
             return;
           }
-          const leaderboard = await getCrowdLeaderboard();
+          const ranking = await getRanking();
+          const leaderboard = ranking.map((row, index) => ({
+            teamId: row.teamId,
+            teamName: row.teamName,
+            totalAvg: row.totalAvg,
+            judgeCount: row.judgeCount,
+            rank: index + 1,
+          }));
           send(JSON.stringify({ leaderboard, finalized: true }));
         } catch {
           send(JSON.stringify({ error: "Failed to load ranking" }));
@@ -48,7 +55,11 @@ export async function GET() {
       function cleanup() {
         rankingEmitter.off(RANKING_UPDATED, onUpdate);
         clearInterval(heartbeat);
-        try { controller.close(); } catch { /* already closed */ }
+        try {
+          controller.close();
+        } catch {
+          /* already closed */
+        }
       }
     },
   });

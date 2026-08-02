@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 48" role="img" aria-label="palma labs">
+  <defs>
+    <linearGradient id="palmaGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#ff4fd8"/>
+      <stop offset="45%" stop-color="#8b6cff"/>
+      <stop offset="100%" stop-color="#2ee6c5"/>
+    </linearGradient>
+  </defs>
+  <text x="0" y="32" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="26" font-weight="700" letter-spacing="-0.03em" fill="url(#palmaGrad)">palma</text>
+  <!-- tiny palm in the a counter -->
+  <g transform="translate(92,14)" fill="#ffffff">
+    <rect x="3.2" y="6" width="1.2" height="7" rx="0.5"/>
+    <path d="M3.8 6c-2.2-1.8-4.2-1.5-4.2-1.5s1.4 2.4 4.2 2.8c2.6-.4 4.2-2.8 4.2-2.8S6 4.2 3.8 6z"/>
+  </g>
+  <text x="118" y="32" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="22" font-weight="400" fill="#ffffff" opacity="0.92">labs</text>
+</svg>

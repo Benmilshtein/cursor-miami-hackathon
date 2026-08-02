@@ -119,17 +119,43 @@ export default function StaffDashboardPage() {
                 </p>
               </div>
             </div>
-            <Link
-              href="/ranking"
-              className="flex items-center gap-2 rounded-lg border border-[var(--border-color)] px-3 py-2 text-xs font-medium text-[var(--text-secondary)] hover:text-white hover:border-[var(--border-hover)] transition-colors"
-            >
-              <Trophy className="h-3.5 w-3.5" />
-              Ranking
-            </Link>
+            <div className="flex items-center gap-2">
+              <Link
+                href="/staff/analyze"
+                className="flex items-center gap-2 rounded-lg border border-[var(--border-color)] px-3 py-2 text-xs font-medium text-[var(--text-secondary)] hover:text-white hover:border-[var(--border-hover)] transition-colors"
+              >
+                <FolderGit2 className="h-3.5 w-3.5" />
+                Repo Analyzer
+              </Link>
+              <Link
+                href="/ranking"
+                className="flex items-center gap-2 rounded-lg border border-[var(--border-color)] px-3 py-2 text-xs font-medium text-[var(--text-secondary)] hover:text-white hover:border-[var(--border-hover)] transition-colors"
+              >
+                <Trophy className="h-3.5 w-3.5" />
+                Ranking
+              </Link>
+            </div>
           </div>
 
           {isJudge && (
             <>
+              <div className="mb-6 rounded-xl border border-[var(--accent-cyan)]/25 bg-[var(--accent-cyan)]/5 p-4">
+                <p className="text-sm font-medium text-white">
+                  Judging uses the GitHub Repo Analyzer
+                </p>
+                <p className="mt-1 text-xs text-[var(--text-secondary)]">
+                  Review commit metrics and authenticity flags first, then score each team.
+                  Peer expo / swipe voting is disabled for Ship Night.
+                </p>
+                <Link
+                  href="/staff/analyze"
+                  className="mt-3 inline-flex items-center gap-1.5 text-xs font-semibold text-[var(--accent-cyan)] hover:underline"
+                >
+                  Open analyzer dashboard
+                  <ChevronRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+
               {/* Stats */}
               <div className="mb-6 grid grid-cols-2 gap-3">
                 <div className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] p-4">

@@ -1,12 +1,12 @@
 import { getSiteUrl, siteConfig } from "@/lib/site";
 
-/** Hackathon dates - update when the program is finalized. */
-const EVENT_START = "2030-01-01T10:00:00Z";
-const EVENT_END = "2030-01-03T22:00:00Z";
+/** Ship Night is a single evening event — update when the date is finalized. */
+const EVENT_START = "2030-06-04T20:00:00Z"; // 4:00 PM EDT
+const EVENT_END = "2030-06-05T04:00:00Z"; // 12:00 AM EDT
 
-/** Example venue (replace with your real location for production). */
-const VENUE_NAME_EN = "Your Venue";
-const STREET_ADDRESS_EN = "123 Main Street";
+/** Venue defaults for Cursor Miami events. */
+const VENUE_NAME_EN = "The DOCK, Wynwood";
+const STREET_ADDRESS_EN = "Wynwood";
 
 /** Event JSON-LD - homepage only. */
 export function StructuredData() {
@@ -27,7 +27,8 @@ export function StructuredData() {
       address: {
         "@type": "PostalAddress",
         streetAddress: STREET_ADDRESS_EN,
-        addressLocality: "Your City",
+        addressLocality: siteConfig.location,
+        addressRegion: "FL",
         addressCountry: "US",
       },
     },

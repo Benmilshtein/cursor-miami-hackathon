@@ -7,6 +7,7 @@ import { useLanguage } from '@/lib/LanguageContext';
 import { authClient } from '@/lib/auth-client';
 import { Logo, IconMenu, IconX } from '@/components/ui';
 import { LanguageSwitcher } from '@/components/LanguageSwitcher';
+import { siteConfig } from '@/lib/site';
 
 type NavVariant = 'partnership' | 'participant';
 
@@ -22,11 +23,13 @@ const partnershipNavItems = [
 ];
 
 const participantNavItems = [
+  { key: 'schedule', href: '#schedule' },
   { key: 'criteria', href: '#criteria' },
   { key: 'register', href: '/register', highlight: true },
 ];
 
 const participantNavItemsLoggedIn = [
+  { key: 'schedule', href: '#schedule' },
   { key: 'criteria', href: '#criteria' },
   { key: 'dashboard', href: '/dashboard', highlight: true },
 ];
@@ -91,7 +94,7 @@ export function Navigation({ variant = 'partnership' }: NavigationProps) {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
               >
-                48H
+                {siteConfig.shortName}
               </motion.span>
             </Link>
           </motion.div>
