@@ -27,8 +27,8 @@ const STEPS: Record<OnboardingLanguage, StepContent[]> = {
   en: [
     {
       icon: Compass,
-      title: "Welcome to the Hackathon",
-      text: "A beginner-friendly night of building with AI. This short intro covers how the night works.",
+      title: "Welcome to Ship Night",
+      text: "Cursor Miami Ship Night is an open evening for every level. This short intro covers how the night works.",
     },
     {
       icon: Users,
@@ -49,8 +49,8 @@ const STEPS: Record<OnboardingLanguage, StepContent[]> = {
   de: [
     {
       icon: Compass,
-      title: "Willkommen beim Hackathon",
-      text: "Ein anfängerfreundlicher Abend zum Bauen mit KI. Diese kurze Einführung erklärt den Ablauf.",
+      title: "Willkommen bei Ship Night",
+      text: "Cursor Miami Ship Night ist ein offener Abend für jedes Level. Diese kurze Einführung erklärt den Ablauf.",
     },
     {
       icon: Users,
@@ -71,8 +71,8 @@ const STEPS: Record<OnboardingLanguage, StepContent[]> = {
   es: [
     {
       icon: Compass,
-      title: "Bienvenido al Hackathon",
-      text: "Una noche para principiantes de construir con IA. Esta breve intro explica cómo funciona la noche.",
+      title: "Bienvenido a Ship Night",
+      text: "Cursor Miami Ship Night es una noche abierta para todos los niveles. Esta breve intro explica cómo funciona la noche.",
     },
     {
       icon: Users,

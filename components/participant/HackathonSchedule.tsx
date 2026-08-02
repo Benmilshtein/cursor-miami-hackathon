@@ -37,7 +37,7 @@ export function HackathonSchedule() {
   const [activeDay, setActiveDay] = useState(0);
 
   return (
-    <section className="relative py-24 sm:py-32 overflow-hidden">
+    <section id="schedule" className="relative py-24 sm:py-32 overflow-hidden">
       {/* Background */}
       <div className="absolute inset-0 bg-[var(--bg-primary)]" />
       

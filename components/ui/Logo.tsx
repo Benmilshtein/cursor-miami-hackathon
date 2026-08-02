@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
+import { siteConfig } from '@/lib/site';
 
 interface LogoProps {
   size?: number;
@@ -32,7 +33,7 @@ export function Logo({ size = 40, animated = true, className = '' }: LogoProps) 
       <div className={`relative ${className}`} style={{ width: size, height: size }}>
         <Image
           src="/logo-dark.png"
-          alt="48H Logo"
+          alt={`${siteConfig.name} Logo`}
           width={size}
           height={size}
           className="rounded-lg"
@@ -61,7 +62,7 @@ export function Logo({ size = 40, animated = true, className = '' }: LogoProps) 
       >
         <Image
           src="/logo-dark.png"
-          alt="48H Logo"
+          alt={`${siteConfig.name} Logo`}
           width={size}
           height={size}
           className="rounded-lg relative z-10"
@@ -85,7 +86,7 @@ export function LogoWithText({ size = 40 }: { size?: number }) {
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.2 }}
       >
-        48H
+        {siteConfig.shortName}
       </motion.span>
     </motion.div>
   );

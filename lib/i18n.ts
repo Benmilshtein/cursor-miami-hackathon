@@ -17,20 +17,20 @@ export const translations = {
   // Hero Section
   hero: {
     tag: {
-      en: "YOUR DATES • YOUR CITY", de: "DEINE TERMINE • DEINE STADT", es: "TUS FECHAS • TU CIUDAD",
+      en: "ONE NIGHT • MIAMI", de: "EINE NACHT • MIAMI", es: "UNA NOCHE • MIAMI",
     },
-    title: { en: "48H", de: "48H", es: "48H" },
-    subtitle: { en: "AI HACKATHON", de: "KI-HACKATHON", es: "HACKATHON DE IA" },
+    title: { en: "SHIP NIGHT", de: "SHIP NIGHT", es: "SHIP NIGHT" },
+    subtitle: { en: "CURSOR MIAMI", de: "CURSOR MIAMI", es: "CURSOR MIAMI" },
     description: {
       en: "Partnership Proposal", de: "Partnerschaftsvorschlag", es: "Propuesta de asociación",
     },
     format: { en: "Format", de: "Format", es: "Formato" },
     formatDesc: {
-      en: "4-hour AI agent speedrun", de: "4-stündiger KI-Agenten-Speedrun", es: "Speedrun de agente de IA de 4 horas",
+      en: "One-night open ship night for every level", de: "Eine offene Ship Night für jedes Level", es: "Una Ship Night abierta para todos los niveles",
     },
     supportTitle: { en: "Support", de: "Unterstützung", es: "Apoyo" },
     supportDesc: {
-      en: "Support from partners who help run open, community-driven hackathons.", de: "Unterstützung durch Partner, die offene, gemeinschaftlich organisierte Hackathons ermöglichen.", es: "Apoyo de socios que impulsan hackathons abiertos y centrados en la comunidad.",
+      en: "Support from partners who help run open, community-driven ship nights in Miami.", de: "Unterstützung durch Partner, die offene, gemeinschaftliche Ship Nights in Miami ermöglichen.", es: "Apoyo de socios que impulsan Ship Nights abiertas y comunitarias en Miami.",
     },
     ministry: {
       en: "Partner organizations", de: "Partnerorganisationen", es: "Organizaciones asociadas",
@@ -39,50 +39,50 @@ export const translations = {
 
   // About Section
   about: {
-    tag: { en: "48H", de: "48H", es: "48H" },
+    tag: { en: "SHIP NIGHT", de: "SHIP NIGHT", es: "SHIP NIGHT" },
     title: {
-      en: "About the Project", de: "Über das Projekt", es: "Acerca del proyecto",
+      en: "About Ship Night", de: "Über Ship Night", es: "Acerca de Ship Night",
     },
     feature1Title: {
       en: "4 hours to ship", de: "4 Stunden bis zum Ship", es: "4 horas para entregar",
     },
     feature1Desc: {
-      en: "High-intensity speedrun building real AI agents with modern AI tools.", de: "Hochintensiver Speedrun zum Entwickeln echter KI-Agenten mit modernen KI-Tools.", es: "Speedrun de alta intensidad construyendo agentes de IA reales con herramientas de IA modernas.",
+      en: "A focused evening build: tutorials first, then heads-down shipping with mentors nearby.", de: "Ein fokussierter Abend: erst Tutorials, dann konzentriertes Shippen mit Mentor:innen in der Nähe.", es: "Una noche enfocada: primero tutoriales, luego construir a fondo con mentores cerca.",
     },
     feature2Title: {
-      en: "Practical AI solutions", de: "Praktische KI-Lösungen", es: "Soluciones prácticas de IA",
+      en: "Practical AI builds", de: "Praktische KI-Builds", es: "Builds prácticos de IA",
     },
     feature2Desc: {
-      en: "Focus on working technologies, not checkbox prototypes.", de: "Konzentrieren Sie sich auf funktionierende Technologien, nicht auf Checkbox-Prototypen.", es: "Céntrese en las tecnologías que funcionan, no en los prototipos de casillas de verificación.",
+      en: "Ship a working app people can open, not a slide deck or checkbox prototype.", de: "Shippe eine funktionierende App, die man öffnen kann, kein Slide-Deck oder Checkbox-Prototyp.", es: "Lanza una app funcional que cualquiera pueda abrir, no un deck ni un prototipo de casilla.",
     },
     feature3Title: {
-      en: "Selection of best teams", de: "Auswahl der besten Teams", es: "Selección de los mejores equipos.",
+      en: "Open to every level", de: "Offen für jedes Level", es: "Abierto a todos los niveles",
     },
     feature3Desc: {
-      en: "15-20 selected teams with strong technical background.", de: "15–20 ausgewählte Teams mit starkem technischen Hintergrund.", es: "15-20 equipos seleccionados con sólida formación técnica.",
+      en: "Beginners, career-switchers, designers, and seasoned builders. No gatekeeping.", de: "Einsteiger, Quereinsteiger, Designer und erfahrene Builder. Kein Gatekeeping.", es: "Principiantes, career-switchers, diseñadores y builders con experiencia. Sin barreras.",
     },
     feature4Title: {
-      en: "Public finale", de: "Öffentliches Finale", es: "final publico",
+      en: "Live demos tonight", de: "Live-Demos heute Abend", es: "Demos en vivo esta noche",
     },
     feature4Desc: {
-      en: "Project presentations to live audience, experts and investors.", de: "Projektpräsentationen vor Live-Publikum, Experten und Investoren.", es: "Presentaciones de proyectos ante audiencia en vivo, expertos e inversores.",
+      en: "Teams demo what they shipped, winners get crowned, then we celebrate together.", de: "Teams zeigen, was sie gebaut haben, Gewinner werden gekürt, dann feiern wir gemeinsam.", es: "Los equipos muestran lo que lanzaron, coronamos ganadores y celebramos juntos.",
     },
     stat1Value: { en: "4", de: "4", es: "4" },
     stat1Unit: { en: "h", de: "H", es: "h" },
     stat1Label: {
-      en: "Non-stop coding", de: "Non-Stop-Codierung", es: "Codificación sin parar",
+      en: "Focused build time", de: "Fokussierte Build-Zeit", es: "Tiempo de build enfocado",
     },
-    stat2Value: { en: "20", de: "20", es: "20" },
+    stat2Value: { en: "1", de: "1", es: "1" },
     stat2Label: {
-      en: "Teams in finale", de: "Teams im Finale", es: "Equipos en final",
+      en: "Night to ship", de: "Nacht zum Shippen", es: "Noche para lanzar",
     },
-    stat3Value: { en: "100+", de: "100+", es: "100+" },
+    stat3Value: { en: "All", de: "Alle", es: "Todos" },
     stat3Label: {
-      en: "Talented participants", de: "Talentierte Teilnehmer", es: "Participantes talentosos",
+      en: "Levels welcome", de: "Level willkommen", es: "Niveles bienvenidos",
     },
     goalLabel: { en: "Main Goal", de: "Hauptziel", es: "Objetivo principal" },
     goalText: {
-      en: "Create a hub for AI talent, business and industry, uniting efforts for technological breakthrough.", de: "Schaffen Sie eine Drehscheibe für KI-Talente, Unternehmen und Industrie und bündeln Sie die Bemühungen für einen technologischen Durchbruch.", es: "Crear un centro para el talento, las empresas y la industria de la IA, uniendo esfuerzos para lograr avances tecnológicos.",
+      en: "Help Miami builders of every level ship something real with AI in one night, then keep the community going.", de: "Miami-Buildern jedes Levels helfen, in einer Nacht etwas Echtes mit KI zu shippen und die Community am Leben zu halten.", es: "Ayudar a builders de Miami de todos los niveles a lanzar algo real con IA en una noche y mantener viva la comunidad.",
     },
   },
 
@@ -376,7 +376,7 @@ export const translations = {
     tag: {
       en: "Partner Package", de: "Partner Package", es: "Partner Package",
     },
-    preTitle: { en: "48H", de: "48H", es: "48H" },
+    preTitle: { en: "SHIP NIGHT", de: "SHIP NIGHT", es: "SHIP NIGHT" },
     title: {
       en: "General Partner", de: "General Partner", es: "General Partner",
     },
@@ -547,24 +547,24 @@ export const translations = {
     title: {
       en: "Timeline & Cooperation", de: "Timeline & Cooperation", es: "Timeline & Cooperation",
     },
-    event1Date: { en: "DAY 1", de: "TAG 1", es: "DÍA 1" },
+    event1Date: { en: "4–6 PM", de: "16–18 UHR", es: "4–6 PM" },
     event1Title: {
-      en: "Hackathon Start", de: "Hackathon Start", es: "Hackathon Start",
+      en: "Welcome & Setup", de: "Welcome & Setup", es: "Bienvenida y setup",
     },
     event1Desc: {
-      en: "Start of 4-hour speedrun. Team up, brief revealed, starter kit walkthrough.", de: "Start of 4-hour speedrun. Team up, brief revealed, starter kit walkthrough.", es: "Inicio del speedrun de 4 horas. Forma tu equipo, brief revelado, walkthrough del starter kit.",
+      en: "Doors open. Cursor setup for newcomers, idea sparks, and team matching for solo arrivals.", de: "Türen auf. Cursor-Setup für Newcomer, Ideen-Sparks und Team-Matching für Solo-Ankommende.", es: "Abren puertas. Setup de Cursor para newcomers, ideas y matching de equipos para quien llega solo.",
     },
-    event2Date: { en: "DAY 2", de: "TAG 2", es: "DÍA 2" },
+    event2Date: { en: "6–10:30 PM", de: "18–22:30", es: "6–10:30 PM" },
     event2Title: {
-      en: "Build, 4 hours", de: "Build, 4 Stunden", es: "Build, 4 horas",
+      en: "Build & Ship", de: "Build & Ship", es: "Build & Ship",
     },
     event2Desc: {
-      en: "Intensive work on-site, mentor sessions, checkpoints with experts.", de: "Intensive work on-site, mentor sessions, checkpoints with experts.", es: "Intensive work on-site, mentor sessions, checkpoints with experts.",
+      en: "Heads-down building with mentors on the floor. Deploy a public URL before demos.", de: "Konzentriertes Bauen mit Mentor:innen im Raum. Vor den Demos eine öffentliche URL deployen.", es: "Construcción a fondo con mentores en sala. Despliega una URL pública antes de las demos.",
     },
-    event3Date: { en: "DAY 3", de: "TAG 3", es: "DÍA 3" },
-    event3Title: { en: "Open Finale", de: "Open Finale", es: "Open Finale" },
+    event3Date: { en: "10:30–12 AM", de: "22:30–24 UHR", es: "10:30–12 AM" },
+    event3Title: { en: "Demos & Celebrate", de: "Demos & Feiern", es: "Demos y celebración" },
     event3Desc: {
-      en: "Project pitches to jury and viewers. Awards and networking.", de: "Project pitches to jury and viewers. Awards and networking.", es: "Project pitches to jury and viewers. Awards and networking.",
+      en: "Live demos, winners, and a hang to toast everything that shipped tonight.", de: "Live-Demos, Gewinner und ein Hang, um auf alles anzustoßen, was heute Abend geshipped wurde.", es: "Demos en vivo, ganadores y un hang para brindar por todo lo lanzado esta noche.",
     },
     flexNote: {
       en: "Flexible approach:", de: "Flexible approach:", es: "Flexible approach:",
@@ -583,7 +583,7 @@ export const translations = {
   // Footer
   footer: {
     rights: {
-      en: "© 2026 48H. All rights reserved.", de: "© 2026 48H. All rights reserved.", es: "© 2026 48H. All rights reserved.",
+      en: "© 2026 Cursor Miami Ship Night. All rights reserved.", de: "© 2026 Cursor Miami Ship Night. Alle Rechte vorbehalten.", es: "© 2026 Cursor Miami Ship Night. Todos los derechos reservados.",
     },
   },
 
@@ -619,16 +619,16 @@ export const translations = {
   // Participant Hero Section
   participantHero: {
     date: { en: "DOORS AT 4PM", de: "EINLASS 16 UHR", es: "PUERTAS A LAS 4PM" },
-    location: { en: "BEGINNER-FRIENDLY", de: "ANFÄNGERFREUNDLICH", es: "PARA PRINCIPIANTES" },
-    title: { en: "AI HACKATHON", de: "AI HACKATHON", es: "AI HACKATHON" },
-    subtitle: { en: "Your City's First Ever", de: "Der Erste deiner Stadt", es: "El primero de tu ciudad" },
+    location: { en: "MIAMI · EVERY LEVEL", de: "MIAMI · JEDES LEVEL", es: "MIAMI · TODO NIVEL" },
+    title: { en: "SHIP NIGHT", de: "SHIP NIGHT", es: "SHIP NIGHT" },
+    subtitle: { en: "Cursor Miami", de: "Cursor Miami", es: "Cursor Miami" },
     description: {
-      en: "It's time. We're throwing a hackathon, and the only thing missing is you. It's beginner-friendly on purpose: no degree, no team, no idea required. We hand you the tools, pair you up, and by the time the clock hits 10:30 you'll have shipped something real.", de: "Es ist soweit. Wir veranstalten einen Hackathon, und das Einzige, was fehlt, bist du. Bewusst anfängerfreundlich: kein Abschluss, kein Team, keine Idee nötig. Wir geben dir die Tools, bringen dich mit anderen zusammen, und bis 22:30 Uhr hast du etwas Echtes gebaut.", es: "Es la hora. Organizamos un hackathon, y lo único que falta eres tú. Es para principiantes a propósito: sin título, sin equipo, sin idea previa. Te damos las herramientas, te emparejamos, y para las 10:30 habrás lanzado algo real.",
+      en: "Cursor Miami Ship Night is an open evening for everyone: first-timers, designers, founders, and builders who already ship. No degree, no team, no idea required. We help you set up, pair you up, and by 10:30 you'll have shipped something real.", de: "Cursor Miami Ship Night ist ein offener Abend für alle: Einsteiger, Designer, Founder und Builder, die schon shippen. Kein Abschluss, kein Team, keine Idee nötig. Wir helfen beim Setup, bringen euch zusammen, und bis 22:30 hast du etwas Echtes geshipped.", es: "Cursor Miami Ship Night es una noche abierta para todos: principiantes, diseñadores, founders y builders que ya lanzan. Sin título, sin equipo, sin idea previa. Te ayudamos a configurarte, te emparejamos, y para las 10:30 habrás lanzado algo real.",
     },
     hours: { en: "HOURS", de: "HOURS", es: "HOURS" },
     teams: { en: "PAIR UP OR SOLO", de: "IM TEAM ODER SOLO", es: "EN PAREJA O SOLO" },
     prize: { en: "CASH + CREDITS", de: "CASH + CREDITS", es: "EFECTIVO + CRÉDITOS" },
-    cta: { en: "Apply Now", de: "Apply Now", es: "Apply Now" },
+    cta: { en: "Grab your spot", de: "Platz sichern", es: "Reserva tu lugar" },
     supportedBy: {
       en: "Supported by", de: "Supported by", es: "Supported by",
     },
@@ -640,10 +640,10 @@ export const translations = {
   // Register / Auth page
   registerPage: {
     title: {
-      en: "Register for the Hackathon", de: "Register for the Hackathon", es: "Register for the Hackathon",
+      en: "Register for Ship Night", de: "Für Ship Night registrieren", es: "Regístrate en Ship Night",
     },
     subtitle: {
-      en: "Sign in with Google to continue registration", de: "Sign in with Google to continue registration", es: "Sign in with Google to continue registration",
+      en: "Sign in to claim your spot — every level welcome", de: "Melde dich an und sichere dir deinen Platz — jedes Level willkommen", es: "Inicia sesión para reservar tu lugar — todos los niveles bienvenidos",
     },
     signInGoogle: { en: "Sign in with Google", de: "Sign in with Google", es: "Sign in with Google" },
     alreadyHaveAccount: {
@@ -693,84 +693,84 @@ export const translations = {
     signingOut: { en: "Signing out...", de: "Signing out...", es: "Signing out..." },
   },
 
-  // Selection Process Section
+  // Selection Process Section (open door — no elite funnel)
   selectionProcess: {
     tag: {
-      en: "SELECTION PROCESS", de: "SELECTION PROCESS", es: "SELECTION PROCESS",
+      en: "HOW TO JOIN", de: "SO NIMMST DU TEIL", es: "CÓMO UNIRTE",
     },
     title: {
-      en: "Selection Stages", de: "Selection Stages", es: "Selection Stages",
+      en: "Open to Everyone", de: "Offen für alle", es: "Abierto a todos",
     },
     subtitle: {
-      en: "We select 15-20 strongest teams through a multi-stage process", de: "We select 15-20 strongest teams through a multi-stage process", es: "We select 15-20 strongest teams through a multi-stage process",
+      en: "No coding test. No resume screen. Register, show up, and ship.", de: "Kein Coding-Test. Kein Resume-Screen. Registrieren, kommen, shippen.", es: "Sin prueba de código. Sin filtro de CV. Regístrate, llega y lanza.",
     },
     stage1Date: {
-      en: "MAR 21 - MAR 29", de: "MAR 21 - MAR 29", es: "MAR 21 - MAR 29",
+      en: "BEFORE THE NIGHT", de: "VOR DEM ABEND", es: "ANTES DE LA NOCHE",
     },
     stage1Title: {
-      en: "Registration", de: "Registration", es: "Registration",
+      en: "Register", de: "Registrieren", es: "Regístrate",
     },
     stage1Desc: {
-      en: "Team composition, brief description of participants' experience", de: "Team composition, brief description of participants' experience", es: "Team composition, brief description of participants' experience",
+      en: "Create your account. Solo or with friends — both work.", de: "Konto anlegen. Solo oder mit Freunden — beides geht.", es: "Crea tu cuenta. Solo o con amigos: ambas opciones sirven.",
     },
-    stage2Date: { en: "MAR 23-29", de: "MAR 23-29", es: "MAR 23-29" },
+    stage2Date: { en: "OPTIONAL", de: "OPTIONAL", es: "OPCIONAL" },
     stage2Title: {
-      en: "Programming Tasks", de: "Programming Tasks", es: "Programming Tasks",
+      en: "Form a team", de: "Team bilden", es: "Forma un equipo",
     },
     stage2Desc: {
-      en: "Online testing on a custom platform. Assessment of correctness and optimality", de: "Online testing on a custom platform. Assessment of correctness and optimality", es: "Online testing on a custom platform. Assessment of correctness and optimality",
+      en: "Invite friends with a code, or wait for live matching at the door.", de: "Lade Freunde per Code ein, oder warte auf Live-Matching an der Tür.", es: "Invita amigos con un código, o espera el matching en vivo en la puerta.",
     },
-    stage3Date: { en: "MAR 23-29", de: "MAR 23-29", es: "MAR 23-29" },
-    stage3Title: { en: "Demo Video", de: "Demo Video", es: "Demo Video" },
+    stage3Date: { en: "4:00 PM", de: "16:00 UHR", es: "4:00 PM" },
+    stage3Title: { en: "Show up", de: "Komm vorbei", es: "Llega" },
     stage3Desc: {
-      en: "Recording a demo video (up to 3 min) explaining the solutions", de: "Recording a demo video (up to 3 min) explaining the solutions", es: "Recording a demo video (up to 3 min) explaining the solutions",
+      en: "Laptop + charger. We cover setup, food, Wi-Fi, and mentors.", de: "Laptop + Ladegerät. Wir kümmern uns um Setup, Essen, WLAN und Mentoren.", es: "Laptop + cargador. Nosotros ponemos setup, comida, Wi-Fi y mentores.",
     },
-    stage4Date: { en: "APR 3", de: "APR 3", es: "APR 3" },
+    stage4Date: { en: "10:30 PM", de: "22:30 UHR", es: "10:30 PM" },
     stage4Title: {
-      en: "Finalists Announcement", de: "Finalists Announcement", es: "Finalists Announcement",
+      en: "Demo what you shipped", de: "Demo was du geshipped hast", es: "Demo lo que lanzaste",
     },
     stage4Desc: {
-      en: "Publication of the list of teams that made it to the hackathon final", de: "Publication of the list of teams that made it to the hackathon final", es: "Publication of the list of teams that made it to the hackathon final",
+      en: "Every team that submits a working URL can demo. Then we celebrate.", de: "Jedes Team mit funktionierender URL kann demoen. Dann feiern wir.", es: "Todo equipo con URL funcional puede hacer demo. Luego celebramos.",
     },
   },
 
   // Schedule Section
   schedule: {
-    tag: { en: "SCHEDULE", de: "SCHEDULE", es: "SCHEDULE" },
+    tag: { en: "AGENDA", de: "AGENDA", es: "AGENDA" },
     title: {
-      en: "The Run of Show", de: "Der Ablauf", es: "El programa",
+      en: "Ship Night Agenda", de: "Ship Night Agenda", es: "Agenda de Ship Night",
     },
     subtitle: {
-      en: "Doors at 4pm: build, demo, and celebrate till midnight", de: "Einlass um 16 Uhr: bauen, demoen und feiern bis Mitternacht", es: "Puertas a las 4pm: construye, presenta y celebra hasta medianoche",
+      en: "One Miami night for every level: setup, build, demo, celebrate", de: "Eine Miami-Nacht für jedes Level: Setup, Build, Demo, Feiern", es: "Una noche en Miami para todos los niveles: setup, build, demo, celebrar",
     },
     day1: { en: "The Night", de: "Der Abend", es: "La noche" },
     day1Label: { en: "4pm – 12am", de: "16–24 Uhr", es: "4pm – 12am" },
     block1: {
-      en: "Onboarding, Tutorials & Networking", de: "Onboarding, Tutorials & Networking", es: "Bienvenida, tutoriales y networking",
+      en: "Welcome, Cursor Setup & Team Up", de: "Welcome, Cursor-Setup & Team Up", es: "Bienvenida, setup de Cursor y equipos",
     },
     block1Desc: {
-      en: "Get set up with your AI tools, learn the ropes, meet your people, and lock in your team. Zero experience needed. We've got you.", de: "Richte dich mit deinen KI-Tools ein, lerne die Grundlagen, lerne deine Leute kennen und finde dein Team. Keine Erfahrung nötig. Wir helfen dir.", es: "Configura tus herramientas de IA, aprende lo básico, conoce a tu gente y forma tu equipo. No necesitas experiencia. Te acompañamos.",
+      en: "First time here? Perfect. We walk you through Cursor, spark ideas, and match solos into teams. Pros can skip ahead and claim a table.", de: "Zum ersten Mal hier? Perfekt. Wir führen dich durch Cursor, zünden Ideen und matchen Solos in Teams. Pros können direkt einen Tisch nehmen.", es: "¿Primera vez? Perfecto. Te guiamos por Cursor, encendemos ideas y emparejamos a quien llega solo. Los pros pueden ir directo a una mesa.",
     },
     block2: {
-      en: "Hackathon", de: "Hackathon", es: "Hackathon",
+      en: "Build & Ship", de: "Build & Ship", es: "Build & Ship",
     },
     block2Desc: {
-      en: "Heads down, hands building. Mentors floating around to get you unstuck and keep the momentum going.", de: "Kopf runter, Hände am Bauen. Mentor:innen sind unterwegs, um dich weiterzubringen und den Schwung zu halten.", es: "Cabeza abajo, manos construyendo. Los mentores circulan para desatascarte y mantener el impulso.",
+      en: "Heads down from 6 to 10:30. Mentors float the floor for beginners and advanced builders alike. Goal: a public URL anyone can open.", de: "Von 18 bis 22:30 Kopf runter. Mentor:innen helfen Einsteigern und Fortgeschrittenen. Ziel: eine öffentliche URL, die jeder öffnen kann.", es: "De 6 a 10:30, a construir. Mentores ayudan a principiantes y avanzados. Meta: una URL pública que cualquiera pueda abrir.",
     },
     block3: {
       en: "Demos & Winners", de: "Demos & Gewinner", es: "Demos y ganadores",
     },
     block3Desc: {
-      en: "Teams take the stage, show what they made, and we crown the winners.", de: "Teams gehen auf die Bühne, zeigen, was sie gebaut haben, und wir küren die Gewinner.", es: "Los equipos suben al escenario, muestran lo que hicieron y coronamos a los ganadores.",
+      en: "Teams take the stage, show what they shipped, and we crown the winners. Beginners do the talking when they can.", de: "Teams gehen auf die Bühne, zeigen was sie geshipped haben, und wir küren die Gewinner. Einsteiger übernehmen das Reden, wenn möglich.", es: "Los equipos suben al escenario, muestran lo que lanzaron y coronamos ganadores. Los principiantes hablan cuando puedan.",
     },
     block4: {
       en: "Hang & Celebrate", de: "Abhängen & Feiern", es: "Convivir y celebrar",
     },
     block4Desc: {
-      en: "Cool down, keep the conversations rolling, and toast to everything that got built tonight.", de: "Runterkommen, weiter quatschen und auf alles anstoßen, was heute Abend gebaut wurde.", es: "Relájate, sigue la conversación y brinda por todo lo que se construyó esta noche.",
+      en: "Cool down, swap contacts, and toast everything that got built tonight in Miami.", de: "Runterkommen, Kontakte tauschen und auf alles anstoßen, was heute Abend in Miami gebaut wurde.", es: "Relájate, intercambia contactos y brinda por todo lo construido esta noche en Miami.",
     },
     note: {
-      en: "Bring your laptop and charger. Curiosity is the only real requirement.", de: "Bring deinen Laptop und dein Ladegerät mit. Neugier ist die einzige echte Voraussetzung.", es: "Trae tu laptop y cargador. La curiosidad es el único requisito real.",
+      en: "Bring your laptop and charger. Curiosity is the only real requirement — every level is welcome.", de: "Bring Laptop und Ladegerät. Neugier ist die einzige echte Voraussetzung — jedes Level ist willkommen.", es: "Trae laptop y cargador. La curiosidad es el único requisito real: todos los niveles son bienvenidos.",
     },
   },
 
@@ -836,9 +836,9 @@ export const translations = {
       es: "El principiante es quien habla: el experto puede manejar la laptop, pero un novato explica la idea.",
     },
     round2Bullet3: {
-      en: "Judges huddle ~3 minutes and pick 1st, 2nd, and 3rd on how far the beginners came in ~4 hours and the utility and creativity of the AI build.",
-      de: "Die Judges beraten sich ~3 Minuten und wählen 1., 2. und 3. Bewertet wird, wie weit die Einsteiger in ~4 Stunden gekommen sind sowie Nutzen und Kreativität des KI-Builds.",
-      es: "Los jueces deliberan ~3 minutos y eligen 1.º, 2.º y 3.º según cuánto avanzaron los principiantes en ~4 horas y la utilidad y creatividad del desarrollo con IA.",
+      en: "Judges huddle ~3 minutes and pick 1st, 2nd, and 3rd on utility, creativity, and how far the team came in one night — especially when beginners are on the mic.",
+      de: "Die Judges beraten sich ~3 Minuten und wählen 1., 2. und 3. nach Nutzen, Kreativität und wie weit das Team in einer Nacht gekommen ist — besonders wenn Einsteiger am Mikro sind.",
+      es: "Los jueces deliberan ~3 minutos y eligen 1.º, 2.º y 3.º por utilidad, creatividad y cuánto avanzó el equipo en una noche — sobre todo si un principiante habla.",
     },
 
     // Tie-Breakers (automatic)
@@ -967,32 +967,32 @@ export const translations = {
   teamBuilding: {
     tag: { en: "TEAM", de: "TEAM", es: "TEAM" },
     title: {
-      en: "How to Build a Team for 48H", de: "How to Build a Team for 48H", es: "How to Build a Team for 48H",
+      en: "How to Team Up for Ship Night", de: "So findest du ein Team für Ship Night", es: "Cómo armar equipo para Ship Night",
     },
     subtitle: {
-      en: "The right team is the key to success at the hackathon", de: "The right team is the key to success at the hackathon", es: "The right team is the key to success at the hackathon",
+      en: "Solo is fine. Friends are fine. Mixed experience teams are encouraged.", de: "Solo ist okay. Freunde sind okay. Teams mit gemischter Erfahrung sind erwünscht.", es: "Solo está bien. Con amigos está bien. Se animan equipos con experiencia mixta.",
     },
     sizeTitle: {
-      en: "Optimal Size and Composition", de: "Optimal Size and Composition", es: "Optimal Size and Composition",
+      en: "Size and mix", de: "Größe und Mix", es: "Tamaño y mezcla",
     },
     sizeDesc: {
-      en: "Team of up to 5 people. Recommended roles: developer with AI editor experience (required), backend/frontend developers, person with AI/ML integration experience (OpenAI, Anthropic APIs, etc.), someone with UI/UX skills, and a participant who can present the project at the finale.", de: "Team of up to 5 people. Recommended roles: developer with AI editor experience (required), backend/frontend developers, person with AI/ML integration experience (OpenAI, Anthropic APIs, etc.), someone with UI/UX skills, and a participant who can present the project at the finale.", es: "Team of up to 5 people. Recommended roles: developer with AI editor experience (required), backend/frontend developers, person with AI/ML integration experience (OpenAI, Anthropic APIs, etc.), someone with UI/UX skills, and a participant who can present the project at the finale.",
+      en: "Teams of up to 5. Mix beginners with someone who's shipped before when you can. Useful mix: one person driving Cursor, someone thinking product, someone who likes to present.", de: "Teams bis 5 Personen. Mixe Einsteiger mit jemandem, der schon geshipped hat, wenn möglich. Nützlicher Mix: eine Person am Cursor, jemand mit Produktblick, jemand der gerne präsentiert.", es: "Equipos de hasta 5. Mezcla principiantes con alguien que ya haya lanzado cuando puedas. Mix útil: quien maneja Cursor, quien piensa producto, quien disfruta presentar.",
     },
     findTitle: {
-      en: "Where to Find Teammates", de: "Where to Find Teammates", es: "Where to Find Teammates",
+      en: "Where to Find Teammates", de: "Wo du Teammates findest", es: "Dónde encontrar compañeros",
     },
     findDesc: {
-      en: "Official hackathon chat, Telegram or Discord developer communities, LinkedIn, and university groups. Looking for a team? Introduce yourself: experience, tech stack, and ideas you care about.", de: "Offizieller Hackathon-Chat, Telegram- oder Discord-Communities für Entwickler, LinkedIn und Uni-Gruppen. Team gesucht? Stellt euch vor: Erfahrung, Tech-Stack und Themen, die euch interessieren.", es: "Chat oficial del hackathon, comunidades de desarrolladores en Telegram o Discord, LinkedIn y grupos universitarios. ¿Buscas equipo? Preséntate: experiencia, stack tecnológico e ideas que te motivan.",
+      en: "Cursor Miami community channels, the event chat, LinkedIn, campus clubs — or just show up solo and we'll match you at the door.", de: "Cursor-Miami-Community-Kanäle, Event-Chat, LinkedIn, Uni-Clubs — oder komm einfach solo, wir matchen dich an der Tür.", es: "Canales de Cursor Miami, el chat del evento, LinkedIn, clubs universitarios — o llega solo y te emparejamos en la puerta.",
     },
     discussTitle: {
-      en: "What to Discuss Before the Hackathon", de: "What to Discuss Before the Hackathon", es: "What to Discuss Before the Hackathon",
+      en: "What to Align Before You Build", de: "Was ihr vor dem Build klären solltet", es: "Qué alinear antes de construir",
     },
     discussDesc: {
-      en: "Make sure everyone can attend offline for all 3 days. Agree on a basic tech stack. Verify that everyone's AI tools are installed and configured. Exchange contacts and create a team chat.", de: "Make sure everyone can attend offline for all 3 days. Agree on a basic tech stack. Verify that everyone's AI tools are installed and configured. Exchange contacts and create a team chat.", es: "Make sure everyone can attend offline for all 3 days. Agree on a basic tech stack. Verify that everyone's AI tools are installed and configured. Exchange contacts and create a team chat.",
+      en: "Confirm everyone can stay for the night. Agree on a simple idea. Make sure Cursor (or your AI editor) is installed. Share contacts and open a team chat.", de: "Klarstellen, dass alle den Abend bleiben können. Eine einfache Idee wählen. Cursor (oder euren KI-Editor) installieren. Kontakte tauschen und einen Team-Chat öffnen.", es: "Confirma que todos pueden quedarse la noche. Acuerden una idea simple. Instalen Cursor (o su editor de IA). Compartan contactos y abran un chat de equipo.",
     },
-    tipTitle: { en: "Tip", de: "Tip", es: "Tip" },
+    tipTitle: { en: "Tip", de: "Tipp", es: "Consejo" },
     tipDesc: {
-      en: "Don't recruit a team based only on hard skills. 4 hours of intensive work requires people who can negotiate and make decisions quickly.", de: "Don't recruit a team based only on hard skills. 4 hours of intensive work requires people who can negotiate and make decisions quickly.", es: "Don't recruit a team based only on hard skills. 4 hours of intensive work requires people who can negotiate and make decisions quickly.",
+      en: "Don't recruit only on hard skills. One evening of shipping rewards people who communicate and decide fast.", de: "Rekrutiert nicht nur nach Hard Skills. Ein Abend Shippen belohnt Leute, die klar kommunizieren und schnell entscheiden.", es: "No armes el equipo solo por hard skills. Una noche de shipping premia a quien comunica y decide rápido.",
     },
   },
 
@@ -1111,35 +1111,35 @@ export const translations = {
     },
   },
 
-  // Tracks Section: one track: Build & Ship
+  // Tracks Section: one open track for every level
   tracks: {
     tag: { en: "THE TRACK", de: "DER TRACK", es: "LA PISTA" },
     title: {
-      en: "Your Track",
-      de: "Dein Track",
-      es: "Tu pista",
+      en: "One Mission for Everyone",
+      de: "Eine Mission für alle",
+      es: "Una misión para todos",
     },
     subtitle: {
-      en: "One track, one mission: design a fully working application and ship it off localhost to a public URL anyone can open.",
-      de: "Ein Track, eine Mission: entwirf eine voll funktionierende Anwendung und bring sie weg vom localhost auf eine öffentliche URL, die jeder öffnen kann.",
-      es: "Una pista, una misión: diseña una aplicación completamente funcional y sácala de localhost a una URL pública que cualquiera pueda abrir.",
+      en: "One open track: design a working application and ship it off localhost to a public URL anyone can open. Beginners and pros compete on the same night.",
+      de: "Ein offener Track: entwirf eine funktionierende App und bring sie vom Localhost auf eine öffentliche URL. Einsteiger und Pros am selben Abend.",
+      es: "Una pista abierta: diseña una app funcional y sácala de localhost a una URL pública. Principiantes y pros la misma noche.",
     },
 
-    beginnerLevel: { en: "BEGINNER", de: "EINSTEIGER", es: "PRINCIPIANTE" },
+    beginnerLevel: { en: "OPEN TRACK", de: "OFFENER TRACK", es: "PISTA ABIERTA" },
     beginnerName: {
-      en: "Build & Ship Track",
-      de: "Build & Ship Track",
-      es: "Pista Build & Ship",
+      en: "Build & Ship",
+      de: "Build & Ship",
+      es: "Build & Ship",
     },
     beginnerTag: {
-      en: "Your first deployed app",
-      de: "Deine erste deployte App",
-      es: "Tu primera app desplegada",
+      en: "Every level welcome",
+      de: "Jedes Level willkommen",
+      es: "Todos los niveles bienvenidos",
     },
     beginnerDesc: {
-      en: "For complete beginners. Design and build a fully functioning application and get it off localhost, onto a public URL anyone can open.",
-      de: "Für komplette Einsteiger. Entwerfe und baue eine voll funktionierende Anwendung und bring sie weg vom localhost auf eine öffentliche URL, die jeder öffnen kann.",
-      es: "Para principiantes totales. Diseña y construye una aplicación completamente funcional y sácala de localhost, a una URL pública que cualquiera pueda abrir.",
+      en: "Built for first-timers and still fun if you ship weekly. Design and build a working app, then get it onto a public URL anyone can open.",
+      de: "Für Erstbesucher gebaut und trotzdem spannend, wenn du wöchentlich shippst. Entwirf und baue eine funktionierende App und bring sie auf eine öffentliche URL.",
+      es: "Hecho para primera vez y aún divertido si ya lanzas seguido. Diseña y construye una app funcional y súbela a una URL pública.",
     },
     beginnerBullet1: {
       en: "Ship a real, working app to a public URL",
@@ -1147,14 +1147,14 @@ export const translations = {
       es: "Lanza una app real y funcional a una URL pública",
     },
     beginnerBullet2: {
-      en: "Craft, creativity, and everyday usefulness rewarded",
-      de: "Handwerk, Kreativität und Alltagsnutzen werden belohnt",
-      es: "Se premia el oficio, la creatividad y la utilidad cotidiana",
+      en: "Creativity, usefulness, and how far beginners came all count",
+      de: "Kreativität, Nutzen und wie weit Einsteiger gekommen sind zählen",
+      es: "Cuentan creatividad, utilidad y cuánto avanzaron los principiantes",
     },
     beginnerBullet3: {
-      en: "Full judging criteria revealed at kickoff",
-      de: "Vollständige Bewertungskriterien beim Auftakt",
-      es: "Criterios completos de evaluación al inicio",
+      en: "Mentors on the floor all night for every experience level",
+      de: "Mentor:innen den ganzen Abend für jedes Erfahrungslevel",
+      es: "Mentores en sala toda la noche para todos los niveles",
     },
   },
 } as const;

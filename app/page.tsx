@@ -9,7 +9,7 @@ export const metadata: Metadata = {
   alternates: { canonical: getSiteUrl() + "/" },
   openGraph: {
     url: getSiteUrl(),
-    title: `${siteConfig.name} · AI Hackathon`,
+    title: `${siteConfig.name} · ${siteConfig.tagline}`,
     description: siteConfig.descriptionEn,
   },
 };

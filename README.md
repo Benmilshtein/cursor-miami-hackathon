@@ -1,6 +1,6 @@
-# Cursor Miami Hackathon
+# Cursor Miami Ship Night
 
-Open-source platform for running **hackathons**: landing site, registration, teams, screening, scoring, admin tools, and partner credits. Built with **Next.js**, **Supabase**, and **PostgreSQL**.
+Open-source platform for running **Cursor Miami Ship Night** and similar open, beginner-friendly ship nights: landing site, registration, teams, screening, scoring, admin tools, and partner credits. Built with **Next.js**, **Supabase**, and **PostgreSQL**.
 
 **Live site: [cursormiami.com](https://cursormiami.com)**
 

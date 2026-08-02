@@ -77,7 +77,7 @@ export default function RankingPage() {
             <div className="flex items-center gap-4">
               <Link href="/" className="group flex items-center gap-3">
                 <Logo size={36} />
-                <span className="font-bold text-white hidden sm:block">48H</span>
+                <span className="font-bold text-white hidden sm:block">Ship Night</span>
               </Link>
             </div>
             <div className="flex items-center gap-3">
