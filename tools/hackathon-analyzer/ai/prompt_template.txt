@@ -1,0 +1,30 @@
+You are assisting in reviewing hackathon projects to determine whether they were developed during the hackathon window and to highlight any suspicious patterns.
+
+HACKATHON CONTEXT:
+{{HACKATHON_CONTEXT}}
+
+REPOSITORY:
+- ID: {{REPO_ID}}
+- Repo: {{REPO}}
+
+METRICS (JSON):
+{{METRICS_JSON}}
+
+CODE CONTEXT:
+- File tree (truncated): 
+{{FILE_TREE}}
+- README (truncated): 
+{{README_SNIPPET}}
+
+TASK:
+Based on metrics and code context, provide a concise analysis. Focus on:
+
+- Whether the commit timing and volume seem consistent with a small hackathon project.
+- Any red flags (commits before T0, large bulk commits, unusual commit timing).
+- What the project appears to be (brief product summary from README/tree).
+- Whether the code scope/shape feels reasonable for a hackathon using modern AI coding tools.
+- Any notable patterns worth calling out for judges.
+
+OUTPUT FORMAT (text only, no JSON):
+- 3–6 bullet points summarizing key observations (mix timing + code/product impression).
+- One final line starting with "Overall authenticity assessment:" followed by a short phrase (e.g., "looks consistent with a hackathon project", "some suspicious patterns", "highly suspicious").

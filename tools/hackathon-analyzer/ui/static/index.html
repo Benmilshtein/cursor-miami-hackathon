@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hackathon Analyzer</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+</head>
+<body>
+  <header>
+    <div class="logo">Hackathon Analyzer</div>
+    <div class="header-right">
+      <div class="stats-inline">
+        <span class="stat-pill"><span id="stat-total">0</span> Submissions</span>
+        <span class="stat-pill flagged"><span id="stat-flagged">0</span> Flagged</span>
+        <span class="stat-pill clean"><span id="stat-clean">0</span> Clean</span>
+        <span class="stat-divider"></span>
+        <span class="stat-pill"><span id="stat-commits">0</span> Commits</span>
+        <span class="stat-pill loc"><span id="stat-loc" class="loc-value">0</span> LoC</span>
+      </div>
+      <div class="meta">Live Dashboard</div>
+    </div>
+  </header>
+
+  <main>
+    <section class="panel full-width">
+      <div class="panel-header">
+        <h2>Submissions</h2>
+        <div class="filters">
+          <label><input type="checkbox" id="filter-preT0"> Pre-T0</label>
+          <label><input type="checkbox" id="filter-bulk"> Bulk</label>
+          <label><input type="checkbox" id="filter-merge"> Merge</label>
+          <div class="sorter">
+            <span>Sort by</span>
+            <select id="sort-select">
+              <option value="default">Default</option>
+              <option value="judge">Judge avg</option>
+              <option value="commits">Commits</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="table-wrapper">
+        <table id="summary-table">
+          <thead>
+            <tr>
+              <th class="th-repo">Repository</th>
+              <th class="th-judge" data-tooltip="Average of judge scores; click row for notes">Judge Avg</th>
+              <th class="th-num" data-tooltip="Total number of commits in the repository">Commits</th>
+              <th class="th-num" data-tooltip="Lines of code added across all commits">LOC+</th>
+              <th class="th-num" data-tooltip="Lines of code deleted across all commits">LOC−</th>
+              <th class="th-flag" data-tooltip="Commits made before the hackathon start time (T0)">Pre-T0</th>
+              <th class="th-flag" data-tooltip="Contains bulk commits with unusually large changes">Bulk</th>
+              <th class="th-flag" data-tooltip="Large initial commit after T0 (potential pre-work)">Init</th>
+              <th class="th-flag" data-tooltip="Contains merge commits (may indicate external collaboration)">Merge</th>
+              <th class="th-verdict" data-tooltip="AI assessment of project authenticity">Assessment</th>
+              <th class="th-ai">AI Summary</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Slide-out details panel -->
+    <aside id="details-drawer" class="drawer hidden">
+      <div class="drawer-header">
+        <h2 id="detail-title">Repository Details</h2>
+        <button id="close-drawer" class="close-btn" aria-label="Close">&times;</button>
+      </div>
+      <div class="drawer-content">
+        <div class="ai-section">
+          <h3>AI Analysis</h3>
+          <div id="ai-output" class="ai-output"></div>
+        </div>
+        <div class="judge-section">
+          <h3>Judge Responses</h3>
+          <div id="judge-output" class="judge-output"></div>
+        </div>
+        <div class="metrics-grid">
+          <div class="metric-card">
+            <h4>Summary</h4>
+            <pre id="metrics-summary"></pre>
+          </div>
+          <div class="metric-card">
+            <h4>Flags</h4>
+            <pre id="metrics-flags"></pre>
+          </div>
+          <div class="metric-card">
+            <h4>Time Distribution</h4>
+            <pre id="metrics-time"></pre>
+          </div>
+        </div>
+        <div class="commits-section">
+          <h3>Commits <span class="commit-count"></span></h3>
+          <div class="table-wrapper commits-table-wrapper">
+            <table id="commits-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Time</th>
+                  <th>+</th>
+                  <th>−</th>
+                  <th>Files</th>
+                  <th>Bulk</th>
+                  <th>&lt;T0</th>
+                  <th>&gt;T1</th>
+                  <th>Message</th>
+                </tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <div id="drawer-overlay" class="drawer-overlay hidden"></div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

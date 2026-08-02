@@ -3,14 +3,14 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Trophy, Medal, Award, BarChart3, Lock, Users } from "lucide-react";
+import { Trophy, Medal, Award, BarChart3, Lock, Gavel } from "lucide-react";
 import { Logo, NoiseOverlay } from "@/components/ui";
 
-type CrowdRow = {
+type JudgeRow = {
   teamId: number;
   teamName: string;
-  totalCredits: number;
-  uniqueVoters: number;
+  totalAvg: number;
+  judgeCount: number;
   rank: number;
 };
 
@@ -29,7 +29,7 @@ function getRankBorder(rank: number) {
 }
 
 export default function RankingPage() {
-  const [leaderboard, setLeaderboard] = useState<CrowdRow[]>([]);
+  const [leaderboard, setLeaderboard] = useState<JudgeRow[]>([]);
   const [finalized, setFinalized] = useState(false);
   const [connected, setConnected] = useState(false);
 
@@ -47,10 +47,10 @@ export default function RankingPage() {
                 ({
                   teamId: Number(r.teamId),
                   teamName: String(r.teamName ?? ""),
-                  totalCredits: Number(r.totalCredits ?? 0),
-                  uniqueVoters: Number(r.uniqueVoters ?? 0),
+                  totalAvg: Number(r.totalAvg ?? 0),
+                  judgeCount: Number(r.judgeCount ?? 0),
                   rank: Number(r.rank ?? 0),
-                }) satisfies CrowdRow,
+                }) satisfies JudgeRow,
             ),
           );
           if (typeof data.finalized === "boolean") setFinalized(data.finalized);
@@ -107,10 +107,10 @@ export default function RankingPage() {
             animate={{ opacity: 1, y: 0 }}
             className="mb-8"
           >
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">Crowd vote results</h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">Judge results</h1>
             <p className="text-[var(--text-secondary)] text-sm md:text-base">
               {finalized
-                ? "Ranked by Launch Credits from the peer expo. Ties broken by reach (unique voters)."
+                ? "Ranked by official judge scores after GitHub repo analysis."
                 : "Results will be published by the organizers when ready."}
             </p>
           </motion.div>
@@ -126,9 +126,9 @@ export default function RankingPage() {
           ) : leaderboard.length === 0 ? (
             <div className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] p-12 text-center">
               <BarChart3 className="mx-auto mb-4 h-10 w-10 text-[var(--text-muted)]" />
-              <p className="text-[var(--text-secondary)]">No votes yet</p>
+              <p className="text-[var(--text-secondary)]">No scores yet</p>
               <p className="mt-1 text-xs text-[var(--text-muted)]">
-                Teams will appear here once the crowd starts voting
+                Teams appear here once judges finish scoring analyzed repos
               </p>
             </div>
           ) : (
@@ -157,20 +157,18 @@ export default function RankingPage() {
                             {team.teamName}
                           </h3>
                           <div className="mt-0.5 flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
-                            <Users className="h-3.5 w-3.5" />
-                            <span className="tabular-nums">{team.uniqueVoters}</span>
-                            <span>{team.uniqueVoters === 1 ? "voter" : "voters"}</span>
+                            <Gavel className="h-3.5 w-3.5" />
+                            <span className="tabular-nums">{team.judgeCount}</span>
+                            <span>{team.judgeCount === 1 ? "judge" : "judges"}</span>
                           </div>
                         </div>
                         <div className="flex-shrink-0 text-right">
                           <div
                             className={`text-2xl font-bold tabular-nums ${rank <= 3 ? "text-white" : "text-[var(--text-secondary)]"}`}
                           >
-                            {team.totalCredits}
+                            {team.totalAvg.toFixed(1)}
                           </div>
-                          <div className="text-xs text-[var(--text-muted)]">
-                            {team.totalCredits === 1 ? "credit" : "credits"}
-                          </div>
+                          <div className="text-xs text-[var(--text-muted)]">/ 100</div>
                         </div>
                       </div>
                     </motion.div>

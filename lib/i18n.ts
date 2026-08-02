@@ -774,7 +774,7 @@ export const translations = {
     },
   },
 
-  // Judging Section: "Build to Ship" Expo flow (see docs/Hackathon-layout.md)
+  // Judging: GitHub Repo Analyzer (HCMC-style) + official judge scores
   criteria: {
     tag: {
       en: "JUDGING", de: "BEWERTUNG", es: "EVALUACIÓN",
@@ -783,103 +783,103 @@ export const translations = {
       en: "How the Judging Works", de: "So funktioniert die Bewertung", es: "Cómo funciona la evaluación",
     },
     subtitle: {
-      en: "The crowd filters the top apps for the judges, then the judges crown the winners, all run live in the event app.",
-      de: "Die Menge filtert die besten Apps für die Judges vor, dann krönen die Judges die Gewinner, alles live in der Event-App.",
-      es: "El público filtra las mejores apps para los jueces, y luego los jueces coronan a los ganadores, todo en vivo en la app del evento.",
+      en: "Every submitted GitHub repo is analyzed for authenticity and activity, then judges score the builds. No peer swipe voting.",
+      de: "Jedes eingereichte GitHub-Repo wird auf Authentizität und Aktivität analysiert, dann bewerten die Judges die Builds. Kein Peer-Swipe-Voting.",
+      es: "Cada repo de GitHub enviado se analiza por autenticidad y actividad; luego los jueces puntúan. Sin votación peer / swipe.",
     },
 
-    // Round 1: The Peer Expo (40 min)
-    round1Title: { en: "The Peer Expo", de: "Die Peer-Expo", es: "La Peer Expo" },
-    round1Duration: { en: "40 min", de: "40 Min", es: "40 min" },
+    // Round 1: Repo analysis
+    round1Title: { en: "GitHub Repo Analysis", de: "GitHub-Repo-Analyse", es: "Análisis de repos GitHub" },
+    round1Duration: { en: "All submissions", de: "Alle Einreichungen", es: "Todas las entregas" },
     round1Goal: {
-      en: "The crowd votes to surface the top 5–6 apps. Teams split into Group A and Group B: one group demos while the other tests and votes, then they swap.",
-      de: "Die Menge stimmt ab, um die besten 5–6 Apps zu ermitteln. Die Teams werden in Gruppe A und Gruppe B aufgeteilt: eine Gruppe demonstriert, während die andere testet und abstimmt, dann wird gewechselt.",
-      es: "El público vota para destacar las 5–6 mejores apps. Los equipos se dividen en Grupo A y Grupo B: un grupo presenta mientras el otro prueba y vota, y luego intercambian.",
+      en: "We clone each public GitHub URL and compute objective metrics judges can inspect before scoring.",
+      de: "Wir klonen jede öffentliche GitHub-URL und berechnen objektive Metriken, die Judges vor der Bewertung prüfen können.",
+      es: "Clonamos cada URL pública de GitHub y calculamos métricas objetivas que los jueces revisan antes de puntuar.",
     },
     round1Bullet1: {
-      en: "Round 1 (20 min): Group A demos. Group B walks the floor and votes on Group A.",
-      de: "Runde 1 (20 Min): Gruppe A demonstriert. Gruppe B geht herum und stimmt über Gruppe A ab.",
-      es: "Ronda 1 (20 min): el Grupo A presenta. El Grupo B recorre la sala y vota al Grupo A.",
+      en: "Pre-T0 flag: commits before Ship Night start time are highlighted (not auto-DQ).",
+      de: "Pre-T0-Flag: Commits vor dem Ship-Night-Start werden markiert (kein Auto-DQ).",
+      es: "Flag Pre-T0: se marcan commits antes del inicio (sin descalificación automática).",
     },
     round1Bullet2: {
-      en: "Round 2 (20 min): Group B demos. Group A walks the floor and votes on Group B. A buzzer signals the swap.",
-      de: "Runde 2 (20 Min): Gruppe B demonstriert. Gruppe A geht herum und stimmt über Gruppe B ab. Ein Summer signalisiert den Wechsel.",
-      es: "Ronda 2 (20 min): el Grupo B presenta. El Grupo A recorre la sala y vota al Grupo B. Una bocina señala el cambio.",
+      en: "Bulk / huge initial commits and merge patterns surface as review flags.",
+      de: "Bulk-/Riesen-Initial-Commits und Merge-Muster erscheinen als Review-Flags.",
+      es: "Commits masivos / iniciales enormes y merges aparecen como flags de revisión.",
     },
     round1Bullet3: {
-      en: "Every attendee gets 3 Launch Credits and can only vote for teams in the other group, never their own.",
-      de: "Jeder Teilnehmer erhält 3 Launch Credits und kann nur für Teams der anderen Gruppe stimmen, nie für das eigene.",
-      es: "Cada asistente recibe 3 Launch Credits y solo puede votar por equipos del otro grupo, nunca por el suyo.",
+      en: "LOC, commit velocity, and time distribution help judges see how the night was spent.",
+      de: "LOC, Commit-Velocity und Zeitverteilung zeigen Judges, wie die Nacht genutzt wurde.",
+      es: "LOC, velocidad de commits y distribución temporal ayudan a ver cómo se usó la noche.",
     },
     round1Bullet4: {
-      en: "Votes lock on the swap. When voting closes, the live leaderboard sends the top 5–6 teams to the finals.",
-      de: "Die Stimmen werden beim Wechsel gesperrt. Nach Abschluss der Abstimmung schickt das Live-Leaderboard die besten 5–6 Teams ins Finale.",
-      es: "Los votos se bloquean en el cambio. Al cerrar la votación, la tabla en vivo envía a los 5–6 mejores equipos a la final.",
+      en: "Optional AI notes summarize authenticity signals for faster review.",
+      de: "Optionale KI-Notizen fassen Authentizitätssignale für schnelleres Review zusammen.",
+      es: "Notas de IA opcionales resumen señales de autenticidad para revisar más rápido.",
     },
 
-    // Round 2: The Judge Finals (15 min)
-    round2Title: { en: "The Judge Finals", de: "Das Judge-Finale", es: "La Final de Jueces" },
-    round2Duration: { en: "15 min", de: "15 Min", es: "15 min" },
+    // Round 2: Judge scoring
+    round2Title: { en: "Judge Scoring", de: "Judge-Bewertung", es: "Puntuación de jueces" },
+    round2Duration: { en: "Per team", de: "Pro Team", es: "Por equipo" },
     round2Goal: {
-      en: "The judges crown the winners from the crowd's favorites. The 5–6 finalist teams take the main stage.",
-      de: "Die Judges krönen die Gewinner aus den Favoriten der Menge. Die 5–6 Finalisten-Teams betreten die Hauptbühne.",
-      es: "Los jueces coronan a los ganadores entre los favoritos del público. Los 5–6 equipos finalistas suben al escenario principal.",
+      en: "Judges review the live demo + analyzer flags, then enter official scores in the staff portal.",
+      de: "Judges prüfen Live-Demo + Analyzer-Flags und tragen offizielle Scores im Staff-Portal ein.",
+      es: "Los jueces revisan la demo en vivo + flags del analyzer y cargan scores oficiales en el portal staff.",
     },
     round2Bullet1: {
-      en: "Each finalist gets exactly 90 seconds to show their app and explain what it does.",
-      de: "Jeder Finalist hat genau 90 Sekunden, um seine App zu zeigen und zu erklären, was sie macht.",
-      es: "Cada finalista tiene exactamente 90 segundos para mostrar su app y explicar qué hace.",
+      en: "Score across innovation, technical execution, AI usage, UX/UI, and business potential (100 pts).",
+      de: "Bewertung nach Innovation, technischer Umsetzung, KI-Nutzung, UX/UI und Business-Potenzial (100 Pkt.).",
+      es: "Puntúan innovación, ejecución técnica, uso de IA, UX/UI y potencial de negocio (100 pts).",
     },
     round2Bullet2: {
-      en: "The beginner does the talking: the pro can drive the laptop, but a novice explains the idea.",
-      de: "Der Einsteiger übernimmt das Reden: der Profi darf den Laptop bedienen, aber ein Neuling erklärt die Idee.",
-      es: "El principiante es quien habla: el experto puede manejar la laptop, pero un novato explica la idea.",
+      en: "Beginners are rewarded for how far they came in one night, not just polish.",
+      de: "Einsteiger werden dafür belohnt, wie weit sie in einer Nacht gekommen sind, nicht nur für Polish.",
+      es: "Se premia cuánto avanzaron los principiantes en una noche, no solo el pulido.",
     },
     round2Bullet3: {
-      en: "Judges huddle ~3 minutes and pick 1st, 2nd, and 3rd on utility, creativity, and how far the team came in one night — especially when beginners are on the mic.",
-      de: "Die Judges beraten sich ~3 Minuten und wählen 1., 2. und 3. nach Nutzen, Kreativität und wie weit das Team in einer Nacht gekommen ist — besonders wenn Einsteiger am Mikro sind.",
-      es: "Los jueces deliberan ~3 minutos y eligen 1.º, 2.º y 3.º por utilidad, creatividad y cuánto avanzó el equipo en una noche — sobre todo si un principiante habla.",
+      en: "Final placements come from averaged judge scores after organizers publish the ranking.",
+      de: "Platzierungen ergeben sich aus gemittelten Judge-Scores, sobald Organizer das Ranking veröffentlichen.",
+      es: "Las posiciones finales salen del promedio de jueces cuando los organizadores publican el ranking.",
     },
 
-    // Tie-Breakers (automatic)
+    // Tie-Breakers
     tieTitle: { en: "Tie-Breakers", de: "Gleichstand-Regeln", es: "Desempates" },
-    tieTag: { en: "Automatic", de: "Automatisch", es: "Automático" },
+    tieTag: { en: "Judge review", de: "Judge-Review", es: "Revisión de jueces" },
     tieGoal: {
-      en: "Because the app tracks everything on the backend, the leaderboard breaks ties instantly, in this order:",
-      de: "Da die App alles im Backend erfasst, löst das Leaderboard Gleichstände sofort auf, in dieser Reihenfolge:",
-      es: "Como la app registra todo en el backend, la tabla rompe empates al instante, en este orden:",
+      en: "When averages tie, organizers break ties using analyzer context in this order:",
+      de: "Bei Gleichstand lösen Organizer mit Analyzer-Kontext in dieser Reihenfolge:",
+      es: "Si hay empate, los organizadores desempatan con el analyzer en este orden:",
     },
     tieBullet1: {
-      en: "Most credits: the raw total of Launch Credits received.",
-      de: "Meiste Credits: die Gesamtzahl der erhaltenen Launch Credits.",
-      es: "Más créditos: el total bruto de Launch Credits recibidos.",
+      en: "Cleaner authenticity flags (fewer pre-T0 / bulk concerns).",
+      de: "Sauberere Authentizitäts-Flags (weniger Pre-T0-/Bulk-Bedenken).",
+      es: "Flags de autenticidad más limpios (menos Pre-T0 / bulk).",
     },
     tieBullet2: {
-      en: "The Reach Metric: votes from the highest number of unique users wins (broad appeal beats one friend dumping all 3 credits).",
-      de: "Die Reichweiten-Metrik: Stimmen von der höchsten Zahl einzigartiger Nutzer gewinnen (breite Resonanz schlägt einen Freund, der alle 3 Credits abgibt).",
-      es: "La métrica de alcance: gana quien tenga votos del mayor número de usuarios únicos (el atractivo amplio supera a un amigo que da los 3 créditos).",
+      en: "Stronger during-event commit activity and meaningful LOC progress.",
+      de: "Stärkere Commit-Aktivität während des Events und sinnvoller LOC-Fortschritt.",
+      es: "Mayor actividad de commits durante el evento y progreso LOC significativo.",
     },
     tieBullet3: {
-      en: "Speed to Market: the team that hit \"Submit Project\" first wins.",
-      de: "Speed to Market: das Team, das zuerst auf \"Projekt einreichen\" geklickt hat, gewinnt.",
-      es: "Velocidad de lanzamiento: gana el equipo que pulsó \"Enviar proyecto\" primero.",
+      en: "Earlier project submission timestamp in the event app.",
+      de: "Früherer Projekt-Einreichungszeitpunkt in der Event-App.",
+      es: "Timestamp de entrega del proyecto más temprano en la app del evento.",
     },
 
     // Live Leaderboard Reveal
     leaderboardTitle: {
-      en: "The Live Leaderboard Reveal",
-      de: "Das Live-Leaderboard",
-      es: "La revelación de la tabla en vivo",
+      en: "Published Judge Leaderboard",
+      de: "Veröffentlichtes Judge-Leaderboard",
+      es: "Leaderboard oficial de jueces",
     },
     leaderboardQuote: {
-      en: "\"The data is in. Out of all the teams who built and shipped tonight, here are the top finalists moving on to the pitch stage…\"",
-      de: "\"Die Daten sind da. Von allen Teams, die heute Abend gebaut und ausgeliefert haben, hier die Top-Finalisten, die auf die Pitch-Bühne kommen…\"",
-      es: "\"Los datos están listos. De todos los equipos que construyeron y lanzaron esta noche, estos son los finalistas que pasan al escenario de pitch…\"",
+      en: "\"Repos analysis is in. Judges have scored every Ship Night submission — here is the official ranking.\"",
+      de: "\"Die Repo-Analyse ist da. Die Judges haben jede Ship-Night-Einreichung bewertet — hier das offizielle Ranking.\"",
+      es: "\"El análisis de repos está listo. Los jueces puntuaron cada entrega de Ship Night: aquí el ranking oficial.\"",
     },
     leaderboardNote: {
-      en: "No hand-counting: final scores compute the instant the Round 2 buzzer sounds.",
-      de: "Kein Auszählen von Hand: die Endergebnisse werden berechnet, sobald der Summer der Runde 2 ertönt.",
-      es: "Sin conteo manual: las puntuaciones finales se calculan en el instante en que suena la bocina de la Ronda 2.",
+      en: "Public ranking uses official judge averages — not crowd Launch Credits.",
+      de: "Das öffentliche Ranking nutzt offizielle Judge-Durchschnitte — keine Crowd-Launch-Credits.",
+      es: "El ranking público usa promedios oficiales de jueces, no Launch Credits del público.",
     },
   },
 
