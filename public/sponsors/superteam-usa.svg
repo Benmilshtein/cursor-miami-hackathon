@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 48" role="img" aria-label="Superteam USA">
+  <g fill="#ffffff">
+    <!-- ST monogram -->
+    <path d="M10 14c0-4.4 3.4-8 8.2-8 3.4 0 6.2 1.5 7.5 3.8l-3.4 2.1c-.7-1.2-2-2-3.9-2-2.3 0-3.9 1.4-3.9 3.2 0 1.6 1.1 2.6 3.6 3.3l2.2.6c4.5 1.2 7 3.7 7 7.6 0 4.7-3.7 8.3-8.9 8.3-4 0-7.1-1.8-8.5-4.5l3.5-2.2c.8 1.6 2.5 2.8 5 2.8 2.6 0 4.4-1.5 4.4-3.5 0-1.7-1.1-2.8-3.8-3.5l-2.2-.6C11.8 20.4 10 18 10 14z"/>
+    <path d="M30 8h14c.8 0 1.4.6 1.4 1.4v3.2c0 .8-.6 1.4-1.4 1.4H40v22.6c0 .8-.6 1.4-1.4 1.4h-3.8c-.8 0-1.4-.6-1.4-1.4V8z" opacity=".95"/>
+    <!-- wordmark -->
+    <text x="54" y="31" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="20" font-weight="700" letter-spacing="-0.01em">superteam</text>
+    <!-- star over t -->
+    <path d="M138 8.5l1.1 2.2 2.4.4-1.7 1.7.4 2.4-2.2-1.1-2.2 1.1.4-2.4-1.7-1.7 2.4-.4z"/>
+    <!-- USA flag + label -->
+    <circle cx="198" cy="24" r="10" fill="none" stroke="#ffffff" stroke-width="1.5"/>
+    <rect x="191" y="17.5" width="14" height="13" rx="1" fill="#B22234"/>
+    <rect x="191" y="19.5" width="14" height="1.5" fill="#ffffff"/>
+    <rect x="191" y="22.5" width="14" height="1.5" fill="#ffffff"/>
+    <rect x="191" y="25.5" width="14" height="1.5" fill="#ffffff"/>
+    <rect x="191" y="28.5" width="14" height="1.5" fill="#ffffff"/>
+    <rect x="191" y="17.5" width="7" height="7" fill="#3C3B6E"/>
+    <text x="214" y="30" font-family="ui-sans-serif, system-ui, -apple-system, Segoe UI, sans-serif" font-size="16" font-weight="700">USA</text>
+  </g>
+</svg>

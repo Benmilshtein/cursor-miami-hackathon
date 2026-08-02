@@ -594,25 +594,25 @@ export const translations = {
   // Sponsors Section (above hero)
   sponsors: {
     sectionLabel: {
-      en: "Sponsors", de: "Sponsors", es: "Sponsors",
+      en: "Sponsors", de: "Sponsoren", es: "Patrocinadores",
     },
     tag: {
       en: "Partners", de: "Partner", es: "Socios",
     },
     title: {
-      en: "Our Sponsors", de: "Our Sponsors", es: "Our Sponsors",
+      en: "Powered with friends", de: "Mit Partnern gebaut", es: "Con el apoyo de partners",
     },
     leadingPartnerLabel: {
       en: "Leading Partner", de: "Hauptpartner", es: "Socio principal",
     },
     sponsorsLabel: {
-      en: "Sponsors", de: "Sponsors", es: "Sponsors",
+      en: "Sponsors", de: "Sponsoren", es: "Patrocinadores",
     },
     coOrganizersLabel: {
-      en: "Co-organizers", de: "Co-organizers", es: "Co-organizers",
+      en: "Co-organizers", de: "Co-Organisatoren", es: "Coorganizadores",
     },
     socialSponsorsLabel: {
-      en: "Media & Social Partners", de: "Media & Social Partners", es: "Media & Social Partners",
+      en: "Media & Social Partners", de: "Medien- & Social-Partner", es: "Partners de medios y social",
     },
   },
 
