@@ -35,7 +35,10 @@
 
 ### Scoring and ranking
 
-- **Judges** (`user.role === "judge"`) submit criteria via **staff evaluate** API; updates are blocked when ranking is **finalized**.
+Judging is two steps: an automated repo requirements check, then judge scoring.
+
+- **repo_check** (step 1): one row per team caching the GitHub requirements check — PRD + `.cursorrules` committed and a public app URL submitted, all within an hour of `site_settings.hackathon_start_at` (T0). Run by super admin from **Admin → Teams**; judges read the cache. A failing team is **flagged, not disqualified**. Logic in `lib/judging/repo-check.ts`; needs `GITHUB_TOKEN` for GitHub's 5000/hr rate limit. `project.app_url_submitted_at` stamps the first time an app URL was set and is what the "within the first hour" URL rule measures.
+- **Judges** (`user.role === "judge"`) submit criteria via **staff evaluate** API; updates are blocked when ranking is **finalized**. The judge dashboard lists **all active teams** with their live app URL (judges follow builds through the night); scoring still requires an approved team with a submitted project.
 - **Super admin** can **enter or edit** any judge’s row (`upsertJudgeScoreByAdmin`, `updateJudgeScoreByAdmin`) and team-level **adjustments** on `team`: `lateSubmissionPenaltyPoints`, optional `judgeCountOverride`, and optional **`finalScoreOverride`** (0–100), which **replaces** the computed average on the public leaderboard when set. Admin score APIs do **not** check finalization so corrections remain possible after freeze if needed.
 
 ## Assumptions

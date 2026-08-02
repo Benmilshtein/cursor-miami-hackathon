@@ -5,8 +5,10 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
+  AlertTriangle,
   Trophy,
   Check,
+  X,
   ChevronRight,
   BarChart3,
   ExternalLink,
@@ -32,15 +34,71 @@ type TeamProject = {
   videoUrl: string | null;
 };
 
+type RepoCheck = {
+  hasPrd: boolean;
+  hasCursorRules: boolean;
+  hasAppUrl: boolean;
+  onTime: boolean;
+};
+
 type TeamToEvaluate = {
   id: number;
   name: string;
   description: string | null;
   memberCount: number;
+  approved: boolean;
+  /** Deployed app URL, live all night. */
+  appUrl: string | null;
   project: TeamProject | null;
+  repoCheck: RepoCheck | null;
   scored: boolean;
   total: number | null;
 };
+
+/**
+ * Step 1 at a glance: PRD / .cursorrules / public URL. Amber means present but
+ * outside the first hour, or never checked. This is a flag only - scoring is
+ * never blocked by it.
+ */
+function RequirementBadges({ check }: { check: RepoCheck | null }) {
+  if (!check) {
+    return (
+      <span className="text-[10px] uppercase tracking-wide text-[var(--text-muted)]">
+        Repo not checked
+      </span>
+    );
+  }
+
+  const items: Array<[string, boolean]> = [
+    ["PRD", check.hasPrd],
+    [".cursorrules", check.hasCursorRules],
+    ["URL", check.hasAppUrl],
+  ];
+
+  return (
+    <div className="flex flex-wrap items-center gap-1.5">
+      {items.map(([label, present]) => (
+        <span
+          key={label}
+          className={`inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-[10px] font-medium ${
+            present
+              ? "bg-emerald-500/10 text-emerald-400"
+              : "bg-red-500/10 text-red-400"
+          }`}
+        >
+          {present ? <Check className="h-2.5 w-2.5" /> : <X className="h-2.5 w-2.5" />}
+          {label}
+        </span>
+      ))}
+      {!check.onTime && (
+        <span className="inline-flex items-center gap-1 rounded bg-amber-500/10 px-1.5 py-0.5 text-[10px] font-medium text-amber-400">
+          <AlertTriangle className="h-2.5 w-2.5" />
+          Late
+        </span>
+      )}
+    </div>
+  );
+}
 
 export default function StaffDashboardPage() {
   const router = useRouter();
@@ -100,6 +158,8 @@ export default function StaffDashboardPage() {
   const user = session.user as { name?: string; email?: string; role?: string };
   const isJudge = user.role === "judge";
   const scoredCount = teams.filter((t) => t.scored).length;
+  // Denominator is what can actually be scored, not every team being watched.
+  const scorableCount = teams.filter((t) => t.project && t.approved).length;
 
   return (
     <>
@@ -135,20 +195,20 @@ export default function StaffDashboardPage() {
                 <div className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] p-4">
                   <div className="text-xs text-[var(--text-muted)] mb-1">Scored</div>
                   <div className="text-2xl font-bold text-white tabular-nums">
-                    {scoredCount} <span className="text-sm font-normal text-[var(--text-muted)]">/ {teams.length}</span>
+                    {scoredCount} <span className="text-sm font-normal text-[var(--text-muted)]">/ {scorableCount}</span>
                   </div>
                 </div>
                 <div className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] p-4">
                   <div className="text-xs text-[var(--text-muted)] mb-1">Remaining</div>
                   <div className="text-2xl font-bold text-white tabular-nums">
-                    {teams.length - scoredCount}
+                    {Math.max(0, scorableCount - scoredCount)}
                   </div>
                 </div>
               </div>
 
               {/* Teams list */}
               <h2 className="mb-3 text-sm font-medium text-[var(--text-secondary)]">
-                Teams to evaluate
+                Teams building
               </h2>
               {teamsLoading ? (
                 <div className="flex justify-center py-12">
@@ -157,43 +217,14 @@ export default function StaffDashboardPage() {
               ) : teams.length === 0 ? (
                 <div className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] p-8 text-center">
                   <BarChart3 className="mx-auto mb-3 h-8 w-8 text-[var(--text-muted)]" />
-                  <p className="text-[var(--text-secondary)] text-sm">No approved teams to evaluate</p>
+                  <p className="text-[var(--text-secondary)] text-sm">No active teams yet</p>
                 </div>
               ) : (
                 <div className="space-y-2">
                   {teams.map((team, idx) => {
-                    const hasProject = !!team.project;
-                    const content = (
-                      <>
-                        <div className={`flex h-8 w-8 items-center justify-center rounded-lg flex-shrink-0 ${
-                          team.scored ? "bg-emerald-500/10" : "bg-white/5"
-                        }`}>
-                          {team.scored ? (
-                            <Check className="h-4 w-4 text-emerald-400" />
-                          ) : (
-                            <span className="text-xs font-bold text-[var(--text-muted)]">{idx + 1}</span>
-                          )}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className={`font-medium text-sm truncate ${hasProject ? "text-white" : "text-[var(--text-muted)]"}`}>{team.name}</div>
-                          {hasProject ? (
-                            <div className="text-xs text-[var(--accent-blue)] truncate">
-                              {team.project!.name}
-                            </div>
-                          ) : (
-                            <div className="text-xs text-amber-400/80">No project submitted</div>
-                          )}
-                          <div className="text-xs text-[var(--text-muted)]">
-                            {team.memberCount}{" "}
-                            {team.memberCount === 1 ? "member" : "members"}
-                            {team.scored && team.total !== null && (
-                              <span className="ml-2 text-emerald-400">{team.total} / 100</span>
-                            )}
-                          </div>
-                        </div>
-                        <ChevronRight className={`h-4 w-4 flex-shrink-0 transition-colors ${hasProject ? "text-[var(--text-muted)] group-hover:text-white" : "text-[var(--text-muted)]/30"}`} />
-                      </>
-                    );
+                    // Scoring needs an approved team with a submitted project;
+                    // watching the live build needs neither.
+                    const canScore = !!team.project && team.approved;
 
                     return (
                       <motion.div
@@ -201,19 +232,79 @@ export default function StaffDashboardPage() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: idx * 0.03 }}
+                        className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] p-4"
                       >
-                        {hasProject ? (
-                          <Link
-                            href={`/staff/evaluate/${team.id}`}
-                            className="flex items-center gap-3 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] p-4 hover:border-[var(--border-hover)] transition-colors group"
-                          >
-                            {content}
-                          </Link>
-                        ) : (
-                          <div className="flex items-center gap-3 rounded-xl border border-dashed border-[var(--border-color)] bg-[var(--card-bg)]/50 p-4 opacity-60 cursor-not-allowed">
-                            {content}
+                        <div className="flex items-center gap-3">
+                          <div className={`flex h-8 w-8 items-center justify-center rounded-lg flex-shrink-0 ${
+                            team.scored ? "bg-emerald-500/10" : "bg-white/5"
+                          }`}>
+                            {team.scored ? (
+                              <Check className="h-4 w-4 text-emerald-400" />
+                            ) : (
+                              <span className="text-xs font-bold text-[var(--text-muted)]">{idx + 1}</span>
+                            )}
                           </div>
-                        )}
+                          <div className="flex-1 min-w-0">
+                            <div className="font-medium text-sm text-white truncate">{team.name}</div>
+                            {team.project ? (
+                              <div className="text-xs text-[var(--accent-blue)] truncate">
+                                {team.project.name}
+                              </div>
+                            ) : (
+                              <div className="text-xs text-amber-400/80">No project submitted</div>
+                            )}
+                            <div className="text-xs text-[var(--text-muted)]">
+                              {team.memberCount}{" "}
+                              {team.memberCount === 1 ? "member" : "members"}
+                              {team.scored && team.total !== null && (
+                                <span className="ml-2 text-emerald-400">{team.total} / 100</span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="mt-3 ml-11">
+                          <RequirementBadges check={team.repoCheck} />
+                        </div>
+
+                        <div className="mt-3 ml-11 flex flex-wrap items-center gap-2">
+                          {team.appUrl ? (
+                            <a
+                              href={team.appUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--accent-blue)]/40 bg-[var(--accent-blue)]/10 px-2.5 py-1.5 text-xs font-medium text-[var(--accent-blue)] hover:bg-[var(--accent-blue)]/20"
+                            >
+                              <Globe className="h-3.5 w-3.5" /> Open live app
+                              <ExternalLink className="h-3 w-3 opacity-60" />
+                            </a>
+                          ) : (
+                            <span className="text-xs text-[var(--text-muted)]">No app URL yet</span>
+                          )}
+                          {team.project?.githubUrl ? (
+                            <a
+                              href={team.project.githubUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--border-color)] px-2.5 py-1.5 text-xs text-white hover:bg-white/5"
+                            >
+                              <Github className="h-3.5 w-3.5" /> Repo
+                            </a>
+                          ) : null}
+                          {canScore ? (
+                            <Link
+                              href={`/staff/evaluate/${team.id}`}
+                              className="ml-auto inline-flex items-center gap-1 rounded-lg border border-[var(--border-color)] px-2.5 py-1.5 text-xs font-medium text-white hover:border-[var(--border-hover)] hover:bg-white/5"
+                            >
+                              {team.scored ? "Edit score" : "Score"}
+                              <ChevronRight className="h-3.5 w-3.5" />
+                            </Link>
+                          ) : (
+                            <span className="ml-auto text-xs text-[var(--text-muted)]">
+                              Not scorable yet
+                            </span>
+                          )}
+                        </div>
                       </motion.div>
                     );
                   })}

@@ -40,9 +40,6 @@ export const teamPreferenceEnum = pgEnum("team_preference", [
   "self_form",
 ]);
 
-/** Peer-voting expo group. Null until an admin splits teams into two groups. */
-export const votingGroupEnum = pgEnum("voting_group", ["A", "B"]);
-
 export const team = pgTable(
   "team",
   {
@@ -78,15 +75,12 @@ export const team = pgTable(
     lateSubmissionPenaltyPoints: integer("late_submission_penalty_points").notNull().default(0),
     /** When set, public ranking uses this value (0–100) instead of aggregated judge scores. */
     finalScoreOverride: real("final_score_override"),
-    /** Peer-voting expo group ("A"/"B"). Null = unassigned (not yet split). */
-    votingGroup: votingGroupEnum("voting_group"),
   },
   (table) => [
     uniqueIndex("team_join_code_unique").on(table.joinCode),
     index("team_status_idx").on(table.status),
     index("team_created_by_user_id_idx").on(table.createdByUserId),
     index("team_screening_status_idx").on(table.screeningStatus),
-    index("team_voting_group_idx").on(table.votingGroup),
     check(
       "team_member_count_range_check",
       sql`${table.memberCount} >= 0 and ${table.memberCount} <= ${table.maxMembers}`,

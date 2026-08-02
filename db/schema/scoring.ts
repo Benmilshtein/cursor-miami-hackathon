@@ -1,6 +1,7 @@
 import { randomUUID } from "crypto";
 import { sql } from "drizzle-orm";
 import {
+  boolean,
   check,
   index,
   integer,
@@ -46,3 +47,25 @@ export const judgeScore = pgTable(
     check("judge_score_business_range", sql`${table.businessPotential} >= 0 and ${table.businessPotential} <= 15`),
   ],
 );
+
+/**
+ * Step 1 of judging: cached result of the automated GitHub requirements check
+ * (PRD + .cursorrules committed, and public app URL submitted, all within the
+ * first hour of the hackathon). One row per team, refreshed by an admin action -
+ * judges read the cache so the judge dashboard never hits the GitHub API.
+ *
+ * This is a flag, not a gate: a failing team is still scorable.
+ */
+export const repoCheck = pgTable("repo_check", {
+  teamId: integer("team_id")
+    .primaryKey()
+    .references(() => team.id, { onDelete: "cascade" }),
+  hasPrd: boolean("has_prd").notNull().default(false),
+  hasCursorRules: boolean("has_cursor_rules").notNull().default(false),
+  hasAppUrl: boolean("has_app_url").notNull().default(false),
+  /** True only when all three requirements are present AND inside the T0 + 1h window. */
+  onTime: boolean("on_time").notNull().default(false),
+  /** JSON blob: matched paths, per-requirement timestamps, and any error reason. */
+  details: text("details"),
+  checkedAt: timestamp("checked_at", { withTimezone: true }).notNull().defaultNow(),
+});

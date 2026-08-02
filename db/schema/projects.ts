@@ -22,6 +22,8 @@ export const project = pgTable(
     description: text("description"),
     githubUrl: text("github_url").notNull(),
     demoUrl: text("demo_url"),
+    /** First time a public app URL was set. Drives the "within the first hour" check. */
+    appUrlSubmittedAt: timestamp("app_url_submitted_at", { withTimezone: true }),
     techStack: text("tech_stack"),
     slidesUrl: text("slides_url"),
     videoUrl: text("video_url"),

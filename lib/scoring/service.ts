@@ -1,6 +1,6 @@
 import { db } from "@/db";
 import { team, user } from "@/db/schema/auth";
-import { judgeScore } from "@/db/schema/scoring";
+import { judgeScore, repoCheck } from "@/db/schema/scoring";
 import { project } from "@/db/schema/projects";
 import { eq, and, sql, asc, inArray } from "drizzle-orm";
 import { AppError } from "@/lib/api/http";
@@ -738,6 +738,14 @@ export async function getApprovedTeamsForMentor() {
   }));
 }
 
+/**
+ * Every active team, with its live app URL and cached step-1 requirements check.
+ *
+ * Deliberately not filtered to approved teams: judges follow builds live through
+ * the night, and a team's deployed URL is worth watching before (and regardless
+ * of) screening. Scoring is still gated separately - the evaluate route rejects
+ * teams that are unapproved or have no project.
+ */
 export async function getApprovedTeamsForJudge(judgeUserId: string) {
   const teams = await db
     .select({
@@ -745,6 +753,7 @@ export async function getApprovedTeamsForJudge(judgeUserId: string) {
       name: team.name,
       description: team.description,
       memberCount: team.memberCount,
+      screeningStatus: team.screeningStatus,
       projectName: project.name,
       projectGithubUrl: project.githubUrl,
       projectDemoUrl: project.demoUrl,
@@ -752,10 +761,16 @@ export async function getApprovedTeamsForJudge(judgeUserId: string) {
       projectDescription: project.description,
       projectSlidesUrl: project.slidesUrl,
       projectVideoUrl: project.videoUrl,
+      checkHasPrd: repoCheck.hasPrd,
+      checkHasCursorRules: repoCheck.hasCursorRules,
+      checkHasAppUrl: repoCheck.hasAppUrl,
+      checkOnTime: repoCheck.onTime,
+      checkedAt: repoCheck.checkedAt,
     })
     .from(team)
     .leftJoin(project, eq(team.id, project.teamId))
-    .where(eq(team.screeningStatus, "approved"))
+    .leftJoin(repoCheck, eq(team.id, repoCheck.teamId))
+    .where(eq(team.status, "active"))
     .orderBy(team.name);
 
   const scores = await db
@@ -779,6 +794,9 @@ export async function getApprovedTeamsForJudge(judgeUserId: string) {
       name: t.name,
       description: t.description,
       memberCount: t.memberCount,
+      approved: t.screeningStatus === "approved",
+      /** Live deployed app, shown to judges all night even without a full submission. */
+      appUrl: t.projectDemoUrl,
       project: t.projectName
         ? {
             name: t.projectName,
@@ -788,6 +806,15 @@ export async function getApprovedTeamsForJudge(judgeUserId: string) {
             techStack: t.projectTechStack,
             slidesUrl: t.projectSlidesUrl,
             videoUrl: t.projectVideoUrl,
+          }
+        : null,
+      /** Step-1 requirements check. Null when it has never been run for this team. */
+      repoCheck: t.checkedAt
+        ? {
+            hasPrd: !!t.checkHasPrd,
+            hasCursorRules: !!t.checkHasCursorRules,
+            hasAppUrl: !!t.checkHasAppUrl,
+            onTime: !!t.checkOnTime,
           }
         : null,
       scored: !!s,
