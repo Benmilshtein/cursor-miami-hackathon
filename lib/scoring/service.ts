@@ -1,11 +1,12 @@
 import { db } from "@/db";
 import { team, user } from "@/db/schema/auth";
-import { judgeScore, repoCheck } from "@/db/schema/scoring";
+import { judgeScore, pitchScore, repoCheck } from "@/db/schema/scoring";
 import { project } from "@/db/schema/projects";
 import { eq, and, sql, asc, inArray } from "drizzle-orm";
 import { AppError } from "@/lib/api/http";
 import { notifyRankingUpdate } from "@/lib/scoring/events";
 import { EVENT_JUDGE_TARGET } from "@/lib/scoring/constants";
+import { comparePlacement } from "@/lib/scoring/placement";
 
 export type ScoreCriteria = {
   innovation: number;
@@ -36,6 +37,12 @@ export type RankedTeam = {
   usesFinalScoreOverride: boolean;
   /** Stored manual override (null = use average from judges − late penalty). */
   manualScoreOverride: number | null;
+  /** Selected for the staged finals (step 3). */
+  isFinalist: boolean;
+  /** Mean of the finals pitch totals (0–100). 0 when no judge has scored the pitch. */
+  pitchAvg: number;
+  /** How many judges have scored this team's pitch. */
+  pitchJudgeCount: number;
 };
 
 export type JudgeScoreRow = ScoreCriteria & {
@@ -63,16 +70,16 @@ export async function deleteScoresByJudge(judgeUserId: string): Promise<number> 
 }
 
 /**
- * Public ranking:
- * - Default: average of each judge’s row total (5 criteria, max 100 per judge), minus late penalty.
+ * Public ranking across all three judging steps:
+ * - Build score: average of each judge’s row total (5 criteria, max 100 per judge), minus late penalty.
  * - Optional manual `final_score_override` replaces that computed total for the leaderboard.
+ * - Finalists rank above everyone else and are ordered by their finals pitch average.
+ *
+ * Ordering rules live in `lib/scoring/placement.ts`.
  */
 export async function getRanking(): Promise<RankedTeam[]> {
   const rows = await buildRankingRows();
-  return rows.sort((a, b) => {
-    if (b.totalAvg !== a.totalAvg) return b.totalAvg - a.totalAvg;
-    return a.teamName.localeCompare(b.teamName);
-  });
+  return rows.sort(comparePlacement);
 }
 
 /** One judge’s scores for a team (public leaderboard detail). */
@@ -104,6 +111,11 @@ export type PublicRankingEntry = {
   avgBusinessPotential: number;
   judgeCount: number;
   judgeScores: (PublicJudgeScoreCell | null)[];
+  /** Step 3: selected for the staged finals. */
+  isFinalist: boolean;
+  /** Mean finals pitch total (0–100); 0 until a judge scores the pitch. */
+  pitchAvg: number;
+  pitchJudgeCount: number;
 };
 
 /**
@@ -187,6 +199,9 @@ export async function getPublicRankingDetail(): Promise<{
   const enriched: PublicRankingEntry[] = ranking.map((r) => ({
     teamId: r.teamId,
     teamName: r.teamName,
+    isFinalist: r.isFinalist,
+    pitchAvg: r.pitchAvg,
+    pitchJudgeCount: r.pitchJudgeCount,
     totalAvg: r.totalAvg,
     grossTotalAvg: r.grossTotalAvg,
     lateSubmissionPenaltyPoints: r.lateSubmissionPenaltyPoints,
@@ -347,13 +362,37 @@ export async function getAdminOfficialScoresPageData(): Promise<{
   return { judgeSlots, criteria: ADMIN_SCORE_CRITERIA, teams };
 }
 
+/**
+ * Mean pitch total per team, keyed by teamId.
+ *
+ * Deliberately its own query rather than a second leftJoin on the ranking query:
+ * two one-to-many joins under one groupBy multiply each other's rows, which would
+ * silently corrupt every build average on the leaderboard.
+ */
+async function getPitchAverages(): Promise<Map<number, { avg: number; count: number }>> {
+  const rows = await db
+    .select({
+      teamId: pitchScore.teamId,
+      avg: sql<number>`coalesce(avg(${pitchScore.delivery} + ${pitchScore.clarity} + ${pitchScore.impact}), 0)`,
+      count: sql<number>`count(${pitchScore.id})::int`,
+    })
+    .from(pitchScore)
+    .groupBy(pitchScore.teamId);
+
+  return new Map(rows.map((r) => [r.teamId, { avg: Number(r.avg), count: Number(r.count) }]));
+}
+
 async function buildRankingRows(): Promise<RankedTeam[]> {
-  const totalJudgesGlobal = await getTotalJudgeCount();
+  const [totalJudgesGlobal, pitchAverages] = await Promise.all([
+    getTotalJudgeCount(),
+    getPitchAverages(),
+  ]);
 
   const rows = await db
     .select({
       teamId: team.id,
       teamName: team.name,
+      isFinalist: team.isFinalist,
       judgeCountOverride: team.judgeCountOverride,
       lateSubmissionPenaltyPoints: team.lateSubmissionPenaltyPoints,
       manualOverride: team.finalScoreOverride,
@@ -370,6 +409,7 @@ async function buildRankingRows(): Promise<RankedTeam[]> {
     .groupBy(
       team.id,
       team.name,
+      team.isFinalist,
       team.judgeCountOverride,
       team.lateSubmissionPenaltyPoints,
       team.finalScoreOverride,
@@ -413,6 +453,9 @@ async function buildRankingRows(): Promise<RankedTeam[]> {
       judgeCountOverride: override,
       usesFinalScoreOverride: manualScoreOverride !== null,
       manualScoreOverride,
+      isFinalist: Boolean(r.isFinalist),
+      pitchAvg: pitchAverages.get(r.teamId)?.avg ?? 0,
+      pitchJudgeCount: pitchAverages.get(r.teamId)?.count ?? 0,
     };
   });
 }
@@ -449,6 +492,68 @@ export async function upsertScore(
     .values({ teamId, judgeUserId, ...scores, comment })
     .returning();
   return inserted as JudgeScoreRow;
+}
+
+/* -------------------------------------------------------------------------- */
+/* Step 3: finals pitch scoring. Mirrors the build-score pair above.           */
+/* -------------------------------------------------------------------------- */
+
+export type PitchCriteria = {
+  delivery: number;
+  clarity: number;
+  impact: number;
+};
+
+export type PitchScoreRow = PitchCriteria & {
+  id: string;
+  teamId: number;
+  judgeUserId: string;
+  comment: string | null;
+  createdAt: Date;
+  updatedAt: Date;
+};
+
+export async function getPitchScoreByJudgeAndTeam(
+  judgeUserId: string,
+  teamId: number,
+): Promise<PitchScoreRow | null> {
+  const [row] = await db
+    .select()
+    .from(pitchScore)
+    .where(and(eq(pitchScore.judgeUserId, judgeUserId), eq(pitchScore.teamId, teamId)))
+    .limit(1);
+  return (row as PitchScoreRow) ?? null;
+}
+
+export async function upsertPitchScore(
+  judgeUserId: string,
+  teamId: number,
+  scores: PitchCriteria,
+  comment: string | null,
+): Promise<PitchScoreRow> {
+  const existing = await getPitchScoreByJudgeAndTeam(judgeUserId, teamId);
+  if (existing) {
+    const [updated] = await db
+      .update(pitchScore)
+      .set({ ...scores, comment, updatedAt: new Date() })
+      .where(eq(pitchScore.id, existing.id))
+      .returning();
+    return updated as PitchScoreRow;
+  }
+  const [inserted] = await db
+    .insert(pitchScore)
+    .values({ teamId, judgeUserId, ...scores, comment })
+    .returning();
+  return inserted as PitchScoreRow;
+}
+
+/** Teams this judge has already pitch-scored (judge dashboard badges). */
+export async function getPitchScoredTeamIds(judgeUserId: string): Promise<Set<number>> {
+  const rows = await db
+    .select({ teamId: pitchScore.teamId })
+    .from(pitchScore)
+    .where(eq(pitchScore.judgeUserId, judgeUserId));
+  return new Set(rows.map((r) => r.teamId));
 }
 
 export type DetailedScore = {
@@ -754,6 +859,7 @@ export async function getApprovedTeamsForJudge(judgeUserId: string) {
       description: team.description,
       memberCount: team.memberCount,
       screeningStatus: team.screeningStatus,
+      isFinalist: team.isFinalist,
       projectName: project.name,
       projectGithubUrl: project.githubUrl,
       projectDemoUrl: project.demoUrl,
@@ -786,6 +892,7 @@ export async function getApprovedTeamsForJudge(judgeUserId: string) {
     .where(eq(judgeScore.judgeUserId, judgeUserId));
 
   const scoreMap = new Map(scores.map((s) => [s.teamId, s]));
+  const pitchScored = await getPitchScoredTeamIds(judgeUserId);
 
   return teams.map((t) => {
     const s = scoreMap.get(t.id);
@@ -795,6 +902,10 @@ export async function getApprovedTeamsForJudge(judgeUserId: string) {
       description: t.description,
       memberCount: t.memberCount,
       approved: t.screeningStatus === "approved",
+      /** Step 3: on stage for the finals pitch. */
+      isFinalist: Boolean(t.isFinalist),
+      /** Whether THIS judge has already scored this team's pitch. */
+      pitchScored: pitchScored.has(t.id),
       /** Live deployed app, shown to judges all night even without a full submission. */
       appUrl: t.projectDemoUrl,
       project: t.projectName

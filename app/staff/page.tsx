@@ -8,6 +8,7 @@ import {
   AlertTriangle,
   Trophy,
   Check,
+  Mic,
   X,
   ChevronRight,
   BarChart3,
@@ -47,6 +48,10 @@ type TeamToEvaluate = {
   description: string | null;
   memberCount: number;
   approved: boolean;
+  /** Step 3: on stage for the finals pitch. */
+  isFinalist: boolean;
+  /** Whether this judge has already scored that pitch. */
+  pitchScored: boolean;
   /** Deployed app URL, live all night. */
   appUrl: string | null;
   project: TeamProject | null;
@@ -160,6 +165,12 @@ export default function StaffDashboardPage() {
   const scoredCount = teams.filter((t) => t.scored).length;
   // Denominator is what can actually be scored, not every team being watched.
   const scorableCount = teams.filter((t) => t.project && t.approved).length;
+  const finalists = teams.filter((t) => t.isFinalist);
+  // During the finals, put the teams on stage first - otherwise a judge scrolls
+  // past the whole field to find the six that are pitching.
+  const orderedTeams = finalists.length
+    ? [...finalists, ...teams.filter((t) => !t.isFinalist)]
+    : teams;
 
   return (
     <>
@@ -221,7 +232,7 @@ export default function StaffDashboardPage() {
                 </div>
               ) : (
                 <div className="space-y-2">
-                  {teams.map((team, idx) => {
+                  {orderedTeams.map((team, idx) => {
                     // Scoring needs an approved team with a submitted project;
                     // watching the live build needs neither.
                     const canScore = !!team.project && team.approved;
@@ -232,7 +243,11 @@ export default function StaffDashboardPage() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: idx * 0.03 }}
-                        className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] p-4"
+                        className={`rounded-xl border p-4 ${
+                          team.isFinalist
+                            ? "border-amber-500/40 bg-amber-500/[0.04]"
+                            : "border-[var(--border-color)] bg-[var(--card-bg)]"
+                        }`}
                       >
                         <div className="flex items-center gap-3">
                           <div className={`flex h-8 w-8 items-center justify-center rounded-lg flex-shrink-0 ${
@@ -245,7 +260,15 @@ export default function StaffDashboardPage() {
                             )}
                           </div>
                           <div className="flex-1 min-w-0">
-                            <div className="font-medium text-sm text-white truncate">{team.name}</div>
+                            <div className="flex items-center gap-2">
+                              <span className="font-medium text-sm text-white truncate">{team.name}</span>
+                              {team.isFinalist && (
+                                <span className="inline-flex shrink-0 items-center gap-1 rounded bg-amber-500/15 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-amber-400">
+                                  <Trophy className="h-2.5 w-2.5" />
+                                  Finalist
+                                </span>
+                              )}
+                            </div>
                             {team.project ? (
                               <div className="text-xs text-[var(--accent-blue)] truncate">
                                 {team.project.name}
@@ -291,16 +314,31 @@ export default function StaffDashboardPage() {
                               <Github className="h-3.5 w-3.5" /> Repo
                             </a>
                           ) : null}
+                          {team.isFinalist && (
+                            <Link
+                              href={`/staff/evaluate/${team.id}#pitch`}
+                              className={`ml-auto inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1.5 text-xs font-medium ${
+                                team.pitchScored
+                                  ? "border border-emerald-500/40 bg-emerald-500/10 text-emerald-400 hover:bg-emerald-500/20"
+                                  : "bg-amber-500 text-black hover:bg-amber-400"
+                              }`}
+                            >
+                              {team.pitchScored ? <Check className="h-3.5 w-3.5" /> : <Mic className="h-3.5 w-3.5" />}
+                              {team.pitchScored ? "Pitch scored" : "Score pitch"}
+                            </Link>
+                          )}
                           {canScore ? (
                             <Link
                               href={`/staff/evaluate/${team.id}`}
-                              className="ml-auto inline-flex items-center gap-1 rounded-lg border border-[var(--border-color)] px-2.5 py-1.5 text-xs font-medium text-white hover:border-[var(--border-hover)] hover:bg-white/5"
+                              className={`inline-flex items-center gap-1 rounded-lg border border-[var(--border-color)] px-2.5 py-1.5 text-xs font-medium text-white hover:border-[var(--border-hover)] hover:bg-white/5 ${
+                                team.isFinalist ? "" : "ml-auto"
+                              }`}
                             >
                               {team.scored ? "Edit score" : "Score"}
                               <ChevronRight className="h-3.5 w-3.5" />
                             </Link>
                           ) : (
-                            <span className="ml-auto text-xs text-[var(--text-muted)]">
+                            <span className={`text-xs text-[var(--text-muted)] ${team.isFinalist ? "" : "ml-auto"}`}>
                               Not scorable yet
                             </span>
                           )}

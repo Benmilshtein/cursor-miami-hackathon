@@ -134,6 +134,13 @@
       "when": 1785705804471,
       "tag": "0018_tan_skaar",
       "breakpoints": true
+    },
+    {
+      "idx": 19,
+      "version": "7",
+      "when": 1785727917901,
+      "tag": "0019_sad_yellowjacket",
+      "breakpoints": true
     }
   ]
 }

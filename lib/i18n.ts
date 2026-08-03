@@ -836,9 +836,9 @@ export const translations = {
       es: "El principiante es quien habla: el experto puede manejar la laptop, pero un novato explica la idea.",
     },
     round2Bullet3: {
-      en: "Judges huddle ~3 minutes and pick 1st, 2nd, and 3rd on how far the beginners came in ~4 hours and the utility and creativity of the AI build.",
-      de: "Die Judges beraten sich ~3 Minuten und wählen 1., 2. und 3. Bewertet wird, wie weit die Einsteiger in ~4 Stunden gekommen sind sowie Nutzen und Kreativität des KI-Builds.",
-      es: "Los jueces deliberan ~3 minutos y eligen 1.º, 2.º y 3.º según cuánto avanzaron los principiantes en ~4 horas y la utilidad y creatividad del desarrollo con IA.",
+      en: "Judges score each pitch in the app on Delivery (30), Clarity of the idea (30), and Impact (40). The scores land instantly, no huddle.",
+      de: "Die Judges bewerten jeden Pitch in der App nach Auftritt (30), Klarheit der Idee (30) und Wirkung (40). Die Wertungen zählen sofort, ohne Beratungsrunde.",
+      es: "Los jueces puntúan cada pitch en la app: Presentación (30), Claridad de la idea (30) e Impacto (40). Las puntuaciones cuentan al instante, sin deliberación aparte.",
     },
 
     // Tie-Breakers (automatic)
@@ -850,9 +850,9 @@ export const translations = {
       es: "Como la app registra todo en el backend, la tabla rompe empates al instante, en este orden:",
     },
     tieBullet1: {
-      en: "Highest total: the average of every judge's score across all five criteria, out of 100.",
-      de: "Höchste Gesamtpunktzahl: der Durchschnitt aller Judge-Bewertungen über alle fünf Kriterien, von 100.",
-      es: "Puntuación total más alta: el promedio de la puntuación de cada juez en los cinco criterios, sobre 100.",
+      en: "Finalists first, ordered by their pitch score. Everyone else follows, ranked by the average judge score across all five build criteria.",
+      de: "Finalisten zuerst, sortiert nach ihrer Pitch-Wertung. Alle anderen folgen, sortiert nach dem Durchschnitt der Judge-Bewertungen über alle fünf Build-Kriterien.",
+      es: "Primero los finalistas, ordenados por su puntuación de pitch. El resto va después, ordenado por el promedio de los jueces en los cinco criterios de build.",
     },
     tieBullet2: {
       en: "Late-submission penalty: points are subtracted from any team that submitted after the deadline.",

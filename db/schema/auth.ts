@@ -75,12 +75,15 @@ export const team = pgTable(
     lateSubmissionPenaltyPoints: integer("late_submission_penalty_points").notNull().default(0),
     /** When set, public ranking uses this value (0–100) instead of aggregated judge scores. */
     finalScoreOverride: real("final_score_override"),
+    /** Selected for the staged finals. Finalists rank above everyone, ordered by pitch score. */
+    isFinalist: boolean("is_finalist").notNull().default(false),
   },
   (table) => [
     uniqueIndex("team_join_code_unique").on(table.joinCode),
     index("team_status_idx").on(table.status),
     index("team_created_by_user_id_idx").on(table.createdByUserId),
     index("team_screening_status_idx").on(table.screeningStatus),
+    index("team_is_finalist_idx").on(table.isFinalist),
     check(
       "team_member_count_range_check",
       sql`${table.memberCount} >= 0 and ${table.memberCount} <= ${table.maxMembers}`,

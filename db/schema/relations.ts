@@ -7,7 +7,7 @@ import {
 } from "./auth";
 import { teamInvite, teamMember } from "./teams";
 import { screeningAnswer, screeningQuestion } from "./screening";
-import { judgeScore, repoCheck } from "./scoring";
+import { judgeScore, pitchScore, repoCheck } from "./scoring";
 import { project } from "./projects";
 import { mentorRequest } from "./mentor";
 
@@ -25,6 +25,7 @@ export const userRelations = relations(user, ({ one, many }) => ({
   staffMember: one(staffMember),
   createdStaffInvites: many(staffInvite),
   judgeScores: many(judgeScore),
+  pitchScores: many(pitchScore),
   assignedMentorRequests: many(mentorRequest, { relationName: "assigned_mentor" }),
   acceptedMentorRequests: many(mentorRequest, { relationName: "accepted_mentor" }),
 }));
@@ -39,6 +40,7 @@ export const teamRelations = relations(team, ({ one, many }) => ({
   memberships: many(teamMember),
   invites: many(teamInvite),
   judgeScores: many(judgeScore),
+  pitchScores: many(pitchScore),
   repoCheck: one(repoCheck, {
     fields: [team.id],
     references: [repoCheck.teamId],
@@ -118,6 +120,17 @@ export const judgeScoreRelations = relations(judgeScore, ({ one }) => ({
   }),
   judge: one(user, {
     fields: [judgeScore.judgeUserId],
+    references: [user.id],
+  }),
+}));
+
+export const pitchScoreRelations = relations(pitchScore, ({ one }) => ({
+  team: one(team, {
+    fields: [pitchScore.teamId],
+    references: [team.id],
+  }),
+  judge: one(user, {
+    fields: [pitchScore.judgeUserId],
     references: [user.id],
   }),
 }));

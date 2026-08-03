@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Trophy, Medal, Award, BarChart3, Lock, Gavel } from "lucide-react";
+import { Trophy, Medal, Award, BarChart3, Lock, Gavel, Mic } from "lucide-react";
 import { Logo, NoiseOverlay } from "@/components/ui";
 
 /** One row of the judge leaderboard (see `PublicRankingEntry` in lib/scoring/service.ts). */
@@ -12,6 +12,10 @@ type RankingRow = {
   teamName: string;
   totalAvg: number;
   judgeCount: number;
+  /** Step 3: pitched in the staged finals. */
+  isFinalist: boolean;
+  pitchAvg: number;
+  pitchJudgeCount: number;
   rank: number;
 };
 
@@ -51,6 +55,9 @@ export default function RankingPage() {
                   teamName: String(r.teamName ?? ""),
                   totalAvg: Number(r.totalAvg ?? 0),
                   judgeCount: Number(r.judgeCount ?? 0),
+                  isFinalist: Boolean(r.isFinalist),
+                  pitchAvg: Number(r.pitchAvg ?? 0),
+                  pitchJudgeCount: Number(r.pitchJudgeCount ?? 0),
                   rank: i + 1,
                 }) satisfies RankingRow,
             ),
@@ -112,7 +119,7 @@ export default function RankingPage() {
             <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">Results</h1>
             <p className="text-[var(--text-secondary)] text-sm md:text-base">
               {finalized
-                ? "Ranked by the average judge score across all five criteria, out of 100."
+                ? "Finalists first, ordered by their staged pitch. Everyone else by their build score, out of 100."
                 : "Results will be published by the organizers when ready."}
             </p>
           </motion.div>
@@ -153,15 +160,32 @@ export default function RankingPage() {
                           {getRankIcon(rank)}
                         </div>
                         <div className="min-w-0 flex-1">
-                          <h3
-                            className={`font-semibold truncate ${rank <= 3 ? "text-white" : "text-[var(--text-secondary)]"}`}
-                          >
-                            {team.teamName}
-                          </h3>
-                          <div className="mt-0.5 flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
-                            <Gavel className="h-3.5 w-3.5" />
-                            <span className="tabular-nums">{team.judgeCount}</span>
-                            <span>{team.judgeCount === 1 ? "judge" : "judges"}</span>
+                          <div className="flex items-center gap-2">
+                            <h3
+                              className={`font-semibold truncate ${rank <= 3 ? "text-white" : "text-[var(--text-secondary)]"}`}
+                            >
+                              {team.teamName}
+                            </h3>
+                            {team.isFinalist && (
+                              <span className="inline-flex shrink-0 items-center gap-1 rounded bg-amber-500/15 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-amber-400">
+                                <Trophy className="h-2.5 w-2.5" />
+                                Finalist
+                              </span>
+                            )}
+                          </div>
+                          <div className="mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[var(--text-muted)]">
+                            <span className="flex items-center gap-1.5">
+                              <Gavel className="h-3.5 w-3.5" />
+                              <span className="tabular-nums">{team.judgeCount}</span>
+                              <span>{team.judgeCount === 1 ? "judge" : "judges"}</span>
+                            </span>
+                            {team.isFinalist && team.pitchJudgeCount > 0 && (
+                              <span className="flex items-center gap-1.5 text-amber-400">
+                                <Mic className="h-3.5 w-3.5" />
+                                <span className="tabular-nums">{team.pitchAvg.toFixed(1)}</span>
+                                <span>pitch</span>
+                              </span>
+                            )}
                           </div>
                         </div>
                         <div className="flex-shrink-0 text-right">
@@ -170,7 +194,7 @@ export default function RankingPage() {
                           >
                             {team.totalAvg.toFixed(1)}
                           </div>
-                          <div className="text-xs text-[var(--text-muted)]">/ 100</div>
+                          <div className="text-xs text-[var(--text-muted)]">build / 100</div>
                         </div>
                       </div>
                     </motion.div>

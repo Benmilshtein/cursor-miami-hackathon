@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Lock, Unlock, Trophy, Loader2 } from "lucide-react";
 import Link from "next/link";
+import FinalistsPanel from "@/components/admin/FinalistsPanel";
 
 export default function AdminRankingPage() {
   const [finalized, setFinalized] = useState(false);
@@ -51,11 +52,13 @@ export default function AdminRankingPage() {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="text-2xl font-bold text-white">Ranking</h1>
+        <h1 className="text-2xl font-bold text-white">Finals &amp; results</h1>
         <p className="mt-1 text-[var(--text-secondary)]">
-          Publish results to make the ranking visible to the public and lock judge evaluations.
+          Pick the finalists, let the judges score the pitches, then publish the results.
         </p>
       </div>
+
+      <FinalistsPanel />
 
       <div className={`rounded-xl border p-6 ${
         finalized
