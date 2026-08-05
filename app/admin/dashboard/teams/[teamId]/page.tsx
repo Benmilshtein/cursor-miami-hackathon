@@ -11,7 +11,6 @@ type TeamDetails = {
   name: string;
   description: string | null;
   status: string;
-  votingGroup: "A" | "B" | null;
   memberCount: number;
   maxMembers: number;
   joinCode: string;
@@ -115,25 +114,6 @@ export default function AdminTeamDetailPage() {
       setActionError(e instanceof Error ? e.message : "Save failed");
     } finally {
       setSaving(false);
-    }
-  };
-
-  const handleSetGroup = async (votingGroup: "A" | "B" | null) => {
-    setActionError(null);
-    setActionSuccess(null);
-    try {
-      const res = await fetch(`/api/admin/teams/${teamId}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ votingGroup }),
-      });
-      const json = await res.json();
-      if (!res.ok) throw new Error(json?.error?.message ?? "Failed to set group");
-      setTeam(json.data);
-      setActionSuccess(votingGroup ? `Moved to Group ${votingGroup}.` : "Group cleared.");
-    } catch (e) {
-      setActionError(e instanceof Error ? e.message : "Failed to set group");
     }
   };
 
@@ -326,40 +306,6 @@ export default function AdminTeamDetailPage() {
         >
           <Save className="h-4 w-4" /> {saving ? "Saving…" : "Save"}
         </button>
-      </section>
-
-      <section className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] p-6">
-        <h2 className="text-lg font-semibold text-white">Peer-voting group</h2>
-        <p className="mt-1 text-sm text-[var(--text-secondary)]">
-          Manually set this team&apos;s expo group. Only editable before voting opens.
-          Currently:{" "}
-          <span className="font-medium text-white">
-            {team.votingGroup ? `Group ${team.votingGroup}` : "Unassigned"}
-          </span>
-        </p>
-        <div className="mt-4 flex flex-wrap gap-2">
-          {(["A", "B"] as const).map((g) => (
-            <button
-              key={g}
-              type="button"
-              onClick={() => void handleSetGroup(g)}
-              className={`rounded-lg border px-4 py-2 text-sm font-medium ${
-                team.votingGroup === g
-                  ? "border-[var(--accent-blue)] bg-[var(--accent-blue)]/20 text-[var(--accent-blue)]"
-                  : "border-[var(--border-color)] text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)]"
-              }`}
-            >
-              Group {g}
-            </button>
-          ))}
-          <button
-            type="button"
-            onClick={() => void handleSetGroup(null)}
-            className="rounded-lg border border-[var(--border-color)] px-4 py-2 text-sm font-medium text-[var(--text-secondary)] hover:bg-[var(--bg-secondary)]"
-          >
-            Unassign
-          </button>
-        </div>
       </section>
 
       <section className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] p-6">

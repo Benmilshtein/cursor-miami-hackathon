@@ -18,8 +18,11 @@ import {
   Layers,
   Loader2,
   Lock,
+  Mic,
   Play,
   Presentation,
+  Trophy,
+  Zap,
 } from "lucide-react";
 import Link from "next/link";
 import { authClient } from "@/lib/auth-client";
@@ -49,6 +52,19 @@ type Scores = {
   aiUsage: number;
   uxUi: number;
   businessPotential: number;
+};
+
+/** Step 3 rubric. Only shown for finalists, and scored after they pitch on stage. */
+const PITCH_CRITERIA = [
+  { key: "delivery" as const, label: "Delivery", subtitle: "Presence, pacing, use of the 90 seconds", max: 30, weight: "30%", icon: Mic, color: "var(--accent-purple)" },
+  { key: "clarity" as const, label: "Clarity of the idea", subtitle: "Could the room tell what it does and why", max: 30, weight: "30%", icon: Sparkles, color: "var(--accent-blue)" },
+  { key: "impact" as const, label: "Impact", subtitle: "How far they got, and whether it lands", max: 40, weight: "40%", icon: Zap, color: "var(--accent-amber)" },
+] as const;
+
+type PitchScores = {
+  delivery: number;
+  clarity: number;
+  impact: number;
 };
 
 function ScoreSlider({
@@ -105,6 +121,19 @@ export default function EvaluateTeamPage({ params }: { params: Promise<{ teamId:
   const [isEdit, setIsEdit] = useState(false);
   const [rankingFinalized, setRankingFinalized] = useState(false);
 
+  // Step 3: finals pitch. Independent of the build score above - same page, own save.
+  const [isFinalist, setIsFinalist] = useState(false);
+  const [pitchScores, setPitchScores] = useState<PitchScores>({
+    delivery: 0,
+    clarity: 0,
+    impact: 0,
+  });
+  const [pitchComment, setPitchComment] = useState("");
+  const [pitchSaving, setPitchSaving] = useState(false);
+  const [pitchSaved, setPitchSaved] = useState(false);
+  const [pitchIsEdit, setPitchIsEdit] = useState(false);
+  const [pitchError, setPitchError] = useState<string | null>(null);
+
   useEffect(() => {
     if (isPending) return;
     if (!session?.user) {
@@ -146,11 +175,30 @@ export default function EvaluateTeamPage({ params }: { params: Promise<{ teamId:
         }
 
         const teamsData = await teamsRes.json();
+        let finalist = false;
         if (teamsData?.success && Array.isArray(teamsData.data)) {
           const t = teamsData.data.find((x: { id: number }) => x.id === teamId);
           if (t) {
             setTeamName(t.name);
             if (t.project) setTeamProject(t.project);
+            finalist = Boolean(t.isFinalist);
+            setIsFinalist(finalist);
+          }
+        }
+
+        // Only finalists have a pitch; the route 400s for everyone else.
+        if (finalist) {
+          const pitchRes = await fetch(`/api/staff/pitch/${teamId}`, { credentials: "include" });
+          const pitchData = await pitchRes.json();
+          if (!ignore && pitchData?.success && pitchData.data) {
+            const ps = pitchData.data;
+            setPitchScores({
+              delivery: ps.delivery ?? 0,
+              clarity: ps.clarity ?? 0,
+              impact: ps.impact ?? 0,
+            });
+            setPitchComment(ps.comment ?? "");
+            setPitchIsEdit(true);
           }
         }
 
@@ -191,6 +239,31 @@ export default function EvaluateTeamPage({ params }: { params: Promise<{ teamId:
       setError(e instanceof Error ? e.message : "Something went wrong");
     } finally {
       setSaving(false);
+    }
+  };
+
+  const pitchTotal = pitchScores.delivery + pitchScores.clarity + pitchScores.impact;
+
+  const handlePitchSubmit = async () => {
+    setPitchError(null);
+    setPitchSaving(true);
+    setPitchSaved(false);
+    try {
+      const res = await fetch(`/api/staff/pitch/${teamId}`, {
+        method: "POST",
+        credentials: "include",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...pitchScores, comment: pitchComment || null }),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data?.error?.message ?? "Failed to save");
+      setPitchSaved(true);
+      setPitchIsEdit(true);
+      setTimeout(() => setPitchSaved(false), 3000);
+    } catch (e) {
+      setPitchError(e instanceof Error ? e.message : "Something went wrong");
+    } finally {
+      setPitchSaving(false);
     }
   };
 
@@ -396,6 +469,110 @@ export default function EvaluateTeamPage({ params }: { params: Promise<{ teamId:
 
           {error && (
             <p className="mt-4 text-center text-sm text-red-400">{error}</p>
+          )}
+
+          {/* Step 3: finals pitch. Only finalists have one. */}
+          {isFinalist && (
+            <section id="pitch" className="mt-12 scroll-mt-6">
+              <div className="mb-4 flex items-center gap-3 border-t border-[var(--border-color)] pt-8">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-amber-500/15">
+                  <Trophy className="h-4.5 w-4.5 text-amber-400" />
+                </div>
+                <div>
+                  <h2 className="font-bold text-white">Finals pitch</h2>
+                  <p className="text-xs text-[var(--text-muted)]">
+                    Scored separately from the build. This is what orders the finalists.
+                  </p>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                {PITCH_CRITERIA.map((c) => {
+                  const Icon = c.icon;
+                  return (
+                    <motion.div
+                      key={c.key}
+                      initial={{ opacity: 0, y: 10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] p-4 md:p-5"
+                    >
+                      <div className="mb-3 flex items-center gap-3">
+                        <div
+                          className="flex h-9 w-9 items-center justify-center rounded-lg"
+                          style={{ backgroundColor: `color-mix(in srgb, ${c.color} 15%, transparent)` }}
+                        >
+                          <Icon className="h-4.5 w-4.5" style={{ color: c.color }} />
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <div className="flex items-center gap-2">
+                            <span className="font-medium text-white text-sm">{c.label}</span>
+                            <span className="text-xs text-[var(--text-muted)]">{c.weight}</span>
+                          </div>
+                          <p className="text-xs text-[var(--text-muted)] mt-0.5">{c.subtitle}</p>
+                        </div>
+                      </div>
+                      <ScoreSlider
+                        value={pitchScores[c.key]}
+                        max={c.max}
+                        color={c.color}
+                        onChange={(v) => setPitchScores((prev) => ({ ...prev, [c.key]: v }))}
+                      />
+                    </motion.div>
+                  );
+                })}
+              </div>
+
+              <div className="mt-4 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] p-4 md:p-5">
+                <label className="mb-2 block text-sm font-medium text-[var(--text-secondary)]">
+                  Pitch notes (optional)
+                </label>
+                <textarea
+                  value={pitchComment}
+                  onChange={(e) => setPitchComment(e.target.value)}
+                  rows={3}
+                  maxLength={2000}
+                  placeholder="What landed, what didn't…"
+                  className="w-full rounded-lg border border-[var(--border-color)] bg-[var(--bg-primary)] px-3 py-2 text-sm text-white placeholder-[var(--text-muted)] focus:border-[var(--accent-blue)] focus:outline-none resize-none"
+                />
+              </div>
+
+              <div className="mt-6 flex items-center justify-between">
+                <div>
+                  <span className="text-sm text-[var(--text-muted)]">Pitch total:</span>
+                  <span className="ml-2 text-3xl font-bold tabular-nums text-white">{pitchTotal}</span>
+                  <span className="text-sm text-[var(--text-muted)]"> / 100</span>
+                </div>
+                <button
+                  type="button"
+                  onClick={handlePitchSubmit}
+                  disabled={pitchSaving || rankingFinalized}
+                  className="inline-flex items-center gap-2 rounded-xl bg-amber-500 px-6 py-2.5 text-sm font-medium text-black hover:bg-amber-400 disabled:opacity-50 transition-colors"
+                >
+                  {pitchSaving ? (
+                    <>
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                      Saving…
+                    </>
+                  ) : pitchSaved ? (
+                    <>
+                      <Check className="h-4 w-4" />
+                      Saved
+                    </>
+                  ) : rankingFinalized ? (
+                    <>
+                      <Lock className="h-4 w-4" />
+                      Finalized
+                    </>
+                  ) : (
+                    pitchIsEdit ? "Update pitch score" : "Submit pitch score"
+                  )}
+                </button>
+              </div>
+
+              {pitchError && (
+                <p className="mt-4 text-center text-sm text-red-400">{pitchError}</p>
+              )}
+            </section>
           )}
         </div>
       </div>

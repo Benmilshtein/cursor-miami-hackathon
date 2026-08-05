@@ -1,4 +1,4 @@
-import { getCrowdLeaderboard } from "@/lib/peer-voting/service";
+import { getPublicRankingDetail } from "@/lib/scoring/service";
 import { isRankingFinalized } from "@/lib/scoring/finalization";
 import { rankingEmitter, RANKING_UPDATED } from "@/lib/scoring/events";
 
@@ -22,11 +22,17 @@ export async function GET() {
         try {
           const finalized = await isRankingFinalized();
           if (!finalized) {
-            send(JSON.stringify({ leaderboard: [], finalized: false }));
+            send(JSON.stringify({ leaderboard: [], totalJudges: 0, finalized: false }));
             return;
           }
-          const leaderboard = await getCrowdLeaderboard();
-          send(JSON.stringify({ leaderboard, finalized: true }));
+          const detail = await getPublicRankingDetail();
+          send(
+            JSON.stringify({
+              leaderboard: detail.ranking,
+              totalJudges: detail.totalJudges,
+              finalized: true,
+            }),
+          );
         } catch {
           send(JSON.stringify({ error: "Failed to load ranking" }));
         }

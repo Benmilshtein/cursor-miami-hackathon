@@ -35,7 +35,13 @@
 
 ### Scoring and ranking
 
-- **Judges** (`user.role === "judge"`) submit criteria via **staff evaluate** API; updates are blocked when ranking is **finalized**.
+Judging is three steps: an automated repo requirements check, overnight judging of
+the live builds, then a staged finals pitch.
+
+- **repo_check** (step 1): one row per team caching the GitHub requirements check — PRD + `.cursorrules` committed and a public app URL submitted, all within an hour of `site_settings.hackathon_start_at` (T0). Run by super admin from **Admin → Teams**; judges read the cache. A failing team is **flagged, not disqualified**. Logic in `lib/judging/repo-check.ts`; needs `GITHUB_TOKEN` for GitHub's 5000/hr rate limit. `project.app_url_submitted_at` stamps the first time an app URL was set and is what the "within the first hour" URL rule measures.
+- **judge_score** (step 2): **Judges** (`user.role === "judge"`) submit the five build criteria via **staff evaluate** API; updates are blocked when ranking is **finalized**. The judge dashboard lists **all active teams** with their live app URL (judges follow builds through the night); scoring still requires an approved team with a submitted project.
+- **pitch_score** (step 3, the finals): `team.is_finalist` marks who pitches on stage. Super admin picks the roster at **Admin → Finals & results** — "select top N by build score" (`selectTopFinalists`, which sorts by `compareBuildScore`, *not* by the placement order, or it would re-pick the incumbents) plus manual add/remove. Judges score each pitch on Delivery (30) + Clarity (30) + Impact (40) via `/api/staff/pitch/[teamId]`; the form is a second card on the existing evaluate page, shown only for finalists.
+- **Placement** (`lib/scoring/placement.ts`, `comparePlacement`): finalists rank **above** everyone else and are ordered by pitch average; everyone else by build score; ties fall back to build score then team name. Before any pitch is scored, every finalist has `pitchAvg` 0, so the finals block simply sits in build order — the leaderboard is never broken mid-event. Pitch averages are fetched in their **own** query, never as a second `leftJoin` on the ranking query, which would cartesian-multiply and corrupt every build average.
 - **Super admin** can **enter or edit** any judge’s row (`upsertJudgeScoreByAdmin`, `updateJudgeScoreByAdmin`) and team-level **adjustments** on `team`: `lateSubmissionPenaltyPoints`, optional `judgeCountOverride`, and optional **`finalScoreOverride`** (0–100), which **replaces** the computed average on the public leaderboard when set. Admin score APIs do **not** check finalization so corrections remain possible after freeze if needed.
 
 ## Assumptions

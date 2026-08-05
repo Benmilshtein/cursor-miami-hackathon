@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { Search, ChevronRight, Shuffle } from "lucide-react";
-import PeerVotingPanel from "@/components/admin/PeerVotingPanel";
+import RepoCheckPanel from "@/components/admin/RepoCheckPanel";
 
 type MatchingResult = {
   poolSize: number;
@@ -17,7 +17,6 @@ type TeamItem = {
   name: string;
   description: string | null;
   status: string;
-  votingGroup: "A" | "B" | null;
   memberCount: number;
   maxMembers: number;
   joinCode: string;
@@ -161,7 +160,7 @@ export default function AdminTeamsPage() {
         ) : null}
       </div>
 
-      <PeerVotingPanel onChange={() => void fetchTeams()} />
+      <RepoCheckPanel />
 
       <div className="flex flex-wrap items-center gap-4">
         <div className="relative flex-1 min-w-[200px]">
@@ -218,7 +217,6 @@ export default function AdminTeamsPage() {
                   <tr className="border-b border-[var(--border-color)] bg-[var(--bg-secondary)]/50">
                     <th className="px-4 py-3 font-medium text-[var(--text-secondary)]">Name</th>
                     <th className="px-4 py-3 font-medium text-[var(--text-secondary)]">Status</th>
-                    <th className="px-4 py-3 font-medium text-[var(--text-secondary)]">Group</th>
                     <th className="px-4 py-3 font-medium text-[var(--text-secondary)]">Members</th>
                     <th className="px-4 py-3 font-medium text-[var(--text-secondary)]">Join code</th>
                     <th className="px-4 py-3 font-medium text-[var(--text-secondary)]">Lead</th>
@@ -228,7 +226,7 @@ export default function AdminTeamsPage() {
                 <tbody>
                   {data.items.length === 0 ? (
                     <tr>
-                      <td colSpan={7} className="px-4 py-8 text-center text-[var(--text-muted)]">
+                      <td colSpan={6} className="px-4 py-8 text-center text-[var(--text-muted)]">
                         No teams found.
                       </td>
                     </tr>
@@ -261,21 +259,6 @@ export default function AdminTeamsPage() {
                           >
                             {team.status}
                           </span>
-                        </td>
-                        <td className="px-4 py-3">
-                          {team.votingGroup ? (
-                            <span
-                              className={`inline-flex h-6 w-6 items-center justify-center rounded-full text-xs font-bold ${
-                                team.votingGroup === "A"
-                                  ? "bg-[var(--accent-blue)]/20 text-[var(--accent-blue)]"
-                                  : "bg-[var(--accent-purple)]/20 text-[var(--accent-purple)]"
-                              }`}
-                            >
-                              {team.votingGroup}
-                            </span>
-                          ) : (
-                            <span className="text-[var(--text-muted)]"> - </span>
-                          )}
                         </td>
                         <td className="px-4 py-3 text-[var(--text-secondary)]">
                           {team.memberCount} / {team.maxMembers}

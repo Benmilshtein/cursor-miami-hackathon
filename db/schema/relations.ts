@@ -7,10 +7,9 @@ import {
 } from "./auth";
 import { teamInvite, teamMember } from "./teams";
 import { screeningAnswer, screeningQuestion } from "./screening";
-import { judgeScore } from "./scoring";
+import { judgeScore, pitchScore, repoCheck } from "./scoring";
 import { project } from "./projects";
 import { mentorRequest } from "./mentor";
-import { peerVote } from "./peer-voting";
 
 export const userRelations = relations(user, ({ one, many }) => ({
   team: one(team, {
@@ -26,7 +25,7 @@ export const userRelations = relations(user, ({ one, many }) => ({
   staffMember: one(staffMember),
   createdStaffInvites: many(staffInvite),
   judgeScores: many(judgeScore),
-  peerVotes: many(peerVote),
+  pitchScores: many(pitchScore),
   assignedMentorRequests: many(mentorRequest, { relationName: "assigned_mentor" }),
   acceptedMentorRequests: many(mentorRequest, { relationName: "accepted_mentor" }),
 }));
@@ -41,7 +40,11 @@ export const teamRelations = relations(team, ({ one, many }) => ({
   memberships: many(teamMember),
   invites: many(teamInvite),
   judgeScores: many(judgeScore),
-  peerVotes: many(peerVote),
+  pitchScores: many(pitchScore),
+  repoCheck: one(repoCheck, {
+    fields: [team.id],
+    references: [repoCheck.teamId],
+  }),
   project: one(project, {
     fields: [team.id],
     references: [project.teamId],
@@ -121,14 +124,21 @@ export const judgeScoreRelations = relations(judgeScore, ({ one }) => ({
   }),
 }));
 
-export const peerVoteRelations = relations(peerVote, ({ one }) => ({
+export const pitchScoreRelations = relations(pitchScore, ({ one }) => ({
   team: one(team, {
-    fields: [peerVote.teamId],
+    fields: [pitchScore.teamId],
     references: [team.id],
   }),
-  voter: one(user, {
-    fields: [peerVote.voterUserId],
+  judge: one(user, {
+    fields: [pitchScore.judgeUserId],
     references: [user.id],
+  }),
+}));
+
+export const repoCheckRelations = relations(repoCheck, ({ one }) => ({
+  team: one(team, {
+    fields: [repoCheck.teamId],
+    references: [team.id],
   }),
 }));
 

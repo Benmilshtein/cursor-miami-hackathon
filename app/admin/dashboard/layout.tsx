@@ -95,7 +95,7 @@ export default function AdminDashboardLayout({
     { href: "/admin/dashboard/partners", label: "Partners", icon: Building2 },
     { href: "/admin/dashboard/credits", label: "Credits", icon: Coins },
     { href: "/admin/dashboard/scores", label: "Final scores", icon: BarChart3 },
-    { href: "/admin/dashboard/ranking", label: "Publish Results", icon: Trophy },
+    { href: "/admin/dashboard/ranking", label: "Finals & results", icon: Trophy },
   ];
 
   const userEmail = user?.email ?? "";

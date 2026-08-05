@@ -783,47 +783,47 @@ export const translations = {
       en: "How the Judging Works", de: "So funktioniert die Bewertung", es: "Cómo funciona la evaluación",
     },
     subtitle: {
-      en: "The crowd filters the top apps for the judges, then the judges crown the winners, all run live in the event app.",
-      de: "Die Menge filtert die besten Apps für die Judges vor, dann krönen die Judges die Gewinner, alles live in der Event-App.",
-      es: "El público filtra las mejores apps para los jueces, y luego los jueces coronan a los ganadores, todo en vivo en la app del evento.",
+      en: "Judges watch your build live all night, starting with an automated repo check, then crown the winners, all run live in the event app.",
+      de: "Die Judges verfolgen deinen Build die ganze Nacht live, beginnend mit einem automatischen Repo-Check, und krönen dann die Gewinner, alles live in der Event-App.",
+      es: "Los jueces siguen tu build en vivo toda la noche, empezando por una verificación automática del repo, y luego coronan a los ganadores, todo en vivo en la app del evento.",
     },
 
-    // Round 1: The Peer Expo (40 min)
-    round1Title: { en: "The Peer Expo", de: "Die Peer-Expo", es: "La Peer Expo" },
-    round1Duration: { en: "40 min", de: "40 Min", es: "40 min" },
+    // Step 1: The Requirements Check (first hour) + live judging through the night
+    round1Title: { en: "The Requirements Check", de: "Der Requirements-Check", es: "La Verificación de Requisitos" },
+    round1Duration: { en: "First hour", de: "Erste Stunde", es: "Primera hora" },
     round1Goal: {
-      en: "The crowd votes to surface the top 5–6 apps. Teams split into Group A and Group B: one group demos while the other tests and votes, then they swap.",
-      de: "Die Menge stimmt ab, um die besten 5–6 Apps zu ermitteln. Die Teams werden in Gruppe A und Gruppe B aufgeteilt: eine Gruppe demonstriert, während die andere testet und abstimmt, dann wird gewechselt.",
-      es: "El público vota para destacar las 5–6 mejores apps. Los equipos se dividen en Grupo A y Grupo B: un grupo presenta mientras el otro prueba y vota, y luego intercambian.",
+      en: "In your first hour you set up the repo: a PRD, a .cursorrules file, and a public app URL. An automated check reads your GitHub and flags what is missing, then judges follow your build live all night.",
+      de: "In der ersten Stunde richtest du das Repo ein: ein PRD, eine .cursorrules-Datei und eine öffentliche App-URL. Eine automatische Prüfung liest dein GitHub und markiert, was fehlt, danach verfolgen die Judges deinen Build die ganze Nacht live.",
+      es: "En tu primera hora preparas el repo: un PRD, un archivo .cursorrules y una URL pública de la app. Una verificación automática lee tu GitHub y marca lo que falta, y luego los jueces siguen tu build en vivo toda la noche.",
     },
     round1Bullet1: {
-      en: "Round 1 (20 min): Group A demos. Group B walks the floor and votes on Group A.",
-      de: "Runde 1 (20 Min): Gruppe A demonstriert. Gruppe B geht herum und stimmt über Gruppe A ab.",
-      es: "Ronda 1 (20 min): el Grupo A presenta. El Grupo B recorre la sala y vota al Grupo A.",
+      en: "Commit a PRD describing what you are building, plus a .cursorrules file, within the first hour.",
+      de: "Committe innerhalb der ersten Stunde ein PRD, das beschreibt, was du baust, sowie eine .cursorrules-Datei.",
+      es: "Sube un PRD que describa lo que vas a construir, más un archivo .cursorrules, dentro de la primera hora.",
     },
     round1Bullet2: {
-      en: "Round 2 (20 min): Group B demos. Group A walks the floor and votes on Group B. A buzzer signals the swap.",
-      de: "Runde 2 (20 Min): Gruppe B demonstriert. Gruppe A geht herum und stimmt über Gruppe B ab. Ein Summer signalisiert den Wechsel.",
-      es: "Ronda 2 (20 min): el Grupo B presenta. El Grupo A recorre la sala y vota al Grupo B. Una bocina señala el cambio.",
+      en: "Submit your public app URL on the dashboard in the same window. Deploy early, even if it is just a landing page.",
+      de: "Reiche im selben Zeitfenster deine öffentliche App-URL im Dashboard ein. Deploye früh, auch wenn es nur eine Landingpage ist.",
+      es: "Envía la URL pública de tu app en el panel dentro de esa misma ventana. Despliega temprano, aunque sea solo una landing page.",
     },
     round1Bullet3: {
-      en: "Every attendee gets 3 Launch Credits and can only vote for teams in the other group, never their own.",
-      de: "Jeder Teilnehmer erhält 3 Launch Credits und kann nur für Teams der anderen Gruppe stimmen, nie für das eigene.",
-      es: "Cada asistente recibe 3 Launch Credits y solo puede votar por equipos del otro grupo, nunca por el suyo.",
+      en: "The check is a flag, not a disqualification. Judges see your status and factor it into their scores.",
+      de: "Die Prüfung ist ein Hinweis, keine Disqualifikation. Die Judges sehen deinen Status und beziehen ihn in ihre Bewertung ein.",
+      es: "La verificación es una señal, no una descalificación. Los jueces ven tu estado y lo consideran en su puntuación.",
     },
     round1Bullet4: {
-      en: "Votes lock on the swap. When voting closes, the live leaderboard sends the top 5–6 teams to the finals.",
-      de: "Die Stimmen werden beim Wechsel gesperrt. Nach Abschluss der Abstimmung schickt das Live-Leaderboard die besten 5–6 Teams ins Finale.",
-      es: "Los votos se bloquean en el cambio. Al cerrar la votación, la tabla en vivo envía a los 5–6 mejores equipos a la final.",
+      en: "Keep shipping to that URL all night. Judges open it whenever they want to see how far you have come.",
+      de: "Deploye die ganze Nacht weiter auf diese URL. Die Judges öffnen sie jederzeit, um zu sehen, wie weit du gekommen bist.",
+      es: "Sigue desplegando a esa URL toda la noche. Los jueces la abren cuando quieren ver cuánto has avanzado.",
     },
 
     // Round 2: The Judge Finals (15 min)
     round2Title: { en: "The Judge Finals", de: "Das Judge-Finale", es: "La Final de Jueces" },
     round2Duration: { en: "15 min", de: "15 Min", es: "15 min" },
     round2Goal: {
-      en: "The judges crown the winners from the crowd's favorites. The 5–6 finalist teams take the main stage.",
-      de: "Die Judges krönen die Gewinner aus den Favoriten der Menge. Die 5–6 Finalisten-Teams betreten die Hauptbühne.",
-      es: "Los jueces coronan a los ganadores entre los favoritos del público. Los 5–6 equipos finalistas suben al escenario principal.",
+      en: "The judges crown the winners from the teams they have been following all night. The finalist teams take the main stage.",
+      de: "Die Judges krönen die Gewinner aus den Teams, die sie die ganze Nacht verfolgt haben. Die Finalisten-Teams betreten die Hauptbühne.",
+      es: "Los jueces coronan a los ganadores entre los equipos que han seguido toda la noche. Los equipos finalistas suben al escenario principal.",
     },
     round2Bullet1: {
       en: "Each finalist gets exactly 90 seconds to show their app and explain what it does.",
@@ -836,9 +836,9 @@ export const translations = {
       es: "El principiante es quien habla: el experto puede manejar la laptop, pero un novato explica la idea.",
     },
     round2Bullet3: {
-      en: "Judges huddle ~3 minutes and pick 1st, 2nd, and 3rd on how far the beginners came in ~4 hours and the utility and creativity of the AI build.",
-      de: "Die Judges beraten sich ~3 Minuten und wählen 1., 2. und 3. Bewertet wird, wie weit die Einsteiger in ~4 Stunden gekommen sind sowie Nutzen und Kreativität des KI-Builds.",
-      es: "Los jueces deliberan ~3 minutos y eligen 1.º, 2.º y 3.º según cuánto avanzaron los principiantes en ~4 horas y la utilidad y creatividad del desarrollo con IA.",
+      en: "Judges score each pitch in the app on Delivery (30), Clarity of the idea (30), and Impact (40). The scores land instantly, no huddle.",
+      de: "Die Judges bewerten jeden Pitch in der App nach Auftritt (30), Klarheit der Idee (30) und Wirkung (40). Die Wertungen zählen sofort, ohne Beratungsrunde.",
+      es: "Los jueces puntúan cada pitch en la app: Presentación (30), Claridad de la idea (30) e Impacto (40). Las puntuaciones cuentan al instante, sin deliberación aparte.",
     },
 
     // Tie-Breakers (automatic)
@@ -850,19 +850,19 @@ export const translations = {
       es: "Como la app registra todo en el backend, la tabla rompe empates al instante, en este orden:",
     },
     tieBullet1: {
-      en: "Most credits: the raw total of Launch Credits received.",
-      de: "Meiste Credits: die Gesamtzahl der erhaltenen Launch Credits.",
-      es: "Más créditos: el total bruto de Launch Credits recibidos.",
+      en: "Finalists first, ordered by their pitch score. Everyone else follows, ranked by the average judge score across all five build criteria.",
+      de: "Finalisten zuerst, sortiert nach ihrer Pitch-Wertung. Alle anderen folgen, sortiert nach dem Durchschnitt der Judge-Bewertungen über alle fünf Build-Kriterien.",
+      es: "Primero los finalistas, ordenados por su puntuación de pitch. El resto va después, ordenado por el promedio de los jueces en los cinco criterios de build.",
     },
     tieBullet2: {
-      en: "The Reach Metric: votes from the highest number of unique users wins (broad appeal beats one friend dumping all 3 credits).",
-      de: "Die Reichweiten-Metrik: Stimmen von der höchsten Zahl einzigartiger Nutzer gewinnen (breite Resonanz schlägt einen Freund, der alle 3 Credits abgibt).",
-      es: "La métrica de alcance: gana quien tenga votos del mayor número de usuarios únicos (el atractivo amplio supera a un amigo que da los 3 créditos).",
+      en: "Late-submission penalty: points are subtracted from any team that submitted after the deadline.",
+      de: "Verspätungs-Abzug: Teams, die nach der Deadline einreichen, bekommen Punkte abgezogen.",
+      es: "Penalización por entrega tardía: se restan puntos a cualquier equipo que entregue después de la fecha límite.",
     },
     tieBullet3: {
-      en: "Speed to Market: the team that hit \"Submit Project\" first wins.",
-      de: "Speed to Market: das Team, das zuerst auf \"Projekt einreichen\" geklickt hat, gewinnt.",
-      es: "Velocidad de lanzamiento: gana el equipo que pulsó \"Enviar proyecto\" primero.",
+      en: "Still tied: the leaderboard falls back to alphabetical order and the judges settle it on stage.",
+      de: "Weiterhin Gleichstand: das Leaderboard sortiert alphabetisch und die Judges entscheiden auf der Bühne.",
+      es: "Si sigue el empate: la tabla ordena alfabéticamente y los jueces lo deciden en el escenario.",
     },
 
     // Live Leaderboard Reveal
@@ -877,9 +877,9 @@ export const translations = {
       es: "\"Los datos están listos. De todos los equipos que construyeron y lanzaron esta noche, estos son los finalistas que pasan al escenario de pitch…\"",
     },
     leaderboardNote: {
-      en: "No hand-counting: final scores compute the instant the Round 2 buzzer sounds.",
-      de: "Kein Auszählen von Hand: die Endergebnisse werden berechnet, sobald der Summer der Runde 2 ertönt.",
-      es: "Sin conteo manual: las puntuaciones finales se calculan en el instante en que suena la bocina de la Ronda 2.",
+      en: "No hand-counting: final scores compute the instant the last judge submits.",
+      de: "Kein Auszählen von Hand: die Endergebnisse werden berechnet, sobald der letzte Judge abgibt.",
+      es: "Sin conteo manual: las puntuaciones finales se calculan en cuanto el último juez envía la suya.",
     },
   },
 

@@ -11,15 +11,7 @@ import {
   getTeamDetailsForAdmin,
   updateTeamForAdmin,
 } from "@/lib/teams/service";
-import { reassignTeamGroup } from "@/lib/peer-voting/service";
 import { TEAM_LIMITS } from "@/lib/teams/constants";
-
-function parseVotingGroup(value: unknown): "A" | "B" | null | undefined {
-  if (value === undefined) return undefined;
-  if (value === null || value === "") return null;
-  if (value === "A" || value === "B") return value;
-  throw new AppError(400, "INVALID_INPUT", 'votingGroup must be "A", "B", or null.');
-}
 
 function parseTeamId(rawTeamId: string) {
   const teamId = Number(rawTeamId);
@@ -102,12 +94,6 @@ export async function PATCH(
     const id = parseTeamId(teamId);
     const body = await parseJsonBody<Record<string, unknown>>(request);
     const input = parseAdminUpdateTeamBody(body);
-    const votingGroup = parseVotingGroup(body.votingGroup);
-
-    // Group reassignment is guarded separately (only while voting is closed).
-    if (votingGroup !== undefined) {
-      await reassignTeamGroup(id, votingGroup);
-    }
 
     if (input.name === undefined && input.description === undefined) {
       const result = await getTeamDetailsForAdmin(id);

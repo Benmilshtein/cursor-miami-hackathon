@@ -3,14 +3,19 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
-import { Trophy, Medal, Award, BarChart3, Lock, Users } from "lucide-react";
+import { Trophy, Medal, Award, BarChart3, Lock, Gavel, Mic } from "lucide-react";
 import { Logo, NoiseOverlay } from "@/components/ui";
 
-type CrowdRow = {
+/** One row of the judge leaderboard (see `PublicRankingEntry` in lib/scoring/service.ts). */
+type RankingRow = {
   teamId: number;
   teamName: string;
-  totalCredits: number;
-  uniqueVoters: number;
+  totalAvg: number;
+  judgeCount: number;
+  /** Step 3: pitched in the staged finals. */
+  isFinalist: boolean;
+  pitchAvg: number;
+  pitchJudgeCount: number;
   rank: number;
 };
 
@@ -29,7 +34,7 @@ function getRankBorder(rank: number) {
 }
 
 export default function RankingPage() {
-  const [leaderboard, setLeaderboard] = useState<CrowdRow[]>([]);
+  const [leaderboard, setLeaderboard] = useState<RankingRow[]>([]);
   const [finalized, setFinalized] = useState(false);
   const [connected, setConnected] = useState(false);
 
@@ -41,16 +46,20 @@ export default function RankingPage() {
       try {
         const data = JSON.parse(event.data);
         if (data && Array.isArray(data.leaderboard)) {
+          // The API returns rows already sorted by score, so rank is the index.
           setLeaderboard(
             data.leaderboard.map(
-              (r: Record<string, unknown>) =>
+              (r: Record<string, unknown>, i: number) =>
                 ({
                   teamId: Number(r.teamId),
                   teamName: String(r.teamName ?? ""),
-                  totalCredits: Number(r.totalCredits ?? 0),
-                  uniqueVoters: Number(r.uniqueVoters ?? 0),
-                  rank: Number(r.rank ?? 0),
-                }) satisfies CrowdRow,
+                  totalAvg: Number(r.totalAvg ?? 0),
+                  judgeCount: Number(r.judgeCount ?? 0),
+                  isFinalist: Boolean(r.isFinalist),
+                  pitchAvg: Number(r.pitchAvg ?? 0),
+                  pitchJudgeCount: Number(r.pitchJudgeCount ?? 0),
+                  rank: i + 1,
+                }) satisfies RankingRow,
             ),
           );
           if (typeof data.finalized === "boolean") setFinalized(data.finalized);
@@ -107,10 +116,10 @@ export default function RankingPage() {
             animate={{ opacity: 1, y: 0 }}
             className="mb-8"
           >
-            <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">Crowd vote results</h1>
+            <h1 className="text-3xl md:text-4xl font-bold text-white mb-2">Results</h1>
             <p className="text-[var(--text-secondary)] text-sm md:text-base">
               {finalized
-                ? "Ranked by Launch Credits from the peer expo. Ties broken by reach (unique voters)."
+                ? "Finalists first, ordered by their staged pitch. Everyone else by their build score, out of 100."
                 : "Results will be published by the organizers when ready."}
             </p>
           </motion.div>
@@ -126,9 +135,9 @@ export default function RankingPage() {
           ) : leaderboard.length === 0 ? (
             <div className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] p-12 text-center">
               <BarChart3 className="mx-auto mb-4 h-10 w-10 text-[var(--text-muted)]" />
-              <p className="text-[var(--text-secondary)]">No votes yet</p>
+              <p className="text-[var(--text-secondary)]">No scores yet</p>
               <p className="mt-1 text-xs text-[var(--text-muted)]">
-                Teams will appear here once the crowd starts voting
+                Teams will appear here once the judges start scoring
               </p>
             </div>
           ) : (
@@ -151,26 +160,41 @@ export default function RankingPage() {
                           {getRankIcon(rank)}
                         </div>
                         <div className="min-w-0 flex-1">
-                          <h3
-                            className={`font-semibold truncate ${rank <= 3 ? "text-white" : "text-[var(--text-secondary)]"}`}
-                          >
-                            {team.teamName}
-                          </h3>
-                          <div className="mt-0.5 flex items-center gap-1.5 text-xs text-[var(--text-muted)]">
-                            <Users className="h-3.5 w-3.5" />
-                            <span className="tabular-nums">{team.uniqueVoters}</span>
-                            <span>{team.uniqueVoters === 1 ? "voter" : "voters"}</span>
+                          <div className="flex items-center gap-2">
+                            <h3
+                              className={`font-semibold truncate ${rank <= 3 ? "text-white" : "text-[var(--text-secondary)]"}`}
+                            >
+                              {team.teamName}
+                            </h3>
+                            {team.isFinalist && (
+                              <span className="inline-flex shrink-0 items-center gap-1 rounded bg-amber-500/15 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-amber-400">
+                                <Trophy className="h-2.5 w-2.5" />
+                                Finalist
+                              </span>
+                            )}
+                          </div>
+                          <div className="mt-0.5 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-[var(--text-muted)]">
+                            <span className="flex items-center gap-1.5">
+                              <Gavel className="h-3.5 w-3.5" />
+                              <span className="tabular-nums">{team.judgeCount}</span>
+                              <span>{team.judgeCount === 1 ? "judge" : "judges"}</span>
+                            </span>
+                            {team.isFinalist && team.pitchJudgeCount > 0 && (
+                              <span className="flex items-center gap-1.5 text-amber-400">
+                                <Mic className="h-3.5 w-3.5" />
+                                <span className="tabular-nums">{team.pitchAvg.toFixed(1)}</span>
+                                <span>pitch</span>
+                              </span>
+                            )}
                           </div>
                         </div>
                         <div className="flex-shrink-0 text-right">
                           <div
                             className={`text-2xl font-bold tabular-nums ${rank <= 3 ? "text-white" : "text-[var(--text-secondary)]"}`}
                           >
-                            {team.totalCredits}
+                            {team.totalAvg.toFixed(1)}
                           </div>
-                          <div className="text-xs text-[var(--text-muted)]">
-                            {team.totalCredits === 1 ? "credit" : "credits"}
-                          </div>
+                          <div className="text-xs text-[var(--text-muted)]">build / 100</div>
                         </div>
                       </div>
                     </motion.div>

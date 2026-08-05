@@ -148,10 +148,16 @@ export async function upsertAppLinks(
 
   const existing = await getProjectForTeam(teamId);
   if (existing) {
+    // Stamp the first time an app URL is set - that timestamp is what the
+    // step-1 requirements check measures against. Later edits don't reset it.
+    const firstSubmission =
+      demoUrl && existing.appUrlSubmittedAt == null ? { appUrlSubmittedAt: new Date() } : {};
+
     const [row] = await db
       .update(project)
       .set({
         demoUrl,
+        ...firstSubmission,
         ...(githubUrl !== undefined ? { githubUrl } : {}),
         updatedAt: new Date(),
       })
@@ -176,6 +182,7 @@ export async function upsertAppLinks(
       name: teamRow.name,
       githubUrl: githubUrl ?? "",
       demoUrl,
+      appUrlSubmittedAt: demoUrl ? new Date() : null,
     })
     .returning();
 
