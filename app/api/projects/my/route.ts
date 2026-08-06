@@ -52,6 +52,7 @@ export async function POST(request: NextRequest) {
       description: body.description,
       githubUrl: body.githubUrl,
       demoUrl: body.demoUrl,
+      prdUrl: body.prdUrl,
       techStack: body.techStack,
       slidesUrl: body.slidesUrl,
       videoUrl: body.videoUrl,

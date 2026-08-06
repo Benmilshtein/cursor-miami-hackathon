@@ -1,22 +1,29 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { Globe, Github, Check, ExternalLink } from "lucide-react";
+import { Globe, Github, Check, ExternalLink, FileText } from "lucide-react";
 
-type ProjectShape = { demoUrl: string | null; githubUrl: string | null } | null;
+type ProjectShape = {
+  demoUrl: string | null;
+  githubUrl: string | null;
+  prdUrl: string | null;
+} | null;
 
 const norm = (v: string | null) => (v && v.trim() ? v.trim() : null);
 
 /**
  * Inline dashboard section where a team submits its public app URL (stored in
- * project.demo_url) and GitHub URL (project.github_url). Open to any team
- * regardless of screening status; only the team lead can edit.
+ * project.demo_url), GitHub URL (project.github_url), and PRD link
+ * (project.prd_url). Open to any team regardless of screening status; only the
+ * team lead can edit.
  */
 export default function AppUrlSection({ isLead }: { isLead: boolean }) {
   const [appUrl, setAppUrl] = useState("");
   const [githubUrl, setGithubUrl] = useState("");
+  const [prdUrl, setPrdUrl] = useState("");
   const [savedApp, setSavedApp] = useState<string | null>(null);
   const [savedGithub, setSavedGithub] = useState<string | null>(null);
+  const [savedPrd, setSavedPrd] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -30,8 +37,10 @@ export default function AppUrlSection({ isLead }: { isLead: boolean }) {
         const project = (json.data?.project ?? null) as ProjectShape;
         setSavedApp(project?.demoUrl ?? null);
         setSavedGithub(norm(project?.githubUrl ?? null));
+        setSavedPrd(project?.prdUrl ?? null);
         setAppUrl(project?.demoUrl ?? "");
         setGithubUrl(project?.githubUrl ?? "");
+        setPrdUrl(project?.prdUrl ?? "");
       }
     } catch {
       // Soft-fail: leave fields empty/editable.
@@ -56,6 +65,7 @@ export default function AppUrlSection({ isLead }: { isLead: boolean }) {
         body: JSON.stringify({
           appUrl: appUrl.trim() || null,
           githubUrl: githubUrl.trim() || null,
+          prdUrl: prdUrl.trim() || null,
         }),
       });
       const json = await res.json().catch(() => ({}));
@@ -64,20 +74,25 @@ export default function AppUrlSection({ isLead }: { isLead: boolean }) {
       }
       const demoUrl = (json.data?.demoUrl ?? null) as string | null;
       const gh = (json.data?.githubUrl ?? null) as string | null;
+      const prd = (json.data?.prdUrl ?? null) as string | null;
       setSavedApp(demoUrl);
       setSavedGithub(norm(gh));
+      setSavedPrd(prd);
       setAppUrl(demoUrl ?? "");
       setGithubUrl(gh ?? "");
+      setPrdUrl(prd ?? "");
       setJustSaved(true);
     } catch (e) {
       setError(e instanceof Error ? e.message : "Could not save your links");
     } finally {
       setSaving(false);
     }
-  }, [appUrl, githubUrl]);
+  }, [appUrl, githubUrl, prdUrl]);
 
   const dirty =
-    norm(appUrl) !== (savedApp ?? null) || norm(githubUrl) !== (savedGithub ?? null);
+    norm(appUrl) !== (savedApp ?? null) ||
+    norm(githubUrl) !== (savedGithub ?? null) ||
+    norm(prdUrl) !== (savedPrd ?? null);
 
   return (
     <>
@@ -87,7 +102,7 @@ export default function AppUrlSection({ isLead }: { isLead: boolean }) {
         </p>
         <h2 className="mt-1 text-xl font-semibold text-white sm:text-2xl">Your app</h2>
         <p className="mt-1 text-sm text-[var(--text-secondary)]">
-          Share the public URL where anyone can open your app, plus your code repo.
+          Share your public app URL, code repo, and PRD (PDF or Markdown link).
         </p>
       </div>
 
@@ -133,6 +148,27 @@ export default function AppUrlSection({ isLead }: { isLead: boolean }) {
                   automated check cannot read a private repo.
                 </p>
               </div>
+              <div>
+                <label className="block text-sm font-medium text-[var(--text-secondary)]">
+                  PRD link
+                </label>
+                <input
+                  type="url"
+                  inputMode="url"
+                  placeholder="https://…/your-prd.pdf or …/PRD.md"
+                  value={prdUrl}
+                  onChange={(e) => {
+                    setPrdUrl(e.target.value);
+                    setJustSaved(false);
+                  }}
+                  className="mt-2 w-full rounded-lg border border-[var(--border-color)] bg-[var(--bg-secondary)] px-4 py-2 text-white placeholder:text-[var(--text-muted)] focus:border-[var(--accent-blue)] focus:outline-none"
+                />
+                <p className="mt-1.5 text-xs text-[var(--text-muted)]">
+                  Public link to a <span className="text-white">PDF</span> or{" "}
+                  <span className="text-white">Markdown (.md)</span> file. Due by 6:30 PM —
+                  anyone with the link must be able to open it (no login).
+                </p>
+              </div>
             </div>
 
             <div className="mt-4 flex flex-wrap items-center gap-4">
@@ -154,6 +190,17 @@ export default function AppUrlSection({ isLead }: { isLead: boolean }) {
                 >
                   <ExternalLink className="h-3.5 w-3.5" />
                   Open your app
+                </a>
+              ) : null}
+              {savedPrd ? (
+                <a
+                  href={savedPrd}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-sm text-[var(--accent-blue)] hover:underline"
+                >
+                  <FileText className="h-3.5 w-3.5" />
+                  Open PRD
                 </a>
               ) : null}
             </div>
@@ -193,6 +240,21 @@ export default function AppUrlSection({ isLead }: { isLead: boolean }) {
                 </a>
               ) : (
                 <p className="text-sm text-[var(--text-muted)]">No GitHub URL submitted yet.</p>
+              )}
+            </div>
+            <div className="flex items-center gap-3">
+              <FileText className="h-5 w-5 shrink-0 text-[var(--text-muted)]" />
+              {savedPrd ? (
+                <a
+                  href={savedPrd}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="truncate text-sm text-[var(--accent-blue)] hover:underline"
+                >
+                  {savedPrd}
+                </a>
+              ) : (
+                <p className="text-sm text-[var(--text-muted)]">No PRD link submitted yet.</p>
               )}
             </div>
             <p className="text-xs text-[var(--text-muted)]">

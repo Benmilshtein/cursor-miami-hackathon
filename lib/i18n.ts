@@ -775,9 +775,9 @@ export const translations = {
       en: "PRD due", de: "PRD-Abgabe", es: "Entrega del PRD",
     },
     block4Desc: {
-      en: "Every team submits their PRD in the platform. Once it's in, the mission is locked — no changing it.",
-      de: "Jedes Team reicht das PRD in der Platform ein. Danach ist die Mission gelockt — keine Änderungen mehr.",
-      es: "Cada equipo envía su PRD en la plataforma. Una vez enviado, la misión queda bloqueada: no se puede cambiar.",
+      en: "Every team submits a public PDF or Markdown (.md) PRD link in the platform. Once it's in, the mission is locked — no changing it.",
+      de: "Jedes Team reicht einen öffentlichen PDF- oder Markdown-(.md)-PRD-Link in der Platform ein. Danach ist die Mission gelockt — keine Änderungen mehr.",
+      es: "Cada equipo envía un enlace público al PRD en PDF o Markdown (.md) en la plataforma. Una vez enviado, la misión queda bloqueada: no se puede cambiar.",
     },
     block5: {
       en: "Final submissions", de: "Finale Abgabe", es: "Entrega final",
@@ -828,14 +828,14 @@ export const translations = {
     round1Title: { en: "Lock your mission", de: "Mission locken", es: "Bloquea tu misión" },
     round1Duration: { en: "6:30 PM", de: "18:30", es: "6:30 PM" },
     round1Goal: {
-      en: "After kickoff at 5:00, every team submits a PRD in the platform by 6:30. Once it's in, your objective is locked for the night.",
-      de: "Nach dem Kickoff um 17:00 reicht jedes Team bis 18:30 ein PRD in der Platform ein. Danach ist dein Ziel für die Nacht gelockt.",
-      es: "Tras el kickoff a las 5:00, cada equipo envía un PRD en la plataforma antes de las 6:30. Una vez enviado, tu objetivo queda bloqueado por la noche.",
+      en: "After kickoff at 5:00, every team submits a public PDF or Markdown (.md) PRD link in the platform by 6:30. Once it's in, your objective is locked for the night.",
+      de: "Nach dem Kickoff um 17:00 reicht jedes Team bis 18:30 einen öffentlichen PDF- oder Markdown-(.md)-PRD-Link in der Platform ein. Danach ist dein Ziel für die Nacht gelockt.",
+      es: "Tras el kickoff a las 5:00, cada equipo envía un enlace público al PRD en PDF o Markdown (.md) en la plataforma antes de las 6:30. Una vez enviado, tu objetivo queda bloqueado por la noche.",
     },
     round1Bullet1: {
-      en: "Submit your PRD in the platform by 6:30 PM. You can cut features later, but you can't add new ones.",
-      de: "Reiche dein PRD bis 18:30 in der Platform ein. Features kannst du später streichen, aber keine neuen hinzufügen.",
-      es: "Envía tu PRD en la plataforma antes de las 6:30 PM. Luego puedes recortar funciones, pero no añadir nuevas.",
+      en: "Submit a public PDF or Markdown (.md) PRD link in the platform by 6:30 PM. You can cut features later, but you can't add new ones.",
+      de: "Reiche bis 18:30 einen öffentlichen PDF- oder Markdown-(.md)-PRD-Link in der Platform ein. Features kannst du später streichen, aber keine neuen hinzufügen.",
+      es: "Envía un enlace público al PRD en PDF o Markdown (.md) en la plataforma antes de las 6:30 PM. Luego puedes recortar funciones, pero no añadir nuevas.",
     },
     prdExampleCta: {
       en: "View PRD example",
@@ -964,7 +964,7 @@ export const translations = {
       en: "Filled PRD", de: "Ausgefülltes PRD", es: "PRD completado",
     },
     req1Desc: {
-      en: "system-design-prd-template.md: fill this out before writing code", de: "system-design-prd-template.md: vor dem Coden ausfüllen", es: "system-design-prd-template.md: rellénalo antes de escribir código",
+      en: "Submit a public PDF or Markdown (.md) link in the dashboard by 6:30 PM", de: "Bis 18:30 einen öffentlichen PDF- oder Markdown-(.md)-Link im Dashboard einreichen", es: "Envía un enlace público a un PDF o Markdown (.md) en el dashboard antes de las 6:30 PM",
     },
     req2: { en: "Agent", de: "Agent", es: "Agente" },
     req2Desc: {
@@ -1000,9 +1000,9 @@ export const translations = {
       es: "Documento de requisitos (PRD)",
     },
     beginnerReqPrdDesc: {
-      en: "Submit in the platform by 6:30 PM. Locks your mission for the night — judges score against what you promised.",
-      de: "Bis 18:30 in der Platform einreichen. Lockt deine Mission für die Nacht — Judges bewerten gegen dein Versprechen.",
-      es: "Envíalo en la plataforma antes de las 6:30 PM. Bloquea tu misión de la noche: los jueces puntúan contra lo que prometiste.",
+      en: "Submit a public PDF or Markdown (.md) link in the platform by 6:30 PM. Locks your mission for the night — judges score against what you promised.",
+      de: "Bis 18:30 einen öffentlichen PDF- oder Markdown-(.md)-Link in der Platform einreichen. Lockt deine Mission für die Nacht — Judges bewerten gegen dein Versprechen.",
+      es: "Envía un enlace público a un PDF o Markdown (.md) en la plataforma antes de las 6:30 PM. Bloquea tu misión de la noche: los jueces puntúan contra lo que prometiste.",
     },
     beginnerReqGithub: {
       en: "Public GitHub Repo",
@@ -1223,9 +1223,9 @@ export const translations = {
       es: "$10,000 · Superteam USA",
     },
     beginnerBullet1: {
-      en: "Lock your PRD in the platform by 6:30 — mission locked for the night",
-      de: "PRD bis 18:30 in der Platform locken — Mission für die Nacht fest",
-      es: "Bloquea tu PRD en la plataforma a las 6:30 — misión fija por la noche",
+      en: "Lock your PRD (PDF or .md link) in the platform by 6:30 — mission locked for the night",
+      de: "PRD (PDF- oder .md-Link) bis 18:30 in der Platform locken — Mission für die Nacht fest",
+      es: "Bloquea tu PRD (enlace PDF o .md) en la plataforma a las 6:30 — misión fija por la noche",
     },
     beginnerBullet2: {
       en: "Submit the full project by 9:30: public GitHub repo, .cursorrules, public URL, working app, README",

@@ -108,8 +108,10 @@ export function PrdExampleModal({ open, onClose }: PrdExampleModalProps) {
                 doesn&apos;t fit, cut features, not words.
               </li>
               <li>
-                <strong className="text-white">Due at 6:30 PM.</strong> Submit through
-                the Ship Night platform. No PRD, no submission.
+                <strong className="text-white">Due at 6:30 PM.</strong> Submit a{" "}
+                <strong className="text-white">public PDF or Markdown (.md) link</strong>{" "}
+                in the Ship Night dashboard (same place as your app URL and GitHub).
+                No PRD, no submission.
               </li>
               <li>
                 <strong className="text-white">Scope is locked at 6:30.</strong> You
