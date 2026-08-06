@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/lib/LanguageContext";
 import {
@@ -31,6 +32,8 @@ const tracks = [
 
 export function TracksSection() {
   const { t } = useLanguage();
+  const track = tracks[0];
+  const accent = track.accent;
 
   return (
     <section
@@ -40,13 +43,13 @@ export function TracksSection() {
       <div className="absolute inset-0 grid-pattern opacity-20 pointer-events-none" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,var(--accent-blue)/8_0%,transparent_60%)] pointer-events-none" />
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           variants={staggerContainer}
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="text-center mb-12 sm:mb-16 md:mb-20"
+          className="text-center mb-12 sm:mb-16"
         >
           <motion.div variants={fadeUp}>
             <SectionTag color="blue">{t("tracks", "tag")}</SectionTag>
@@ -65,75 +68,97 @@ export function TracksSection() {
           </motion.p>
         </motion.div>
 
-        <motion.div
-          variants={staggerContainer}
+        <motion.article
+          variants={scaleUp}
           initial="hidden"
           whileInView="visible"
           viewport={viewportOnce}
-          className="grid grid-cols-1 max-w-2xl mx-auto gap-6 lg:gap-8"
+          className="relative overflow-hidden rounded-3xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/50 backdrop-blur-sm"
+          style={{ boxShadow: `0 0 0 1px ${accent}12 inset` }}
         >
-          {tracks.map((track) => (
-            <motion.article
-              key={track.id}
-              variants={scaleUp}
-              whileHover={{ y: -6 }}
-              transition={{ duration: 0.25 }}
-              className="relative rounded-3xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/60 backdrop-blur-sm p-8 sm:p-10 flex flex-col shadow-lg shadow-black/20 overflow-hidden"
-              style={{
-                boxShadow: `0 0 0 1px ${track.accent}10 inset`,
-              }}
-            >
-              <div
-                className="absolute top-0 left-0 right-0 h-1"
-                style={{ background: track.accent }}
-              />
+          <div
+            className="absolute top-0 left-0 right-0 h-px"
+            style={{ background: `linear-gradient(90deg, transparent, ${accent}, transparent)` }}
+          />
+          <div
+            className="pointer-events-none absolute -top-24 -left-16 h-64 w-64 rounded-full opacity-25 blur-3xl"
+            style={{ background: accent }}
+          />
+          <div
+            className="pointer-events-none absolute -bottom-28 -right-20 h-72 w-72 rounded-full opacity-15 blur-3xl"
+            style={{ background: "var(--accent-blue)" }}
+          />
 
+          <div className="relative grid items-center gap-8 p-6 sm:p-8 lg:grid-cols-[1fr_1.05fr] lg:gap-10 lg:p-10">
+            {/* Copy */}
+            <div className="order-2 lg:order-1 min-w-0">
               <div
-                className="absolute -top-20 -right-20 w-64 h-64 rounded-full opacity-20 blur-3xl pointer-events-none"
-                style={{ background: track.accent }}
-              />
-
-              <div className="relative mb-6">
-                <div
-                  className="w-14 h-14 rounded-2xl flex items-center justify-center border"
-                  style={{
-                    borderColor: `${track.accent}40`,
-                    background: `${track.accent}15`,
-                    color: track.accent,
-                  }}
-                >
-                  <track.icon size={28} />
-                </div>
+                className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl border"
+                style={{
+                  borderColor: `${accent}40`,
+                  background: `${accent}15`,
+                  color: accent,
+                }}
+              >
+                <track.icon size={24} />
               </div>
 
-              <h3 className="relative text-2xl sm:text-3xl font-bold text-white mb-2">
+              <h3 className="text-2xl sm:text-3xl font-bold text-white tracking-tight">
                 {t("tracks", track.nameKey)}
               </h3>
               <p
-                className="relative text-sm font-semibold mb-8 uppercase tracking-wide"
-                style={{ color: track.accent }}
+                className="mt-2 text-sm font-semibold uppercase tracking-[0.14em]"
+                style={{ color: accent }}
               >
                 {t("tracks", track.tagKey)}
               </p>
 
-              <ul className="relative space-y-3 mt-auto">
+              <ul className="mt-7 space-y-3.5">
                 {track.bulletKeys.map((bulletKey) => (
                   <li
                     key={bulletKey}
-                    className="flex items-start gap-3 text-sm text-[var(--text-secondary)]"
+                    className="flex items-start gap-3 text-sm sm:text-[15px] leading-relaxed text-[var(--text-secondary)]"
                   >
                     <IconCheckCircle
                       size={18}
                       className="shrink-0 mt-0.5"
-                      style={{ color: track.accent }}
+                      style={{ color: accent }}
                     />
                     <span>{t("tracks", bulletKey)}</span>
                   </li>
                 ))}
               </ul>
-            </motion.article>
-          ))}
-        </motion.div>
+            </div>
+
+            {/* Prize check — organic photo treatment */}
+            <figure className="order-1 lg:order-2 relative mx-auto w-full max-w-md lg:max-w-none">
+              <div
+                className="absolute -inset-3 rounded-[1.75rem] opacity-40 blur-2xl"
+                style={{
+                  background: `radial-gradient(ellipse at 50% 40%, ${accent}55, transparent 70%)`,
+                }}
+              />
+              <motion.div
+                className="relative overflow-hidden rounded-2xl border border-white/10 bg-black/20 shadow-[0_24px_60px_-20px_rgba(0,0,0,0.75)]"
+                style={{ rotate: "1.25deg" }}
+                whileHover={{ rotate: 0, y: -4 }}
+                transition={{ type: "spring", stiffness: 260, damping: 22 }}
+              >
+                <Image
+                  src="/superteam-usa-check.jpeg"
+                  alt={t("tracks", "prizeAlt")}
+                  width={680}
+                  height={532}
+                  className="h-auto w-full object-cover"
+                  sizes="(max-width: 1024px) 90vw, 480px"
+                />
+              </motion.div>
+              <figcaption className="relative mt-4 text-center text-xs sm:text-sm text-[var(--text-muted)] tracking-wide">
+                {t("tracks", "prizeCaption")}
+              </figcaption>
+            </figure>
+          </div>
+        </motion.article>
       </div>
     </section>
   );

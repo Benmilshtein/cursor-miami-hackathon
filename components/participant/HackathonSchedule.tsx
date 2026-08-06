@@ -24,10 +24,13 @@ const scheduleData: DaySchedule[] = [
     dayKey: 'day1',
     labelKey: 'day1Label',
     items: [
-      { time: '4:00 – 6:00pm', titleKey: 'block1', descKey: 'block1Desc' },
-      { time: '6:00 – 10:30pm', titleKey: 'block2', descKey: 'block2Desc', highlight: true },
-      { time: '10:30 – 11:00pm', titleKey: 'block3', descKey: 'block3Desc', highlight: true },
-      { time: '11:00 – 12:00am', titleKey: 'block4', descKey: 'block4Desc' },
+      { time: '4:00pm', titleKey: 'block1', descKey: 'block1Desc' },
+      { time: '4:30pm', titleKey: 'block2', descKey: 'block2Desc' },
+      { time: '5:00pm', titleKey: 'block3', descKey: 'block3Desc', highlight: true },
+      { time: '6:30pm', titleKey: 'block4', descKey: 'block4Desc', highlight: true },
+      { time: '9:30pm', titleKey: 'block5', descKey: 'block5Desc', highlight: true },
+      { time: '10:00 – 10:30pm', titleKey: 'block6', descKey: 'block6Desc', highlight: true },
+      { time: '10:30 – 11:00pm', titleKey: 'block7', descKey: 'block7Desc' },
     ],
   },
 ];
@@ -142,7 +145,7 @@ export function HackathonSchedule() {
                   }`}
                 >
                   {/* Time */}
-                  <div className="flex-shrink-0 sm:w-32">
+                  <div className="flex-shrink-0 sm:w-40">
                     <span className={`text-sm font-mono ${
                       item.highlight ? 'text-[var(--accent-blue)]' : 'text-[var(--text-muted)]'
                     }`}>

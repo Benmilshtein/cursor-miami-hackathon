@@ -1,17 +1,18 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/lib/LanguageContext";
 import type { TranslationKey } from "@/lib/i18n";
 import {
   SectionTag,
-  IconUsers,
+  IconDocument,
+  IconSend,
   IconGavel,
-  IconTarget,
   IconTrophy,
 } from "@/components/ui";
 import { staggerContainer, fadeUp, viewportOnce } from "@/lib/animations";
+import { PrdExampleModal } from "./PrdExampleModal";
 
 type Phase = {
   id: string;
@@ -30,20 +31,40 @@ function tint(color: string, pct: number): string {
   return `color-mix(in srgb, ${color} ${pct}%, transparent)`;
 }
 
+/** Aligned to https://luma.com/cursor-8hml — PRD 6:30 → full submit 9:30 → finals 10:00 */
 const phases: Phase[] = [
   {
     id: "round1",
     num: 1,
     accent: "var(--accent-blue)",
-    icon: IconUsers,
+    icon: IconDocument,
     titleKey: "round1Title",
     durationKey: "round1Duration",
     goalKey: "round1Goal",
-    bulletKeys: ["round1Bullet1", "round1Bullet2", "round1Bullet3", "round1Bullet4"],
+    bulletKeys: ["round1Bullet1", "round1Bullet2", "round1Bullet3"],
+  },
+  {
+    id: "submit",
+    num: 2,
+    accent: "var(--accent-green)",
+    icon: IconSend,
+    titleKey: "submitTitle",
+    durationKey: "submitDuration",
+    goalKey: "submitGoal",
+    bulletKeys: [
+      "submitBullet1",
+      "submitBullet2",
+      "submitBullet3",
+      "submitBullet4",
+      "submitBullet5",
+      "submitBullet6",
+      "submitBullet7",
+    ],
+    ordered: true,
   },
   {
     id: "round2",
-    num: 2,
+    num: 3,
     accent: "var(--accent-purple)",
     icon: IconGavel,
     titleKey: "round2Title",
@@ -52,15 +73,14 @@ const phases: Phase[] = [
     bulletKeys: ["round2Bullet1", "round2Bullet2", "round2Bullet3"],
   },
   {
-    id: "tiebreak",
-    num: 3,
-    accent: "var(--accent-green)",
-    icon: IconTarget,
-    titleKey: "tieTitle",
-    durationKey: "tieTag",
-    goalKey: "tieGoal",
-    bulletKeys: ["tieBullet1", "tieBullet2", "tieBullet3"],
-    ordered: true,
+    id: "winners",
+    num: 4,
+    accent: "var(--accent-blue)",
+    icon: IconTrophy,
+    titleKey: "winnersTitle",
+    durationKey: "winnersDuration",
+    goalKey: "winnersGoal",
+    bulletKeys: ["winnersBullet1", "winnersBullet2"],
   },
 ];
 
@@ -69,11 +89,13 @@ function PhaseRow({
   index,
   isLast,
   t,
+  onOpenPrdExample,
 }: {
   phase: Phase;
   index: number;
   isLast: boolean;
   t: (section: TranslationKey, key: string) => string;
+  onOpenPrdExample?: () => void;
 }) {
   const Icon = phase.icon;
   return (
@@ -144,7 +166,22 @@ function PhaseRow({
               >
                 {phase.ordered ? i + 1 : "•"}
               </span>
-              <span>{t("criteria", bulletKey)}</span>
+              <span>
+                {t("criteria", bulletKey)}
+                {bulletKey === "round1Bullet1" && onOpenPrdExample ? (
+                  <>
+                    {" "}
+                    <button
+                      type="button"
+                      onClick={onOpenPrdExample}
+                      className="inline font-semibold underline decoration-[var(--accent-blue)]/50 underline-offset-4 transition-colors hover:text-white hover:decoration-[var(--accent-blue)] focus:outline-none focus-visible:rounded focus-visible:ring-2 focus-visible:ring-[var(--accent-blue)]"
+                      style={{ color: phase.accent }}
+                    >
+                      {t("criteria", "prdExampleCta")}
+                    </button>
+                  </>
+                ) : null}
+              </span>
             </li>
           ))}
         </ul>
@@ -155,6 +192,7 @@ function PhaseRow({
 
 export function EvaluationCriteria() {
   const { t } = useLanguage();
+  const [prdOpen, setPrdOpen] = useState(false);
 
   return (
     <section
@@ -196,36 +234,14 @@ export function EvaluationCriteria() {
               index={index}
               isLast={index === phases.length - 1}
               t={t}
+              onOpenPrdExample={
+                phase.id === "round1" ? () => setPrdOpen(true) : undefined
+              }
             />
           ))}
         </div>
 
-        {/* Live Leaderboard Reveal */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={viewportOnce}
-          transition={{ delay: 0.1 }}
-          className="relative mt-4 overflow-hidden rounded-3xl border border-[var(--accent-green)]/40 bg-[var(--bg-secondary)] p-6 sm:p-8"
-        >
-          <div className="absolute -top-20 -right-16 h-56 w-56 rounded-full bg-[var(--accent-green)]/10 blur-3xl pointer-events-none" />
-          <div className="relative">
-            <div className="mb-4 flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-[var(--accent-green)]/40 bg-[var(--accent-green)]/12 text-[var(--accent-green)]">
-                <IconTrophy size={20} />
-              </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-white">
-                {t("criteria", "leaderboardTitle")}
-              </h3>
-            </div>
-            <blockquote className="border-l-2 border-[var(--accent-green)]/50 pl-4 text-base sm:text-lg italic text-[var(--text-secondary)]">
-              {t("criteria", "leaderboardQuote")}
-            </blockquote>
-            <p className="mt-4 text-sm text-[var(--text-muted)]">
-              {t("criteria", "leaderboardNote")}
-            </p>
-          </div>
-        </motion.div>
+        <PrdExampleModal open={prdOpen} onClose={() => setPrdOpen(false)} />
       </div>
     </section>
   );

@@ -110,15 +110,6 @@ export function ParticipantHero() {
           </div>
         </MouseParallax>
 
-        <MouseParallax factor={40} className="absolute bottom-[20%] left-[5%]">
-          <div className="flex items-center gap-2 px-4 py-2 bg-[var(--bg-secondary)]/30 backdrop-blur-md border border-[var(--border-color)]/50 rounded-full">
-            <div className="w-2 h-2 bg-[var(--accent-cyan)] rounded-full animate-pulse" />
-            <span className="text-sm font-mono text-[var(--text-muted)]">
-              SYSTEM_READY
-            </span>
-          </div>
-        </MouseParallax>
-
         <MouseParallax factor={-50} className="absolute top-[25%] right-[8%]">
           <div className="flex flex-col gap-1 p-3 bg-[var(--bg-secondary)]/30 backdrop-blur-md border border-[var(--border-color)]/50 rounded-xl rotate-[12deg]">
             <div className="w-24 h-2 bg-[var(--border-color)]/30 rounded-full" />
