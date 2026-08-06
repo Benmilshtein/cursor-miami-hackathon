@@ -1,16 +1,30 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useLanguage } from '@/lib/LanguageContext';
 import { useTrack, type TrackId } from '@/lib/TrackContext';
 import { SectionTag } from '@/components/ui';
 import { staggerContainer, fadeUp, scaleUp, viewportOnce } from '@/lib/animations';
+import { PrdExampleModal } from './PrdExampleModal';
 
-type RequirementItem = { icon: string; titleKey: string; descKey: string };
+type RequirementItem = {
+  icon: string;
+  titleKey: string;
+  descKey: string;
+  /** Opens the shared PRD example modal from the description. */
+  showPrdExample?: boolean;
+};
 
 const requiredByTrack: Record<TrackId, RequirementItem[]> = {
   beginner: [
+    {
+      icon: 'prd',
+      titleKey: 'beginnerReqPrd',
+      descKey: 'beginnerReqPrdDesc',
+      showPrdExample: true,
+    },
+    { icon: 'github', titleKey: 'beginnerReqGithub', descKey: 'beginnerReqGithubDesc' },
     { icon: 'deploy', titleKey: 'beginnerReq1', descKey: 'beginnerReq1Desc' },
     { icon: 'prototype', titleKey: 'beginnerReq2', descKey: 'beginnerReq2Desc' },
     { icon: 'file', titleKey: 'beginnerReq3', descKey: 'beginnerReq3Desc' },
@@ -21,7 +35,6 @@ const requiredByTrack: Record<TrackId, RequirementItem[]> = {
 // Recommended items apply to both tracks
 const recommendedItems: RequirementItem[] = [
   { icon: 'video', titleKey: 'rec1', descKey: 'rec1Desc' },
-  { icon: 'deploy', titleKey: 'rec2', descKey: 'rec2Desc' },
 ];
 
 const noteTextByTrack: Record<TrackId, string> = {
@@ -38,6 +51,11 @@ const RequirementIcon = ({ icon, className }: { icon: string; className?: string
     file: (
       <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      </svg>
+    ),
+    prd: (
+      <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" />
       </svg>
     ),
     presentation: (
@@ -68,6 +86,7 @@ export function Requirements() {
   const { t } = useLanguage();
   const { track } = useTrack();
   const requiredItems = requiredByTrack[track];
+  const [prdOpen, setPrdOpen] = useState(false);
 
   return (
     <section className="relative py-24 sm:py-32 overflow-hidden">
@@ -141,9 +160,23 @@ export function Requirements() {
                   >
                     <RequirementIcon icon={item.icon} className="w-6 h-6 text-[var(--accent-green)]" />
                   </motion.div>
-                  <div>
+                  <div className="min-w-0 flex-1">
                     <h4 className="text-white font-medium mb-1">{t('requirements', item.titleKey)}</h4>
-                    <p className="text-[var(--text-muted)] text-sm">{t('requirements', item.descKey)}</p>
+                    <p className="text-[var(--text-muted)] text-sm">
+                      {t('requirements', item.descKey)}
+                      {item.showPrdExample ? (
+                        <>
+                          {' '}
+                          <button
+                            type="button"
+                            onClick={() => setPrdOpen(true)}
+                            className="font-semibold text-[var(--accent-green)] underline decoration-[var(--accent-green)]/40 underline-offset-4 transition-colors hover:text-white hover:decoration-[var(--accent-green)] focus:outline-none focus-visible:rounded focus-visible:ring-2 focus-visible:ring-[var(--accent-green)]"
+                          >
+                            {t('requirements', 'prdExampleCta')}
+                          </button>
+                        </>
+                      ) : null}
+                    </p>
                   </div>
                   <motion.div 
                     className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity"
@@ -223,6 +256,8 @@ export function Requirements() {
           </motion.div>
         </div>
       </div>
+
+      <PrdExampleModal open={prdOpen} onClose={() => setPrdOpen(false)} />
     </section>
   );
 }

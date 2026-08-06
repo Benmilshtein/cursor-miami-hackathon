@@ -734,47 +734,83 @@ export const translations = {
     },
   },
 
-  // Schedule Section
+  // Schedule Section — aligned to https://luma.com/cursor-8hml
   schedule: {
     tag: { en: "SCHEDULE", de: "SCHEDULE", es: "SCHEDULE" },
     title: {
       en: "The Run of Show", de: "Der Ablauf", es: "El programa",
     },
     subtitle: {
-      en: "Doors at 4pm: build, demo, and celebrate till midnight", de: "Einlass um 16 Uhr: bauen, demoen und feiern bis Mitternacht", es: "Puertas a las 4pm: construye, presenta y celebra hasta medianoche",
+      en: "Doors at 4:00. Two deadlines matter: PRD at 6:30, final submissions at 9:30.",
+      de: "Einlass um 16:00. Zwei Deadlines zählen: PRD um 18:30, finale Abgabe um 21:30.",
+      es: "Puertas a las 4:00. Dos plazos importan: PRD a las 6:30, entrega final a las 9:30.",
     },
     day1: { en: "The Night", de: "Der Abend", es: "La noche" },
-    day1Label: { en: "4pm – 12am", de: "16–24 Uhr", es: "4pm – 12am" },
+    day1Label: { en: "4pm – 11pm", de: "16–23 Uhr", es: "4pm – 11pm" },
     block1: {
-      en: "Onboarding, Tutorials & Networking", de: "Onboarding, Tutorials & Networking", es: "Bienvenida, tutoriales y networking",
+      en: "Doors open", de: "Einlass", es: "Apertura de puertas",
     },
     block1Desc: {
-      en: "Get set up with your AI tools, learn the ropes, meet your people, and lock in your team. Zero experience needed. We've got you.", de: "Richte dich mit deinen KI-Tools ein, lerne die Grundlagen, lerne deine Leute kennen und finde dein Team. Keine Erfahrung nötig. Wir helfen dir.", es: "Configura tus herramientas de IA, aprende lo básico, conoce a tu gente y forma tu equipo. No necesitas experiencia. Te acompañamos.",
+      en: "Check-in is signing into the platform. Credits unlock on login.",
+      de: "Check-in heißt: in die Platform einloggen. Credits werden beim Login freigeschaltet.",
+      es: "El check-in es iniciar sesión en la plataforma. Los créditos se desbloquean al entrar.",
     },
     block2: {
-      en: "Hackathon", de: "Hackathon", es: "Hackathon",
+      en: "Tutorials + onboarding", de: "Tutorials + Onboarding", es: "Tutoriales + onboarding",
     },
     block2Desc: {
-      en: "Heads down, hands building. Mentors floating around to get you unstuck and keep the momentum going.", de: "Kopf runter, Hände am Bauen. Mentor:innen sind unterwegs, um dich weiterzubringen und den Schwung zu halten.", es: "Cabeza abajo, manos construyendo. Los mentores circulan para desatascarte y mantener el impulso.",
+      en: "15-minute tutorials to get everybody situated.",
+      de: "15-Minuten-Tutorials, damit alle startklar sind.",
+      es: "Tutoriales de 15 minutos para que todos queden listos.",
     },
     block3: {
-      en: "Demos & Winners", de: "Demos & Gewinner", es: "Demos y ganadores",
+      en: "Presentation + kickoff", de: "Präsentation + Kickoff", es: "Presentación + kickoff",
     },
     block3Desc: {
-      en: "Teams take the stage, show what they made, and we crown the winners.", de: "Teams gehen auf die Bühne, zeigen, was sie gebaut haben, und wir küren die Gewinner.", es: "Los equipos suben al escenario, muestran lo que hicieron y coronamos a los ganadores.",
+      en: "The hackathon begins. Heads down and start shipping.",
+      de: "Der Hackathon beginnt. Kopf runter und loslegen.",
+      es: "Empieza el hackathon. Cabeza abajo y a construir.",
     },
     block4: {
-      en: "Hang & Celebrate", de: "Abhängen & Feiern", es: "Convivir y celebrar",
+      en: "PRD due", de: "PRD-Abgabe", es: "Entrega del PRD",
     },
     block4Desc: {
-      en: "Cool down, keep the conversations rolling, and toast to everything that got built tonight.", de: "Runterkommen, weiter quatschen und auf alles anstoßen, was heute Abend gebaut wurde.", es: "Relájate, sigue la conversación y brinda por todo lo que se construyó esta noche.",
+      en: "Every team submits their PRD in the platform. Once it's in, the mission is locked — no changing it.",
+      de: "Jedes Team reicht das PRD in der Platform ein. Danach ist die Mission gelockt — keine Änderungen mehr.",
+      es: "Cada equipo envía su PRD en la plataforma. Una vez enviado, la misión queda bloqueada: no se puede cambiar.",
+    },
+    block5: {
+      en: "Final submissions", de: "Finale Abgabe", es: "Entrega final",
+    },
+    block5Desc: {
+      en: "Hard cutoff via the platform. Whatever is submitted by 9:30 is what judges see.",
+      de: "Harter Cutoff über die Platform. Was bis 21:30 eingereicht ist, sehen die Judges.",
+      es: "Corte duro en la plataforma. Lo enviado a las 9:30 es lo que ven los jueces.",
+    },
+    block6: {
+      en: "Finalist presentations", de: "Finalisten-Pitches", es: "Presentaciones de finalistas",
+    },
+    block6Desc: {
+      en: "Top finalists announced, then 3 minutes each. Live products only — no slides.",
+      de: "Top-Finalisten werden bekannt gegeben, dann je 3 Minuten. Nur Live-Produkte — keine Folien.",
+      es: "Se anuncian los finalistas y luego 3 minutos cada uno. Solo productos en vivo — sin diapositivas.",
+    },
+    block7: {
+      en: "Winners", de: "Gewinner", es: "Ganadores",
+    },
+    block7Desc: {
+      en: "Winning team announced on stage. Photos. Close.",
+      de: "Gewinner-Team wird auf der Bühne verkündet. Fotos. Ende.",
+      es: "Se anuncia al equipo ganador en el escenario. Fotos. Cierre.",
     },
     note: {
-      en: "Bring your laptop and charger. Curiosity is the only real requirement.", de: "Bring deinen Laptop und dein Ladegerät mit. Neugier ist die einzige echte Voraussetzung.", es: "Trae tu laptop y cargador. La curiosidad es el único requisito real.",
+      en: "Bring your laptop and charger. Pick your objective early — then spend the rest of the night making it real.",
+      de: "Bring Laptop und Ladegerät mit. Wähl früh dein Ziel — und verbringe den Rest der Nacht damit, es echt zu machen.",
+      es: "Trae laptop y cargador. Elige tu objetivo temprano y dedica el resto de la noche a hacerlo real.",
     },
   },
 
-  // Judging Section: "Build to Ship" Expo flow (see docs/Hackathon-layout.md)
+  // Judging — aligned to https://luma.com/cursor-8hml
   criteria: {
     tag: {
       en: "JUDGING", de: "BEWERTUNG", es: "EVALUACIÓN",
@@ -783,23 +819,23 @@ export const translations = {
       en: "How the Judging Works", de: "So funktioniert die Bewertung", es: "Cómo funciona la evaluación",
     },
     subtitle: {
-      en: "Judges watch your build live all night, starting with an automated repo check, then crown the winners, all run live in the event app.",
-      de: "Die Judges verfolgen deinen Build die ganze Nacht live, beginnend mit einem automatischen Repo-Check, und krönen dann die Gewinner, alles live in der Event-App.",
-      es: "Los jueces siguen tu build en vivo toda la noche, empezando por una verificación automática del repo, y luego coronan a los ganadores, todo en vivo en la app del evento.",
+      en: "Two hard deadlines: lock your PRD at 6:30, submit the full project at 9:30. Then top 6 finalists pitch live.",
+      de: "Zwei harte Deadlines: PRD um 18:30 locken, volles Projekt um 21:30 einreichen. Danach pitchen die Top-6-Finalisten live.",
+      es: "Dos plazos duros: bloquea tu PRD a las 6:30 y entrega el proyecto completo a las 9:30. Luego los 6 finalistas presentan en vivo.",
     },
 
-    // Step 1: The Requirements Check (first hour) + live judging through the night
-    round1Title: { en: "The Requirements Check", de: "Der Requirements-Check", es: "La Verificación de Requisitos" },
-    round1Duration: { en: "First hour", de: "Erste Stunde", es: "Primera hora" },
+    // Step 1: PRD lock (6:30)
+    round1Title: { en: "Lock your mission", de: "Mission locken", es: "Bloquea tu misión" },
+    round1Duration: { en: "6:30 PM", de: "18:30", es: "6:30 PM" },
     round1Goal: {
-      en: "Kickoff at 5:00. By 6:30 your PRD is submitted in the platform and locked. Keep a .cursorrules file and a public app URL in your GitHub repo — an automated check flags what's missing, then judges follow your build live until the 9:30 hard cutoff.",
-      de: "Kickoff um 17:00. Bis 18:30 ist dein PRD in der Platform eingereicht und gelockt. Halte eine .cursorrules-Datei und eine öffentliche App-URL in deinem GitHub-Repo — ein automatischer Check markiert Lücken, danach verfolgen die Judges deinen Build live bis zum harten Cutoff um 21:30.",
-      es: "Kickoff a las 5:00. Para las 6:30 tu PRD debe estar enviado en la plataforma y bloqueado. Mantén un archivo .cursorrules y una URL pública de la app en tu repo de GitHub: una verificación automática marca lo que falta, y los jueces siguen tu build en vivo hasta el corte duro a las 9:30.",
+      en: "After kickoff at 5:00, every team submits a PRD in the platform by 6:30. Once it's in, your objective is locked for the night.",
+      de: "Nach dem Kickoff um 17:00 reicht jedes Team bis 18:30 ein PRD in der Platform ein. Danach ist dein Ziel für die Nacht gelockt.",
+      es: "Tras el kickoff a las 5:00, cada equipo envía un PRD en la plataforma antes de las 6:30. Una vez enviado, tu objetivo queda bloqueado por la noche.",
     },
     round1Bullet1: {
-      en: "Submit your PRD in the platform by 6:30 PM. Once it's in, your mission is locked — you can cut features, but you can't add new ones. Also commit a .cursorrules file to your public GitHub repo.",
-      de: "Reiche dein PRD bis 18:30 in der Platform ein. Danach ist die Mission gelockt — Features kannst du streichen, aber keine neuen hinzufügen. Committe außerdem eine .cursorrules-Datei in dein öffentliches GitHub-Repo.",
-      es: "Envía tu PRD en la plataforma antes de las 6:30 PM. Una vez enviado, la misión queda bloqueada: puedes recortar funciones, pero no añadir nuevas. También sube un archivo .cursorrules a tu repo público de GitHub.",
+      en: "Submit your PRD in the platform by 6:30 PM. You can cut features later, but you can't add new ones.",
+      de: "Reiche dein PRD bis 18:30 in der Platform ein. Features kannst du später streichen, aber keine neuen hinzufügen.",
+      es: "Envía tu PRD en la plataforma antes de las 6:30 PM. Luego puedes recortar funciones, pero no añadir nuevas.",
     },
     prdExampleCta: {
       en: "View PRD example",
@@ -807,84 +843,105 @@ export const translations = {
       es: "Ver ejemplo de PRD",
     },
     round1Bullet2: {
-      en: "Submit your public app URL on the dashboard in the same window. Deploy early, even if it is just a landing page.",
-      de: "Reiche im selben Zeitfenster deine öffentliche App-URL im Dashboard ein. Deploye früh, auch wenn es nur eine Landingpage ist.",
-      es: "Envía la URL pública de tu app en el panel dentro de esa misma ventana. Despliega temprano, aunque sea solo una landing page.",
+      en: "Judges score what you shipped against what you promised in the PRD — so write a mission you can actually demo.",
+      de: "Judges bewerten, was du geliefert hast, gegen das, was du im PRD versprochen hast — schreib also eine Mission, die du wirklich demonstrieren kannst.",
+      es: "Los jueces puntúan lo que entregaste frente a lo que prometiste en el PRD: escribe una misión que realmente puedas demostrar.",
     },
     round1Bullet3: {
-      en: "The check is a flag, not a disqualification. Judges see your status and factor it into their scores.",
-      de: "Die Prüfung ist ein Hinweis, keine Disqualifikation. Die Judges sehen deinen Status und beziehen ihn in ihre Bewertung ein.",
-      es: "La verificación es una señal, no una descalificación. Los jueces ven tu estado y lo consideran en su puntuación.",
-    },
-    round1Bullet4: {
-      en: "Keep shipping to that URL all night. Judges open it whenever they want to see how far you have come.",
-      de: "Deploye die ganze Nacht weiter auf diese URL. Die Judges öffnen sie jederzeit, um zu sehen, wie weit du gekommen bist.",
-      es: "Sigue desplegando a esa URL toda la noche. Los jueces la abren cuando quieren ver cuánto has avanzado.",
+      en: "Pick your objective early, then spend the rest of the night making it real.",
+      de: "Wähl früh dein Ziel — und verbringe den Rest der Nacht damit, es echt zu machen.",
+      es: "Elige tu objetivo temprano y dedica el resto de la noche a hacerlo real.",
     },
 
-    // Round 2: The Judge Finals (15 min)
+    // Step 2: Full project submission (9:30)
+    submitTitle: {
+      en: "Final project submission",
+      de: "Finale Projektabgabe",
+      es: "Entrega final del proyecto",
+    },
+    submitDuration: { en: "9:30 PM", de: "21:30", es: "9:30 PM" },
+    submitGoal: {
+      en: "Hard cutoff in the platform. By 9:30 your entire code project must be submitted — everything below included — so judges know exactly what to review.",
+      de: "Harter Cutoff in der Platform. Bis 21:30 muss dein gesamtes Code-Projekt eingereicht sein — alles unten inklusive — damit die Judges genau wissen, was zu prüfen ist.",
+      es: "Corte duro en la plataforma. Para las 9:30 debe estar entregado todo el proyecto de código — con todo lo de abajo — para que los jueces sepan exactamente qué revisar.",
+    },
+    submitBullet1: {
+      en: "Public GitHub repo — set the repository to public so the automated check and judges can read it.",
+      de: "Öffentliches GitHub-Repo — stelle das Repository auf öffentlich, damit der automatische Check und die Judges es lesen können.",
+      es: "Repo público de GitHub: ponlo en público para que la verificación automática y los jueces puedan leerlo.",
+    },
+    submitBullet2: {
+      en: "PRD already locked at 6:30 — still present in the platform / repo so judges can compare promise vs. shipped.",
+      de: "PRD bereits um 18:30 gelockt — bleibt in Platform/Repo sichtbar, damit Judges Versprechen und Ergebnis vergleichen können.",
+      es: "PRD ya bloqueado a las 6:30: sigue visible en la plataforma/repo para que los jueces comparen promesa vs. entregado.",
+    },
+    submitBullet3: {
+      en: ".cursorrules (or equivalent AI rules file) committed in the public repo.",
+      de: ".cursorrules (oder gleichwertige KI-Regeln-Datei) im öffentlichen Repo committed.",
+      es: ".cursorrules (o archivo equivalente de reglas de IA) en el repo público.",
+    },
+    submitBullet4: {
+      en: "Hosted public URL — anyone can open it in a browser, no login required. Submit it on the dashboard.",
+      de: "Öffentliche URL — jeder öffnet sie im Browser, kein Login. Im Dashboard einreichen.",
+      es: "URL pública alojada: cualquiera la abre en el navegador, sin login. Envíala en el panel.",
+    },
+    submitBullet5: {
+      en: "Working app that matches your PRD — a real, deployed product solving a recognizable problem.",
+      de: "Funktionierende App passend zum PRD — ein echtes, deploytes Produkt für ein erkennbares Problem.",
+      es: "App funcional alineada con tu PRD: un producto real desplegado que resuelve un problema reconocible.",
+    },
+    submitBullet6: {
+      en: "Short writeup / README — what you built, how you built it, what's next.",
+      de: "Kurze README — was du gebaut hast, wie, und was als Nächstes kommt.",
+      es: "README breve: qué construiste, cómo, y qué sigue.",
+    },
+    submitBullet7: {
+      en: "Submit the full project in the platform by 9:30 PM. Whatever is in by then is what judges see — no extensions.",
+      de: "Reiche das volle Projekt bis 21:30 in der Platform ein. Was dann drin ist, sehen die Judges — keine Verlängerung.",
+      es: "Entrega el proyecto completo en la plataforma antes de las 9:30 PM. Lo que esté a esa hora es lo que ven los jueces — sin prórrogas.",
+    },
+
+    // Step 3: Finals
     round2Title: { en: "The Judge Finals", de: "Das Judge-Finale", es: "La Final de Jueces" },
-    round2Duration: { en: "15 min", de: "15 Min", es: "15 min" },
+    round2Duration: { en: "10:00 – 10:30", de: "10:00 – 10:30", es: "10:00 – 10:30" },
     round2Goal: {
-      en: "The judges crown the winners from the teams they have been following all night. The finalist teams take the main stage.",
-      de: "Die Judges krönen die Gewinner aus den Teams, die sie die ganze Nacht verfolgt haben. Die Finalisten-Teams betreten die Hauptbühne.",
-      es: "Los jueces coronan a los ganadores entre los equipos que han seguido toda la noche. Los equipos finalistas suben al escenario principal.",
+      en: "We pick the top 6 finalists from everything submitted by 9:30. Each gets 3 minutes on the main stage — live product only, no slides.",
+      de: "Wir wählen die Top-6-Finalisten aus allem, was bis 21:30 eingereicht wurde. Jedes Team bekommt 3 Minuten auf der Hauptbühne — nur Live-Produkt, keine Folien.",
+      es: "Elegimos a los 6 finalistas entre todo lo entregado a las 9:30. Cada uno tiene 3 minutos en el escenario — solo producto en vivo, sin diapositivas.",
     },
     round2Bullet1: {
-      en: "Each finalist gets exactly 90 seconds to show their app and explain what it does.",
-      de: "Jeder Finalist hat genau 90 Sekunden, um seine App zu zeigen und zu erklären, was sie macht.",
-      es: "Cada finalista tiene exactamente 90 segundos para mostrar su app y explicar qué hace.",
+      en: "Top 6 finalists are announced, then each team gets exactly 3 minutes to show their app and explain what it does.",
+      de: "Die Top-6-Finalisten werden bekannt gegeben, danach hat jedes Team genau 3 Minuten, um die App zu zeigen und zu erklären, was sie macht.",
+      es: "Se anuncian los 6 finalistas y luego cada equipo tiene exactamente 3 minutos para mostrar su app y explicar qué hace.",
     },
     round2Bullet2: {
-      en: "The beginner does the talking: the pro can drive the laptop, but a novice explains the idea.",
-      de: "Der Einsteiger übernimmt das Reden: der Profi darf den Laptop bedienen, aber ein Neuling erklärt die Idee.",
-      es: "El principiante es quien habla: el experto puede manejar la laptop, pero un novato explica la idea.",
+      en: "Live products only. No slide decks — demo what you shipped against your locked PRD.",
+      de: "Nur Live-Produkte. Keine Folien — demo, was du gegen dein gelocktes PRD geliefert hast.",
+      es: "Solo productos en vivo. Sin diapositivas: demuestra lo que entregaste frente a tu PRD bloqueado.",
     },
     round2Bullet3: {
-      en: "Judges score each pitch in the app on Delivery (30), Clarity of the idea (30), and Impact (40). The scores land instantly, no huddle.",
-      de: "Die Judges bewerten jeden Pitch in der App nach Auftritt (30), Klarheit der Idee (30) und Wirkung (40). Die Wertungen zählen sofort, ohne Beratungsrunde.",
-      es: "Los jueces puntúan cada pitch en la app: Presentación (30), Claridad de la idea (30) e Impacto (40). Las puntuaciones cuentan al instante, sin deliberación aparte.",
+      en: "Judges score each pitch in the app on Delivery, Clarity of the idea, and Impact. Scores land instantly.",
+      de: "Judges bewerten jeden Pitch in der App nach Auftritt, Klarheit der Idee und Wirkung. Wertungen zählen sofort.",
+      es: "Los jueces puntúan cada pitch en la app por Presentación, Claridad de la idea e Impacto. Las puntuaciones cuentan al instante.",
     },
 
-    // Tie-Breakers (automatic)
-    tieTitle: { en: "Tie-Breakers", de: "Gleichstand-Regeln", es: "Desempates" },
-    tieTag: { en: "Automatic", de: "Automatisch", es: "Automático" },
-    tieGoal: {
-      en: "Because the app tracks everything on the backend, the leaderboard breaks ties instantly, in this order:",
-      de: "Da die App alles im Backend erfasst, löst das Leaderboard Gleichstände sofort auf, in dieser Reihenfolge:",
-      es: "Como la app registra todo en el backend, la tabla rompe empates al instante, en este orden:",
+    // Step 4: Winners
+    winnersTitle: { en: "Winners", de: "Gewinner", es: "Ganadores" },
+    winnersDuration: { en: "10:30 – 11:00", de: "10:30 – 11:00", es: "10:30 – 11:00" },
+    winnersGoal: {
+      en: "Winning team announced on stage. Photos. Close.",
+      de: "Gewinner-Team wird auf der Bühne verkündet. Fotos. Ende.",
+      es: "Se anuncia al equipo ganador en el escenario. Fotos. Cierre.",
     },
-    tieBullet1: {
-      en: "Finalists first, ordered by their pitch score. Everyone else follows, ranked by the average judge score across all five build criteria.",
-      de: "Finalisten zuerst, sortiert nach ihrer Pitch-Wertung. Alle anderen folgen, sortiert nach dem Durchschnitt der Judge-Bewertungen über alle fünf Build-Kriterien.",
-      es: "Primero los finalistas, ordenados por su puntuación de pitch. El resto va después, ordenado por el promedio de los jueces en los cinco criterios de build.",
+    winnersBullet1: {
+      en: "$10,000 from Superteam USA awarded to one winning team.",
+      de: "$10.000 von Superteam USA für ein Gewinner-Team.",
+      es: "$10,000 de Superteam USA para un equipo ganador.",
     },
-    tieBullet2: {
-      en: "Late-submission penalty: points are subtracted from any team that submitted after the deadline.",
-      de: "Verspätungs-Abzug: Teams, die nach der Deadline einreichen, bekommen Punkte abgezogen.",
-      es: "Penalización por entrega tardía: se restan puntos a cualquier equipo que entregue después de la fecha límite.",
-    },
-    tieBullet3: {
-      en: "Still tied: the leaderboard falls back to alphabetical order and the judges settle it on stage.",
-      de: "Weiterhin Gleichstand: das Leaderboard sortiert alphabetisch und die Judges entscheiden auf der Bühne.",
-      es: "Si sigue el empate: la tabla ordena alfabéticamente y los jueces lo deciden en el escenario.",
-    },
-
-    // Live Leaderboard Reveal
-    leaderboardTitle: {
-      en: "The Live Leaderboard Reveal",
-      de: "Das Live-Leaderboard",
-      es: "La revelación de la tabla en vivo",
-    },
-    leaderboardQuote: {
-      en: "\"The data is in. Out of all the teams who built and shipped tonight, here are the top finalists moving on to the pitch stage…\"",
-      de: "\"Die Daten sind da. Von allen Teams, die heute Abend gebaut und ausgeliefert haben, hier die Top-Finalisten, die auf die Pitch-Bühne kommen…\"",
-      es: "\"Los datos están listos. De todos los equipos que construyeron y lanzaron esta noche, estos son los finalistas que pasan al escenario de pitch…\"",
-    },
-    leaderboardNote: {
-      en: "No hand-counting: final scores compute the instant the last judge submits.",
-      de: "Kein Auszählen von Hand: die Endergebnisse werden berechnet, sobald der letzte Judge abgibt.",
-      es: "Sin conteo manual: las puntuaciones finales se calculan en cuanto el último juez envía la suya.",
+    winnersBullet2: {
+      en: "Late or incomplete 9:30 submissions hurt your chance to make the top 6 — ship early.",
+      de: "Verspätete oder unvollständige 21:30-Abgaben senken die Chance auf Top 6 — früh einreichen.",
+      es: "Entregas tardías o incompletas a las 9:30 bajan tu chance de entrar al top 6: entrega pronto.",
     },
   },
 
@@ -897,7 +954,7 @@ export const translations = {
       en: "What to Submit", de: "Was einzureichen ist", es: "Qué entregar",
     },
     subtitle: {
-      en: "4 required deliverables: submit your public URL before 9:00pm", de: "4 Pflicht-Deliverables: öffentliche URL vor 21:00 Uhr einreichen", es: "4 entregables obligatorios: envía tu URL pública antes de las 9:00pm",
+      en: "PRD due 6:30 PM · final submission hard cutoff 9:30 PM", de: "PRD bis 18:30 · harter Abgabeschluss 21:30", es: "PRD a las 6:30 PM · corte duro de entrega a las 9:30 PM",
     },
     required: { en: "Required", de: "Pflicht", es: "Obligatorio" },
     recommended: {
@@ -937,6 +994,26 @@ export const translations = {
     },
 
     // Build & Ship track deliverables
+    beginnerReqPrd: {
+      en: "Product Requirements Document (PRD)",
+      de: "Product Requirements Document (PRD)",
+      es: "Documento de requisitos (PRD)",
+    },
+    beginnerReqPrdDesc: {
+      en: "Submit in the platform by 6:30 PM. Locks your mission for the night — judges score against what you promised.",
+      de: "Bis 18:30 in der Platform einreichen. Lockt deine Mission für die Nacht — Judges bewerten gegen dein Versprechen.",
+      es: "Envíalo en la plataforma antes de las 6:30 PM. Bloquea tu misión de la noche: los jueces puntúan contra lo que prometiste.",
+    },
+    beginnerReqGithub: {
+      en: "Public GitHub Repo",
+      de: "Öffentliches GitHub-Repo",
+      es: "Repo público de GitHub",
+    },
+    beginnerReqGithubDesc: {
+      en: "Set your project's GitHub repository to public so the automated check and judges can read it.",
+      de: "Stelle dein GitHub-Repo auf öffentlich, damit der automatische Check und die Judges es lesen können.",
+      es: "Pon el repositorio de GitHub de tu proyecto en público para que la verificación automática y los jueces puedan leerlo.",
+    },
     beginnerReq1: { en: "Hosted Public URL", de: "Öffentliche URL", es: "URL pública alojada" },
     beginnerReq1Desc: {
       en: "Anyone can open the URL in a browser, no login required.",
@@ -951,9 +1028,9 @@ export const translations = {
     },
     beginnerReq3: { en: "AI Rules File", de: "KI-Regeln-Datei", es: "Archivo de reglas de IA" },
     beginnerReq3Desc: {
-      en: "Shows how you used AI tools during the build.",
-      de: "Zeigt, wie KI-Tools während des Builds eingesetzt wurden.",
-      es: "Muestra cómo usaste herramientas de IA durante la construcción.",
+      en: ".cursorrules (or equivalent) in your public repo — shows how you used AI tools during the build.",
+      de: ".cursorrules (oder gleichwertig) in deinem öffentlichen Repo — zeigt, wie du KI-Tools beim Build genutzt hast.",
+      es: ".cursorrules (o equivalente) en tu repo público: muestra cómo usaste herramientas de IA durante el build.",
     },
     beginnerReq4: { en: "Short Writeup", de: "Kurze Beschreibung", es: "Resumen breve" },
     beginnerReq4Desc: {
@@ -961,10 +1038,15 @@ export const translations = {
       de: "Kurze README: was du gebaut hast, wie und was als Nächstes kommt.",
       es: "README breve: qué construiste, cómo lo hiciste y qué sigue.",
     },
+    prdExampleCta: {
+      en: "View PRD example",
+      de: "PRD-Beispiel ansehen",
+      es: "Ver ejemplo de PRD",
+    },
     beginnerNoteText: {
-      en: "Deploy early. A working URL at 7:30pm beats a broken one at 8:59pm.",
-      de: "Früh deployen. Eine funktionierende URL um 19:30 schlägt eine kaputte um 20:59.",
-      es: "Despliega pronto. Una URL funcional a las 7:30pm supera a una rota a las 8:59pm.",
+      en: "Deploy early. A working URL at 7:30pm beats a broken one at 9:29pm. And keep that GitHub repo public.",
+      de: "Früh deployen. Eine funktionierende URL um 19:30 schlägt eine kaputte um 21:29. Und halte das GitHub-Repo öffentlich.",
+      es: "Despliega pronto. Una URL funcional a las 7:30pm supera a una rota a las 9:29pm. Y mantén el repo de GitHub público.",
     },
   },
 
@@ -1116,7 +1198,7 @@ export const translations = {
     },
   },
 
-  // Tracks Section: one track: Build & Ship
+  // Tracks Section: one track — aligned to https://luma.com/cursor-8hml
   tracks: {
     tag: { en: "THE TRACK", de: "DER TRACK", es: "LA PISTA" },
     title: {
@@ -1125,9 +1207,9 @@ export const translations = {
       es: "Tu pista",
     },
     subtitle: {
-      en: "One track, one mission: design a fully working application and ship it off localhost to a public URL anyone can open.",
-      de: "Ein Track, eine Mission: entwirf eine voll funktionierende Anwendung und bring sie weg vom localhost auf eine öffentliche URL, die jeder öffnen kann.",
-      es: "Una pista, una misión: diseña una aplicación completamente funcional y sácala de localhost a una URL pública que cualquiera pueda abrir.",
+      en: "One track. Lock a PRD at 6:30, ship the full project by 9:30, and one team takes home $10,000.",
+      de: "Ein Track. PRD um 18:30 locken, volles Projekt bis 21:30 shippen — ein Team gewinnt $10.000.",
+      es: "Una pista. Bloquea el PRD a las 6:30, entrega el proyecto completo a las 9:30, y un equipo se lleva $10,000.",
     },
 
     beginnerName: {
@@ -1136,24 +1218,34 @@ export const translations = {
       es: "Pista Build & Ship",
     },
     beginnerTag: {
-      en: "Your first deployed app",
-      de: "Deine erste deployte App",
-      es: "Tu primera app desplegada",
+      en: "$10,000 · Superteam USA",
+      de: "$10.000 · Superteam USA",
+      es: "$10,000 · Superteam USA",
     },
     beginnerBullet1: {
-      en: "Ship a real, working app to a public URL",
-      de: "Eine echte, funktionierende App auf eine öffentliche URL bringen",
-      es: "Lanza una app real y funcional a una URL pública",
+      en: "Lock your PRD in the platform by 6:30 — mission locked for the night",
+      de: "PRD bis 18:30 in der Platform locken — Mission für die Nacht fest",
+      es: "Bloquea tu PRD en la plataforma a las 6:30 — misión fija por la noche",
     },
     beginnerBullet2: {
-      en: "Craft, creativity, and everyday usefulness rewarded",
-      de: "Handwerk, Kreativität und Alltagsnutzen werden belohnt",
-      es: "Se premia el oficio, la creatividad y la utilidad cotidiana",
+      en: "Submit the full project by 9:30: public GitHub repo, .cursorrules, public URL, working app, README",
+      de: "Volles Projekt bis 21:30: öffentliches GitHub-Repo, .cursorrules, öffentliche URL, funktionierende App, README",
+      es: "Proyecto completo a las 9:30: repo público de GitHub, .cursorrules, URL pública, app funcional, README",
     },
     beginnerBullet3: {
-      en: "Full judging criteria revealed at kickoff",
-      de: "Vollständige Bewertungskriterien beim Auftakt",
-      es: "Criterios completos de evaluación al inicio",
+      en: "Top 6 finalists get 3 minutes each at 10:00 — live products only. One winner takes the check.",
+      de: "Top-6-Finalisten bekommen je 3 Minuten um 10:00 — nur Live-Produkte. Ein Gewinner holt den Check.",
+      es: "Los 6 finalistas tienen 3 minutos cada uno a las 10:00 — solo producto en vivo. Un ganador se lleva el cheque.",
+    },
+    prizeAlt: {
+      en: "Superteam USA $10,000 prize check for Cursor Ship Night",
+      de: "Superteam USA Preis-Scheck über $10.000 für Cursor Ship Night",
+      es: "Cheque de premio de Superteam USA de $10,000 para Cursor Ship Night",
+    },
+    prizeCaption: {
+      en: "One night. One build. One winner.",
+      de: "Eine Nacht. Ein Build. Ein Gewinner.",
+      es: "Una noche. Un build. Un ganador.",
     },
   },
 } as const;
