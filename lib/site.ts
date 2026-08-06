@@ -2,13 +2,26 @@
  * Canonical site URL for metadata, sitemap, and JSON-LD.
  * Set NEXT_PUBLIC_SITE_URL in production (e.g. https://your-domain.example).
  */
+
+/** Ensure an absolute URL has a scheme so `new URL(...)` / metadataBase never throw. */
+function normalizeAbsoluteUrl(raw: string): string {
+  const trimmed = raw.trim().replace(/\/$/, "");
+  if (!trimmed) return trimmed;
+  if (/^[a-zA-Z][a-zA-Z0-9+.-]*:/.test(trimmed)) {
+    return trimmed;
+  }
+  return `https://${trimmed.replace(/^\/\//, "")}`;
+}
+
 export function getSiteUrl(): string {
   const explicit = process.env.NEXT_PUBLIC_SITE_URL?.trim();
   if (explicit) {
-    return explicit.replace(/\/$/, "");
+    return normalizeAbsoluteUrl(explicit);
   }
   if (process.env.VERCEL_URL) {
-    return `https://${process.env.VERCEL_URL.replace(/^https?:\/\//, "")}`;
+    return normalizeAbsoluteUrl(
+      `https://${process.env.VERCEL_URL.replace(/^https?:\/\//, "")}`,
+    );
   }
   return "http://localhost:3000";
 }
