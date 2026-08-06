@@ -1,6 +1,6 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/lib/LanguageContext";
 import type { TranslationKey } from "@/lib/i18n";
@@ -12,6 +12,7 @@ import {
   IconTrophy,
 } from "@/components/ui";
 import { staggerContainer, fadeUp, viewportOnce } from "@/lib/animations";
+import { PrdExampleModal } from "./PrdExampleModal";
 
 type Phase = {
   id: string;
@@ -69,11 +70,13 @@ function PhaseRow({
   index,
   isLast,
   t,
+  onOpenPrdExample,
 }: {
   phase: Phase;
   index: number;
   isLast: boolean;
   t: (section: TranslationKey, key: string) => string;
+  onOpenPrdExample?: () => void;
 }) {
   const Icon = phase.icon;
   return (
@@ -144,7 +147,22 @@ function PhaseRow({
               >
                 {phase.ordered ? i + 1 : "•"}
               </span>
-              <span>{t("criteria", bulletKey)}</span>
+              <span>
+                {t("criteria", bulletKey)}
+                {bulletKey === "round1Bullet1" && onOpenPrdExample ? (
+                  <>
+                    {" "}
+                    <button
+                      type="button"
+                      onClick={onOpenPrdExample}
+                      className="inline font-semibold underline decoration-[var(--accent-blue)]/50 underline-offset-4 transition-colors hover:text-white hover:decoration-[var(--accent-blue)] focus:outline-none focus-visible:rounded focus-visible:ring-2 focus-visible:ring-[var(--accent-blue)]"
+                      style={{ color: phase.accent }}
+                    >
+                      {t("criteria", "prdExampleCta")}
+                    </button>
+                  </>
+                ) : null}
+              </span>
             </li>
           ))}
         </ul>
@@ -155,6 +173,7 @@ function PhaseRow({
 
 export function EvaluationCriteria() {
   const { t } = useLanguage();
+  const [prdOpen, setPrdOpen] = useState(false);
 
   return (
     <section
@@ -196,9 +215,14 @@ export function EvaluationCriteria() {
               index={index}
               isLast={index === phases.length - 1}
               t={t}
+              onOpenPrdExample={
+                phase.id === "round1" ? () => setPrdOpen(true) : undefined
+              }
             />
           ))}
         </div>
+
+        <PrdExampleModal open={prdOpen} onClose={() => setPrdOpen(false)} />
 
         {/* Live Leaderboard Reveal */}
         <motion.div

@@ -792,14 +792,19 @@ export const translations = {
     round1Title: { en: "The Requirements Check", de: "Der Requirements-Check", es: "La Verificación de Requisitos" },
     round1Duration: { en: "First hour", de: "Erste Stunde", es: "Primera hora" },
     round1Goal: {
-      en: "In your first hour you set up the repo: a PRD, a .cursorrules file, and a public app URL. An automated check reads your public GitHub repo and flags what is missing, then judges follow your build live all night.",
-      de: "In der ersten Stunde richtest du das Repo ein: ein PRD, eine .cursorrules-Datei und eine öffentliche App-URL. Eine automatische Prüfung liest dein öffentliches GitHub-Repo und markiert, was fehlt, danach verfolgen die Judges deinen Build die ganze Nacht live.",
-      es: "En tu primera hora preparas el repo: un PRD, un archivo .cursorrules y una URL pública de la app. Una verificación automática lee tu repo público de GitHub y marca lo que falta, y luego los jueces siguen tu build en vivo toda la noche.",
+      en: "Kickoff at 5:00. By 6:30 your PRD is submitted in the platform and locked. Keep a .cursorrules file and a public app URL in your GitHub repo — an automated check flags what's missing, then judges follow your build live until the 9:30 hard cutoff.",
+      de: "Kickoff um 17:00. Bis 18:30 ist dein PRD in der Platform eingereicht und gelockt. Halte eine .cursorrules-Datei und eine öffentliche App-URL in deinem GitHub-Repo — ein automatischer Check markiert Lücken, danach verfolgen die Judges deinen Build live bis zum harten Cutoff um 21:30.",
+      es: "Kickoff a las 5:00. Para las 6:30 tu PRD debe estar enviado en la plataforma y bloqueado. Mantén un archivo .cursorrules y una URL pública de la app en tu repo de GitHub: una verificación automática marca lo que falta, y los jueces siguen tu build en vivo hasta el corte duro a las 9:30.",
     },
     round1Bullet1: {
-      en: "Commit a PRD describing what you are building, plus a .cursorrules file, to a public GitHub repo within the first hour.",
-      de: "Committe innerhalb der ersten Stunde ein PRD, das beschreibt, was du baust, sowie eine .cursorrules-Datei in ein öffentliches GitHub-Repo.",
-      es: "Sube un PRD que describa lo que vas a construir, más un archivo .cursorrules, a un repositorio público de GitHub dentro de la primera hora.",
+      en: "Submit your PRD in the platform by 6:30 PM. Once it's in, your mission is locked — you can cut features, but you can't add new ones. Also commit a .cursorrules file to your public GitHub repo.",
+      de: "Reiche dein PRD bis 18:30 in der Platform ein. Danach ist die Mission gelockt — Features kannst du streichen, aber keine neuen hinzufügen. Committe außerdem eine .cursorrules-Datei in dein öffentliches GitHub-Repo.",
+      es: "Envía tu PRD en la plataforma antes de las 6:30 PM. Una vez enviado, la misión queda bloqueada: puedes recortar funciones, pero no añadir nuevas. También sube un archivo .cursorrules a tu repo público de GitHub.",
+    },
+    prdExampleCta: {
+      en: "View PRD example",
+      de: "PRD-Beispiel ansehen",
+      es: "Ver ejemplo de PRD",
     },
     round1Bullet2: {
       en: "Submit your public app URL on the dashboard in the same window. Deploy early, even if it is just a landing page.",
