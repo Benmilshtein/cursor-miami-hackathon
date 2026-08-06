@@ -399,6 +399,20 @@ export async function runUniqueDistribution(
       ? await getParticipantUserIdsForTeams(scope.teamIds)
       : await getParticipantsByIds(scope.userIds);
 
+  const [{ count: pendingBefore }] = await db
+    .select({ count: sql<number>`count(*)::int` })
+    .from(creditPendingLink)
+    .where(
+      and(eq(creditPendingLink.creditPoolId, poolId), eq(creditPendingLink.status, "pending")),
+    );
+  if ((pendingBefore ?? 0) === 0) {
+    throw new AppError(
+      400,
+      "NO_PENDING_LINKS",
+      "No staged credit URLs in this pool. Upload a CSV/Excel of unique links first, then disburse.",
+    );
+  }
+
   return db.transaction(async (tx) => {
     const allocatedRows = await tx
       .select({ userId: participantCreditAllocation.userId })

@@ -136,7 +136,7 @@ export default function AdminTeamsPage() {
           <button
             type="button"
             onClick={() => void runMatching()}
-            disabled={matching || (poolSize !== null && poolSize < 4)}
+            disabled={matching || poolSize === 0}
             className="inline-flex items-center gap-2 rounded-lg bg-[var(--accent-purple)]/20 px-4 py-2 text-sm font-medium text-[var(--accent-purple)] hover:bg-[var(--accent-purple)]/30 disabled:cursor-not-allowed disabled:opacity-50"
           >
             <Shuffle className="h-4 w-4" />

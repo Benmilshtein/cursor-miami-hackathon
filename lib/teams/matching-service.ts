@@ -29,7 +29,7 @@ export type MatchingResult = {
   poolSize: number;
   teamsFormed: number;
   matchedUsers: number;
-  /** Pool members left over (fewer than a full team could be formed from them). */
+  /** Pool members left unassigned. Always 0 now that partial teams are formed. */
   waitlisted: number;
   teams: MatchedTeam[];
 };
@@ -61,19 +61,31 @@ function shuffle<T>(input: T[]): T[] {
 }
 
 /**
- * Greedily form teams of MATCH_TEAM_SIZE, preferring one of each "lucky number"
- * (1..MATCH_TEAM_SIZE) per team, then filling any gaps with whoever's left.
- * Mirrors `matchPool` from the reference SPA. Leftover (<size) members are dropped.
+ * Split the pool into teams of at most MATCH_TEAM_SIZE, preferring one of each
+ * "lucky number" (1..MATCH_TEAM_SIZE) per team and filling gaps with whoever's
+ * left.
+ *
+ * Sizes are spread evenly across the teams rather than packing full teams and
+ * leaving a remainder, so everyone who opted into matching gets placed. A pool
+ * of 5 becomes 3 + 2, not 4 + 1, and a pool of 1 still forms a team so that
+ * participant can carry on through screening and submission.
  */
-function formTeams(pool: PoolUser[]): PoolUser[][] {
+export function formTeams(pool: PoolUser[]): PoolUser[][] {
+  if (pool.length === 0) return [];
+
   const available = [...pool];
+  const teamCount = Math.ceil(available.length / MATCH_TEAM_SIZE);
+  const baseSize = Math.floor(available.length / teamCount);
+  const teamsWithOneExtra = available.length % teamCount;
+
   const teams: PoolUser[][] = [];
 
-  while (available.length >= MATCH_TEAM_SIZE) {
+  for (let t = 0; t < teamCount; t += 1) {
+    const targetSize = baseSize + (t < teamsWithOneExtra ? 1 : 0);
     const members: PoolUser[] = [];
     const usedNumbers = new Set<number>();
 
-    for (let n = 1; n <= MATCH_TEAM_SIZE; n += 1) {
+    for (let n = 1; n <= MATCH_TEAM_SIZE && members.length < targetSize; n += 1) {
       const idx = available.findIndex(
         (p) => p.matchNumber === n && !usedNumbers.has(n),
       );
@@ -84,17 +96,11 @@ function formTeams(pool: PoolUser[]): PoolUser[][] {
       }
     }
 
-    while (members.length < MATCH_TEAM_SIZE && available.length > 0) {
+    while (members.length < targetSize && available.length > 0) {
       members.push(available.shift()!);
     }
 
-    if (members.length === MATCH_TEAM_SIZE) {
-      teams.push(members);
-    } else {
-      // Not enough to complete a team - return them to the pool and stop.
-      available.push(...members);
-      break;
-    }
+    teams.push(members);
   }
 
   return teams;
@@ -183,8 +189,8 @@ export async function runTeamMatching(): Promise<MatchingResult> {
     .where(poolCondition());
 
   const poolSize = pool.length;
-  if (poolSize < MATCH_TEAM_SIZE) {
-    return { poolSize, teamsFormed: 0, matchedUsers: 0, waitlisted: poolSize, teams: [] };
+  if (poolSize === 0) {
+    return { poolSize, teamsFormed: 0, matchedUsers: 0, waitlisted: 0, teams: [] };
   }
 
   const formed = formTeams(shuffle(pool));

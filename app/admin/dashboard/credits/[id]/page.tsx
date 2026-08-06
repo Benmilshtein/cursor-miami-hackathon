@@ -437,6 +437,9 @@ export default function AdminCreditPoolDetailPage() {
   const isExcel = pool.distributionType === "excel_unique";
   const isGeneral = pool.distributionType === "general_link";
   const isEven = pool.distributionType === "even";
+  const stagedLinkCount = preview
+    ? (preview.availablePending ?? 0) + (preview.targetedPending ?? 0)
+    : pool.pendingLinkCount;
 
   return (
     <div className="space-y-6">
@@ -485,34 +488,36 @@ export default function AdminCreditPoolDetailPage() {
         )}
       </div>
 
-      {/* Add credits */}
-      <div className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] p-6">
-        <h2 className="font-semibold text-white flex items-center gap-2">
-          <Plus className="h-4 w-4" />
-          Add credits to pool
-        </h2>
-        <form onSubmit={handleAddCredits} className="mt-4 flex flex-wrap items-end gap-3">
-          <div>
-            <label className="sr-only">Amount to add</label>
-            <input
-              type="number"
-              min={1}
-              step={1}
-              value={addAmount}
-              onChange={(e) => setAddAmount(e.target.value)}
-              placeholder="Amount"
-              className="w-32 rounded-lg border border-[var(--border-color)] bg-[var(--bg-secondary)] px-4 py-2 text-white placeholder:text-[var(--text-muted)] focus:border-[var(--accent-blue)] focus:outline-none"
-            />
-          </div>
-          <button
-            type="submit"
-            disabled={adding || !addAmount.trim()}
-            className="rounded-lg bg-[var(--accent-blue)] px-4 py-2 text-sm font-medium text-white hover:bg-[var(--accent-blue)]/90 disabled:opacity-50"
-          >
-            {adding ? "Adding…" : "Add"}
-          </button>
-        </form>
-      </div>
+      {/* Numeric top-up only applies to even/general pools; excel pools grow via URL upload. */}
+      {!isExcel && (
+        <div className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] p-6">
+          <h2 className="font-semibold text-white flex items-center gap-2">
+            <Plus className="h-4 w-4" />
+            Add credits to pool
+          </h2>
+          <form onSubmit={handleAddCredits} className="mt-4 flex flex-wrap items-end gap-3">
+            <div>
+              <label className="sr-only">Amount to add</label>
+              <input
+                type="number"
+                min={1}
+                step={1}
+                value={addAmount}
+                onChange={(e) => setAddAmount(e.target.value)}
+                placeholder="Amount"
+                className="w-32 rounded-lg border border-[var(--border-color)] bg-[var(--bg-secondary)] px-4 py-2 text-white placeholder:text-[var(--text-muted)] focus:border-[var(--accent-blue)] focus:outline-none"
+              />
+            </div>
+            <button
+              type="submit"
+              disabled={adding || !addAmount.trim()}
+              className="rounded-lg bg-[var(--accent-blue)] px-4 py-2 text-sm font-medium text-white hover:bg-[var(--accent-blue)]/90 disabled:opacity-50"
+            >
+              {adding ? "Adding…" : "Add"}
+            </button>
+          </form>
+        </div>
+      )}
 
       {isGeneral && pool.targetType === "participant" && (
         <div className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] p-6">
@@ -647,10 +652,16 @@ export default function AdminCreditPoolDetailPage() {
             <p className="mt-1 text-sm text-[var(--text-muted)]">
               Each selected recipient gets one unique link in their dashboard.{" "}
               <span className="text-[var(--text-secondary)]">
-                {preview?.availablePending ?? pool.pendingLinkCount} available
+                {stagedLinkCount} available
               </span>{" "}
               now. Already-assigned people are skipped; re-run as more people arrive.
             </p>
+            {stagedLinkCount === 0 && (
+              <div className="mt-4 rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-100">
+                No staged URLs yet. Upload credit links above first — disbursing with an empty
+                bag assigns nothing.
+              </div>
+            )}
 
             <div className="mt-4 flex gap-2">
               {(["teams", "participants"] as const).map((m) => (
@@ -758,7 +769,13 @@ export default function AdminCreditPoolDetailPage() {
             )}
 
             {disburseResult && (
-              <div className="mt-4 rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-200">
+              <div
+                className={`mt-4 rounded-lg border px-4 py-3 text-sm ${
+                  disburseResult.assigned > 0
+                    ? "border-emerald-500/30 bg-emerald-500/10 text-emerald-200"
+                    : "border-amber-500/30 bg-amber-500/10 text-amber-100"
+                }`}
+              >
                 Assigned <strong>{disburseResult.assigned}</strong> link
                 {disburseResult.assigned === 1 ? "" : "s"}. {disburseResult.pendingLeft} still available.
                 {disburseResult.recipientsWithoutLink > 0 && (
@@ -777,6 +794,7 @@ export default function AdminCreditPoolDetailPage() {
               onClick={() => void handleDisburse()}
               disabled={
                 disbursing ||
+                stagedLinkCount === 0 ||
                 (disburseMode === "teams"
                   ? selectedTeamIds.size === 0
                   : selectedUserIds.size === 0)
