@@ -898,6 +898,7 @@ export async function getApprovedTeamsForJudge(judgeUserId: string) {
       projectName: project.name,
       projectGithubUrl: project.githubUrl,
       projectDemoUrl: project.demoUrl,
+      projectPrdUrl: project.prdUrl,
       projectTechStack: project.techStack,
       projectDescription: project.description,
       projectSlidesUrl: project.slidesUrl,
@@ -977,21 +978,25 @@ export async function getApprovedTeamsForJudge(judgeUserId: string) {
       pitchScored: pitchScored.has(t.id),
       /** Live deployed app, shown to judges all night even without a full submission. */
       appUrl: t.projectDemoUrl,
+      /** Platform-submitted PRD link (PDF or Markdown). */
+      prdUrl: t.projectPrdUrl,
       project: t.projectName
         ? {
             name: t.projectName,
             description: t.projectDescription,
             githubUrl: t.projectGithubUrl,
             demoUrl: t.projectDemoUrl,
+            prdUrl: t.projectPrdUrl,
             techStack: t.projectTechStack,
             slidesUrl: t.projectSlidesUrl,
             videoUrl: t.projectVideoUrl,
           }
         : null,
-      /** Step-1 requirements check. Null when it has never been run for this team. */
+      /** Step-1 requirements check. Null when it has never been run for this team.
+       *  Platform PRD link also counts as hasPrd for the badge. */
       repoCheck: t.checkedAt
         ? {
-            hasPrd: !!t.checkHasPrd,
+            hasPrd: !!t.checkHasPrd || !!t.projectPrdUrl,
             hasCursorRules: !!t.checkHasCursorRules,
             hasAppUrl: !!t.checkHasAppUrl,
             onTime: !!t.checkOnTime,

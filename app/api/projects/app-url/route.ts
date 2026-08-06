@@ -8,17 +8,22 @@ function toStringOrNull(value: unknown): string | null {
 }
 
 /**
- * Set (or clear) the team's public app URL and GitHub URL. Separate from
- * POST/PATCH /api/projects/my so the approval-gated full submission flow is
- * untouched.
+ * Set (or clear) the team's public app URL, GitHub URL, and PRD link. Separate
+ * from POST/PATCH /api/projects/my so the approval-gated full submission flow
+ * is untouched.
  */
 export async function PUT(request: NextRequest) {
   try {
     const actor = await requireSessionUser(request);
-    const body = await parseJsonBody<{ appUrl?: unknown; githubUrl?: unknown }>(request);
+    const body = await parseJsonBody<{
+      appUrl?: unknown;
+      githubUrl?: unknown;
+      prdUrl?: unknown;
+    }>(request);
     const appUrl = toStringOrNull(body.appUrl);
     const githubUrl = body.githubUrl === undefined ? undefined : toStringOrNull(body.githubUrl);
-    const row = await upsertAppLinks(actor, { appUrl, githubUrl });
+    const prdUrl = body.prdUrl === undefined ? undefined : toStringOrNull(body.prdUrl);
+    const row = await upsertAppLinks(actor, { appUrl, githubUrl, prdUrl });
     return jsonSuccess(row);
   } catch (error) {
     return toErrorResponse(error);

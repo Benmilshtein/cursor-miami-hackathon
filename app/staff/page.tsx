@@ -18,6 +18,7 @@ import {
   Loader2,
   Play,
   Presentation,
+  FileText,
   Users,
 } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
@@ -29,6 +30,7 @@ type TeamProject = {
   description: string | null;
   githubUrl: string | null;
   demoUrl: string | null;
+  prdUrl?: string | null;
   techStack: string | null;
   slidesUrl: string | null;
   videoUrl: string | null;
@@ -55,6 +57,8 @@ type TeamToEvaluate = {
   pitchScored: boolean;
   /** Deployed app URL, live all night. */
   appUrl: string | null;
+  /** Platform-submitted PRD link (PDF or Markdown). */
+  prdUrl?: string | null;
   project: TeamProject | null;
   repoCheck: RepoCheck | null;
   scored: boolean;
@@ -264,6 +268,19 @@ export default function StaffDashboardPage() {
                             </a>
                           ) : (
                             <span className="text-xs text-[var(--text-muted)]">No app URL yet</span>
+                          )}
+                          {(team.prdUrl || team.project?.prdUrl) ? (
+                            <a
+                              href={(team.prdUrl || team.project?.prdUrl)!}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--border-color)] px-2.5 py-1.5 text-xs text-white hover:bg-white/5"
+                            >
+                              <FileText className="h-3.5 w-3.5" /> Open PRD
+                              <ExternalLink className="h-3 w-3 opacity-60" />
+                            </a>
+                          ) : (
+                            <span className="text-xs text-[var(--text-muted)]">No PRD link yet</span>
                           )}
                           {team.project?.githubUrl ? (
                             <a

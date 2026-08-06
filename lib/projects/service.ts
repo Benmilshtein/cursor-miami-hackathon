@@ -14,6 +14,7 @@ export type CreateProjectInput = {
   description?: string | null;
   githubUrl: string;
   demoUrl?: string | null;
+  prdUrl?: string | null;
   techStack?: string | null;
   slidesUrl?: string | null;
   videoUrl?: string | null;
@@ -129,15 +130,20 @@ function normalizeAppUrl(raw: string | null): string | null {
 }
 
 /**
- * Set (or clear) a team's public app URL (stored in `project.demoUrl`) and
- * GitHub URL (`project.githubUrl`). Open to any team regardless of screening
- * status and not tied to the project deadline - a lighter-weight artifact than
- * the full project submission. Team-lead only. Creates a minimal project row if
- * none exists yet. `githubUrl: undefined` leaves the existing value untouched.
+ * Set (or clear) a team's public app URL (`project.demoUrl`), GitHub URL
+ * (`project.githubUrl`), and PRD link (`project.prdUrl`). Open to any team
+ * regardless of screening status and not tied to the project deadline - a
+ * lighter-weight artifact than the full project submission. Team-lead only.
+ * Creates a minimal project row if none exists yet. `githubUrl` /
+ * `prdUrl: undefined` leave the existing value untouched.
  */
 export async function upsertAppLinks(
   actor: AppSessionUser,
-  input: { appUrl: string | null; githubUrl?: string | null },
+  input: {
+    appUrl: string | null;
+    githubUrl?: string | null;
+    prdUrl?: string | null;
+  },
 ): Promise<ProjectRow> {
   assertTeamLead(actor);
   const teamId = actor.teamId!;
@@ -145,20 +151,25 @@ export async function upsertAppLinks(
   // github_url is NOT NULL, so an empty/cleared value is stored as "".
   const githubUrl =
     input.githubUrl === undefined ? undefined : normalizeAppUrl(input.githubUrl) ?? "";
+  const prdUrl =
+    input.prdUrl === undefined ? undefined : normalizeAppUrl(input.prdUrl);
 
   const existing = await getProjectForTeam(teamId);
   if (existing) {
-    // Stamp the first time an app URL is set - that timestamp is what the
-    // step-1 requirements check measures against. Later edits don't reset it.
-    const firstSubmission =
+    // Stamp the first time an app URL / PRD is set. Later edits don't reset.
+    const firstAppSubmission =
       demoUrl && existing.appUrlSubmittedAt == null ? { appUrlSubmittedAt: new Date() } : {};
+    const firstPrdSubmission =
+      prdUrl && existing.prdSubmittedAt == null ? { prdSubmittedAt: new Date() } : {};
 
     const [row] = await db
       .update(project)
       .set({
         demoUrl,
-        ...firstSubmission,
+        ...firstAppSubmission,
+        ...firstPrdSubmission,
         ...(githubUrl !== undefined ? { githubUrl } : {}),
+        ...(prdUrl !== undefined ? { prdUrl } : {}),
         updatedAt: new Date(),
       })
       .where(eq(project.id, existing.id))
@@ -183,6 +194,8 @@ export async function upsertAppLinks(
       githubUrl: githubUrl ?? "",
       demoUrl,
       appUrlSubmittedAt: demoUrl ? new Date() : null,
+      prdUrl: prdUrl ?? null,
+      prdSubmittedAt: prdUrl ? new Date() : null,
     })
     .returning();
 
@@ -202,6 +215,8 @@ export async function createProject(
     throw new AppError(409, "PROJECT_EXISTS", "This team already has a project.");
   }
 
+  const prdUrl = input.prdUrl !== undefined ? normalizeAppUrl(input.prdUrl ?? null) : null;
+
   const [row] = await db
     .insert(project)
     .values({
@@ -210,6 +225,8 @@ export async function createProject(
       description: input.description?.trim() || null,
       githubUrl: input.githubUrl.trim(),
       demoUrl: input.demoUrl?.trim() || null,
+      prdUrl,
+      prdSubmittedAt: prdUrl ? new Date() : null,
       techStack: input.techStack?.trim() || null,
       slidesUrl: input.slidesUrl?.trim() || null,
       videoUrl: input.videoUrl?.trim() || null,
@@ -236,6 +253,13 @@ export async function updateProject(
   if (input.description !== undefined) updates.description = input.description?.trim() || null;
   if (input.githubUrl !== undefined) updates.githubUrl = input.githubUrl.trim();
   if (input.demoUrl !== undefined) updates.demoUrl = input.demoUrl?.trim() || null;
+  if (input.prdUrl !== undefined) {
+    const prdUrl = normalizeAppUrl(input.prdUrl ?? null);
+    updates.prdUrl = prdUrl;
+    if (prdUrl && existing.prdSubmittedAt == null) {
+      updates.prdSubmittedAt = new Date();
+    }
+  }
   if (input.techStack !== undefined) updates.techStack = input.techStack?.trim() || null;
   if (input.slidesUrl !== undefined) updates.slidesUrl = input.slidesUrl?.trim() || null;
   if (input.videoUrl !== undefined) updates.videoUrl = input.videoUrl?.trim() || null;
@@ -276,6 +300,7 @@ export async function listProjectsForAdmin(options: ListProjectsForAdminOptions)
     description: project.description,
     githubUrl: project.githubUrl,
     demoUrl: project.demoUrl,
+    prdUrl: project.prdUrl,
     techStack: project.techStack,
     slidesUrl: project.slidesUrl,
     videoUrl: project.videoUrl,
@@ -339,6 +364,7 @@ export async function getProjectByTeamIdWithTeamName(teamId: number) {
       description: project.description,
       githubUrl: project.githubUrl,
       demoUrl: project.demoUrl,
+      prdUrl: project.prdUrl,
       techStack: project.techStack,
       slidesUrl: project.slidesUrl,
       videoUrl: project.videoUrl,

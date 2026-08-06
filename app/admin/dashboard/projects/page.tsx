@@ -17,6 +17,7 @@ type ProjectItem = {
   description: string | null;
   githubUrl: string;
   demoUrl: string | null;
+  prdUrl: string | null;
   techStack: string | null;
   slidesUrl: string | null;
   videoUrl: string | null;
@@ -355,6 +356,17 @@ export default function AdminProjectsPage() {
                                 className="inline-flex items-center gap-1 rounded border border-[var(--border-color)] px-2 py-1 text-xs text-white hover:bg-white/5"
                               >
                                 Demo
+                                <ExternalLink className="h-3 w-3" />
+                              </a>
+                            )}
+                            {p.prdUrl && (
+                              <a
+                                href={p.prdUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="inline-flex items-center gap-1 rounded border border-[var(--border-color)] px-2 py-1 text-xs text-white hover:bg-white/5"
+                              >
+                                PRD
                                 <ExternalLink className="h-3 w-3" />
                               </a>
                             )}

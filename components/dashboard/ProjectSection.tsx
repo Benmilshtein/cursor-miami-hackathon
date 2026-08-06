@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import {
   ExternalLink,
+  FileText,
   FolderGit2,
   Github,
   Globe,
@@ -29,6 +30,8 @@ const PROJECT_COPY = {
     githubLabel: "GitHub URL *",
     githubHint: "Must be a public repository - the automated check cannot read a private repo.",
     demoLabel: "Demo URL",
+    prdLabel: "PRD link",
+    prdHint: "Public link to a PDF or Markdown (.md) file. Anyone with the link must be able to open it.",
     techStackLabel: "Tech Stack",
     techStackPlaceholder: "Next.js, Python, OpenAI",
     slidesLabel: "Slides URL",
@@ -58,6 +61,8 @@ const PROJECT_COPY = {
     githubLabel: "GitHub URL *",
     githubHint: "Must be a public repository - the automated check cannot read a private repo.",
     demoLabel: "Demo URL",
+    prdLabel: "PRD-Link",
+    prdHint: "Öffentlicher Link zu einer PDF- oder Markdown-(.md)-Datei. Jeder mit dem Link muss sie öffnen können.",
     techStackLabel: "Tech Stack",
     techStackPlaceholder: "Next.js, Python, OpenAI",
     slidesLabel: "Slides URL",
@@ -87,6 +92,8 @@ const PROJECT_COPY = {
     githubLabel: "GitHub URL *",
     githubHint: "Must be a public repository - the automated check cannot read a private repo.",
     demoLabel: "Demo URL",
+    prdLabel: "Enlace al PRD",
+    prdHint: "Enlace público a un archivo PDF o Markdown (.md). Cualquiera con el enlace debe poder abrirlo.",
     techStackLabel: "Tech Stack",
     techStackPlaceholder: "Next.js, Python, OpenAI",
     slidesLabel: "Slides URL",
@@ -112,6 +119,7 @@ type ProjectData = {
   description: string | null;
   githubUrl: string;
   demoUrl: string | null;
+  prdUrl: string | null;
   techStack: string | null;
   slidesUrl: string | null;
   videoUrl: string | null;
@@ -129,6 +137,7 @@ type FormFields = {
   description: string;
   githubUrl: string;
   demoUrl: string;
+  prdUrl: string;
   techStack: string;
   slidesUrl: string;
   videoUrl: string;
@@ -139,6 +148,7 @@ const EMPTY_FORM: FormFields = {
   description: "",
   githubUrl: "",
   demoUrl: "",
+  prdUrl: "",
   techStack: "",
   slidesUrl: "",
   videoUrl: "",
@@ -150,6 +160,7 @@ function projectToForm(p: ProjectData): FormFields {
     description: p.description ?? "",
     githubUrl: p.githubUrl,
     demoUrl: p.demoUrl ?? "",
+    prdUrl: p.prdUrl ?? "",
     techStack: p.techStack ?? "",
     slidesUrl: p.slidesUrl ?? "",
     videoUrl: p.videoUrl ?? "",
@@ -214,6 +225,7 @@ export function ProjectSection({ isTeamLead, teamApproved }: Props) {
       githubUrl: form.githubUrl.trim(),
       description: form.description.trim() || null,
       demoUrl: form.demoUrl.trim() || null,
+      prdUrl: form.prdUrl.trim() || null,
       techStack: form.techStack.trim() || null,
       slidesUrl: form.slidesUrl.trim() || null,
       videoUrl: form.videoUrl.trim() || null,
@@ -356,6 +368,22 @@ export function ProjectSection({ isTeamLead, teamApproved }: Props) {
               </span>
             </label>
 
+            <label className="block">
+              <span className="mb-1.5 block text-xs font-medium text-[var(--text-secondary)]">
+                {copy.prdLabel}
+              </span>
+              <input
+                type="url"
+                value={form.prdUrl}
+                onChange={(e) => updateField("prdUrl", e.target.value)}
+                className="h-11 w-full rounded-lg border border-[var(--border-color)] bg-[var(--bg-secondary)] px-4 text-white outline-none transition-colors focus:border-[var(--accent-blue)] focus:ring-1 focus:ring-[var(--accent-blue)]/30"
+                placeholder="https://…/your-prd.pdf or …/PRD.md"
+              />
+              <span className="mt-1.5 block text-xs text-[var(--text-muted)]">
+                {copy.prdHint}
+              </span>
+            </label>
+
             <div className="grid gap-4 sm:grid-cols-2">
               <label className="block">
                 <span className="mb-1.5 block text-xs font-medium text-[var(--text-secondary)]">
@@ -489,6 +517,18 @@ export function ProjectSection({ isTeamLead, teamApproved }: Props) {
                 >
                   <Globe size={14} />
                   Demo
+                  <ExternalLink size={12} className="text-[var(--text-muted)]" />
+                </a>
+              )}
+              {project.prdUrl && (
+                <a
+                  href={project.prdUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-lg border border-[var(--border-color)] bg-[var(--bg-secondary)]/60 px-3 py-2 text-sm text-white hover:bg-[var(--bg-secondary)]"
+                >
+                  <FileText size={14} />
+                  PRD
                   <ExternalLink size={12} className="text-[var(--text-muted)]" />
                 </a>
               )}
