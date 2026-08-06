@@ -5,11 +5,9 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
-  AlertTriangle,
   Trophy,
   Check,
   Mic,
-  X,
   ChevronRight,
   BarChart3,
   ExternalLink,
@@ -24,6 +22,7 @@ import {
 } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import { Logo, NoiseOverlay } from "@/components/ui";
+import RepoFileViewer, { RequirementBadges } from "@/components/judging/RepoFileViewer";
 
 type TeamProject = {
   name: string;
@@ -59,51 +58,6 @@ type TeamToEvaluate = {
   scored: boolean;
   total: number | null;
 };
-
-/**
- * Step 1 at a glance: PRD / .cursorrules / public URL. Amber means present but
- * outside the first hour, or never checked. This is a flag only - scoring is
- * never blocked by it.
- */
-function RequirementBadges({ check }: { check: RepoCheck | null }) {
-  if (!check) {
-    return (
-      <span className="text-[10px] uppercase tracking-wide text-[var(--text-muted)]">
-        Repo not checked
-      </span>
-    );
-  }
-
-  const items: Array<[string, boolean]> = [
-    ["PRD", check.hasPrd],
-    [".cursorrules", check.hasCursorRules],
-    ["URL", check.hasAppUrl],
-  ];
-
-  return (
-    <div className="flex flex-wrap items-center gap-1.5">
-      {items.map(([label, present]) => (
-        <span
-          key={label}
-          className={`inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-[10px] font-medium ${
-            present
-              ? "bg-emerald-500/10 text-emerald-400"
-              : "bg-red-500/10 text-red-400"
-          }`}
-        >
-          {present ? <Check className="h-2.5 w-2.5" /> : <X className="h-2.5 w-2.5" />}
-          {label}
-        </span>
-      ))}
-      {!check.onTime && (
-        <span className="inline-flex items-center gap-1 rounded bg-amber-500/10 px-1.5 py-0.5 text-[10px] font-medium text-amber-400">
-          <AlertTriangle className="h-2.5 w-2.5" />
-          Late
-        </span>
-      )}
-    </div>
-  );
-}
 
 export default function StaffDashboardPage() {
   const router = useRouter();
@@ -290,6 +244,10 @@ export default function StaffDashboardPage() {
                           <RequirementBadges check={team.repoCheck} />
                         </div>
 
+                        <div className="mt-2 ml-11">
+                          <RepoFileViewer teamId={team.id} check={team.repoCheck} />
+                        </div>
+
                         <div className="mt-3 ml-11 flex flex-wrap items-center gap-2">
                           {team.appUrl ? (
                             <a
@@ -312,6 +270,26 @@ export default function StaffDashboardPage() {
                               className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--border-color)] px-2.5 py-1.5 text-xs text-white hover:bg-white/5"
                             >
                               <Github className="h-3.5 w-3.5" /> Repo
+                            </a>
+                          ) : null}
+                          {team.project?.slidesUrl ? (
+                            <a
+                              href={team.project.slidesUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--border-color)] px-2.5 py-1.5 text-xs text-white hover:bg-white/5"
+                            >
+                              <Presentation className="h-3.5 w-3.5" /> Slides
+                            </a>
+                          ) : null}
+                          {team.project?.videoUrl ? (
+                            <a
+                              href={team.project.videoUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center gap-1.5 rounded-lg border border-[var(--border-color)] px-2.5 py-1.5 text-xs text-white hover:bg-white/5"
+                            >
+                              <Play className="h-3.5 w-3.5" /> Video
                             </a>
                           ) : null}
                           {team.isFinalist && (
