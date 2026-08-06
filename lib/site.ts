@@ -31,16 +31,16 @@ export function getSiteUrl(): string {
  * Everything here is placeholder template copy.
  */
 export const siteConfig = {
-  name: "48H Hackathon",
-  shortName: "48H",
+  name: "Cursor Miami: Ship Night",
+  shortName: "Ship Night",
   tagline: "Build. Ship. Celebrate.",
   /** Primary description for metadata (English). */
   description:
-    "A beginner-friendly hackathon for building with AI. No degree, no team, no idea required. Show up, pair up, and ship something real.",
+    "A night of building with AI. No degree, no team, no idea required. Show up, pair up, and ship something real.",
   descriptionEn:
-    "A beginner-friendly hackathon for building with AI. No degree, no team, no idea required. Show up, pair up, and ship something real.",
+    "A night of building with AI. No degree, no team, no idea required. Show up, pair up, and ship something real.",
   locale: "en_US",
-  location: "Your City",
+  location: "Miami",
   coOrganizer: undefined as string | undefined,
   twitterHandle: undefined as string | undefined,
 } as const;

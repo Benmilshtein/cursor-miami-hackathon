@@ -27,7 +27,7 @@ const STEPS: Record<OnboardingLanguage, StepContent[]> = {
   en: [
     {
       icon: Compass,
-      title: "Welcome to Miami Ship Night",
+      title: "Welcome to Cursor Miami: Ship Night",
       text: "$10,000 cash on the line.",
     },
     {

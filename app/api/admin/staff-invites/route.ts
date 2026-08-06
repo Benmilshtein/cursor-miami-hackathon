@@ -84,23 +84,23 @@ export async function POST(request: Request) {
     const roleEs = role === "judge" ? "Jurado" : "Mentor";
     const { ok, error } = await sendEmail({
       to: email,
-      subject: `You're invited as a ${roleEn} – 48H`,
+      subject: `You're invited as a ${roleEn} – Cursor Miami: Ship Night`,
       html: `
         <div style="font-family: sans-serif; max-width: 600px;">
           <p><strong>English</strong></p>
-          <p>You have been invited to join 48H as a <strong>${roleEn}</strong>.</p>
+          <p>You have been invited to join Cursor Miami: Ship Night as a <strong>${roleEn}</strong>.</p>
           <p>Click the link below to set up your account (link expires in 7 days):</p>
           <p><a href="${joinUrl}">${joinUrl}</a></p>
           <p style="color: #666;">If you did not expect this email, you can ignore it.</p>
           <hr style="border: none; border-top: 1px solid #eee; margin: 24px 0;" />
           <p><strong>Deutsch</strong></p>
-          <p>Sie wurden zu 48H als <strong>${roleDe}</strong> eingeladen.</p>
+          <p>Sie wurden zu Cursor Miami: Ship Night als <strong>${roleDe}</strong> eingeladen.</p>
           <p>Nutzen Sie den folgenden Link, um Ihr Konto anzulegen (Link ist 7 Tage gültig):</p>
           <p><a href="${joinUrl}">${joinUrl}</a></p>
           <p style="color: #666;">Wenn Sie diese E-Mail nicht erwartet haben, können Sie sie ignorieren.</p>
           <hr style="border: none; border-top: 1px solid #eee; margin: 24px 0;" />
           <p><strong>Español</strong></p>
-          <p>Has sido invitado a 48H como <strong>${roleEs}</strong>.</p>
+          <p>Has sido invitado a Cursor Miami: Ship Night como <strong>${roleEs}</strong>.</p>
           <p>Usa el enlace siguiente para crear tu cuenta (el enlace caduca a los 7 días):</p>
           <p><a href="${joinUrl}">${joinUrl}</a></p>
           <p style="color: #666;">Si no esperabas este correo, puedes ignorarlo.</p>

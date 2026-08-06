@@ -19,7 +19,7 @@ export const translations = {
     tag: {
       en: "YOUR DATES • YOUR CITY", de: "DEINE TERMINE • DEINE STADT", es: "TUS FECHAS • TU CIUDAD",
     },
-    title: { en: "48H", de: "48H", es: "48H" },
+    title: { en: "Cursor Miami: Ship Night", de: "Cursor Miami: Ship Night", es: "Cursor Miami: Ship Night" },
     subtitle: { en: "AI HACKATHON", de: "KI-HACKATHON", es: "HACKATHON DE IA" },
     description: {
       en: "Partnership Proposal", de: "Partnerschaftsvorschlag", es: "Propuesta de asociación",
@@ -39,7 +39,7 @@ export const translations = {
 
   // About Section
   about: {
-    tag: { en: "48H", de: "48H", es: "48H" },
+    tag: { en: "Ship Night", de: "Ship Night", es: "Ship Night" },
     title: {
       en: "About the Project", de: "Über das Projekt", es: "Acerca del proyecto",
     },
@@ -376,7 +376,7 @@ export const translations = {
     tag: {
       en: "Partner Package", de: "Partner Package", es: "Partner Package",
     },
-    preTitle: { en: "48H", de: "48H", es: "48H" },
+    preTitle: { en: "Ship Night", de: "Ship Night", es: "Ship Night" },
     title: {
       en: "General Partner", de: "General Partner", es: "General Partner",
     },
@@ -583,7 +583,7 @@ export const translations = {
   // Footer
   footer: {
     rights: {
-      en: "© 2026 48H. All rights reserved.", de: "© 2026 48H. All rights reserved.", es: "© 2026 48H. All rights reserved.",
+      en: "© 2026 Cursor Miami: Ship Night. All rights reserved.", de: "© 2026 Cursor Miami: Ship Night. All rights reserved.", es: "© 2026 Cursor Miami: Ship Night. All rights reserved.",
     },
   },
 
@@ -619,11 +619,11 @@ export const translations = {
   // Participant Hero Section
   participantHero: {
     date: { en: "DOORS AT 4PM", de: "EINLASS 16 UHR", es: "PUERTAS A LAS 4PM" },
-    location: { en: "BEGINNER-FRIENDLY", de: "ANFÄNGERFREUNDLICH", es: "PARA PRINCIPIANTES" },
-    title: { en: "AI HACKATHON", de: "AI HACKATHON", es: "AI HACKATHON" },
-    subtitle: { en: "Your City's First Ever", de: "Der Erste deiner Stadt", es: "El primero de tu ciudad" },
+    location: { en: "MIAMI", de: "MIAMI", es: "MIAMI" },
+    title: { en: "Cursor Miami: Ship Night", de: "Cursor Miami: Ship Night", es: "Cursor Miami: Ship Night" },
+    subtitle: { en: "Build. Ship. Celebrate.", de: "Build. Ship. Celebrate.", es: "Build. Ship. Celebrate." },
     description: {
-      en: "It's time. We're throwing a hackathon, and the only thing missing is you. It's beginner-friendly on purpose: no degree, no team, no idea required. We hand you the tools, pair you up, and by the time the clock hits 10:30 you'll have shipped something real.", de: "Es ist soweit. Wir veranstalten einen Hackathon, und das Einzige, was fehlt, bist du. Bewusst anfängerfreundlich: kein Abschluss, kein Team, keine Idee nötig. Wir geben dir die Tools, bringen dich mit anderen zusammen, und bis 22:30 Uhr hast du etwas Echtes gebaut.", es: "Es la hora. Organizamos un hackathon, y lo único que falta eres tú. Es para principiantes a propósito: sin título, sin equipo, sin idea previa. Te damos las herramientas, te emparejamos, y para las 10:30 habrás lanzado algo real.",
+      en: "It's time. We're throwing a ship night, and the only thing missing is you. No degree, no team, no idea required. We hand you the tools, pair you up, and by the time the clock hits 10:00 you'll have shipped something real.", de: "Es ist soweit. Wir veranstalten eine Ship Night, und das Einzige, was fehlt, bist du. Kein Abschluss, kein Team, keine Idee nötig. Wir geben dir die Tools, bringen dich mit anderen zusammen, und bis 22:00 Uhr hast du etwas Echtes gebaut.", es: "Es la hora. Organizamos una Ship Night, y lo único que falta eres tú. Sin título, sin equipo, sin idea previa. Te damos las herramientas, te emparejamos, y para las 10:00 habrás lanzado algo real.",
     },
     hours: { en: "HOURS", de: "HOURS", es: "HOURS" },
     teams: { en: "PAIR UP OR SOLO", de: "IM TEAM ODER SOLO", es: "EN PAREJA O SOLO" },
@@ -967,7 +967,7 @@ export const translations = {
   teamBuilding: {
     tag: { en: "TEAM", de: "TEAM", es: "TEAM" },
     title: {
-      en: "How to Build a Team for 48H", de: "How to Build a Team for 48H", es: "How to Build a Team for 48H",
+      en: "How to Build a Team for Ship Night", de: "How to Build a Team for Ship Night", es: "How to Build a Team for Ship Night",
     },
     subtitle: {
       en: "The right team is the key to success at the hackathon", de: "The right team is the key to success at the hackathon", es: "The right team is the key to success at the hackathon",
@@ -1125,7 +1125,6 @@ export const translations = {
       es: "Una pista, una misión: diseña una aplicación completamente funcional y sácala de localhost a una URL pública que cualquiera pueda abrir.",
     },
 
-    beginnerLevel: { en: "BEGINNER", de: "EINSTEIGER", es: "PRINCIPIANTE" },
     beginnerName: {
       en: "Build & Ship Track",
       de: "Build & Ship Track",
@@ -1135,11 +1134,6 @@ export const translations = {
       en: "Your first deployed app",
       de: "Deine erste deployte App",
       es: "Tu primera app desplegada",
-    },
-    beginnerDesc: {
-      en: "For complete beginners. Design and build a fully functioning application and get it off localhost, onto a public URL anyone can open.",
-      de: "Für komplette Einsteiger. Entwerfe und baue eine voll funktionierende Anwendung und bring sie weg vom localhost auf eine öffentliche URL, die jeder öffnen kann.",
-      es: "Para principiantes totales. Diseña y construye una aplicación completamente funcional y sácala de localhost, a una URL pública que cualquiera pueda abrir.",
     },
     beginnerBullet1: {
       en: "Ship a real, working app to a public URL",

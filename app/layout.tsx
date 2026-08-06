@@ -47,20 +47,20 @@ export const metadata: Metadata = {
     alternateLocale: ["en_US"],
     url: siteUrl,
     siteName: siteConfig.name,
-    title: `${siteConfig.name} · AI Hackathon`,
+    title: `${siteConfig.name} · ${siteConfig.tagline}`,
     description: siteConfig.descriptionEn,
     images: [
       {
         url: "/opengraph-image",
         width: 1200,
         height: 630,
-        alt: `${siteConfig.name} · AI Hackathon`,
+        alt: `${siteConfig.name} · ${siteConfig.tagline}`,
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: `${siteConfig.name} · AI Hackathon`,
+    title: `${siteConfig.name} · ${siteConfig.tagline}`,
     description: siteConfig.descriptionEn,
     images: ["/opengraph-image"],
   },

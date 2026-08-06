@@ -199,7 +199,7 @@ See `docs/DOKPLOY.md` for a Dokploy walkthrough using `docker-compose.dokploy.ym
 
 ## Acknowledgements
 
-Based on [CURSOR 48H](https://github.com/cursorcommunityled/cursor_hackathon) by the Cursor Community Led team, an open-source platform for 48-hour AI hackathons (MIT). Thanks to its contributors for the foundation this project builds on.
+Based on the [Cursor community open-source hackathon platform](https://github.com/cursorcommunityled/cursor_hackathon) (MIT). Thanks to its contributors for the foundation this project builds on.
 
 ---
 

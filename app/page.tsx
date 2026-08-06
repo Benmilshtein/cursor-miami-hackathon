@@ -17,7 +17,6 @@ import { NoiseOverlay } from "@/components/ui";
 import { Footer } from "@/components/Footer";
 import { TrackProvider } from "@/lib/TrackContext";
 import {
-  SponsorsSection,
   ParticipantHero,
   TracksSection,
   TeamBuilding,
@@ -36,7 +35,6 @@ export default function Home() {
       <Navigation variant="participant" />
       <main>
         <ParticipantHero />
-        <SponsorsSection />
         <TracksSection />
         {/* <TeamBuilding /> */}
         {/* <SelectionProcess /> */}

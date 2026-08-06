@@ -91,7 +91,7 @@ export function Navigation({ variant = 'partnership' }: NavigationProps) {
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.3 }}
               >
-                48H
+                Ship Night
               </motion.span>
             </Link>
           </motion.div>

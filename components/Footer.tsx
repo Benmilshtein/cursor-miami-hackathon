@@ -24,7 +24,7 @@ export function Footer() {
             whileHover={{ scale: 1.02 }}
           >
             <Logo size={32} />
-            <span className="font-bold text-white">48H</span>
+            <span className="font-bold text-white">Ship Night</span>
           </motion.div>
 
           {/* Copyright */}
