@@ -2,7 +2,8 @@ import { db } from "@/db";
 import { team, user } from "@/db/schema/auth";
 import { judgeScore, pitchScore, repoCheck } from "@/db/schema/scoring";
 import { project } from "@/db/schema/projects";
-import { eq, and, sql, asc, inArray } from "drizzle-orm";
+import { teamMember } from "@/db/schema/teams";
+import { eq, and, sql, asc, inArray, isNull } from "drizzle-orm";
 import { AppError } from "@/lib/api/http";
 import { notifyRankingUpdate } from "@/lib/scoring/events";
 import { EVENT_JUDGE_TARGET } from "@/lib/scoring/constants";
@@ -928,13 +929,47 @@ export async function getApprovedTeamsForJudge(judgeUserId: string) {
   const scoreMap = new Map(scores.map((s) => [s.teamId, s]));
   const pitchScored = await getPitchScoredTeamIds(judgeUserId);
 
+  const teamIds = teams.map((t) => t.id);
+  const memberRows =
+    teamIds.length === 0
+      ? []
+      : await db
+          .select({
+            teamId: teamMember.teamId,
+            role: teamMember.role,
+            name: user.name,
+            email: user.email,
+          })
+          .from(teamMember)
+          .innerJoin(user, eq(teamMember.userId, user.id))
+          .where(and(inArray(teamMember.teamId, teamIds), isNull(teamMember.leftAt)));
+
+  const membersByTeam = new Map<number, string[]>();
+  const sortedMembers = [...memberRows].sort((a, b) => {
+    if (a.teamId !== b.teamId) return a.teamId - b.teamId;
+    if (a.role !== b.role) return a.role === "lead" ? -1 : 1;
+    const aLabel = (a.name?.trim() || a.email || "").toLowerCase();
+    const bLabel = (b.name?.trim() || b.email || "").toLowerCase();
+    return aLabel.localeCompare(bLabel);
+  });
+  for (const row of sortedMembers) {
+    const label = row.name?.trim() || row.email;
+    if (!label) continue;
+    const list = membersByTeam.get(row.teamId) ?? [];
+    list.push(label);
+    membersByTeam.set(row.teamId, list);
+  }
+
   return teams.map((t) => {
     const s = scoreMap.get(t.id);
+    const members = membersByTeam.get(t.id) ?? [];
     return {
       id: t.id,
       name: t.name,
       description: t.description,
       memberCount: t.memberCount,
+      /** Active member display names (lead first). */
+      members,
       approved: t.screeningStatus === "approved",
       /** Step 3: on stage for the finals pitch. */
       isFinalist: Boolean(t.isFinalist),

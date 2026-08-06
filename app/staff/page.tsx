@@ -46,6 +46,8 @@ type TeamToEvaluate = {
   name: string;
   description: string | null;
   memberCount: number;
+  /** Active member display names (lead first). */
+  members?: string[];
   approved: boolean;
   /** Step 3: on stage for the finals pitch. */
   isFinalist: boolean;
@@ -231,8 +233,9 @@ export default function StaffDashboardPage() {
                               <div className="text-xs text-amber-400/80">No project submitted</div>
                             )}
                             <div className="text-xs text-[var(--text-muted)]">
-                              {team.memberCount}{" "}
-                              {team.memberCount === 1 ? "member" : "members"}
+                              {team.members && team.members.length > 0
+                                ? team.members.join(" · ")
+                                : `${team.memberCount} ${team.memberCount === 1 ? "member" : "members"}`}
                               {team.scored && team.total !== null && (
                                 <span className="ml-2 text-emerald-400">{team.total} / 100</span>
                               )}
