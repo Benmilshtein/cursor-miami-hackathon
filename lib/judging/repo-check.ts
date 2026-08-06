@@ -162,7 +162,11 @@ function githubHeaders(): HeadersInit {
 export async function githubFetch(path: string): Promise<Response> {
   const res = await fetch(`${GITHUB_API}${path}`, { headers: githubHeaders() });
   if (res.status === 404) {
-    throw new GitHubError("Repository not found, or it is private and the token cannot read it.");
+    // GitHub returns 404 for a private repo as well as a wrong URL - it will
+    // not confirm that a repo it cannot show you exists. So name both causes.
+    throw new GitHubError(
+      "Cannot read this repository. It must be public to be checked - ask the team to make it public, or to fix the GitHub URL.",
+    );
   }
   if (res.status === 403 || res.status === 429) {
     throw new GitHubError(

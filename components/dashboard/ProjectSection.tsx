@@ -27,6 +27,7 @@ const PROJECT_COPY = {
     descriptionLabel: "Description",
     descriptionPlaceholder: "What does your project do?",
     githubLabel: "GitHub URL *",
+    githubHint: "Must be a public repository - the automated check cannot read a private repo.",
     demoLabel: "Demo URL",
     techStackLabel: "Tech Stack",
     techStackPlaceholder: "Next.js, Python, OpenAI",
@@ -55,6 +56,7 @@ const PROJECT_COPY = {
     descriptionLabel: "Description",
     descriptionPlaceholder: "What does your project do?",
     githubLabel: "GitHub URL *",
+    githubHint: "Must be a public repository - the automated check cannot read a private repo.",
     demoLabel: "Demo URL",
     techStackLabel: "Tech Stack",
     techStackPlaceholder: "Next.js, Python, OpenAI",
@@ -83,6 +85,7 @@ const PROJECT_COPY = {
     descriptionLabel: "Description",
     descriptionPlaceholder: "What does your project do?",
     githubLabel: "GitHub URL *",
+    githubHint: "Must be a public repository - the automated check cannot read a private repo.",
     demoLabel: "Demo URL",
     techStackLabel: "Tech Stack",
     techStackPlaceholder: "Next.js, Python, OpenAI",
@@ -348,6 +351,9 @@ export function ProjectSection({ isTeamLead, teamApproved }: Props) {
                 className="h-11 w-full rounded-lg border border-[var(--border-color)] bg-[var(--bg-secondary)] px-4 text-white outline-none transition-colors focus:border-[var(--accent-blue)] focus:ring-1 focus:ring-[var(--accent-blue)]/30"
                 placeholder="https://github.com/team/project"
               />
+              <span className="mt-1.5 block text-xs text-[var(--text-muted)]">
+                {copy.githubHint}
+              </span>
             </label>
 
             <div className="grid gap-4 sm:grid-cols-2">

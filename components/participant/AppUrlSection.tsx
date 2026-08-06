@@ -128,6 +128,10 @@ export default function AppUrlSection({ isLead }: { isLead: boolean }) {
                   }}
                   className="mt-2 w-full rounded-lg border border-[var(--border-color)] bg-[var(--bg-secondary)] px-4 py-2 text-white placeholder:text-[var(--text-muted)] focus:border-[var(--accent-blue)] focus:outline-none"
                 />
+                <p className="mt-1.5 text-xs text-[var(--text-muted)]">
+                  The repository must be <span className="text-white">public</span> — the
+                  automated check cannot read a private repo.
+                </p>
               </div>
             </div>
 

@@ -792,14 +792,14 @@ export const translations = {
     round1Title: { en: "The Requirements Check", de: "Der Requirements-Check", es: "La Verificación de Requisitos" },
     round1Duration: { en: "First hour", de: "Erste Stunde", es: "Primera hora" },
     round1Goal: {
-      en: "In your first hour you set up the repo: a PRD, a .cursorrules file, and a public app URL. An automated check reads your GitHub and flags what is missing, then judges follow your build live all night.",
-      de: "In der ersten Stunde richtest du das Repo ein: ein PRD, eine .cursorrules-Datei und eine öffentliche App-URL. Eine automatische Prüfung liest dein GitHub und markiert, was fehlt, danach verfolgen die Judges deinen Build die ganze Nacht live.",
-      es: "En tu primera hora preparas el repo: un PRD, un archivo .cursorrules y una URL pública de la app. Una verificación automática lee tu GitHub y marca lo que falta, y luego los jueces siguen tu build en vivo toda la noche.",
+      en: "In your first hour you set up the repo: a PRD, a .cursorrules file, and a public app URL. An automated check reads your public GitHub repo and flags what is missing, then judges follow your build live all night.",
+      de: "In der ersten Stunde richtest du das Repo ein: ein PRD, eine .cursorrules-Datei und eine öffentliche App-URL. Eine automatische Prüfung liest dein öffentliches GitHub-Repo und markiert, was fehlt, danach verfolgen die Judges deinen Build die ganze Nacht live.",
+      es: "En tu primera hora preparas el repo: un PRD, un archivo .cursorrules y una URL pública de la app. Una verificación automática lee tu repo público de GitHub y marca lo que falta, y luego los jueces siguen tu build en vivo toda la noche.",
     },
     round1Bullet1: {
-      en: "Commit a PRD describing what you are building, plus a .cursorrules file, within the first hour.",
-      de: "Committe innerhalb der ersten Stunde ein PRD, das beschreibt, was du baust, sowie eine .cursorrules-Datei.",
-      es: "Sube un PRD que describa lo que vas a construir, más un archivo .cursorrules, dentro de la primera hora.",
+      en: "Commit a PRD describing what you are building, plus a .cursorrules file, to a public GitHub repo within the first hour.",
+      de: "Committe innerhalb der ersten Stunde ein PRD, das beschreibt, was du baust, sowie eine .cursorrules-Datei in ein öffentliches GitHub-Repo.",
+      es: "Sube un PRD que describa lo que vas a construir, más un archivo .cursorrules, a un repositorio público de GitHub dentro de la primera hora.",
     },
     round1Bullet2: {
       en: "Submit your public app URL on the dashboard in the same window. Deploy early, even if it is just a landing page.",
