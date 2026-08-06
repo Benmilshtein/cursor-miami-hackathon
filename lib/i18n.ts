@@ -623,10 +623,12 @@ export const translations = {
     title: { en: "Cursor Miami: Ship Night", de: "Cursor Miami: Ship Night", es: "Cursor Miami: Ship Night" },
     subtitle: { en: "Build. Ship. Celebrate.", de: "Build. Ship. Celebrate.", es: "Build. Ship. Celebrate." },
     description: {
-      en: "It's time. We're throwing a ship night, and the only thing missing is you. No degree, no team, no idea required. We hand you the tools, pair you up, and by the time the clock hits 10:00 you'll have shipped something real.", de: "Es ist soweit. Wir veranstalten eine Ship Night, und das Einzige, was fehlt, bist du. Kein Abschluss, kein Team, keine Idee nötig. Wir geben dir die Tools, bringen dich mit anderen zusammen, und bis 22:00 Uhr hast du etwas Echtes gebaut.", es: "Es la hora. Organizamos una Ship Night, y lo único que falta eres tú. Sin título, sin equipo, sin idea previa. Te damos las herramientas, te emparejamos, y para las 10:00 habrás lanzado algo real.",
+      en: "Build something special and win the grand prize: $10,000.",
+      de: "Baue etwas Besonderes und gewinne den Hauptpreis: $10.000.",
+      es: "Construye algo especial y gana el gran premio: $10,000.",
     },
     hours: { en: "HOURS", de: "HOURS", es: "HOURS" },
-    teams: { en: "PAIR UP OR SOLO", de: "IM TEAM ODER SOLO", es: "EN PAREJA O SOLO" },
+    teams: { en: "PAIR UP", de: "IM TEAM", es: "EN EQUIPO" },
     prize: { en: "CASH + CREDITS", de: "CASH + CREDITS", es: "EFECTIVO + CRÉDITOS" },
     cta: { en: "Apply Now", de: "Apply Now", es: "Apply Now" },
     supportedBy: {
@@ -1063,7 +1065,7 @@ export const translations = {
       en: "Optimal Size and Composition", de: "Optimal Size and Composition", es: "Optimal Size and Composition",
     },
     sizeDesc: {
-      en: "Team of up to 5 people. Recommended roles: developer with AI editor experience (required), backend/frontend developers, person with AI/ML integration experience (OpenAI, Anthropic APIs, etc.), someone with UI/UX skills, and a participant who can present the project at the finale.", de: "Team of up to 5 people. Recommended roles: developer with AI editor experience (required), backend/frontend developers, person with AI/ML integration experience (OpenAI, Anthropic APIs, etc.), someone with UI/UX skills, and a participant who can present the project at the finale.", es: "Team of up to 5 people. Recommended roles: developer with AI editor experience (required), backend/frontend developers, person with AI/ML integration experience (OpenAI, Anthropic APIs, etc.), someone with UI/UX skills, and a participant who can present the project at the finale.",
+      en: "Teams of 2–5 people — solo projects aren't allowed. Recommended roles: developer with AI editor experience (required), backend/frontend developers, person with AI/ML integration experience (OpenAI, Anthropic APIs, etc.), someone with UI/UX skills, and a participant who can present the project at the finale.", de: "Teams mit 2–5 Personen — Solo-Projekte sind nicht erlaubt. Empfohlene Rollen: Developer mit AI-Editor-Erfahrung (pflicht), Backend/Frontend, AI/ML-Integration (OpenAI, Anthropic usw.), UI/UX und jemand, der beim Finale präsentiert.", es: "Equipos de 2–5 personas — no se permiten proyectos en solitario. Roles recomendados: developer con experiencia en editor de IA (obligatorio), backend/frontend, integración AI/ML (OpenAI, Anthropic, etc.), UI/UX y alguien que presente en la final.",
     },
     findTitle: {
       en: "Where to Find Teammates", de: "Where to Find Teammates", es: "Where to Find Teammates",

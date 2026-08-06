@@ -36,9 +36,9 @@ export const siteConfig = {
   tagline: "Build. Ship. Celebrate.",
   /** Primary description for metadata (English). */
   description:
-    "A night of building with AI. No degree, no team, no idea required. Show up, pair up, and ship something real.",
+    "A night of building with AI. No degree, no idea required — show up, pair up, and ship something real as a team.",
   descriptionEn:
-    "A night of building with AI. No degree, no team, no idea required. Show up, pair up, and ship something real.",
+    "A night of building with AI. No degree, no idea required — show up, pair up, and ship something real as a team.",
   locale: "en_US",
   location: "Miami",
   coOrganizer: undefined as string | undefined,
