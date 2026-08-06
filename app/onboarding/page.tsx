@@ -404,13 +404,13 @@ export default function OnboardingPage() {
                     active={preference === "auto_match"}
                     onClick={() => setPreference("auto_match")}
                     title="Match me into a team"
-                    desc="We'll place you on a balanced team with new people. No team needed."
+                    desc="We'll place you on a balanced team with other builders. Bring yourself — we'll handle the pairing."
                   />
                   <PreferenceOption
                     active={preference === "self_form"}
                     onClick={() => setPreference("self_form")}
                     title="I'll form my own team"
-                    desc="Create a team or join one with a code from the dashboard."
+                    desc="Create a team with teammates or join one with a code from the dashboard. Solo projects aren't allowed."
                   />
                 </div>
               </fieldset>
