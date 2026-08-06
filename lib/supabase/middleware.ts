@@ -2,7 +2,8 @@ import { createServerClient } from "@supabase/ssr";
 import { NextResponse, type NextRequest } from "next/server";
 
 /**
- * Refreshes the Supabase auth session cookie on each request.
+ * Refreshes the Supabase auth session cookie on each request and returns the
+ * authenticated user (if any) so the proxy can gate protected routes.
  * Required for SSR session persistence with @supabase/ssr.
  */
 export async function updateSession(request: NextRequest) {
@@ -31,7 +32,9 @@ export async function updateSession(request: NextRequest) {
 
   // Touch the session so expired tokens get refreshed and written back.
   // Do not run code between createServerClient and getUser().
-  await supabase.auth.getUser();
+  const {
+    data: { user },
+  } = await supabase.auth.getUser();
 
-  return supabaseResponse;
+  return { response: supabaseResponse, authUser: user };
 }

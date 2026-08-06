@@ -137,8 +137,10 @@ export default function OnboardingPage() {
   const role = user?.role ?? "participant";
 
   // Redirect users who don't need participant onboarding, or who already finished it.
+  // `pooled` suppresses the redirect so auto-match users see the confirmation
+  // screen after completing (refresh() has already flipped onboardingCompleted).
   useEffect(() => {
-    if (isPending) return;
+    if (isPending || pooled) return;
     if (!user) {
       router.replace("/register");
       return;
@@ -146,12 +148,12 @@ export default function OnboardingPage() {
     if (!requiresParticipantOnboarding(role) || user.onboardingCompleted) {
       router.replace(roleHome(role));
     }
-  }, [isPending, user, role, router]);
+  }, [isPending, pooled, user, role, router]);
 
   const steps = STEPS[lang];
   const labels = BUTTON_LABELS[lang];
 
-  if (isPending || !user || !requiresParticipantOnboarding(role) || user.onboardingCompleted) {
+  if (!pooled && (isPending || !user || !requiresParticipantOnboarding(role) || user.onboardingCompleted)) {
     return (
       <>
         <NoiseOverlay />

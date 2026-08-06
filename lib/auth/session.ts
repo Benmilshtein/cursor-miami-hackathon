@@ -102,15 +102,49 @@ export async function getOptionalSessionUser(
     return null;
   }
 
-  const [profile] = await db
+  let [profile] = await db
     .select()
     .from(user)
     .where(eq(user.id, authUser.id))
     .limit(1);
 
   if (!profile) {
-    // Authenticated but profile not yet provisioned (trigger lag / edge case).
-    // Fall back to a minimal participant view so the request isn't a hard 401.
+    // Authenticated but profile not provisioned (on_auth_user_created trigger
+    // gap). Self-heal by mirroring the trigger's insert: serving an in-memory
+    // profile here means later writes (e.g. onboarding completion) update
+    // zero rows and silently never persist.
+    try {
+      const metadata = (authUser.user_metadata ?? {}) as Record<string, unknown>;
+      const metaString = (key: string): string | null =>
+        typeof metadata[key] === "string" && metadata[key] !== "" ? (metadata[key] as string) : null;
+
+      const [inserted] = await db
+        .insert(user)
+        .values({
+          id: authUser.id,
+          email: authUser.email ?? "",
+          name: metaString("name") ?? authUser.email ?? authUser.id,
+          firstName: metaString("first_name"),
+          lastName: metaString("last_name"),
+          role: "participant",
+          emailVerified: Boolean(authUser.email_confirmed_at),
+        })
+        .onConflictDoNothing()
+        .returning();
+
+      profile = inserted;
+      if (!profile) {
+        // A concurrent request inserted it first.
+        [profile] = await db.select().from(user).where(eq(user.id, authUser.id)).limit(1);
+      }
+    } catch (error) {
+      console.error("getOptionalSessionUser: failed to self-heal missing profile row", error);
+    }
+  }
+
+  if (!profile) {
+    // Self-heal failed (e.g. unreachable Postgres). Fall back to a minimal
+    // in-memory participant view so the request isn't a hard 401.
     return {
       id: authUser.id,
       name: (authUser.user_metadata?.name as string | undefined) ?? null,

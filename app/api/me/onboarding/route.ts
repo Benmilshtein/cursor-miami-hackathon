@@ -38,7 +38,7 @@ export async function POST(request: NextRequest) {
       throw new AppError(400, "INVALID_INPUT", "teamPreference must be auto_match or self_form.");
     }
 
-    await db
+    const updated = await db
       .update(user)
       .set({
         experienceLevel,
@@ -49,7 +49,18 @@ export async function POST(request: NextRequest) {
         onboardingCompletedAt: new Date(),
         updatedAt: new Date(),
       })
-      .where(eq(user.id, actor.id));
+      .where(eq(user.id, actor.id))
+      .returning({ id: user.id });
+
+    if (updated.length === 0) {
+      // No profile row to update — surface it instead of reporting success
+      // that never persisted (this is what caused the onboarding redirect loop).
+      throw new AppError(
+        500,
+        "PROFILE_MISSING",
+        "Your profile could not be found. Please sign out and back in, then try again.",
+      );
+    }
 
     return jsonSuccess({ teamPreference: body.teamPreference });
   } catch (error) {
