@@ -256,6 +256,14 @@ export type AdminTeamJudgeCell = {
   total: number;
 } | null;
 
+/** Step-1 requirements at a glance. Null when the check has never been run. */
+export type AdminTeamRepoCheck = {
+  hasPrd: boolean;
+  hasCursorRules: boolean;
+  hasAppUrl: boolean;
+  onTime: boolean;
+} | null;
+
 export type AdminOfficialScoresTeamRow = {
   teamId: number;
   teamName: string;
@@ -265,6 +273,7 @@ export type AdminOfficialScoresTeamRow = {
   lateSubmissionPenaltyPoints: number;
   manualOverride: number | null;
   effectiveTotal: number;
+  repoCheck: AdminTeamRepoCheck;
   /** Length = EVENT_JUDGE_TARGET; aligns with `judgeSlots` */
   judgeCells: AdminTeamJudgeCell[];
 };
@@ -344,9 +353,34 @@ export async function getAdminOfficialScoresPageData(): Promise<{
     });
   }
 
+  // Separate query, merged by teamId - never a second leftJoin alongside the
+  // judgeScore join, which would cartesian-multiply the build averages.
+  const checkRows = await db
+    .select({
+      teamId: repoCheck.teamId,
+      hasPrd: repoCheck.hasPrd,
+      hasCursorRules: repoCheck.hasCursorRules,
+      hasAppUrl: repoCheck.hasAppUrl,
+      onTime: repoCheck.onTime,
+    })
+    .from(repoCheck);
+
+  const checksByTeam = new Map<number, AdminTeamRepoCheck>(
+    checkRows.map((c) => [
+      c.teamId,
+      {
+        hasPrd: c.hasPrd,
+        hasCursorRules: c.hasCursorRules,
+        hasAppUrl: c.hasAppUrl,
+        onTime: c.onTime,
+      },
+    ]),
+  );
+
   const teams: AdminOfficialScoresTeamRow[] = base.map((r) => ({
     teamId: r.teamId,
     teamName: r.teamName,
+    repoCheck: checksByTeam.get(r.teamId) ?? null,
     judgeCount: r.judgeCount,
     judgeTarget: EVENT_JUDGE_TARGET,
     averageFromJudges: r.grossTotalAvg,

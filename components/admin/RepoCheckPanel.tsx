@@ -1,10 +1,12 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import { AlertTriangle, Check, Loader2, RefreshCw, X } from "lucide-react";
+import { Loader2, RefreshCw } from "lucide-react";
+import RepoFileViewer, { RequirementBadges } from "@/components/judging/RepoFileViewer";
 
 type RepoCheckRow = {
   teamId: number;
+  teamName: string;
   hasPrd: boolean;
   hasCursorRules: boolean;
   hasAppUrl: boolean;
@@ -22,19 +24,6 @@ function toLocalInput(iso: string | null): string {
   if (Number.isNaN(d.getTime())) return "";
   const pad = (n: number) => String(n).padStart(2, "0");
   return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())}T${pad(d.getHours())}:${pad(d.getMinutes())}`;
-}
-
-function Flag({ ok, label }: { ok: boolean; label: string }) {
-  return (
-    <span
-      className={`inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-[10px] font-medium ${
-        ok ? "bg-emerald-500/10 text-emerald-400" : "bg-red-500/10 text-red-400"
-      }`}
-    >
-      {ok ? <Check className="h-2.5 w-2.5" /> : <X className="h-2.5 w-2.5" />}
-      {label}
-    </span>
-  );
 }
 
 /**
@@ -199,25 +188,23 @@ export default function RepoCheckPanel() {
             return (
               <div
                 key={c.teamId}
-                className="flex flex-wrap items-center gap-2 rounded-lg border border-[var(--border-color)] px-3 py-2"
+                className="rounded-lg border border-[var(--border-color)] px-3 py-2"
               >
-                <span className="text-xs text-[var(--text-muted)] tabular-nums">
-                  #{c.teamId}
-                </span>
-                <Flag ok={c.hasPrd} label="PRD" />
-                <Flag ok={c.hasCursorRules} label=".cursorrules" />
-                <Flag ok={c.hasAppUrl} label="URL" />
-                {!c.onTime && (
-                  <span className="inline-flex items-center gap-1 rounded bg-amber-500/10 px-1.5 py-0.5 text-[10px] font-medium text-amber-400">
-                    <AlertTriangle className="h-2.5 w-2.5" />
-                    Not on time
+                <div className="flex flex-wrap items-center gap-2">
+                  <span className="text-xs font-medium text-white">{c.teamName}</span>
+                  <span className="text-[10px] text-[var(--text-muted)] tabular-nums">
+                    #{c.teamId}
                   </span>
-                )}
-                {reason && (
-                  <span className="min-w-0 flex-1 truncate text-[10px] text-[var(--text-muted)]">
-                    {reason}
-                  </span>
-                )}
+                  <RequirementBadges check={c} />
+                  {reason && (
+                    <span className="min-w-0 flex-1 truncate text-[10px] text-[var(--text-muted)]">
+                      {reason}
+                    </span>
+                  )}
+                </div>
+                <div className="mt-2">
+                  <RepoFileViewer teamId={c.teamId} check={c} />
+                </div>
               </div>
             );
           })}

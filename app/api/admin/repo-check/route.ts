@@ -38,10 +38,14 @@ export async function POST(request: NextRequest) {
       if (!Number.isInteger(teamId) || teamId <= 0) {
         throw new AppError(400, "INVALID_INPUT", "Invalid team ID.");
       }
-      return jsonSuccess({ checks: [await runRepoCheck(teamId)] });
+      await runRepoCheck(teamId);
+    } else {
+      await runRepoCheckForAllTeams();
     }
 
-    return jsonSuccess({ checks: await runRepoCheckForAllTeams() });
+    // Re-read rather than returning the run results directly: `listRepoChecks`
+    // is the one shape the UI knows (team names, `details` as a JSON string).
+    return jsonSuccess({ checks: await listRepoChecks() });
   } catch (error) {
     return toErrorResponse(error);
   }

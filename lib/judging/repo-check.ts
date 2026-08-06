@@ -1,4 +1,4 @@
-import { eq } from "drizzle-orm";
+import { asc, eq } from "drizzle-orm";
 import { db } from "@/db";
 import { team } from "@/db/schema/auth";
 import { project } from "@/db/schema/projects";
@@ -143,7 +143,7 @@ export type GitHubClient = {
   existedBy(slug: RepoSlug, path: string, until: Date): Promise<boolean>;
 };
 
-class GitHubError extends Error {}
+export class GitHubError extends Error {}
 
 const GITHUB_API = "https://api.github.com";
 
@@ -159,7 +159,7 @@ function githubHeaders(): HeadersInit {
   return headers;
 }
 
-async function githubFetch(path: string): Promise<Response> {
+export async function githubFetch(path: string): Promise<Response> {
   const res = await fetch(`${GITHUB_API}${path}`, { headers: githubHeaders() });
   if (res.status === 404) {
     throw new GitHubError("Repository not found, or it is private and the token cannot read it.");
@@ -354,8 +354,15 @@ export async function runRepoCheckForAllTeams(
   return results;
 }
 
-export type RepoCheckRow = typeof repoCheck.$inferSelect;
+export type RepoCheckRow = typeof repoCheck.$inferSelect & { teamName: string };
 
+/** Cached results, joined to team names so the admin panel is readable. */
 export async function listRepoChecks(): Promise<RepoCheckRow[]> {
-  return db.select().from(repoCheck);
+  const rows = await db
+    .select({ check: repoCheck, teamName: team.name })
+    .from(repoCheck)
+    .innerJoin(team, eq(repoCheck.teamId, team.id))
+    .orderBy(asc(team.name));
+
+  return rows.map((r) => ({ ...r.check, teamName: r.teamName }));
 }

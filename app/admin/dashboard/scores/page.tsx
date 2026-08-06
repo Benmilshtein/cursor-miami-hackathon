@@ -3,6 +3,10 @@
 import { Fragment, useCallback, useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ChevronDown, ChevronRight, Loader2, Trophy, Flag } from "lucide-react";
+import RepoFileViewer, {
+  RequirementBadges,
+  type RequirementFlags,
+} from "@/components/judging/RepoFileViewer";
 
 type JudgeSlot = { judgeUserId: string; displayName: string } | null;
 
@@ -32,6 +36,8 @@ type TeamRow = {
   lateSubmissionPenaltyPoints: number;
   manualOverride: number | null;
   effectiveTotal: number;
+  /** Step 1 of judging; null when the repo check has never been run. */
+  repoCheck: RequirementFlags | null;
   judgeCells: JudgeCell[];
 };
 
@@ -338,12 +344,15 @@ export default function AdminFinalScoresPage() {
           <div className="overflow-x-auto">
             <table
               className="w-full text-left text-sm"
-              style={{ minWidth: `${420 + judgeColCount * 88 + 360}px` }}
+              style={{ minWidth: `${420 + 190 + judgeColCount * 88 + 360}px` }}
             >
               <thead>
                 <tr className="border-b border-[var(--border-color)] bg-[var(--bg-secondary)]/50">
                   <th className="px-2 py-3 w-10" />
                   <th className="px-3 py-3 font-medium text-[var(--text-secondary)] min-w-[160px]">Team</th>
+                  <th className="px-3 py-3 font-medium text-[var(--text-secondary)] min-w-[190px]">
+                    Requirements
+                  </th>
                   {judgeSlots.map((slot, i) => (
                     <th
                       key={i}
@@ -414,6 +423,9 @@ export default function AdminFinalScoresPage() {
                             )}
                           </div>
                         </td>
+                        <td className="px-3 py-3">
+                          <RequirementBadges check={t.repoCheck} />
+                        </td>
                         {t.judgeCells.map((cell, ji) => (
                           <td
                             key={ji}
@@ -474,7 +486,10 @@ export default function AdminFinalScoresPage() {
                       </tr>
                       {isOpen && draftRow && (
                         <tr className="border-b border-[var(--border-color)]/40 bg-[var(--bg-secondary)]/20">
-                          <td colSpan={2 + judgeColCount + 6} className="px-3 py-4">
+                          <td colSpan={3 + judgeColCount + 6} className="px-3 py-4">
+                            <div className="mb-3">
+                              <RepoFileViewer teamId={t.teamId} check={t.repoCheck} />
+                            </div>
                             <div className="overflow-x-auto rounded-lg border border-[var(--border-color)]/50">
                               <table className="w-full text-xs min-w-[720px]">
                                 <thead>
