@@ -29,12 +29,12 @@
                 <table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:8px 0 4px;">
                   <tr>
                     <td style="border-radius:10px;background-color:#ff2d92;">
-                      <a href="{{ .ConfirmationURL }}" style="display:inline-block;padding:14px 28px;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;font-size:15px;font-weight:600;color:#ffffff;text-decoration:none;border-radius:10px;">Confirm my email</a>
+                      <a href="https://app.cursormiami.com/auth/callback?token_hash={{ .TokenHash }}&amp;type=signup" style="display:inline-block;padding:14px 28px;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;font-size:15px;font-weight:600;color:#ffffff;text-decoration:none;border-radius:10px;">Confirm my email</a>
                     </td>
                   </tr>
                 </table>
                 <p style="margin:16px 0 0;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;font-size:12px;line-height:20px;color:#8a90a3;">Or paste this link into your browser:<br />
-                  <a href="{{ .ConfirmationURL }}" style="color:#ff2d92;word-break:break-all;">{{ .ConfirmationURL }}</a></p>
+                  <a href="https://app.cursormiami.com/auth/callback?token_hash={{ .TokenHash }}&amp;type=signup" style="color:#ff2d92;word-break:break-all;">https://app.cursormiami.com/auth/callback?token_hash={{ .TokenHash }}&amp;type=signup</a></p>
                 <p style="margin:24px 0 0;padding-top:20px;border-top:1px solid #1e1e2a;font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;font-size:12px;line-height:20px;color:#8a90a3;">If you didn't request this, you can safely ignore this email.</p>
               </td>
             </tr>

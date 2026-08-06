@@ -129,6 +129,17 @@ function renderEmail({
 const IGNORE_NOTE =
   "If you didn't request this, you can safely ignore this email.";
 
+/**
+ * Point links at our own callback with a token hash rather than Supabase's
+ * default {{ .ConfirmationURL }}. Supabase's URL returns the session in a URL
+ * fragment (or a PKCE code tied to the browser that started signup), neither of
+ * which a server route can turn into a session when the mail is opened on
+ * another device. A token hash verifies server-side from anywhere, so clicking
+ * the link signs the user straight in. See app/auth/callback/route.ts.
+ */
+const confirmUrl = (type) =>
+  `${SITE_URL}/auth/callback?token_hash={{ .TokenHash }}&amp;type=${type}`;
+
 /** Keys match the template names in Supabase -> Authentication -> Emails. */
 const templates = {
   "confirm-signup": renderEmail({
@@ -138,8 +149,8 @@ const templates = {
     body: [
       `Welcome to <strong style="color:${COLORS.heading};">${SITE_NAME}</strong>. Confirm your email address to finish creating your account and start building.`,
     ],
-    button: { label: "Confirm my email", url: "{{ .ConfirmationURL }}" },
-    fallbackUrl: "{{ .ConfirmationURL }}",
+    button: { label: "Confirm my email", url: confirmUrl("signup") },
+    fallbackUrl: confirmUrl("signup"),
     footnote: IGNORE_NOTE,
   }),
 
@@ -150,8 +161,8 @@ const templates = {
     body: [
       `You've been invited to join <strong style="color:${COLORS.heading};">${SITE_NAME}</strong>. Accept the invitation to set up your account.`,
     ],
-    button: { label: "Accept invitation", url: "{{ .ConfirmationURL }}" },
-    fallbackUrl: "{{ .ConfirmationURL }}",
+    button: { label: "Accept invitation", url: confirmUrl("invite") },
+    fallbackUrl: confirmUrl("invite"),
     footnote: "If you weren't expecting this invitation, you can ignore this email.",
   }),
 
@@ -162,8 +173,8 @@ const templates = {
     body: [
       "Use the link below to sign in. It works once and expires shortly, so use it soon.",
     ],
-    button: { label: "Sign in", url: "{{ .ConfirmationURL }}" },
-    fallbackUrl: "{{ .ConfirmationURL }}",
+    button: { label: "Sign in", url: confirmUrl("magiclink") },
+    fallbackUrl: confirmUrl("magiclink"),
     footnote: IGNORE_NOTE,
   }),
 
@@ -175,8 +186,8 @@ const templates = {
       `You asked to change your Ship Night email from <strong style="color:${COLORS.heading};">{{ .Email }}</strong> to <strong style="color:${COLORS.heading};">{{ .NewEmail }}</strong>.`,
       "Confirm the change to start using your new address to sign in.",
     ],
-    button: { label: "Confirm the change", url: "{{ .ConfirmationURL }}" },
-    fallbackUrl: "{{ .ConfirmationURL }}",
+    button: { label: "Confirm the change", url: confirmUrl("email_change") },
+    fallbackUrl: confirmUrl("email_change"),
     footnote:
       "If you didn't request this change, ignore this email and your address stays the same.",
   }),
@@ -188,8 +199,8 @@ const templates = {
     body: [
       "Choose a new password for your Ship Night account. This link works once and expires shortly.",
     ],
-    button: { label: "Reset my password", url: "{{ .ConfirmationURL }}" },
-    fallbackUrl: "{{ .ConfirmationURL }}",
+    button: { label: "Reset my password", url: confirmUrl("recovery") },
+    fallbackUrl: confirmUrl("recovery"),
     footnote:
       "If you didn't request a reset, ignore this email and your password stays the same.",
   }),

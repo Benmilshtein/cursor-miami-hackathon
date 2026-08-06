@@ -48,7 +48,7 @@ export default function AdminLoginPage() {
           password,
           options: {
             data: { name: name.trim() || email.trim() },
-            emailRedirectTo: `${origin}/auth/callback?next=/admin/dashboard`,
+            emailRedirectTo: `${origin}/auth/callback`,
           },
         });
         if (signUpError) {

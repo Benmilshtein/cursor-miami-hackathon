@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { useLanguage } from "@/lib/LanguageContext";
 import { useSessionUser, useSupabaseBrowser } from "@/lib/auth/AuthProvider";
@@ -15,13 +15,21 @@ const LOADING_UI = (
   </div>
 );
 
-export default function RegisterPage() {
+/** Shown when /auth/callback couldn't turn an email link into a session. */
+const LINK_ERROR_MESSAGE =
+  "That link is no longer valid. Confirmation links expire and can only be used once. Sign in below, or create your account again to get a fresh link.";
+
+function RegisterForm() {
   const { t } = useLanguage();
   const router = useRouter();
   const supabase = useSupabaseBrowser();
   const { user, isPending } = useSessionUser();
+  const linkFailed = useSearchParams().get("error") !== null;
 
-  const [mode, setMode] = useState<"signin" | "signup">("signup");
+  // A failed email link means the account already exists, so open on sign-in.
+  const [mode, setMode] = useState<"signin" | "signup">(
+    linkFailed ? "signin" : "signup",
+  );
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -62,7 +70,7 @@ export default function RegisterPage() {
           password,
           options: {
             data: { name: name.trim() || email.trim() },
-            emailRedirectTo: `${origin}/auth/callback?next=/dashboard`,
+            emailRedirectTo: `${origin}/auth/callback`,
           },
         });
         if (signUpError) {
@@ -106,6 +114,8 @@ export default function RegisterPage() {
     );
   }
 
+  const bannerError = error ?? (linkFailed ? LINK_ERROR_MESSAGE : null);
+
   return (
     <>
       <NoiseOverlay />
@@ -125,9 +135,9 @@ export default function RegisterPage() {
               {t("registerPage", "subtitle")}
             </p>
 
-            {error ? (
+            {bannerError ? (
               <div className="mb-6 w-full rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-sm text-red-200">
-                {error}
+                {bannerError}
               </div>
             ) : null}
             {notice ? (
@@ -216,5 +226,13 @@ export default function RegisterPage() {
         </motion.div>
       </div>
     </>
+  );
+}
+
+export default function RegisterPage() {
+  return (
+    <Suspense fallback={LOADING_UI}>
+      <RegisterForm />
+    </Suspense>
   );
 }
