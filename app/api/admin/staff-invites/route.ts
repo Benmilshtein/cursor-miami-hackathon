@@ -6,6 +6,7 @@ import { AppError } from "@/lib/api/http";
 import { jsonSuccess, parseJsonBody, toErrorResponse } from "@/lib/api/http";
 import { requireSuperAdminUser } from "@/lib/auth/session";
 import { sendEmail } from "@/lib/email/send";
+import { renderEmail } from "@/lib/email/template";
 import {
   generateStaffInviteToken,
   getStaffInviteExpiresAt,
@@ -79,33 +80,23 @@ export async function POST(request: Request) {
     }
 
     const joinUrl = `${baseUrl()}/staff/join?token=${encodeURIComponent(token)}`;
-    const roleEn = role === "judge" ? "Judge" : "Mentor";
-    const roleDe = role === "judge" ? "Juror" : "Mentor";
-    const roleEs = role === "judge" ? "Jurado" : "Mentor";
+    const roleLabel = role === "judge" ? "Judge" : "Mentor";
     const { ok, error } = await sendEmail({
       to: email,
-      subject: `You're invited as a ${roleEn} – Cursor Miami: Ship Night`,
-      html: `
-        <div style="font-family: sans-serif; max-width: 600px;">
-          <p><strong>English</strong></p>
-          <p>You have been invited to join Cursor Miami: Ship Night as a <strong>${roleEn}</strong>.</p>
-          <p>Click the link below to set up your account (link expires in 7 days):</p>
-          <p><a href="${joinUrl}">${joinUrl}</a></p>
-          <p style="color: #666;">If you did not expect this email, you can ignore it.</p>
-          <hr style="border: none; border-top: 1px solid #eee; margin: 24px 0;" />
-          <p><strong>Deutsch</strong></p>
-          <p>Sie wurden zu Cursor Miami: Ship Night als <strong>${roleDe}</strong> eingeladen.</p>
-          <p>Nutzen Sie den folgenden Link, um Ihr Konto anzulegen (Link ist 7 Tage gültig):</p>
-          <p><a href="${joinUrl}">${joinUrl}</a></p>
-          <p style="color: #666;">Wenn Sie diese E-Mail nicht erwartet haben, können Sie sie ignorieren.</p>
-          <hr style="border: none; border-top: 1px solid #eee; margin: 24px 0;" />
-          <p><strong>Español</strong></p>
-          <p>Has sido invitado a Cursor Miami: Ship Night como <strong>${roleEs}</strong>.</p>
-          <p>Usa el enlace siguiente para crear tu cuenta (el enlace caduca a los 7 días):</p>
-          <p><a href="${joinUrl}">${joinUrl}</a></p>
-          <p style="color: #666;">Si no esperabas este correo, puedes ignorarlo.</p>
-        </div>
-      `,
+      subject: `You're invited as a ${roleLabel} – Cursor Miami: Ship Night`,
+      html: renderEmail({
+        preheader: `Set up your ${roleLabel.toLowerCase()} account for Cursor Miami: Ship Night.`,
+        eyebrow: `${roleLabel} invitation`,
+        heading: `You're invited as a ${roleLabel}`,
+        body: [
+          `You've been invited to join <strong style="color:#f4f5fa;">Cursor Miami: Ship Night</strong> as a ${roleLabel.toLowerCase()}.`,
+          "Set up your account to access the dashboard and get started.",
+        ],
+        button: { label: "Set up your account", url: joinUrl },
+        fallbackUrl: joinUrl,
+        footnote:
+          "This link expires in 7 days. If you weren't expecting this invitation, you can safely ignore this email.",
+      }),
     });
 
     if (!ok) {
