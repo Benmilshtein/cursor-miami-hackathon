@@ -645,15 +645,11 @@ export const translations = {
       en: "Register for the Hackathon", de: "Register for the Hackathon", es: "Register for the Hackathon",
     },
     subtitle: {
-      en: "Sign in with Google to continue registration", de: "Sign in with Google to continue registration", es: "Sign in with Google to continue registration",
+      en: "Create an account with email to continue", de: "Create an account with email to continue", es: "Create an account with email to continue",
     },
-    signInGoogle: { en: "Sign in with Google", de: "Sign in with Google", es: "Sign in with Google" },
     alreadyHaveAccount: {
       en: "Already have an account?", de: "Already have an account?", es: "Already have an account?",
     },
-    connecting: { en: "Connecting…", de: "Connecting…", es: "Connecting…" },
-    signInGithub: { en: "Sign in with GitHub", de: "Sign in with GitHub", es: "Sign in with GitHub" },
-    signInLinkedin: { en: "Sign in with LinkedIn", de: "Sign in with LinkedIn", es: "Sign in with LinkedIn" },
     help: {
       en: "After sign-in, we will open your participant profile.", de: "After sign-in, we will open your participant profile.", es: "After sign-in, we will open your participant profile.",
     },
