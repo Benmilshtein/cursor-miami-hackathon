@@ -32,7 +32,7 @@ export function Logo({ size = 40, animated = true, className = '' }: LogoProps) 
       <div className={`relative ${className}`} style={{ width: size, height: size }}>
         <Image
           src="/logo-dark.png"
-          alt="48H Logo"
+          alt="Cursor Miami: Ship Night logo"
           width={size}
           height={size}
           className="rounded-lg"
@@ -61,7 +61,7 @@ export function Logo({ size = 40, animated = true, className = '' }: LogoProps) 
       >
         <Image
           src="/logo-dark.png"
-          alt="48H Logo"
+          alt="Cursor Miami: Ship Night logo"
           width={size}
           height={size}
           className="rounded-lg relative z-10"
@@ -85,7 +85,7 @@ export function LogoWithText({ size = 40 }: { size?: number }) {
         animate={{ opacity: 1, x: 0 }}
         transition={{ delay: 0.2 }}
       >
-        48H
+        Ship Night
       </motion.span>
     </motion.div>
   );

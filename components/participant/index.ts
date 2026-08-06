@@ -1,5 +1,4 @@
 export { ParticipantHero } from './ParticipantHero';
-export { SponsorsSection } from './SponsorsSection';
 export { TracksSection } from './TracksSection';
 export { TeamBuilding } from './TeamBuilding';
 export { SelectionProcess } from './SelectionProcess';

@@ -19,10 +19,8 @@ const tracks = [
     id: "beginner",
     icon: IconRocket,
     accent: "var(--accent-green)",
-    levelKey: "beginnerLevel",
     nameKey: "beginnerName",
     tagKey: "beginnerTag",
-    descKey: "beginnerDesc",
     bulletKeys: [
       "beginnerBullet1",
       "beginnerBullet2",
@@ -95,7 +93,7 @@ export function TracksSection() {
                 style={{ background: track.accent }}
               />
 
-              <div className="relative flex items-center justify-between mb-6">
+              <div className="relative mb-6">
                 <div
                   className="w-14 h-14 rounded-2xl flex items-center justify-center border"
                   style={{
@@ -106,28 +104,16 @@ export function TracksSection() {
                 >
                   <track.icon size={28} />
                 </div>
-                <span
-                  className="text-xs font-mono uppercase tracking-widest px-3 py-1 rounded-full border"
-                  style={{
-                    borderColor: `${track.accent}40`,
-                    color: track.accent,
-                  }}
-                >
-                  {t("tracks", track.levelKey)}
-                </span>
               </div>
 
               <h3 className="relative text-2xl sm:text-3xl font-bold text-white mb-2">
                 {t("tracks", track.nameKey)}
               </h3>
               <p
-                className="relative text-sm font-semibold mb-5 uppercase tracking-wide"
+                className="relative text-sm font-semibold mb-8 uppercase tracking-wide"
                 style={{ color: track.accent }}
               >
                 {t("tracks", track.tagKey)}
-              </p>
-              <p className="relative text-[var(--text-secondary)] leading-relaxed mb-8">
-                {t("tracks", track.descKey)}
               </p>
 
               <ul className="relative space-y-3 mt-auto">

@@ -1,6 +1,6 @@
 import { ImageResponse } from "next/og";
 
-export const alt = "48H Hackathon · Build. Ship. Celebrate.";
+export const alt = "Cursor Miami: Ship Night · Build. Ship. Celebrate.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -21,13 +21,16 @@ export default function OpenGraphImage() {
       >
         <div
           style={{
-            fontSize: 80,
+            fontSize: 64,
             fontWeight: 800,
             color: "#f8fafc",
             letterSpacing: "-0.02em",
+            textAlign: "center",
+            paddingLeft: 48,
+            paddingRight: 48,
           }}
         >
-          48H Hackathon
+          Cursor Miami: Ship Night
         </div>
         <div
           style={{

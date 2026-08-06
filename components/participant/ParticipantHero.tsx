@@ -104,8 +104,8 @@ export function ParticipantHero() {
       <div className="absolute inset-0 overflow-hidden pointer-events-none hidden md:block">
         <MouseParallax factor={-30} className="absolute top-[15%] left-[10%]">
           <div className="p-4 bg-[var(--bg-secondary)]/30 backdrop-blur-md border border-[var(--border-color)]/50 rounded-2xl rotate-[-6deg]">
-            <span className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#ff2d92] via-[#ff6b5c] to-[#10d6c2]">
-              4H
+            <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[#ff2d92] via-[#ff6b5c] to-[#10d6c2]">
+              SHIP
             </span>
           </div>
         </MouseParallax>
@@ -161,26 +161,29 @@ export function ParticipantHero() {
 
         {/* Main Title - Split Text */}
         <motion.h1
-          className="text-5xl sm:text-7xl md:text-8xl lg:text-9xl font-black tracking-tighter text-white mb-6 leading-[0.9]"
+          className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black tracking-tighter text-white mb-6 leading-[0.95]"
           variants={sentence}
           initial="hidden"
           animate="visible"
         >
           {t("participantHero", "title")
-            .split("")
-            .map((char: string, index: number) =>
-              char === " " ? (
-                <br key={index} />
-              ) : (
-                <motion.span
-                  key={index}
-                  variants={letter}
-                  className="inline-block"
-                >
-                  {char}
-                </motion.span>
-              )
-            )}
+            .split(" ")
+            .map((word: string, i: number) => (
+              <span
+                key={i}
+                className="inline-block whitespace-nowrap mr-[0.2em]"
+              >
+                {word.split("").map((char: string, index: number) => (
+                  <motion.span
+                    key={index}
+                    variants={letter}
+                    className="inline-block"
+                  >
+                    {char}
+                  </motion.span>
+                ))}
+              </span>
+            ))}
         </motion.h1>
 
         {/* Subtitle */}
