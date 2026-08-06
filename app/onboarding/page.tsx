@@ -27,8 +27,8 @@ const STEPS: Record<OnboardingLanguage, StepContent[]> = {
   en: [
     {
       icon: Compass,
-      title: "Welcome to the Hackathon",
-      text: "A beginner-friendly night of building with AI. This short intro covers how the night works.",
+      title: "Welcome to Miami Ship Night",
+      text: "$10,000 cash on the line.",
     },
     {
       icon: Users,
@@ -38,12 +38,12 @@ const STEPS: Record<OnboardingLanguage, StepContent[]> = {
     {
       icon: Clock,
       title: "Build the night away",
-      text: "Doors at 4pm: onboarding, tutorials, and networking, then heads-down building from 6 with mentors floating around to help.",
+      text: "Doors at 4pm: onboarding, tutorials, and networking, then heads-down building from 5pm.",
     },
     {
       icon: Trophy,
       title: "Demos & celebration",
-      text: "At 10:30 teams take the stage, we crown the winners, and then we hang and celebrate everything that got built. Let's go!",
+      text: "At 10:00pm teams take the stage, we crown the winners, and then we hang and celebrate everything that got built. Let's go!",
     },
   ],
   de: [

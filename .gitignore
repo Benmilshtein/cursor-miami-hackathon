@@ -58,3 +58,4 @@ next-env.d.ts
 
 # IDE (local only; commit shared .vscode settings if your team relies on them)
 .idea/
+.env*
