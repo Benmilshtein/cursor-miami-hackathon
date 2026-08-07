@@ -98,6 +98,73 @@ export const pitchScore = pgTable(
  *
  * This is a flag, not a gate: a failing team is still scorable.
  */
+/**
+ * Miami Scoring System: one judge's pillar scores for one team.
+ *
+ * Submitted once as a set of three (Problem Identification, Product Maturity,
+ * Solution Viability; each 0–10) and immutable afterwards - the service layer
+ * rejects updates. Never exposed to participants: only judges (after they have
+ * submitted their own row for that team) and super admins can read these.
+ */
+export const miamiScore = pgTable(
+  "miami_score",
+  {
+    id: text("id")
+      .primaryKey()
+      .$defaultFn(() => randomUUID()),
+    teamId: integer("team_id")
+      .notNull()
+      .references(() => team.id, { onDelete: "cascade" }),
+    judgeUserId: text("judge_user_id")
+      .notNull()
+      .references(() => user.id, { onDelete: "cascade" }),
+    problemIdentification: integer("problem_identification").notNull(),
+    productMaturity: integer("product_maturity").notNull(),
+    solutionViability: integer("solution_viability").notNull(),
+    submittedAt: timestamp("submitted_at", { withTimezone: true }).notNull().defaultNow(),
+    createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+    updatedAt: timestamp("updated_at", { withTimezone: true })
+      .notNull()
+      .defaultNow()
+      .$onUpdate(() => new Date()),
+  },
+  (table) => [
+    uniqueIndex("miami_score_team_judge_unique").on(table.teamId, table.judgeUserId),
+    index("miami_score_team_idx").on(table.teamId),
+    index("miami_score_judge_idx").on(table.judgeUserId),
+    check(
+      "miami_score_problem_range",
+      sql`${table.problemIdentification} >= 0 and ${table.problemIdentification} <= 10`,
+    ),
+    check(
+      "miami_score_maturity_range",
+      sql`${table.productMaturity} >= 0 and ${table.productMaturity} <= 10`,
+    ),
+    check(
+      "miami_score_viability_range",
+      sql`${table.solutionViability} >= 0 and ${table.solutionViability} <= 10`,
+    ),
+  ],
+);
+
+/**
+ * Super-admin disqualification flag + mandatory reason note.
+ *
+ * Deliberately a separate table (not columns on `team`) so the many existing
+ * participant-facing queries that select team rows can never leak it. Row
+ * present = disqualified. Visible to judges and super admins only.
+ */
+export const teamDisqualification = pgTable("team_disqualification", {
+  teamId: integer("team_id")
+    .primaryKey()
+    .references(() => team.id, { onDelete: "cascade" }),
+  reason: text("reason").notNull(),
+  disqualifiedByUserId: text("disqualified_by_user_id").references(() => user.id, {
+    onDelete: "set null",
+  }),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow(),
+});
+
 export const repoCheck = pgTable("repo_check", {
   teamId: integer("team_id")
     .primaryKey()

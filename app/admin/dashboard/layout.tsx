@@ -17,6 +17,7 @@ import {
   FolderGit2,
   Trophy,
   BarChart3,
+  ClipboardList,
 } from "lucide-react";
 import { useSessionUser, useAuth } from "@/lib/auth/AuthProvider";
 import { DashboardLayout } from "@/components/dashboard/DashboardLayout";
@@ -96,6 +97,7 @@ export default function AdminDashboardLayout({
     { href: "/admin/dashboard/credits", label: "Credits", icon: Coins },
     { href: "/admin/dashboard/scores", label: "Final scores", icon: BarChart3 },
     { href: "/admin/dashboard/ranking", label: "Finals & results", icon: Trophy },
+    { href: "/scoring", label: "Miami Scoring System", icon: ClipboardList },
   ];
 
   const userEmail = user?.email ?? "";

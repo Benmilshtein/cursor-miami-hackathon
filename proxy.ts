@@ -16,6 +16,7 @@ const PROTECTED_PREFIXES = [
   "/screening",
   "/staff",
   "/admin",
+  "/scoring",
 ];
 
 function matchesPrefix(pathname: string, prefix: string): boolean {
@@ -38,7 +39,9 @@ function isGatingExempt(pathname: string): boolean {
 
 function loginPathFor(pathname: string): string {
   if (matchesPrefix(pathname, "/admin")) return "/admin/login";
-  if (matchesPrefix(pathname, "/staff")) return "/staff/login";
+  if (matchesPrefix(pathname, "/staff") || matchesPrefix(pathname, "/scoring")) {
+    return "/staff/login";
+  }
   return "/register";
 }
 
@@ -76,6 +79,9 @@ export async function proxy(request: NextRequest) {
     let target: string | null = null;
     if (matchesPrefix(pathname, "/admin")) {
       if (role !== "super_admin") target = dashboardPathForRole(role);
+    } else if (matchesPrefix(pathname, "/scoring")) {
+      // Miami Scoring System: judges + super admins only.
+      if (role !== "judge" && role !== "super_admin") target = dashboardPathForRole(role);
     } else if (matchesPrefix(pathname, "/staff")) {
       if (!isStaffPortalRole(role)) target = dashboardPathForRole(role);
     } else if (matchesPrefix(pathname, "/onboarding")) {

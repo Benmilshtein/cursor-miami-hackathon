@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import {
   Trophy,
   Check,
+  ClipboardList,
   Mic,
   ChevronRight,
   BarChart3,
@@ -19,11 +20,18 @@ import {
   Play,
   Presentation,
   FileText,
+  ShieldAlert,
   Users,
 } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import { Logo, NoiseOverlay } from "@/components/ui";
 import RepoFileViewer, { RequirementBadges } from "@/components/judging/RepoFileViewer";
+import {
+  MiamiScorePanel,
+  type MiamiAverages,
+  type MiamiScoreRow,
+  type MiamiSubmittedScore,
+} from "@/components/judging/MiamiScorePanel";
 
 type TeamProject = {
   name: string;
@@ -41,6 +49,16 @@ type RepoCheck = {
   hasCursorRules: boolean;
   hasAppUrl: boolean;
   onTime: boolean;
+};
+
+/** Per-team Miami Scoring System state for the signed-in judge. */
+type MiamiBoardEntry = {
+  id: number;
+  disqualified: { reason: string } | null;
+  myScore: MiamiSubmittedScore | null;
+  scoresVisible: boolean;
+  scores: MiamiScoreRow[];
+  averages: MiamiAverages | null;
 };
 
 type TeamToEvaluate = {
@@ -70,6 +88,21 @@ export default function StaffDashboardPage() {
   const { data: session, isPending } = authClient.useSession();
   const [teams, setTeams] = useState<TeamToEvaluate[]>([]);
   const [teamsLoading, setTeamsLoading] = useState(true);
+  const [miamiByTeam, setMiamiByTeam] = useState<Map<number, MiamiBoardEntry>>(new Map());
+
+  const loadMiamiBoard = useCallback(() => {
+    fetch("/api/scoring-system", { credentials: "include" })
+      .then((r) => r.json())
+      .then((json) => {
+        if (!json?.success) return;
+        const entries = (json.data.teams as MiamiBoardEntry[]).map(
+          (t) => [t.id, t] as const,
+        );
+        setMiamiByTeam(new Map(entries));
+      })
+      // Board is supplementary on this page; the /scoring page shows errors.
+      .catch(() => {});
+  }, []);
 
   useEffect(() => {
     if (isPending) return;
@@ -105,9 +138,10 @@ export default function StaffDashboardPage() {
       .finally(() => {
         if (!ignore) setTeamsLoading(false);
       });
+    loadMiamiBoard();
 
     return () => { ignore = true; };
-  }, [isPending, session?.user, userRole]);
+  }, [isPending, session?.user, userRole, loadMiamiBoard]);
 
   if (isPending || !session?.user) {
     return (
@@ -150,13 +184,24 @@ export default function StaffDashboardPage() {
                 </p>
               </div>
             </div>
-            <Link
-              href="/ranking"
-              className="flex items-center gap-2 rounded-lg border border-[var(--border-color)] px-3 py-2 text-xs font-medium text-[var(--text-secondary)] hover:text-white hover:border-[var(--border-hover)] transition-colors"
-            >
-              <Trophy className="h-3.5 w-3.5" />
-              Ranking
-            </Link>
+            <div className="flex items-center gap-2">
+              {isJudge && (
+                <Link
+                  href="/scoring"
+                  className="flex items-center gap-2 rounded-lg border border-[var(--accent-blue)]/40 bg-[var(--accent-blue)]/10 px-3 py-2 text-xs font-medium text-[var(--accent-blue)] hover:bg-[var(--accent-blue)]/20 transition-colors"
+                >
+                  <ClipboardList className="h-3.5 w-3.5" />
+                  Miami Scoring
+                </Link>
+              )}
+              <Link
+                href="/ranking"
+                className="flex items-center gap-2 rounded-lg border border-[var(--border-color)] px-3 py-2 text-xs font-medium text-[var(--text-secondary)] hover:text-white hover:border-[var(--border-hover)] transition-colors"
+              >
+                <Trophy className="h-3.5 w-3.5" />
+                Ranking
+              </Link>
+            </div>
           </div>
 
           {isJudge && (
@@ -196,6 +241,7 @@ export default function StaffDashboardPage() {
                     // Scoring needs an approved team with a submitted project;
                     // watching the live build needs neither.
                     const canScore = !!team.project && team.approved;
+                    const miami = miamiByTeam.get(team.id);
 
                     return (
                       <motion.div
@@ -226,6 +272,12 @@ export default function StaffDashboardPage() {
                                 <span className="inline-flex shrink-0 items-center gap-1 rounded bg-amber-500/15 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-amber-400">
                                   <Trophy className="h-2.5 w-2.5" />
                                   Finalist
+                                </span>
+                              )}
+                              {miami?.disqualified && (
+                                <span className="inline-flex shrink-0 items-center gap-1 rounded bg-red-500/15 px-1.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-red-400">
+                                  <ShieldAlert className="h-2.5 w-2.5" />
+                                  Disqualified
                                 </span>
                               )}
                             </div>
@@ -341,6 +393,22 @@ export default function StaffDashboardPage() {
                             </span>
                           )}
                         </div>
+
+                        {/* Miami Scoring System pillars (judge-only, final once submitted) */}
+                        {miami && (
+                          <div className="mt-3 ml-11">
+                            <MiamiScorePanel
+                              teamId={team.id}
+                              teamName={team.name}
+                              isAdmin={false}
+                              myScore={miami.myScore}
+                              scoresVisible={miami.scoresVisible}
+                              scores={miami.scores}
+                              averages={miami.averages}
+                              onSubmitted={() => loadMiamiBoard()}
+                            />
+                          </div>
+                        )}
                       </motion.div>
                     );
                   })}
