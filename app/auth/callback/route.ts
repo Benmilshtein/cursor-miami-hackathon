@@ -55,6 +55,12 @@ export async function GET(request: Request) {
     return NextResponse.redirect(`${origin}/register?error=link_invalid`);
   }
 
+  // A recovery link only proves the mailbox; the point of the click is to set a
+  // new password, so land there instead of the dashboard.
+  if (type === "recovery") {
+    return NextResponse.redirect(`${origin}/auth/reset-password`);
+  }
+
   const sessionUser = await getOptionalSessionUser();
   return NextResponse.redirect(
     `${origin}${dashboardPathForRole(sessionUser?.role)}`,

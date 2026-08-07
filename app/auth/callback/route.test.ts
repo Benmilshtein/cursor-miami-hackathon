@@ -51,6 +51,20 @@ describe("GET /auth/callback", () => {
     expect(res.headers.get("location")).toBe("https://app.example.com/staff");
   });
 
+  it("sends a recovery link to the set-new-password page", async () => {
+    mockGetOptionalSessionUser.mockResolvedValue({ role: "judge" });
+
+    const res = await GET(callbackRequest("?token_hash=abc123&type=recovery"));
+
+    expect(mockVerifyOtp).toHaveBeenCalledWith({
+      type: "recovery",
+      token_hash: "abc123",
+    });
+    expect(res.headers.get("location")).toBe(
+      "https://app.example.com/auth/reset-password",
+    );
+  });
+
   it("still supports the OAuth/PKCE code exchange", async () => {
     const res = await GET(callbackRequest("?code=xyz789"));
 

@@ -17,6 +17,8 @@ export default function StaffLoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isSendingReset, setIsSendingReset] = useState(false);
+  const [notice, setNotice] = useState<string | null>(null);
 
   useEffect(() => {
     if (isPending || !user) return;
@@ -27,9 +29,37 @@ export default function StaffLoginPage() {
     }
   }, [isPending, user, router]);
 
+  const handleResetPassword = async () => {
+    const target = email.trim();
+    setError(null);
+    setNotice(null);
+
+    if (!target) {
+      setError("Enter your email above first, then tap Forgot password.");
+      return;
+    }
+
+    setIsSendingReset(true);
+    try {
+      const { error: resetError } = await supabase.auth.resetPasswordForEmail(target, {
+        redirectTo: `${window.location.origin}/auth/callback?type=recovery`,
+      });
+      if (resetError) {
+        setError(resetError.message ?? "Could not send the reset email.");
+        return;
+      }
+      setNotice(`If ${target} has an account, a password reset link is on its way.`);
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setIsSendingReset(false);
+    }
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
+    setNotice(null);
     setIsSubmitting(true);
     try {
       const { error: signInError } = await supabase.auth.signInWithPassword({
@@ -95,6 +125,12 @@ export default function StaffLoginPage() {
               </div>
             )}
 
+            {notice && (
+              <div className="w-full mb-4 rounded-xl border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-200">
+                {notice}
+              </div>
+            )}
+
             <form onSubmit={handleSubmit} className="w-full flex flex-col gap-4">
               <input
                 type="email"
@@ -136,6 +172,15 @@ export default function StaffLoginPage() {
                 {isSubmitting ? "Signing in…" : "Sign in"}
               </button>
             </form>
+
+            <button
+              type="button"
+              onClick={() => void handleResetPassword()}
+              disabled={isSendingReset}
+              className="mt-4 text-sm text-[var(--text-secondary)] underline-offset-4 transition-colors hover:text-white hover:underline disabled:cursor-not-allowed disabled:opacity-70"
+            >
+              {isSendingReset ? "Sending reset link…" : "Forgot password?"}
+            </button>
 
             <Link
               href="/"
