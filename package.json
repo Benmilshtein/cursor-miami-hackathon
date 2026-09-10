@@ -40,7 +40,7 @@
     "eslint-config-next": "16.2.6",
     "tailwindcss": "^4.2.2",
     "typescript": "^5",
-    "vitest": "^4.1.0"
+    "vitest": "^4.1.11"
   },
   "overrides": {
     "next": {
